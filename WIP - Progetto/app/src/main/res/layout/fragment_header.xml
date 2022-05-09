@@ -9,11 +9,11 @@
 
     <TextView
         android:id="@+id/wip_text"
-        android:layout_width="@dimen/header_wip_width"
-        android:layout_height="@dimen/header_wip_height"
-        android:layout_marginStart="@dimen/header_wip_marginStart"
-        android:layout_marginTop="@dimen/header_wip_marginTop"
-        android:layout_marginEnd="@dimen/header_wip_marginEnd"
+        android:layout_width="98dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="@dimen/margin_top_header"
+        android:layout_marginEnd="157dp"
         android:rotation="-15"
         android:text="@string/app_name"
         android:textAppearance="@style/title"
@@ -24,11 +24,11 @@
 
     <View
         android:id="@+id/divider_header"
-        android:layout_width="@dimen/header_divider_width"
-        android:layout_height="@dimen/header_divider_height"
-        android:layout_marginStart="@dimen/header_divider_marginStart"
-        android:layout_marginTop="@dimen/header_divider_marginTop"
-        android:layout_marginEnd="@dimen/header_divider_marginEnd"
+        android:layout_width="320dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="157dp"
         android:background="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- fragment_header → wip_text -->
-    <dimen name="header_wip_width">98dp</dimen>
-    <dimen name="header_wip_height">53dp</dimen>
-    <dimen name="header_wip_marginTop">16dp</dimen>
-    <dimen name="header_wip_marginStart">156dp</dimen>
-    <dimen name="header_wip_marginEnd">157dp</dimen>
-
-    <!-- fragment_header → divider_header -->
-    <dimen name="header_divider_width">320dp</dimen>
-    <dimen name="header_divider_height">2dp</dimen>
-    <dimen name="header_divider_marginTop">16dp</dimen>
-    <dimen name="header_divider_marginStart">156dp</dimen>
-    <dimen name="header_divider_marginEnd">157dp</dimen>
+    <dimen name="margin_top_header">16dp</dimen>
 
 </resources>
