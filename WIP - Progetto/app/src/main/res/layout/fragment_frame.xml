@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="?attr/colorPrimary"
+    android:theme="@style/Theme.WIP">
+
+    <ImageButton
+        android:id="@+id/play_button"
+        android:layout_width="282dp"
+        android:layout_height="253dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="@+id/frame_image"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="@+id/frame_image"
+        app:layout_constraintTop_toTopOf="@+id/frame_image"
+        app:srcCompat="@drawable/play_button" />
+
+    <ImageView
+        android:id="@+id/frame_image"
+        android:layout_width="599dp"
+        android:layout_height="433dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/frame"
+        tools:layout_editor_absoluteY="-41dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
