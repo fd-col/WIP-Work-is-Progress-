@@ -4,8 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/Cartella condivisa/WIP - Progetto/app/src/main/res/layout/activity_main.xml" value="0.20923913043478262" />
-        <entry key="..\:/Users/Emanuele/AndroidStudioProjects/Cartella condivisa/WIP - Progetto/app/src/main/res/layout/fragment_frame.xml" value="0.2" />
-        <entry key="..\:/Users/Emanuele/AndroidStudioProjects/Cartella condivisa/WIP - Progetto/app/src/main/res/layout/fragment_header.xml" value="0.2" />
+        <entry key="..\:/Users/Emanuele/AndroidStudioProjects/Cartella condivisa/WIP - Progetto/app/src/main/res/layout/fragment_header.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_header.xml" value="0.264" />
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_menu.xml" value="0.19519927536231885" />
@@ -15,6 +14,18 @@
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/WIP/app/src/main/res/layout/fragment_menu.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/WIP/app/src/main/res/layout/header_fragment.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/Emanuele/AndroidStudioProjects/WIP/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1075" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/drawable/rounded_corner_image_button.xml" value="0.123" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/drawable/rounded_corner_image_button_central.xml" value="0.123" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_frame.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_header.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_menu.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_settings.xml" value="0.2" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/layout/fragment_world.xml" value="0.2" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/menu/menu_nav.xml" value="0.2" />
+        <entry key="..\:/Users/fedju/Documents/GitHub/WIP-Work-Is-Progress-/WIP - Progetto/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1275" />
       </map>
     </option>
   </component>

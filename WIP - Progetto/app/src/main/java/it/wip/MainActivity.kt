@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import it.wip.ui.FrameFragment
 import it.wip.ui.HeaderFragment
+import it.wip.ui.MenuFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         transaction.add(R.id.header_layout, HeaderFragment())
 
         transaction.add(R.id.frame_layout, FrameFragment())
+
+        transaction.add(R.id.menu_layout, MenuFragment())
 
         transaction.commit()
 

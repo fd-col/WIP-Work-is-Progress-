@@ -33,8 +33,6 @@ class FrameFragment : Fragment(R.layout.fragment_frame) {
             v?.onTouchEvent(event) ?: true
         }
 
-
         return view
     }
-
 }
