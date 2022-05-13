@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WIP</string>
+
+    //stringa riferita nel file splash_page.xml
+    <string name="splash_page_icon_describer">Icona della spash page dell\'app WIP</string>
+    <string name="quote_describer">Quote dell\'app WIP, essa recita: if it matters, paint it</string>
+    <string name="pennello">pulsante pennello che porta alla home page</string>
+    <string name="corona">pulsante corona che porta alla page regno</string>
+    <string name="impostazioni">pulsante impostazioni che porta alla page impostazioni</string>
+
+    //start_story.xml
+    <string name="new_story_default">New story</string>
+    <string name="new_story_title">Title</string>
 </resources>
