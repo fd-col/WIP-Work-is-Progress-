@@ -27,7 +27,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         menuHome?.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> menuHome.setImageResource(R.drawable.paint_button_pressed)
-                MotionEvent.ACTION_UP -> menuHome.setImageResource(R.drawable.paint_button)
+                MotionEvent.ACTION_UP -> menuHome.setImageResource(R.drawable.paint_button_official)
             }
 
             v?.onTouchEvent(event) ?: true
@@ -41,7 +41,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         menuWorld?.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> menuHome?.setImageResource(R.drawable.crown_button_pressed)
-                MotionEvent.ACTION_UP -> menuHome?.setImageResource(R.drawable.crown_button)
+                MotionEvent.ACTION_UP -> menuHome?.setImageResource(R.drawable.crown_button_official)
             }
 
             v?.onTouchEvent(event) ?: true
@@ -55,7 +55,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         menuSettings?.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> menuHome?.setImageResource(R.drawable.gear_button_pressed)
-                MotionEvent.ACTION_UP -> menuHome?.setImageResource(R.drawable.gear_button)
+                MotionEvent.ACTION_UP -> menuHome?.setImageResource(R.drawable.gear_button_official)
             }
 
             v?.onTouchEvent(event) ?: true
