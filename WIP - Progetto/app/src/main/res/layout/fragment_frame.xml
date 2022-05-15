@@ -4,11 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frame"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
-    android:background="?attr/colorPrimary"
+    android:layout_height="match_parent"
+    android:background="@color/blue_primary"
     android:theme="@style/Theme.WIP">
+    <!--
+    android:background="?attr/colorPrimary"
+    -->
 
-    <ImageButton
+
+    <!--
+        <ImageButton
         android:id="@+id/play_button"
         android:layout_width="267dp"
         android:layout_height="215dp"
@@ -21,7 +26,31 @@
         app:layout_constraintStart_toStartOf="@+id/frame_image"
         app:layout_constraintTop_toTopOf="@+id/frame_image"
         app:srcCompat="@drawable/play_button" />
+    -->
+    <ImageButton
+        android:id="@+id/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/cardview_shadow_end_color"
+        android:contentDescription="tasto play nuova storia"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/play_button" />
 
+    <ImageView
+        android:id="@+id/frame_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/frame" />
+
+    <!--
     <ImageView
         android:id="@+id/frame_image"
         android:layout_width="549dp"
@@ -31,5 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/frame" />
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
