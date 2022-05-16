@@ -11,4 +11,5 @@
     //start_story.xml
     <string name="new_story_default">New story</string>
     <string name="new_story_title">Title</string>
+    <string name="story_time_textview">Story time</string>
 </resources>
