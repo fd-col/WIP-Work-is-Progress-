@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         cronometro.start()
         cronometro.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
 
-        //val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
-        //slider.setLabelFormatter { value: Float ->
-        //    "${value.toInt()}min/${60-value.toInt()}min"
-        //}
+        val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
+        slider.setLabelFormatter { value: Float ->
+            "${value.toInt()}min/${60-value.toInt()}min"
+        }
 
 
         //setContentView(R.layout.activity_main)
