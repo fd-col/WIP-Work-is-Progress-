@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Chronometer
 import android.widget.ImageButton
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 import it.wip.ui.FrameFragment
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         val cronometro = findViewById<Chronometer>(R.id.simpleChronometer)
         cronometro.start()
         cronometro.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
+
+        val switch_silent_mode = findViewById<Switch>(R.id.switch_silent_mode)
+        val switch_hardcore_mode = findViewById<Switch>(R.id.switch_hardcore_mode)
+        switch_silent_mode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
+        switch_hardcore_mode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
 
         val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
         slider.setLabelFormatter { value: Float ->

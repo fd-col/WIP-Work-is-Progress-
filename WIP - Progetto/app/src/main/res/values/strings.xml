@@ -12,4 +12,8 @@
     <string name="new_story_default">New story</string>
     <string name="new_story_title">Title</string>
     <string name="story_time_textview">Story time</string>
+    <string name="optional_settings_textview">Opt. settings</string>
+    <string name="silent_mode">Silent mode</string>
+    <string name="hardcore_mode">Hardcore mode</string>
+    <string name="switch_image_background_description">background switch</string>
 </resources>

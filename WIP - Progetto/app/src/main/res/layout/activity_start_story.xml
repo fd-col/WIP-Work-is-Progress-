@@ -68,6 +68,7 @@
         android:id="@+id/story_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/story_time_textview"
         android:textColor="#E8EAF6"
@@ -104,18 +105,19 @@
     -->
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangular_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/story_time"
-        app:layout_constraintVertical_bias="0.021"
-        android:background="@drawable/rectangular_background">
+        app:layout_constraintVertical_bias="0.021">
 
         <com.google.android.material.slider.Slider
             android:id="@+id/seekBar_story_time"
@@ -124,14 +126,82 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
-            app:trackColorActive="#922196F3"
-            app:thumbColor="@color/blue_primary"
+            android:stepSize="10"
             android:valueFrom="0"
             android:valueTo="60"
-            android:stepSize="10"
             app:haloRadius="18dp"
+            app:thumbColor="@color/blue_primary"
+            app:trackColorActive="#922196F3"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/optional_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/optional_settings_textview"
+
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.152" />
+
+    <ImageView
+        android:id="@+id/switch_image_background"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangular_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optional_settings"
+        app:layout_constraintVertical_bias="0.0"
+        android:contentDescription="@string/switch_image_background_description" />
+
+    <Switch
+        android:id="@+id/switch_silent_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="#922196F3"
+        android:textSize="16sp"
+        android:minHeight="48dp"
+        android:text="@string/silent_mode"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_image_background"
+        app:layout_constraintEnd_toEndOf="@+id/switch_image_background"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="@+id/switch_image_background"
+        app:layout_constraintTop_toTopOf="@+id/switch_image_background"
+        app:layout_constraintVertical_bias="0.179"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Switch
+        android:id="@+id/switch_hardcore_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="#922196F3"
+        android:textSize="16sp"
+        android:minHeight="48dp"
+        android:text="@string/hardcore_mode"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_image_background"
+        app:layout_constraintEnd_toEndOf="@+id/switch_image_background"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="@+id/switch_image_background"
+        app:layout_constraintTop_toBottomOf="@+id/switch_silent_mode"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
