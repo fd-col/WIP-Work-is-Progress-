@@ -16,4 +16,6 @@
     <string name="silent_mode">Silent mode</string>
     <string name="hardcore_mode">Hardcore mode</string>
     <string name="switch_image_background_description">background switch</string>
+    <string name="choose_avatar_textview">Choose avatar</string>
+    <string name="avatar_description">foto avatar selezionabile</string>
 </resources>

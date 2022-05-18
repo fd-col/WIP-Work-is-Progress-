@@ -18,9 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_start_story)
-        val cronometro = findViewById<Chronometer>(R.id.simpleChronometer)
-        cronometro.start()
-        cronometro.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
 
         val switch_silent_mode = findViewById<Switch>(R.id.switch_silent_mode)
         val switch_hardcore_mode = findViewById<Switch>(R.id.switch_hardcore_mode)

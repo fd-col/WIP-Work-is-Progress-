@@ -11,6 +11,8 @@
     tools:context=".StartStoryActivity">
     -->
 
+    <!--
+                    CRONOMETRO
     <Chronometer
         android:id="@+id/simpleChronometer"
         android:layout_width="wrap_content"
@@ -23,6 +25,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.487" />
+
+                    CODICE KOTLIN
+        val cronometro = findViewById<Chronometer>(R.id.simpleChronometer)
+        cronometro.start()
+        cronometro.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
+    -->
 
     <TextView
         android:id="@+id/story_title"
@@ -39,46 +47,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.944" />
-
-    <EditText
-        android:id="@+id/story_title_set_by_the_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:autofillHints="story title set by the user"
-        android:background="@drawable/rectangular_background"
-        android:cursorVisible="true"
-        android:ems="10"
-        android:fontFamily="@font/press_start_2p"
-        android:hint="@string/new_story_default"
-        android:inputType="text"
-        android:minHeight="66dp"
-        android:padding="20dp"
-        android:textColor="#922196F3"
-        android:textColorHint="#922196F3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/story_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/story_time_textview"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/story_title_set_by_the_user"
-        app:layout_constraintVertical_bias="0.081" />
 
     <!--
         <SeekBar
@@ -104,6 +72,46 @@
         app:layout_constraintVertical_bias="0.021" />
     -->
 
+    <EditText
+        android:id="@+id/story_title_set_by_the_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints="story title set by the user"
+        android:background="@drawable/rectangular_background"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:fontFamily="@font/press_start_2p"
+        android:hint="@string/new_story_default"
+        android:inputType="text"
+        android:minHeight="66dp"
+        android:padding="20dp"
+        android:textColor="#0277BD"
+        android:textColorHint="#0277BD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <TextView
+        android:id="@+id/story_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/story_time_textview"
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/story_title_set_by_the_user"
+        app:layout_constraintVertical_bias="0.0" />
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -117,7 +125,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/story_time"
-        app:layout_constraintVertical_bias="0.021">
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.slider.Slider
             android:id="@+id/seekBar_story_time"
@@ -130,7 +138,7 @@
             android:valueFrom="0"
             android:valueTo="60"
             app:haloRadius="18dp"
-            app:thumbColor="@color/blue_primary"
+            app:thumbColor="#0277BD"
             app:trackColorActive="#922196F3"
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
     </FrameLayout>
@@ -139,18 +147,17 @@
         android:id="@+id/optional_settings"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/optional_settings_textview"
-
         android:textColor="#E8EAF6"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/switch_image_background"
@@ -160,13 +167,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangular_background"
+        android:contentDescription="@string/switch_image_background_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/optional_settings"
-        app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="@string/switch_image_background_description" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Switch
         android:id="@+id/switch_silent_mode"
@@ -174,10 +181,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/press_start_2p"
-        android:textColor="#922196F3"
-        android:textSize="16sp"
         android:minHeight="48dp"
         android:text="@string/silent_mode"
+        android:trackTint="@drawable/switch_track"
+        android:textColor="#0277BD"
+        android:textSize="17sp"
+        android:thumbTint="#0277BD"
         app:layout_constraintBottom_toBottomOf="@+id/switch_image_background"
         app:layout_constraintEnd_toEndOf="@+id/switch_image_background"
         app:layout_constraintHorizontal_bias="0.077"
@@ -192,10 +201,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/press_start_2p"
-        android:textColor="#922196F3"
-        android:textSize="16sp"
         android:minHeight="48dp"
         android:text="@string/hardcore_mode"
+        android:textColor="#0277BD"
+        android:textSize="17sp"
+        android:thumbTint="#0277BD"
+        android:trackTint="@drawable/switch_track"
         app:layout_constraintBottom_toBottomOf="@+id/switch_image_background"
         app:layout_constraintEnd_toEndOf="@+id/switch_image_background"
         app:layout_constraintHorizontal_bias="0.077"
@@ -203,5 +214,49 @@
         app:layout_constraintTop_toBottomOf="@+id/switch_silent_mode"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <TextView
+        android:id="@+id/choose_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/choose_avatar_textview"
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_image_background"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/avatar_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose_avatar"
+        app:layout_constraintVertical_bias="0.0"
+        android:background="@drawable/crown_button"/>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872"
+        app:srcCompat="@drawable/aa" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
