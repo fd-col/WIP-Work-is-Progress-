@@ -6,6 +6,5 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.os.Bundle
 
-class ShopFragment: Fragment(R.layout.fragment_shop){
-
+class KingdomFragment: Fragment(R.layout.fragment_kingdom){
 }

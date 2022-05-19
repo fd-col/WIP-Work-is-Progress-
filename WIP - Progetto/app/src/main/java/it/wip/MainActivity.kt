@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         transaction.add(R.id.header_layout, HeaderFragment())
 
-        //transaction.add(R.id.frame_layout, FrameFragment())
-        transaction.add(R.id.frame_layout, ShopFragment())
+        transaction.add(R.id.frame_layout, FrameFragment())
+        //transaction.add(R.id.frame_layout, ShopFragment())
 
         transaction.add(R.id.menu_layout, MenuFragment())
 

@@ -6,6 +6,5 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.os.Bundle
 
-class ShopFragment: Fragment(R.layout.fragment_shop){
-
+class SettingsFragment: Fragment(R.layout.fragment_settings){
 }

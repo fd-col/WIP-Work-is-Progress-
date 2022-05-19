@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/press_start_2p"
-        android:text="@string/shop_string"
+        android:text="Settings"
         android:textColor="#E8EAF6"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
