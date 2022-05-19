@@ -233,10 +233,10 @@
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="108dp"
+        android:layout_width="wrap_content"
         android:layout_height="92dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/crown_button"
+        android:background="@drawable/venere"
         android:contentDescription="@string/avatar_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -292,6 +292,40 @@
         app:layout_constraintTop_toBottomOf="@+id/avatar"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/start_story_button" />
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/back_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/back_arrow" />
+
+
+    <ImageButton
+        android:id="@+id/info_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="67dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/info_button"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_image_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switch_image_background"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/info_button"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

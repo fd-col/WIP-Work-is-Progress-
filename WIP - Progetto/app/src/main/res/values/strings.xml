@@ -21,4 +21,6 @@
     <string name="avatar_dx_arrow">freccia per scorrere a destra gli avatar disponibili</string>
     <string name="avatar_sx_arrow">freccia per scorrere a sinistra gli avatar disponibili</string>
     <string name="start_story_button">bottone per iniziare la sessione di produttività</string>
+    <string name="back_button">bottone per tornare alla home page</string>
+    <string name="info_button">bottone per descrivere le impostazioni opzionali</string>
 </resources>

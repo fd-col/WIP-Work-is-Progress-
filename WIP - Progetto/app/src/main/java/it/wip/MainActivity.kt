@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
         slider.setLabelFormatter { value: Float ->
-            "${value.toInt()}min/${60-value.toInt()}min"
+            "${value.toInt()} min study/${60-value.toInt()} min pause"
         }
 
 
