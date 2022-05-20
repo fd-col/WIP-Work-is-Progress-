@@ -36,7 +36,7 @@
         app:srcCompat="@drawable/frame" />
 
     <ImageButton
-        android:id="@+id/shop_icon"
+        android:id="@+id/shop_button"
         android:layout_width="60dp"
         android:layout_height="56dp"
         android:layout_marginBottom="42dp"
