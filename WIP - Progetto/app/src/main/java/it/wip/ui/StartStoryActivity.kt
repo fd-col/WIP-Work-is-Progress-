@@ -8,10 +8,12 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
+import android.widget.Switch
+import androidx.core.content.res.ResourcesCompat
 
 class StartStoryActivity : AppCompatActivity() {
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_story)
@@ -25,6 +27,16 @@ class StartStoryActivity : AppCompatActivity() {
         val avatarDxButton = findViewById<ImageButton>(R.id.avatar_dx_button)
 
         val startButton = findViewById<ImageButton>(R.id.start_button)
+
+        val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
+        slider.setLabelFormatter { value: Float ->
+            "${value.toInt()} min study/${60-value.toInt()} min pause"
+        }
+
+        val switchSilentMode = findViewById<Switch>(R.id.switch_silent_mode)
+        val switchHardcoreMode = findViewById<Switch>(R.id.switch_hardcore_mode)
+        switchSilentMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
+        switchHardcoreMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
 
         backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
