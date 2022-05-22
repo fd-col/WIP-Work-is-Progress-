@@ -28,7 +28,7 @@
     -->
 
     <ImageButton
-        android:id="@+id/menu_home"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -37,8 +37,8 @@
         android:background="#00FFFFFF"
         android:contentDescription="@string/pennello"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/menu_settings"
-        app:layout_constraintStart_toEndOf="@+id/menu_world"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.945"
         app:srcCompat="@drawable/paint_button" />
@@ -63,14 +63,14 @@
     -->
 
     <ImageButton
-        android:id="@+id/menu_world"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
         android:contentDescription="@string/corona"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/menu_home"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -97,7 +97,7 @@
     -->
 
     <ImageButton
-        android:id="@+id/menu_settings"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -105,7 +105,7 @@
         android:contentDescription="@string/impostazioni"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/menu_home"
+        app:layout_constraintStart_toEndOf="@+id/button1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.974"
         app:srcCompat="@drawable/gear_button" />

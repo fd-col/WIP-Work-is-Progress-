@@ -18,4 +18,18 @@
     <string name="switch_image_background_description">background switch</string>
     <string name="choose_avatar_textview">Choose avatar</string>
     <string name="avatar_description">foto avatar selezionabile</string>
+    <string name="avatar_dx_arrow">freccia per scorrere a destra gli avatar disponibili</string>
+    <string name="avatar_sx_arrow">freccia per scorrere a sinistra gli avatar disponibili</string>
+    <string name="start_story_button">bottone per iniziare la sessione di produttività</string>
+    <string name="back_button">bottone per tornare alla home page</string>
+    <string name="info_button">bottone per descrivere le impostazioni opzionali</string>
+    <string name="under_app_name">barra posta sotto il nome dell\'app</string>
+    <string name="shop_button">bottone che indirizza allo shop</string>
+
+    //fragment_frame
+    <string name="play_button">tasto play nuova storia</string>
+    <string name="frame_background">cornice che contiene il tasto play</string>
+
+    //fragment shop
+    <string name="shop_string">Shop</string>
 </resources>
