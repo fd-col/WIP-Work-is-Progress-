@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,43 +12,254 @@
     -->
 
     <TextView
-        android:id="@+id/settings_page"
+        android:id="@+id/Shop_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/shop_string"
         android:textColor="#E8EAF6"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <!--
-    <ImageButton
-        android:id="@+id/play_button"
+    <TextView
+        android:id="@+id/Coins_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/cardview_shadow_end_color"
-        android:contentDescription="tasto play nuova storia"
-        android:scaleType="centerInside"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/coins_string"
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/actual_coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/actual_coins_string"
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/play_button" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Coins_counter"
+        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/frame_image"
+        android:id="@+id/coin_icon_wallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/abc"
+        android:contentDescription="@string/coin_price_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/actual_coins"
+        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/buy_avatars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/buy_avatars_string"
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/frame" />
-    -->
+        app:layout_constraintTop_toBottomOf="@+id/Coins_counter"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/avatars"
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/venere"
+        android:contentDescription="@string/avatar_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/new_avatar_dx_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/avatar_dx_arrow"
+        android:minWidth="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/avatars"
+        app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar_dx_arrow" />
+
+    <ImageButton
+        android:id="@+id/new_avatar_sx_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/avatar_sx_arrow"
+        android:minWidth="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/avatars"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar_sx_arrow" />
+
+    <TextView
+        android:id="@+id/buy_backgrounds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/buy_backgrounds_string"
+        android:textColor="#E8EAF6"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatar_price"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/backgrounds"
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/venere"
+        android:contentDescription="@string/background_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buy_backgrounds"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/new_background_dx_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/background_dx_arrow"
+        android:minWidth="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/backgrounds"
+        app:layout_constraintTop_toBottomOf="@+id/buy_backgrounds"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar_dx_arrow" />
+
+    <ImageButton
+        android:id="@+id/new_background_sx_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/background_sx_arrow"
+        android:minWidth="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/backgrounds"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buy_backgrounds"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/avatar_sx_arrow" />
+
+    <TextView
+        android:id="@+id/avatar_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/avatar_price_string"
+        android:textColor="#E8EAF6"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatars"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/background_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/background_price_string"
+        android:textColor="#E8EAF6"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backgrounds"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/coin_icon_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/abc"
+        android:contentDescription="@string/coin_price_description"
+        app:layout_constraintBottom_toTopOf="@+id/buy_backgrounds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/avatar_price"
+        app:layout_constraintTop_toBottomOf="@+id/avatars"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/coin_icon_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/abc"
+        android:contentDescription="@string/coin_price_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/background_price"
+        app:layout_constraintTop_toBottomOf="@+id/backgrounds"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

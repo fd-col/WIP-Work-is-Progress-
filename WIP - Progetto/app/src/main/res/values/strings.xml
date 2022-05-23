@@ -32,4 +32,14 @@
 
     //fragment shop
     <string name="shop_string">Shop</string>
+    <string name="coins_string">My coins: </string>
+    <string name="buy_avatars_string">Buy avatars</string>
+    <string name="buy_backgrounds_string">Buy backgrounds</string>
+    <string name="background_description">foto background</string>
+    <string name="background_dx_arrow">freccia per scorrere a destra i background</string>
+    <string name="background_sx_arrow">freccia per scorrere a sinistra i background</string>
+    <string name="avatar_price_string">0</string>
+    <string name="background_price_string">0</string>
+    <string name="coin_price_description">icona coin vicino al prezzo</string>
+    <string name="actual_coins_string">0</string>
 </resources>
