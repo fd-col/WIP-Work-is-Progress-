@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/settings"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:theme="@style/Theme.WIP">
@@ -43,13 +41,14 @@ android:background="?attr/colorPrimary"
 
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView_order_detail"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rectangular_background"
+        android:scrollbarThumbVertical="@color/cardview_shadow_end_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
@@ -65,10 +64,10 @@ android:background="?attr/colorPrimary"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/press_start_2p"
+            android:lineSpacingExtra="8sp"
             android:text="@string/venere_description"
             android:textColor="#0277BD"
             android:textSize="16sp" />
-
 
     </ScrollView>
 
@@ -84,45 +83,7 @@ android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_order_detail"
         app:layout_constraintVertical_bias="0.0" />
-
-
-    <!--
-    <TextView
-        android:id="@+id/Shop_header"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/shop_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-
-
-
-
-    <ImageButton
-        android:id="@+id/avatars"
-        android:layout_width="wrap_content"
-        android:layout_height="92dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/venere"
-        android:contentDescription="@string/avatar_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
-        app:layout_constraintVertical_bias="0.0" />
-    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
