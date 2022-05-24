@@ -27,50 +27,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/Coins_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/coins_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/actual_coins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="2dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/actual_coins_string"
         android:textColor="#E8EAF6"
-        android:textSize="24sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Coins_counter"
-        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
+        app:layout_constraintEnd_toStartOf="@+id/coin_icon_wallet"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/Shop_header"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/coin_icon_wallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/abc"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/coin"
         android:contentDescription="@string/coin_price_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/actual_coins"
-        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -87,14 +74,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Coins_counter"
+        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/avatars"
         android:layout_width="wrap_content"
         android:layout_height="92dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/venere"
         android:contentDescription="@string/avatar_description"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -152,11 +139,11 @@
         app:layout_constraintTop_toBottomOf="@+id/avatar_price"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/backgrounds"
         android:layout_width="wrap_content"
         android:layout_height="92dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/venere"
         android:contentDescription="@string/background_description"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -237,7 +224,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="6dp"
-        android:background="@drawable/abc"
+        android:background="@drawable/coin"
         android:contentDescription="@string/coin_price_description"
         app:layout_constraintBottom_toTopOf="@+id/buy_backgrounds"
         app:layout_constraintEnd_toEndOf="parent"
@@ -253,7 +240,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/abc"
+        android:background="@drawable/coin"
         android:contentDescription="@string/coin_price_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
