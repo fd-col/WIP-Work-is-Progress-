@@ -67,4 +67,11 @@ vedendo Citerèa, che cinto ha di mammole il crine.
 Salve, o più dolce del miele, dagli occhi brillanti: concedi
 che in questo agone io m’abbia vittoria; ed onora il mio canto.
 Io mi ricorderò d’esaltarti in un’altra canzone.</string>
+
+    <!-- activity chapter info -->
+    <string name="chapter_info">Chapter Info</string>
+    <string name="date_and_time">Date &amp; Time</string>
+    <string name="avatar_text">Avatar</string>
+    <string name="chapter_info_start">Start:</string>
+    <string name="chapter_info_end">End:</string>
 </resources>
