@@ -46,27 +46,10 @@
     <string name="avatar_detail_string">immagine dell\'avatar nella schermata dettaglio ordine</string>
     <string name="avatar_name_string">Venere</string>
     <string name="buy_button">bottone per effettuare un acquisto</string>
-    <string name="venere_description">La veneranda, la bella dall’aureo serto, Afrodite
-io canterò, che tutte le cime di Cipro marina
-protegge, ove la furia di Zefiro ch’umido spira
-la trasportò, sui flutti del mare ch’eterno risuona,
-sopra la morbida spuma. L’accolser con animo lieto
-l’Ore dai veli d’oro, le cinsero vesti immortali:
-la fronte sua divina velaron d’un aureo serto,
-bello, d’egregia fattura: nei lobi forati, alle orecchie
-un fior, nell’oricalco foggiato, e nell’oro fulgente:
-d’intorno al sen, che argento sembrava, ed al morbido collo,
-monili tutti d’oro poi cinsero, quali esse stesse
-l’Ore dai veli d’oro si cingono, allor che a le danze
-muovono dilettose dei Numi, e alla casa del padre.
-Or, poi che l’ebbero tutte le membra adornate, ai Celesti
-l’addussero; e i Celesti ben lieti l’accolsero, e ognuno
-la man le porse, ognuno chiedeva legittima sposa
-condurla in casa propria: tal fu lo stupore di tutti,
-vedendo Citerèa, che cinto ha di mammole il crine.
-Salve, o più dolce del miele, dagli occhi brillanti: concedi
-che in questo agone io m’abbia vittoria; ed onora il mio canto.
-Io mi ricorderò d’esaltarti in un’altra canzone.</string>
+    <string name="venere_description">Painted by Sandro Botticelli between 1482-1485, and
+        esposed at the Galleria degli uffizi in Florence, The Birth of Venus is an artwork made
+        of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
+        Venus from the sea foam.\n</string>
 
     <!-- activity chapter info -->
     <string name="chapter_info">Chapter Info</string>

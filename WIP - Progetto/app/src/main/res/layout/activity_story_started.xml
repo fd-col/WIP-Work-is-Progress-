@@ -12,7 +12,7 @@
         android:id="@+id/control_panel"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/rectangular_background"
+        android:background="@drawable/controller_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

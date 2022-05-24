@@ -24,6 +24,9 @@
         <activity
             android:name=".ui.ChapterInfoActivity">
         </activity>
+        <activity
+            android:name=".ui.StoryStartedActivity">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
