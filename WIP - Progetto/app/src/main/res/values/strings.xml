@@ -57,4 +57,7 @@
     <string name="avatar_text">Avatar</string>
     <string name="chapter_info_start">Start:</string>
     <string name="chapter_info_end">End:</string>
+    <string name="stop_button_string">bottone per terminare la sessione di produttività</string>
+
+    <!-- activity story started -->
 </resources>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/splash_page_background">
+    android:background="@color/white">
 
 
 
@@ -12,7 +12,7 @@
         android:id="@+id/control_panel"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/controller_background"
+        android:background="@drawable/activity_started_control_panel_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -22,132 +22,68 @@
             android:id="@+id/simpleChronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="18dp"
             android:fontFamily="@font/press_start_2p"
-            android:textColor="#0277BD"
+            android:textColor="@color/white"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="@id/control_panel"
             app:layout_constraintEnd_toEndOf="@id/control_panel"
-            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/control_panel"
             app:layout_constraintTop_toTopOf="@id/control_panel"
-            app:layout_constraintVertical_bias="0.679" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/control_panel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rectangular_background"
+            android:max="50"
+            android:min="0"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:progress="10"
+            android:progressTint="#0277BD"
+            app:layout_constraintBottom_toTopOf="@+id/simpleChronometer"
             app:layout_constraintEnd_toEndOf="@id/control_panel"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/control_panel"
             app:layout_constraintTop_toTopOf="@id/control_panel"
-            app:layout_constraintVertical_bias="0.119" />
+            app:layout_constraintVertical_bias="0.0" />
 
+        <ImageButton
+            android:id="@+id/stop_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/stop_button"
+            android:contentDescription="@string/stop_button_string"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/simpleChronometer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dinamic_paintong"
+        android:id="@+id/dinamic_painting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/frame"
         app:layout_constraintBottom_toTopOf="@+id/control_panel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-
     <!--
-                    CRONOMETRO
-    <Chronometer
-        android:id="@+id/simpleChronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/press_start_2p"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/story_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.487" />
-
-                    CODICE KOTLIN
-        val cronometro = findViewById<Chronometer>(R.id.simpleChronometer)
-        cronometro.start()
-        cronometro.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
-    -->
-
-    <!--
-    <TextView
-        android:id="@+id/Shop_header"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/shop_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <TextView
-        android:id="@+id/actual_coins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="2dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/actual_coins_string"
-        android:textColor="#E8EAF6"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/coin_icon_wallet"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/Shop_header"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/coin_icon_wallet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/coin"
-        android:contentDescription="@string/coin_price_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/buy_avatars"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/buy_avatars_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Shop_header"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/avatars"
@@ -161,164 +97,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/new_avatar_dx_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/avatar_dx_arrow"
-        android:minWidth="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/avatars"
-        app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/avatar_dx_arrow" />
-
-    <ImageButton
-        android:id="@+id/new_avatar_sx_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/avatar_sx_arrow"
-        android:minWidth="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/avatars"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_avatars"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/avatar_sx_arrow" />
-
-    <TextView
-        android:id="@+id/buy_backgrounds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/buy_backgrounds_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_price"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/backgrounds"
-        android:layout_width="wrap_content"
-        android:layout_height="92dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/venere"
-        android:contentDescription="@string/background_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_backgrounds"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/new_background_dx_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/background_dx_arrow"
-        android:minWidth="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/backgrounds"
-        app:layout_constraintTop_toBottomOf="@+id/buy_backgrounds"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/avatar_dx_arrow" />
-
-    <ImageButton
-        android:id="@+id/new_background_sx_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/background_sx_arrow"
-        android:minWidth="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/backgrounds"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buy_backgrounds"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/avatar_sx_arrow" />
-
-    <TextView
-        android:id="@+id/avatar_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/avatar_price_string"
-        android:textColor="#E8EAF6"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatars"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/background_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/background_price_string"
-        android:textColor="#E8EAF6"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backgrounds"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/coin_icon_avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/coin"
-        android:contentDescription="@string/coin_price_description"
-        app:layout_constraintBottom_toTopOf="@+id/buy_backgrounds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/avatar_price"
-        app:layout_constraintTop_toBottomOf="@+id/avatars"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/coin_icon_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/coin"
-        android:contentDescription="@string/coin_price_description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/background_price"
-        app:layout_constraintTop_toBottomOf="@+id/backgrounds"
-        app:layout_constraintVertical_bias="0.0" />-->
+        app:layout_constraintVertical_bias="0.0" /> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
