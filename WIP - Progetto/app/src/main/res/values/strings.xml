@@ -32,4 +32,29 @@
 
     //fragment shop
     <string name="shop_string">Shop</string>
+    <string name="buy_avatars_string">Buy avatars</string>
+    <string name="buy_backgrounds_string">Buy backgrounds</string>
+    <string name="background_description">foto background</string>
+    <string name="background_dx_arrow">freccia per scorrere a destra i background</string>
+    <string name="background_sx_arrow">freccia per scorrere a sinistra i background</string>
+    <string name="avatar_price_string">0</string>
+    <string name="background_price_string">0</string>
+    <string name="coin_price_description">icona coin vicino al prezzo</string>
+    <string name="actual_coins_string">110</string>
+
+    //fragment order detail
+    <string name="avatar_detail_string">immagine dell\'avatar nella schermata dettaglio ordine</string>
+    <string name="avatar_name_string">Venere</string>
+    <string name="buy_button">bottone per effettuare un acquisto</string>
+    <string name="venere_description">Painted by Sandro Botticelli between 1482-1485, and
+        esposed at the Galleria degli uffizi in Florence, The Birth of Venus is an artwork made
+        of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
+        Venus from the sea foam.\n</string>
+
+    <!-- activity chapter info -->
+    <string name="chapter_info">Chapter Info</string>
+    <string name="date_and_time">Date &amp; Time</string>
+    <string name="avatar_text">Avatar</string>
+    <string name="chapter_info_start">Start:</string>
+    <string name="chapter_info_end">End:</string>
 </resources>

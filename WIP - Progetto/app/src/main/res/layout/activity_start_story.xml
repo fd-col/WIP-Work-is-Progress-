@@ -11,27 +11,6 @@
     tools:context=".StartStoryActivity">
     -->
 
-    <!--
-                    CRONOMETRO
-    <Chronometer
-        android:id="@+id/simpleChronometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/press_start_2p"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/story_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.487" />
-
-                    CODICE KOTLIN
-        val cronometro = findViewById<Chronometer>(R.id.simpleChronometer)
-        cronometro.start()
-        cronometro.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
-    -->
-
     <TextView
         android:id="@+id/story_title"
         android:layout_width="wrap_content"

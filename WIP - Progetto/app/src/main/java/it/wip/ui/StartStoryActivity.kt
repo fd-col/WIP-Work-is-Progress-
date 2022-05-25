@@ -103,17 +103,15 @@ class StartStoryActivity : AppCompatActivity() {
         }
 
         startButton.setOnTouchListener { v, event ->
-
             when (event.action) {
-
                 MotionEvent.ACTION_DOWN -> startButton.setImageResource(R.drawable.start_story_button_pressed)
-
                 MotionEvent.ACTION_UP -> startButton.setImageResource(R.drawable.start_story_button)
-
             }
-
             v?.onTouchEvent(event) ?: true
+        }
 
+        startButton?.setOnClickListener {
+            startActivity(Intent(this, StoryStartedActivity::class.java))
         }
 
     }
