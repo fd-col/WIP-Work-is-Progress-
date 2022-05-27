@@ -1,7 +1,6 @@
 package it.wip.ui
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataKingdom
 
-class KingdomListAdapter(
-    context: Context, list: ArrayList<DataKingdom>
+class KingdomListAdapter(context: Context, list: ArrayList<DataKingdom>
     ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     companion object {

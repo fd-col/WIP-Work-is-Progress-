@@ -62,10 +62,8 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
                 ?.beginTransaction()
                 ?.replace(R.id.frame_layout, KingdomFragment())
                 ?.commit()
-
              */
-            val intent = Intent(activity, KingdomActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(activity, KingdomActivity::class.java))
         }
 
         settingsButton?.setOnClickListener {
