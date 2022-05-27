@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import it.wip.MainActivity
 import it.wip.R
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
@@ -57,10 +58,14 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         }
 
         kingdomButton?.setOnClickListener {
-            activity?.supportFragmentManager
+            /*activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.replace(R.id.frame_layout, KingdomFragment())
                 ?.commit()
+
+             */
+            val intent = Intent(activity, KingdomActivity::class.java)
+            startActivity(intent)
         }
 
         settingsButton?.setOnClickListener {
