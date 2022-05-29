@@ -53,12 +53,12 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == THE_FIRST_VIEW) {
             return KingdomViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.card_view_design, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.kingdom_story_left_item, parent, false)
             )
         }
         return KingdomViewHolder2(
                 LayoutInflater.from(context)
-                    .inflate(R.layout.card_view_design_right, parent, false)
+                    .inflate(R.layout.kingdom_story_right_item, parent, false)
         )
     /*
         return KingdomViewHolder3(

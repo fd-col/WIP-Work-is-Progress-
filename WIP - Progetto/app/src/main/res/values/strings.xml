@@ -65,4 +65,9 @@
     <!-- kingdom -->
     <string name="descrizione_immagine_story">immagine di sfondo della story</string>
     <string name="titolo_story">Titolo della story</string>
+
+    <!-- story detail -->
+    <string name="story_detail">Dettagli Story</string>
+    <string name="nome_storia">Nome storia d\'esempio</string>
+
 </resources>
