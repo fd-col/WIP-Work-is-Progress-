@@ -57,9 +57,13 @@
     <string name="avatar_text">Avatar</string>
     <string name="chapter_info_start">Start:</string>
     <string name="chapter_info_end">End:</string>
-    <string name="stop_button_string">bottone per terminare la sessione di produttività</string>
 
     <!-- activity story started -->
+    <string name="artwork">quadro mostrato a schermo di cui si narra la storia</string>
+    <string name="stop_button_string">bottone per terminare la sessione di produttività</string>
+
+    <!-- activity story started pieces-->
+    <string name="avatar_icon">riquadro che mostra l\'avatar protagonista della storia narrata</string>
 
 
     <!-- kingdom -->
@@ -69,5 +73,28 @@
     <!-- story detail -->
     <string name="story_detail">Dettagli Story</string>
     <string name="nome_storia">Nome storia d\'esempio</string>
+
+
+
+
+    <!-- VENERE E DALI: A STORY ABOUT TIME -->
+    <string name="venere_dali_stories_about_time">Stories about Time</string>
+    <string name="venere_dali_step_1">Very long ago, Venus wanted to know about the meaning of time</string>
+    <string name="venere_dali_step_2">Venus knew Dali could help her</string>
+    <string name="venere_dali_break_1">Ehi! Go back to work or i\'ll stop telling you the story;(</string>
+    <string name="venere_dali_step_3">When venus reached the Persistence of Memory created by Dali, she asked herself
+    why there were so many clocks</string>
+    <string name="venere_dali_step_4">Venus suddently realized that time doesn\'t flows in the same way for everyone;
+        for example, dear reader, "when you sit with a nice girl for two hours you think it\'s only a minute,
+        but when you sit on a hot stove for a minute you think it's two hours" (Einstein said that).
+        In a few words, Venus discovered the perception of time
+    </string>
+    <string name="venere_dali_ending">The End; after the pause i\'ll tell you another story about time!</string>
+
+
+    <!-- VENERE E DALI: A STORY ABOUT TIME -->
+    <string name="venere_dali_a_story_about_">A story about time</string>
+    <string name="venere_dali_step_1_bis">Once upon a time, Venus wanted to </string>
+    <string name="venere_dali_step_2_bis"></string>
 
 </resources>
