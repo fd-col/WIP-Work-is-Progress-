@@ -18,19 +18,19 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="101dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_vertical"
         android:layout_width="match_parent"
-        android:layout_height="386dp"
+        android:layout_height="404dp"
         android:layout_marginBottom="6dp"
         app:layout_constraintBottom_toTopOf="@+id/menu_layout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,8 +39,8 @@
     <ImageView
         android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginBottom="36dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:contentDescription="@string/under_app_name"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
@@ -54,7 +54,7 @@
     <ImageButton
         android:id="@+id/search_button"
         android:layout_width="65dp"
-        android:layout_height="52dp"
+        android:layout_height="55dp"
         android:layout_marginTop="1dp"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="tasto di ricerca tra le storie"
@@ -64,6 +64,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/data_ultima_story"
         app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.09"
         app:srcCompat="@android:drawable/ic_menu_search"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -71,6 +72,7 @@
         android:id="@+id/data_ultima_story"
         android:layout_width="194dp"
         android:layout_height="20dp"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/press_start_2p"
         android:gravity="center"
         android:hint="2022/05/30"
