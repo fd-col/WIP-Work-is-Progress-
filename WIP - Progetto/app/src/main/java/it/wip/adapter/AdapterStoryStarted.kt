@@ -10,12 +10,9 @@ import it.wip.R
 
 class AdapterStoryStarted(storyPieces: MutableList<String>): RecyclerView.Adapter<AdapterStoryStarted.SSViewHolder>() {
 
+    //NOTA: tra i parametri formali del costruttore passare anche il cronometro, così le stringhe
+    //e le immagini vengono caricate in base al tempo che passa
     private val description = storyPieces
-    /*
-    private val description = arrayOf(a, R.string.venere_dali_step_2,
-        R.string.venere_dali_break_1, R.string.venere_dali_step_3, R.string.venere_dali_step_4,
-        R.string.venere_dali_ending)
-    * */
 
     private val images = intArrayOf(R.drawable.venere, R.drawable.venere, R.drawable.bonfire,
         R.drawable.venere, R.drawable.venere, R.drawable.bonfire)

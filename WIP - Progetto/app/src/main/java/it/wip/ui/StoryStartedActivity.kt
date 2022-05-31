@@ -31,10 +31,6 @@ class StoryStartedActivity : AppCompatActivity(){
             getString(R.string.venere_dali_ending))
 
         /*
-                val string: String = getString(R.string.venere_dali_step_1)
-        * */
-
-        /*
         val progresso = findViewById<ProgressBar>(R.id.progressBar)
         progresso.max = 100
         progresso.progress = 50
