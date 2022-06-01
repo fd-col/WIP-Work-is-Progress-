@@ -42,10 +42,6 @@ class StartStoryActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-        backButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
         backButton.setOnTouchListener { v, event ->
 
             when (event.action) {

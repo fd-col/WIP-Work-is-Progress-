@@ -30,6 +30,9 @@
         <activity
             android:name=".ui.KingdomActivity">
         </activity>
+        <activity
+            android:name=".ui.StoryDetailActivity">
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

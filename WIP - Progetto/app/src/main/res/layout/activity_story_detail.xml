@@ -2,22 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/story_detail_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageButton
         android:id="@+id/search_button2"
-        android:layout_width="65dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="54dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="38dp"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="tasto di ricerca tra le storie"
         android:contextClickable="false"
         app:layout_constraintBottom_toTopOf="@+id/recycler_vertical_details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/data_ultima_story2"
-        app:layout_constraintTop_toTopOf="@+id/start_chapter_info2"
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@android:drawable/ic_menu_search"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -28,21 +30,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/start_chapter_info2"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginBottom="36dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/nome_storia"
-
-        android:textColor="#E8EAF6"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/data_ultima_story2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -58,38 +45,39 @@
         app:layout_constraintBottom_toTopOf="@+id/recycler_vertical_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/divider5"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/under_app_name"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/start_chapter_info2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/story_detail"
         app:srcCompat="@drawable/under_app_name" />
 
     <TextView
         android:id="@+id/story_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="332dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="16dp"
+
         android:fontFamily="@font/press_start_2p"
         android:text="@string/story_detail"
-
         android:textColor="#E8EAF6"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/divider5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/back_button_chapter_info"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton

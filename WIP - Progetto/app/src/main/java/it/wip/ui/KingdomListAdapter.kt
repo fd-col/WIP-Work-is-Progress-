@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataKingdom
 
-class KingdomListAdapter(private val context: Context, var list: ArrayList<DataKingdom>
-    ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class KingdomListAdapter(private val context: Context, var list: ArrayList<DataKingdom>,
+                         private val itemClickListener: (Int) -> Unit)
+    :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     companion object {
         const val THE_FIRST_VIEW = 1
@@ -23,10 +24,12 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
         var title: TextView = itemView.findViewById(R.id.item_title)
         var image: ImageView = itemView.findViewById(R.id.item_image)
 
-        fun bind(position: Int) {
+        fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel = list[position]
             title.text = recyclerViewModel.textData
             image.setImageResource(recyclerViewModel.image)
+
+            itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
 
@@ -74,9 +77,12 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (list[position].viewType === THE_FIRST_VIEW) {
-            (holder as KingdomViewHolder).bind(position)
+            (holder as KingdomViewHolder).bind(position, itemClickListener)
+
         } else if (list[position].viewType === THE_SECOND_VIEW) {
             (holder as KingdomViewHolder2).bind(position)
+
+
         }
         else {
             //(holder as KingdomViewHolder3).bind(position)

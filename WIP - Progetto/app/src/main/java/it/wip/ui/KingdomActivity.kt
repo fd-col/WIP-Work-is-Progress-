@@ -1,6 +1,9 @@
 package it.wip.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Adapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,13 +39,21 @@ class KingdomActivity : AppCompatActivity() {
         storyHeaderList.add(DataHeaderKingdom("Frutta"))
         storyHeaderList.add(DataHeaderKingdom("Mirtillo"))
 
-
         val rvV = findViewById<RecyclerView>(R.id.rv_vertical)
         val rvH = findViewById<RecyclerView>(R.id.rv_horizontal)
 
+        // method for activate the new activity StoryDetailActivity when clicked the single story
+        val itemOnClick: (Int) -> Unit = { position ->
+            rvV.adapter!!.notifyDataSetChanged()
+            Toast.makeText(this,"$position. item clicked.",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, StoryDetailActivity::class.java)
+            startActivity(intent)
+        }
+        val rvVAdapter = KingdomListAdapter(this, storyList, itemClickListener = itemOnClick)
+
         // assign layout and adapter to the vertical (background of KingdomActivity) recycleView
         rvV.layoutManager = LinearLayoutManager(this)
-        val rvVAdapter = KingdomListAdapter(this, storyList)
+        //val rvVAdapter = KingdomListAdapter(this, storyList)
         rvV.adapter = rvVAdapter
 
         // assign layout and adapter to the horizontal (header of KingdomActivity) recycleView
@@ -54,4 +65,5 @@ class KingdomActivity : AppCompatActivity() {
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
     }
+
 }

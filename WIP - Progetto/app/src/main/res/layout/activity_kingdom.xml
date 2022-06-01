@@ -18,14 +18,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
+        android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_vertical"
@@ -40,14 +37,14 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/under_app_name"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/data_ultima_story"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_horizontal"
         app:srcCompat="@drawable/under_app_name"
         tools:ignore="ImageContrastCheck" />
 
@@ -81,6 +78,8 @@
         app:layout_constraintBottom_toTopOf="@+id/rv_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintVertical_bias="0.769" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
