@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
@@ -27,6 +28,7 @@ class StartStoryActivity : AppCompatActivity() {
         val avatarDxButton = findViewById<ImageButton>(R.id.avatar_dx_button)
 
         val startButton = findViewById<ImageButton>(R.id.start_button)
+
 
         val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
         slider.setLabelFormatter { value: Float ->
@@ -108,6 +110,28 @@ class StartStoryActivity : AppCompatActivity() {
 
         startButton?.setOnClickListener {
             startActivity(Intent(this, StoryStartedActivity::class.java))
+        }
+
+
+
+        //              SWITCH AVATAR
+        val avatar = findViewById<ImageView>(R.id.avatar)
+        var avatarTag = avatar.tag.toString()
+
+        avatarDxButton?.setOnClickListener {
+            if(avatarTag.equals("1")){
+                avatar.setBackgroundResource(R.drawable.magritte)
+                avatar.setTag("2")
+                avatarTag = avatar.tag.toString()
+            }else if(avatarTag.equals("2")){
+                avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
+                avatar.setTag("3")
+                avatarTag = avatar.tag.toString()
+            }else if(avatarTag.equals("3")){
+                avatar.setBackgroundResource(R.drawable.venere)
+                avatar.setTag("1")
+                avatarTag = avatar.tag.toString()
+            }
         }
 
     }

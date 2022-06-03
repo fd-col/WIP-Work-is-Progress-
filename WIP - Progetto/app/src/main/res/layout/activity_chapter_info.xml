@@ -283,7 +283,7 @@
         android:layout_height="114dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/venere"
+        android:background="@drawable/venere_originale"
         android:contentDescription="@string/avatar_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
