@@ -17,37 +17,40 @@
         android:backgroundTint="@color/cardview_shadow_end_color"
         android:contentDescription="@string/play_button"
         android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/frame_image"
+        app:layout_constraintEnd_toEndOf="@+id/frame_image"
+        app:layout_constraintStart_toStartOf="@+id/frame_image"
+        app:layout_constraintTop_toTopOf="@+id/frame_image"
         app:srcCompat="@drawable/play_button"
         tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/frame_image"
-        android:layout_width="320dp"
-        android:layout_height="236dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/frame_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/frame" />
+        app:layout_constraintVertical_bias="0.499"
+        app:srcCompat="@drawable/frame_adapted" />
 
     <ImageButton
         android:id="@+id/shop_button"
-        android:layout_width="60dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/cardview_shadow_end_color"
         android:contentDescription="@string/shop_button"
         app:layout_constraintBottom_toTopOf="@+id/frame_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/shop_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
