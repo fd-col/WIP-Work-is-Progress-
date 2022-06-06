@@ -49,16 +49,16 @@ class KingdomActivity : AppCompatActivity() {
             val intent = Intent(this, StoryDetailActivity::class.java)
             startActivity(intent)
         }
-        val rvVAdapter = KingdomListAdapter(this, storyList, itemClickListener = itemOnClick)
+
 
         // assign layout and adapter to the vertical (background of KingdomActivity) recycleView
         rvV.layoutManager = LinearLayoutManager(this)
-        //val rvVAdapter = KingdomListAdapter(this, storyList)
+        val rvVAdapter = KingdomListAdapter(this, storyList, itemClickListener = itemOnClick)
         rvV.adapter = rvVAdapter
 
         // assign layout and adapter to the horizontal (header of KingdomActivity) recycleView
         rvH.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val rvHAdapter = KingdomHeaderAdapter(this, storyHeaderList)
+        val rvHAdapter = KingdomHeaderAdapter(this, storyHeaderList, itemClickListener = itemOnClick)
         rvH.adapter = rvHAdapter
         // add the menu fragment to the bottom of KingdomActivity
         val transaction = supportFragmentManager.beginTransaction()

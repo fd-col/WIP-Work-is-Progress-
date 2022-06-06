@@ -37,10 +37,12 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
         var title: TextView = itemView.findViewById(R.id.item_title)
         var image: ImageView = itemView.findViewById(R.id.item_image)
 
-        fun bind(position: Int) {
+        fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel2 = list[position]
             title.text = recyclerViewModel2.textData
             image.setImageResource(recyclerViewModel2.image)
+
+            itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
 /*
@@ -80,9 +82,7 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             (holder as KingdomViewHolder).bind(position, itemClickListener)
 
         } else if (list[position].viewType === THE_SECOND_VIEW) {
-            (holder as KingdomViewHolder2).bind(position)
-
-
+            (holder as KingdomViewHolder2).bind(position, itemClickListener)
         }
         else {
             //(holder as KingdomViewHolder3).bind(position)

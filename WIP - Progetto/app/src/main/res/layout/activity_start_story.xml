@@ -76,7 +76,7 @@
         android:id="@+id/story_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/story_time_textview"
         android:textColor="#E8EAF6"
@@ -122,7 +122,7 @@
         android:id="@+id/optional_settings"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/optional_settings_textview"
         android:textColor="#E8EAF6"
@@ -193,7 +193,7 @@
         android:id="@+id/choose_avatar"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/choose_avatar_textview"
         android:textColor="#E8EAF6"
@@ -265,7 +265,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.548"
         app:srcCompat="@drawable/start_story_button" />
 
     <ImageButton

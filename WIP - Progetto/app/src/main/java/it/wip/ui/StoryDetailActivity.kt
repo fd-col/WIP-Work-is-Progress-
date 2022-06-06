@@ -16,7 +16,7 @@ class StoryDetailActivity: AppCompatActivity() {
         setContentView(R.layout.activity_story_detail)
 
         val rv = findViewById<RecyclerView>(R.id.recycler_vertical_details)
-        val backButton = findViewById<ImageButton>(R.id.back_button)
+        val backButton = findViewById<ImageButton>(R.id.back_button_story_detail)
 
         // assign layout and adapter to the vertical (background of StoryDetailActivity) recycleView
         rv.layoutManager = LinearLayoutManager(this)
@@ -27,9 +27,9 @@ class StoryDetailActivity: AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
-/*
+
         backButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, KingdomActivity::class.java))
         }
 
         backButton.setOnTouchListener { v, event ->
@@ -39,7 +39,6 @@ class StoryDetailActivity: AppCompatActivity() {
             }
             v?.onTouchEvent(event) ?: true
         }
-*/
 
     }
 }

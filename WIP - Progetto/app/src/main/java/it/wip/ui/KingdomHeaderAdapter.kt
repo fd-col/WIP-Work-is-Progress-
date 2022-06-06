@@ -9,16 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataHeaderKingdom
 
-class KingdomHeaderAdapter(private val context: Context, var list: ArrayList<DataHeaderKingdom>
-    ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class KingdomHeaderAdapter(private val context: Context, var list: ArrayList<DataHeaderKingdom>,
+                           private val itemClickListener: (Int) -> Unit)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     inner class KingdomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.story_header_title)
 
-        fun bind(position: Int) {
+        fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel = list[position]
             title.text = recyclerViewModel.textData
+
+            itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
 
@@ -33,7 +36,7 @@ class KingdomHeaderAdapter(private val context: Context, var list: ArrayList<Dat
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as KingdomHeaderAdapter.KingdomViewHolder).bind(position)
+        (holder as KingdomHeaderAdapter.KingdomViewHolder).bind(position, itemClickListener)
     }
 
 }
