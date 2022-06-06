@@ -1,6 +1,5 @@
 package it.wip.ui
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -24,6 +23,7 @@ class ShopFragment: Fragment(R.layout.fragment_shop){
         val sxBackground = view?.findViewById<ImageButton>(R.id.new_background_sx_button)
         val dxBackground = view?.findViewById<ImageButton>(R.id.new_background_dx_button)
         val avatarButton = view?.findViewById<ImageButton>(R.id.avatars)
+        val backgroundButton = view?.findViewById<ImageButton>(R.id.backgrounds)
 
         sxAvatar?.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -57,7 +57,7 @@ class ShopFragment: Fragment(R.layout.fragment_shop){
             v?.onTouchEvent(event) ?: true
         }
 
-        avatarButton?.setOnClickListener() {
+        avatarButton?.setOnClickListener {
 
             activity?.supportFragmentManager
                 ?.beginTransaction()
@@ -65,6 +65,83 @@ class ShopFragment: Fragment(R.layout.fragment_shop){
                 ?.commit()
 
         }
+
+
+        // AVATARS AND BACKGROUNDS SWAP
+        var avatarTag: String = avatarButton?.tag.toString()
+        var backgroundTag: String = backgroundButton?.tag.toString()
+
+        dxAvatar?.setOnClickListener {
+            when (avatarTag) {
+                "1" -> {
+                    avatarButton?.setBackgroundResource(R.drawable.munch)
+                    avatarButton?.tag = "2"
+                    avatarTag = avatarButton?.tag.toString()
+                }
+                "2" -> {
+                    avatarButton?.setBackgroundResource(R.drawable.van_gogh_self_portrait)
+                    avatarButton?.tag = "3"
+                    avatarTag = avatarButton?.tag.toString()
+                }
+                "3" -> {
+                    avatarButton?.setBackgroundResource(R.drawable.david)
+                    avatarButton?.tag = "1"
+                    avatarTag = avatarButton?.tag.toString()
+                }
+            }
+        }
+
+        sxAvatar?.setOnClickListener {
+            when (avatarTag) {
+                "1" -> {
+                    avatarButton?.setBackgroundResource(R.drawable.van_gogh_self_portrait)
+                    avatarButton?.tag = "3"
+                    avatarTag = avatarButton?.tag.toString()
+                }
+                "2" -> {
+                    avatarButton?.setBackgroundResource(R.drawable.david)
+                    avatarButton?.tag = "1"
+                    avatarTag = avatarButton?.tag.toString()
+                }
+                "3" -> {
+                    avatarButton?.setBackgroundResource(R.drawable.munch)
+                    avatarButton?.tag = "2"
+                    avatarTag = avatarButton?.tag.toString()
+                }
+            }
+        }
+
+        dxBackground?.setOnClickListener {
+            when (backgroundTag) {
+                "1" -> {
+                    backgroundButton?.setBackgroundResource(R.drawable.adam_off_stand)
+                    backgroundButton?.tag = "2"
+                    backgroundTag = backgroundButton?.tag.toString()
+                }
+                "2" -> {
+                    backgroundButton?.setBackgroundResource(R.drawable.field_with_crows_off_stand)
+                    backgroundButton?.tag = "1"
+                    backgroundTag = backgroundButton?.tag.toString()
+                }
+            }
+        }
+
+        sxBackground?.setOnClickListener {
+            when (backgroundTag) {
+                "1" -> {
+                    backgroundButton?.setBackgroundResource(R.drawable.adam_off_stand)
+                    backgroundButton?.tag = "2"
+                    backgroundTag = backgroundButton?.tag.toString()
+                }
+                "2" -> {
+                    backgroundButton?.setBackgroundResource(R.drawable.field_with_crows_off_stand)
+                    backgroundButton?.tag = "1"
+                    backgroundTag = backgroundButton?.tag.toString()
+                }
+            }
+        }
+
+
 
         return view
     }

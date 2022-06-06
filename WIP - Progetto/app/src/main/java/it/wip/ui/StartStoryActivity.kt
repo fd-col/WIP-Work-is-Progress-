@@ -37,8 +37,8 @@ class StartStoryActivity : AppCompatActivity() {
 
         val switchSilentMode = findViewById<Switch>(R.id.switch_silent_mode)
         val switchHardcoreMode = findViewById<Switch>(R.id.switch_hardcore_mode)
-        switchSilentMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
-        switchHardcoreMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
+        switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
         backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
@@ -116,23 +116,46 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = findViewById<ImageView>(R.id.avatar)
-        var avatarTag = avatar.tag.toString()
+        var avatarTag: String = avatar.tag.toString()
 
         avatarDxButton?.setOnClickListener {
-            if(avatarTag.equals("1")){
-                avatar.setBackgroundResource(R.drawable.magritte)
-                avatar.setTag("2")
-                avatarTag = avatar.tag.toString()
-            }else if(avatarTag.equals("2")){
-                avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
-                avatar.setTag("3")
-                avatarTag = avatar.tag.toString()
-            }else if(avatarTag.equals("3")){
-                avatar.setBackgroundResource(R.drawable.venere)
-                avatar.setTag("1")
-                avatarTag = avatar.tag.toString()
+            when (avatarTag) {
+                "1" -> {
+                    avatar.setBackgroundResource(R.drawable.magritte)
+                    avatar.tag = "2"
+                    avatarTag = avatar.tag.toString()
+                }
+                "2" -> {
+                    avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
+                    avatar.tag = "3"
+                    avatarTag = avatar.tag.toString()
+                }
+                "3" -> {
+                    avatar.setBackgroundResource(R.drawable.venere)
+                    avatar.tag = "1"
+                    avatarTag = avatar.tag.toString()
+                }
             }
         }
 
+        avatarSxButton?.setOnClickListener {
+            when (avatarTag) {
+                "1" -> {
+                    avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
+                    avatar.tag = "3"
+                    avatarTag = avatar.tag.toString()
+                }
+                "2" -> {
+                    avatar.setBackgroundResource(R.drawable.venere)
+                    avatar.tag = "1"
+                    avatarTag = avatar.tag.toString()
+                }
+                "3" -> {
+                    avatar.setBackgroundResource(R.drawable.magritte)
+                    avatar.tag = "2"
+                    avatarTag = avatar.tag.toString()
+                }
+            }
+        }
     }
 }
