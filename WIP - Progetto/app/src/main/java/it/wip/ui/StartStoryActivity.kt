@@ -4,30 +4,22 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
 import android.widget.Switch
 import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.DataBindingUtil
+import it.wip.databinding.ActivityStartStoryBinding
 
 class StartStoryActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start_story)
 
-        val backButton = findViewById<ImageButton>(R.id.back_button)
-
-        val infoButton = findViewById<ImageButton>(R.id.info_button)
-
-        val avatarSxButton = findViewById<ImageButton>(R.id.avatar_sx_button)
-
-        val avatarDxButton = findViewById<ImageButton>(R.id.avatar_dx_button)
-
-        val startButton = findViewById<ImageButton>(R.id.start_button)
+        val binding: ActivityStartStoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_start_story)
 
 
         val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
@@ -40,17 +32,17 @@ class StartStoryActivity : AppCompatActivity() {
         switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
-        backButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
-        backButton.setOnTouchListener { v, event ->
+        binding.backButton.setOnTouchListener { v, event ->
 
             when (event.action) {
 
-                MotionEvent.ACTION_DOWN -> backButton.setImageResource(R.drawable.back_arrow_pressed)
+                MotionEvent.ACTION_DOWN -> binding.backButton.setImageResource(R.drawable.back_arrow_pressed)
 
-                MotionEvent.ACTION_UP -> backButton.setImageResource(R.drawable.back_arrow)
+                MotionEvent.ACTION_UP -> binding.backButton.setImageResource(R.drawable.back_arrow)
 
             }
 
@@ -58,13 +50,13 @@ class StartStoryActivity : AppCompatActivity() {
 
         }
 
-        infoButton.setOnTouchListener { v, event ->
+        binding.infoButton.setOnTouchListener { v, event ->
 
             when (event.action) {
 
-                MotionEvent.ACTION_DOWN -> infoButton.setImageResource(R.drawable.info_button_pressed)
+                MotionEvent.ACTION_DOWN -> binding.infoButton.setImageResource(R.drawable.info_button_pressed)
 
-                MotionEvent.ACTION_UP -> infoButton.setImageResource(R.drawable.info_button)
+                MotionEvent.ACTION_UP -> binding.infoButton.setImageResource(R.drawable.info_button)
 
             }
 
@@ -72,13 +64,13 @@ class StartStoryActivity : AppCompatActivity() {
 
         }
 
-        avatarSxButton.setOnTouchListener { v, event ->
+        binding.avatarSxButton.setOnTouchListener { v, event ->
 
             when (event.action) {
 
-                MotionEvent.ACTION_DOWN -> avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow_pressed)
+                MotionEvent.ACTION_DOWN -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow_pressed)
 
-                MotionEvent.ACTION_UP -> avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow)
+                MotionEvent.ACTION_UP -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow)
 
             }
 
@@ -86,13 +78,13 @@ class StartStoryActivity : AppCompatActivity() {
 
         }
 
-        avatarDxButton.setOnTouchListener { v, event ->
+        binding.avatarDxButton.setOnTouchListener { v, event ->
 
             when (event.action) {
 
-                MotionEvent.ACTION_DOWN -> avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow_pressed)
+                MotionEvent.ACTION_DOWN -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow_pressed)
 
-                MotionEvent.ACTION_UP -> avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow)
+                MotionEvent.ACTION_UP -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow)
 
             }
 
@@ -100,15 +92,15 @@ class StartStoryActivity : AppCompatActivity() {
 
         }
 
-        startButton.setOnTouchListener { v, event ->
+        binding.startButton.setOnTouchListener { v, event ->
             when (event.action) {
-                MotionEvent.ACTION_DOWN -> startButton.setImageResource(R.drawable.start_story_button_pressed)
-                MotionEvent.ACTION_UP -> startButton.setImageResource(R.drawable.start_story_button)
+                MotionEvent.ACTION_DOWN -> binding.startButton.setImageResource(R.drawable.start_story_button_pressed)
+                MotionEvent.ACTION_UP -> binding.startButton.setImageResource(R.drawable.start_story_button)
             }
             v?.onTouchEvent(event) ?: true
         }
 
-        startButton?.setOnClickListener {
+        binding.startButton.setOnClickListener {
             startActivity(Intent(this, StoryStartedActivity::class.java))
         }
 
@@ -118,7 +110,7 @@ class StartStoryActivity : AppCompatActivity() {
         val avatar = findViewById<ImageView>(R.id.avatar)
         var avatarTag: String = avatar.tag.toString()
 
-        avatarDxButton?.setOnClickListener {
+        binding.avatarDxButton.setOnClickListener {
             when (avatarTag) {
                 "1" -> {
                     avatar.setBackgroundResource(R.drawable.magritte)
@@ -138,7 +130,7 @@ class StartStoryActivity : AppCompatActivity() {
             }
         }
 
-        avatarSxButton?.setOnClickListener {
+        binding.avatarSxButton.setOnClickListener {
             when (avatarTag) {
                 "1" -> {
                     avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
