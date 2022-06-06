@@ -45,32 +45,33 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
-/*
+
     inner class KingdomViewHolder3(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
 
-        fun bind(position: Int) {
+        fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel3 = list[position]
             title.text = recyclerViewModel3.textData
         }
     }
-*/
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == THE_FIRST_VIEW) {
             return KingdomViewHolder(
                 LayoutInflater.from(context).inflate(R.layout.kingdom_story_left_item, parent, false)
             )
         }
-        return KingdomViewHolder2(
+        else if(viewType == THE_SECOND_VIEW)
+            return KingdomViewHolder2(
                 LayoutInflater.from(context)
                     .inflate(R.layout.kingdom_story_right_item, parent, false)
         )
-    /*
-        return KingdomViewHolder3(
-            LayoutInflater.from(context)
-                .inflate(R.layout.kingdom_header_item, parent, false)
+        else
+            return KingdomViewHolder3(
+                LayoutInflater.from(context)
+                    .inflate(R.layout.kingdom_chapter_left_item, parent, false)
         )
-     */
+
     }
 
     override fun getItemCount(): Int {
@@ -85,7 +86,7 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             (holder as KingdomViewHolder2).bind(position, itemClickListener)
         }
         else {
-            //(holder as KingdomViewHolder3).bind(position)
+            (holder as KingdomViewHolder3).bind(position, itemClickListener)
         }
     }
 

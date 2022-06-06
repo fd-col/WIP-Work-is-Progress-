@@ -60,6 +60,7 @@ class KingdomActivity : AppCompatActivity() {
         rvH.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val rvHAdapter = KingdomHeaderAdapter(this, storyHeaderList, itemClickListener = itemOnClick)
         rvH.adapter = rvHAdapter
+
         // add the menu fragment to the bottom of KingdomActivity
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.menu_layout, MenuFragment())
