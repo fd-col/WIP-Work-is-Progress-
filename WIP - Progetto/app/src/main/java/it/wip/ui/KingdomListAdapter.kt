@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataKingdom
+import org.w3c.dom.Text
 
 class KingdomListAdapter(private val context: Context, var list: ArrayList<DataKingdom>,
                          private val itemClickListener: (Int) -> Unit)
@@ -48,10 +49,15 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
 
     inner class KingdomViewHolder3(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
+        var date: TextView = itemView.findViewById(R.id.item_date)
+        var time: TextView = itemView.findViewById(R.id.item_time)
 
         fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel3 = list[position]
             title.text = recyclerViewModel3.textData
+            date.text = recyclerViewModel3.dateData
+            time.text = recyclerViewModel3.timeData
+
         }
     }
 
