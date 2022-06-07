@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">WIP</string>
 
-    //stringa riferita nel file splash_page.xml
+    <!-- stringa riferita nel file splash_page.xml -->
     <string name="splash_page_icon_describer">Icona della spash page dell\'app WIP</string>
     <string name="quote_describer">Quote dell\'app WIP, essa recita: if it matters, paint it</string>
     <string name="pennello">pulsante pennello che porta alla home page</string>
     <string name="corona">pulsante corona che porta alla page regno</string>
     <string name="impostazioni">pulsante impostazioni che porta alla page impostazioni</string>
 
-    //start_story.xml
+    <!-- start_story.xml -->
     <string name="new_story_default">New story</string>
     <string name="new_story_title">Title</string>
     <string name="story_time_textview">Story time</string>
@@ -26,11 +26,11 @@
     <string name="under_app_name">barra posta sotto il nome dell\'app</string>
     <string name="shop_button">bottone che indirizza allo shop</string>
 
-    //fragment_frame
+    <!-- fragment_frame -->
     <string name="play_button">tasto play nuova storia</string>
     <string name="frame_background">cornice che contiene il tasto play</string>
 
-    //fragment shop
+    <!-- fragment_shop -->
     <string name="shop_string">Shop</string>
     <string name="buy_avatars_string">Buy avatars</string>
     <string name="buy_backgrounds_string">Buy backgrounds</string>
@@ -54,6 +54,10 @@
     <string name="david">David</string>
     <string name="van_gogh_autoritratto">Van Gogh</string>
     <string name="urlo_di_munch">The Scream</string>
+    <string name="van_gogh_field_with_crows">Field with crows</string>
+    <string name="creazione_di_adamo">Creation of Adam</string>
+    <string name="magritte_kiss">Lovers</string>
+
     <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504, and
         exposed at the  Galleria dell\'Accademia in Florence, David is a marble sculpture
         portraying the biblical hero preparing to face Goliath the giant.\n</string>
@@ -64,6 +68,21 @@
     <string name="urlo_di_munch_description">Painted by Edvard Munch in 1893, and
         exposed at the National Gallery in Oslo, The Scream is an artwork made of oil, tempera,
         pastel and crayon on cardboard symbolizing the anxiety of the human condition.\n</string>
+
+    <string name="van_gogh_field_with_crows_description">Painted by Vincent Van Gogh in 1890, and
+        exposed at the Van Gogh Museum in Amsterdam, Wheatfield with crows is an artwork made of
+        oil on canvas.\n Van Gogh painted his wheatfields under stormy skies to express sadness and
+        extreme loneliness, but at the same time he wanted to show what he considered
+        healthy and fortifying.\n</string>
+    <string name="creazione_di_adamo_description">Painted by Michelangelo Buonarroti around 1512,
+        The Creation of Adam is a fresco painting which forms part of the Sistine Chapel\'s
+        ceiling and that illustrates God giving life to Adam, the first man.\n
+        The fresco is part of a complex iconographic scheme and is chronologically the fourth in
+        the series of panels depicting episodes from Genesis.\n</string>
+    <string name="magritte_kiss_description">Painted by René Magritte in 1928, and exposed at the
+        Museum of Modern Art in New York, The Lovers is an artwork made of oil on canvas.\n
+        The Lovers represents the conflict between true identity and the image of a person in
+        the mind of his lover.\n</string>
 
 
 
