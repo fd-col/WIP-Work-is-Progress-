@@ -28,7 +28,7 @@ class StoryDetailActivity: AppCompatActivity() {
         val itemOnClick: (Int) -> Unit = { position ->
             rv.adapter!!.notifyDataSetChanged()
             Toast.makeText(this,"$position. item clicked.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, StoryDetailActivity::class.java)
+            val intent = Intent(this, ChapterInfoActivity::class.java)
             startActivity(intent)
         }
 

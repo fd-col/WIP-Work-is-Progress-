@@ -58,6 +58,7 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             date.text = recyclerViewModel3.dateData
             time.text = recyclerViewModel3.timeData
 
+            itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
 
