@@ -119,6 +119,11 @@ class ShopFragment: Fragment(R.layout.fragment_shop){
                     backgroundTag = backgroundButton?.tag.toString()
                 }
                 "2" -> {
+                    backgroundButton?.setBackgroundResource(R.drawable.magritte_kiss_off_stand)
+                    backgroundButton?.tag = "3"
+                    backgroundTag = backgroundButton?.tag.toString()
+                }
+                "3" -> {
                     backgroundButton?.setBackgroundResource(R.drawable.field_with_crows_off_stand)
                     backgroundButton?.tag = "1"
                     backgroundTag = backgroundButton?.tag.toString()
@@ -129,8 +134,8 @@ class ShopFragment: Fragment(R.layout.fragment_shop){
         sxBackground?.setOnClickListener {
             when (backgroundTag) {
                 "1" -> {
-                    backgroundButton?.setBackgroundResource(R.drawable.adam_off_stand)
-                    backgroundButton?.tag = "2"
+                    backgroundButton?.setBackgroundResource(R.drawable.magritte_kiss_off_stand)
+                    backgroundButton?.tag = "3"
                     backgroundTag = backgroundButton?.tag.toString()
                 }
                 "2" -> {
@@ -138,10 +143,13 @@ class ShopFragment: Fragment(R.layout.fragment_shop){
                     backgroundButton?.tag = "1"
                     backgroundTag = backgroundButton?.tag.toString()
                 }
+                "3" -> {
+                    backgroundButton?.setBackgroundResource(R.drawable.adam_off_stand)
+                    backgroundButton?.tag = "2"
+                    backgroundTag = backgroundButton?.tag.toString()
+                }
             }
         }
-
-
 
         return view
     }
