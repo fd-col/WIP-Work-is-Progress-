@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import it.wip.MainActivity
 import it.wip.R
 import it.wip.data.DataKingdom
+import it.wip.ui.fragments.MenuFragment
 
 class StoryDetailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

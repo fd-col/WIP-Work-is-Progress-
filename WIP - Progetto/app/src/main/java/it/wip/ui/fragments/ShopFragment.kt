@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater

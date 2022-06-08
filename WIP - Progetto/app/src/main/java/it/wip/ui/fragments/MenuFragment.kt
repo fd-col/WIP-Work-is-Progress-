@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import it.wip.MainActivity
 import it.wip.R
 import it.wip.databinding.FragmentMenuBinding
+import it.wip.ui.KingdomActivity
+import it.wip.ui.SettingsActivity
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 
@@ -59,22 +61,22 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         binding.homeButton.setOnClickListener {
             if(parentActivityName == "MainActivity")
                 mainActivityTransaction(FrameFragment())
-            else //KingdomActivity
+            else
                 explicitIntent("MainActivity")
         }
 
         binding.kingdomButton.setOnClickListener {
             if(parentActivityName == "MainActivity")
-                explicitIntent("KingdomActivity")
+                explicitIntent("KingdomActivity",1)
             else //KingdomActivity
                 Toast.makeText(activity?.applicationContext,"Kingdom transaction",Toast.LENGTH_SHORT).show()
         }
 
         binding.settingsButton.setOnClickListener {
             if(parentActivityName == "MainActivity")
-                mainActivityTransaction(SettingsFragment())
+                explicitIntent("SettingsActivity",2)
             else //KingdomActivity
-                explicitIntent("MainActivity", 1)
+                Toast.makeText(activity?.applicationContext,"Settings transaction",Toast.LENGTH_SHORT).show()
         }
 
         return view
@@ -88,14 +90,12 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
     }
 
     private fun explicitIntent(targetActivity: String, configuration: Int = 0){
-
-        val intent = if(targetActivity == "MainActivity")
-            Intent(activity, MainActivity::class.java)
-        else //KingdomActivity
-            Intent(activity, KingdomActivity::class.java)
-
+        val intent = when (targetActivity) {
+            "KingdomActivity" -> Intent(activity, KingdomActivity::class.java)
+            "SettingsActivity" -> Intent(activity, SettingsActivity::class.java)
+            else -> Intent(activity, MainActivity::class.java) //"MainActivity"
+        }
         intent.putExtra("configuration", configuration)
-
         startActivity(intent)
     }
 
