@@ -4,16 +4,18 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
-import android.widget.Switch
+import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import it.wip.databinding.ActivityStartStoryBinding
+import it.wip.viewModel.StartStoryViewModel
 
 class StartStoryActivity : AppCompatActivity() {
+
+    private val viewModel: StartStoryViewModel by viewModels()
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,16 +23,18 @@ class StartStoryActivity : AppCompatActivity() {
 
         val binding: ActivityStartStoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_start_story)
 
+        binding.viewModel = viewModel
 
-        val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_story_time)
-        slider.setLabelFormatter { value: Float ->
+        binding.lifecycleOwner = this
+
+        binding.seekBarStoryTime.value = viewModel.studyTime.value!!
+
+        binding.seekBarStoryTime.setLabelFormatter { value: Float ->
             "${value.toInt()} min study/${60-value.toInt()} min pause"
         }
 
-        val switchSilentMode = findViewById<Switch>(R.id.switch_silent_mode)
-        val switchHardcoreMode = findViewById<Switch>(R.id.switch_hardcore_mode)
-        switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
-        switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
         binding.backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
@@ -104,10 +108,8 @@ class StartStoryActivity : AppCompatActivity() {
             startActivity(Intent(this, StoryStartedActivity::class.java))
         }
 
-
-
         //              SWITCH AVATAR
-        val avatar = findViewById<ImageView>(R.id.avatar)
+        val avatar = binding.avatar
         var avatarTag: String = avatar.tag.toString()
 
         binding.avatarDxButton.setOnClickListener {
