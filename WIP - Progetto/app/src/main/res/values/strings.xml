@@ -109,5 +109,12 @@
     <string name="story_detail">Dettagli Story</string>
     <string name="nome_storia">Nome storia d\'esempio</string>
     <string name="todo">TODO</string>
+    <string name="icon_search_button">Tasto di ricerca per le storie del proprio regno</string>
+
+    <!-- settings -->
+    <string name="change_time">Tempo Studio/Pausa</string>
+    <string name="story_time_limit">tempo storia</string>
+    <string name="left_hand_mode">Modalità mancini</string>
+    <string name="info_text">Informazioni</string>
 
 </resources>

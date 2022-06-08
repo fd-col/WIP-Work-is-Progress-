@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.fragments
 
 import androidx.fragment.app.Fragment
 import it.wip.R

@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import it.wip.R
+import it.wip.ui.StartStoryActivity
 
 class FrameFragment: Fragment(R.layout.fragment_frame) {
 
