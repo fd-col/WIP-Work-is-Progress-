@@ -26,7 +26,7 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:paddingTop="10dp"
-        android:text="TextView"
+        android:text="@string/new_story_default"
         android:textSize="20sp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"

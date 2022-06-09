@@ -19,8 +19,10 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
         const val THE_FIRST_VIEW = 1
         const val THE_SECOND_VIEW = 2
         const val THE_THIRD_VIEW = 3
+        const val THE_FORTH_VIEW = 4
+        const val THE_HORIZONTAL_VIEW = 5
     }
-
+    // viewHolder for the vertical recyclerView into KingdomActivity -cards on the left
     inner class KingdomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
         var image: ImageView = itemView.findViewById(R.id.item_image)
@@ -33,7 +35,7 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
-
+    // viewHolder for the vertical recyclerView into KingdomActivity -cards on the right
     inner class KingdomViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
         var image: ImageView = itemView.findViewById(R.id.item_image)
@@ -46,7 +48,18 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
+    // viewHolder for the horizontal recyclerView into KingdomActivity
+    inner class KingdomHorizontalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var title: TextView = itemView.findViewById(R.id.story_header_title)
 
+        fun bind(position: Int, itemClickListener:(Int)->Unit) {
+            val recyclerHorizontalViewModel = list[position]
+            title.text = recyclerHorizontalViewModel.textData
+
+            itemView.setOnClickListener { itemClickListener(adapterPosition) }
+        }
+    }
+    // viewHolder for the vertical recyclerView into StoryDetailActivity -cards on the left
     inner class KingdomViewHolder3(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
         var date: TextView = itemView.findViewById(R.id.item_date)
@@ -61,24 +74,47 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
     }
+    // viewHolder for the vertical recyclerView into StoryDetailActivity -cards on the right
+    inner class KingdomViewHolder4(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var title: TextView = itemView.findViewById(R.id.item_title)
+        var date: TextView = itemView.findViewById(R.id.item_date)
+        var time: TextView = itemView.findViewById(R.id.item_time)
+
+        fun bind(position: Int, itemClickListener:(Int)->Unit) {
+            val recyclerViewModel4 = list[position]
+            title.text = recyclerViewModel4.textData
+            date.text = recyclerViewModel4.dateData
+            time.text = recyclerViewModel4.timeData
+
+            itemView.setOnClickListener { itemClickListener(adapterPosition) }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == THE_FIRST_VIEW) {
-            return KingdomViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.kingdom_story_left_item, parent, false)
-            )
-        }
-        else if(viewType == THE_SECOND_VIEW)
-            return KingdomViewHolder2(
+        when (viewType) {
+            THE_FIRST_VIEW -> {
+                return KingdomViewHolder(
+                    LayoutInflater.from(context)
+                        .inflate(R.layout.kingdom_story_left_item, parent, false)
+                )
+            }
+            THE_SECOND_VIEW -> return KingdomViewHolder2(
                 LayoutInflater.from(context)
                     .inflate(R.layout.kingdom_story_right_item, parent, false)
-        )
-        else
-            return KingdomViewHolder3(
+            )
+            THE_THIRD_VIEW -> return KingdomViewHolder3(
                 LayoutInflater.from(context)
                     .inflate(R.layout.kingdom_chapter_left_item, parent, false)
-        )
-
+            )
+            THE_FORTH_VIEW -> return KingdomViewHolder4(
+                LayoutInflater.from(context)
+                    .inflate(R.layout.kingdom_chapter_right_item, parent, false)
+            )
+            else -> return KingdomHorizontalViewHolder(
+                LayoutInflater.from(context)
+                    .inflate(R.layout.kingdom_header_item, parent, false)
+            )
+        }
     }
 
     override fun getItemCount(): Int {
@@ -86,14 +122,17 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (list[position].viewType === THE_FIRST_VIEW) {
-            (holder as KingdomViewHolder).bind(position, itemClickListener)
-
-        } else if (list[position].viewType === THE_SECOND_VIEW) {
-            (holder as KingdomViewHolder2).bind(position, itemClickListener)
-        }
-        else {
-            (holder as KingdomViewHolder3).bind(position, itemClickListener)
+        when {
+            list[position].viewType === THE_FIRST_VIEW ->
+                (holder as KingdomViewHolder).bind(position, itemClickListener)
+            list[position].viewType === THE_SECOND_VIEW ->
+                (holder as KingdomViewHolder2).bind(position, itemClickListener)
+            list[position].viewType === THE_THIRD_VIEW ->
+                (holder as KingdomViewHolder3).bind(position, itemClickListener)
+            list[position].viewType === THE_FORTH_VIEW ->
+                (holder as KingdomViewHolder4).bind(position, itemClickListener)
+            else ->
+                (holder as KingdomHorizontalViewHolder).bind(position, itemClickListener)
         }
     }
 

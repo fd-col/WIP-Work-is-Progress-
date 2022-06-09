@@ -12,7 +12,7 @@ import it.wip.R
 import it.wip.data.DataKingdom
 import it.wip.ui.fragments.MenuFragment
 
-class StoryDetailActivity: AppCompatActivity() {
+class StoryDetailActivity(): AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story_detail)
@@ -22,7 +22,13 @@ class StoryDetailActivity: AppCompatActivity() {
 
 
         val storyDetailList = ArrayList<DataKingdom>()
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Prova1", date = "11/11/2022", time = "1.01.23"))
+        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Capitolo1", date = "11/11/2022", time = "1.01.23"))
+        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_FORTH_VIEW, "Capitolo2", date = "11/11/2022", time = "1.01.23"))
+        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Capitolo3", date = "11/11/2022", time = "1.01.23"))
+        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_FORTH_VIEW, "Capitolo4", date = "11/11/2022", time = "1.01.23"))
+        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Capitolo5", date = "11/11/2022", time = "1.01.23"))
+        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_FORTH_VIEW, "Capitolo6", date = "11/11/2022", time = "1.01.23"))
+
 
         // method for activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
@@ -36,6 +42,7 @@ class StoryDetailActivity: AppCompatActivity() {
         rv.layoutManager = LinearLayoutManager(this)
         val rvAdapter = KingdomListAdapter(this, storyDetailList, itemClickListener = itemOnClick)
         rv.adapter = rvAdapter
+
 
         // add the menu fragment to the bottom of StoryDetailActivity
         val transaction = supportFragmentManager.beginTransaction()
