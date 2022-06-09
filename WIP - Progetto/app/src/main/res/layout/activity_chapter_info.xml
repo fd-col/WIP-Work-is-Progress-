@@ -26,36 +26,32 @@
 
     <TextView
         android:id="@+id/chapter_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="295dp"
+        android:layout_height="37dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/chapter_info"
         android:textColor="#E8EAF6"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/chapter_info_hr"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toEndOf="@+id/back_button_story_detail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.033" />
 
     <ImageView
-        android:id="@+id/chapter_info_hr"
+        android:id="@+id/divider_chapter_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="692dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/under_app_name"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/date_and_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_button_story_detail"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/chapter_info"
         app:srcCompat="@drawable/under_app_name"
         tools:ignore="ImageContrastCheck" />
 
@@ -63,59 +59,41 @@
         android:id="@+id/date_and_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginBottom="648dp"
         android:fontFamily="@font/press_start_2p"
         android:letterSpacing="0.0"
         android:text="@string/date_and_time"
         android:textColor="#E8EAF6"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chapter_info_hr"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/start_chapter_info"
-        android:layout_width="130dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="23dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/chapter_info_start"
-        android:textColor="#E8EAF6"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/end_chapter_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_and_time" />
+        app:layout_constraintTop_toBottomOf="@id/divider_chapter_title"
+        app:layout_constraintBottom_toTopOf="@id/datetime_story_started"
+        tools:layout_editor_absoluteY="98dp" />
 
     <TextView
         android:id="@+id/end_chapter_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="56dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/chapter_info_end"
         android:textColor="#E8EAF6"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout_chapter_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintBottom_toTopOf="@id/frameLayout_chapter_info"
+        app:layout_constraintEnd_toStartOf="@id/datetime_story_ended"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_and_time" />
+        app:layout_constraintTop_toBottomOf="@id/start_chapter_info"
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/datetime_story_started"
-        android:layout_width="220dp"
+        android:layout_width="0dp"
         android:layout_height="37dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         android:autofillHints="story title set by the user"
         android:background="@drawable/rectangular_background"
         android:cursorVisible="true"
@@ -128,6 +106,7 @@
         android:textColor="#0277BD"
         android:textColorHint="#0277BD"
         android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/datetime_story_ended"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/start_chapter_info"
@@ -136,11 +115,10 @@
 
     <TextView
         android:id="@+id/datetime_story_ended"
-        android:layout_width="220dp"
+        android:layout_width="238dp"
         android:layout_height="37dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="35dp"
         android:autofillHints="story title set by the user"
         android:background="@drawable/rectangular_background"
@@ -156,30 +134,44 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout_chapter_info"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/end_chapter_info"
         app:layout_constraintTop_toBottomOf="@+id/datetime_story_started"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/start_chapter_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/chapter_info_start"
+        android:textColor="#E8EAF6"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/end_chapter_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_and_time" />
 
     <FrameLayout
         android:id="@+id/frameLayout_chapter_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="148dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="410dp"
         android:background="@drawable/rectangular_background"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_and_time"
-        app:layout_constraintVertical_bias="0.837">
+        app:layout_constraintBottom_toTopOf="@id/switch_image_background_chapter_info"
+        app:layout_constraintTop_toBottomOf="@+id/date_and_time">
 
         <com.google.android.material.slider.Slider
             android:id="@+id/seekBar_chapter_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:stepSize="10"
@@ -191,36 +183,40 @@
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/optional_settings_chapter_info"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/optional_settings_textview"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/switch_image_background_chapter_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout_chapter_info" />
-
     <ImageView
         android:id="@+id/switch_image_background_chapter_info"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/rectangular_background"
         android:contentDescription="@string/switch_image_background_description"
-        app:layout_constraintBottom_toTopOf="@+id/avatar_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optional_settings_chapter_info" />
+        app:layout_constraintBottom_toTopOf="@id/avatar_text"
+        app:layout_constraintTop_toBottomOf="@id/frameLayout_chapter_info"
+        tools:layout_editor_absoluteY="410dp" />
+
+    <Switch
+        android:id="@+id/switch_hardcore_mode_chapter_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/press_start_2p"
+        android:minHeight="48dp"
+        android:text="@string/hardcore_mode"
+        android:textColor="#0277BD"
+        android:textSize="17sp"
+        android:thumbTint="#0277BD"
+        android:trackTint="@drawable/switch_track"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_image_background_chapter_info"
+        app:layout_constraintEnd_toEndOf="@+id/switch_image_background_chapter_info"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="@+id/switch_image_background_chapter_info"
+        app:layout_constraintTop_toBottomOf="@+id/switch_silent_mode_chapter_info"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Switch
         android:id="@+id/switch_silent_mode_chapter_info"
@@ -239,33 +235,13 @@
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="@+id/switch_image_background_chapter_info"
         app:layout_constraintTop_toTopOf="@+id/switch_image_background_chapter_info"
-        app:layout_constraintVertical_bias="0.179"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-    <Switch
-        android:id="@+id/switch_hardcore_mode_chapter_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:fontFamily="@font/press_start_2p"
-        android:minHeight="48dp"
-        android:text="@string/hardcore_mode"
-        android:textColor="#0277BD"
-        android:textSize="17sp"
-        android:thumbTint="#0277BD"
-        android:trackTint="@drawable/switch_track"
-        app:layout_constraintBottom_toBottomOf="@+id/switch_image_background_chapter_info"
-        app:layout_constraintEnd_toEndOf="@+id/switch_image_background_chapter_info"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toStartOf="@+id/switch_image_background_chapter_info"
-        app:layout_constraintTop_toBottomOf="@+id/switch_silent_mode_chapter_info"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.129"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/avatar_text"
         android:layout_width="wrap_content"
-        android:layout_height="33dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="140dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/avatar_text"

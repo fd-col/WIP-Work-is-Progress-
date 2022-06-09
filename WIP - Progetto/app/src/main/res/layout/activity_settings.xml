@@ -4,32 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_page_background">
+    android:background="@drawable/splash_page_background"
+    android:theme="@style/Theme.WIP">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu_layout"
         android:layout_width="match_parent"
         android:layout_height="132dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/switch_image_background2"
-        android:layout_width="370dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rectangular_background"
         android:contentDescription="@string/switch_image_background_description"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/max_story_time" />
+        app:layout_constraintTop_toBottomOf="@+id/max_story_time"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Switch
         android:id="@+id/lefhand_mode"
-        android:layout_width="336dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/press_start_2p"
         android:minHeight="48dp"
         android:text="@string/left_hand_mode"
@@ -45,47 +54,29 @@
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <ImageButton
-        android:id="@+id/search_button3"
-        android:layout_width="67dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/edit_button_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="45dp"
         android:backgroundTint="#00FFFFFF"
-        android:contentDescription="tasto di ricerca tra le storie"
+        android:contentDescription="tasto per la modifica del tempo massimo delle storie"
         android:contextClickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/switch_image_background2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/max_story_time"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.47"
         app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/search_button4"
-        android:layout_width="67dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#00FFFFFF"
-        android:contentDescription="@string/info_button"
-        android:contextClickable="false"
-        app:layout_constraintBottom_toTopOf="@+id/menu_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/switch_image_background2"
-        app:srcCompat="@android:drawable/ic_dialog_info"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/max_story_time"
-        android:layout_width="299dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:autofillHints="story title set by the user"
         android:background="@drawable/rectangular_background"
         android:cursorVisible="true"
@@ -94,32 +85,40 @@
         android:hint="@string/story_time_limit"
         android:inputType="text"
         android:minHeight="66dp"
-        android:padding="20dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
         android:textColor="#0277BD"
         android:textColorHint="#0277BD"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="476dp"
         android:background="@drawable/rectangular_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_time_title">
+        app:layout_constraintTop_toBottomOf="@+id/header_layout"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.slider.Slider
-            android:id="@+id/seekBar_story_time2"
+            android:id="@+id/seekBar_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
             android:stepSize="10"
             android:valueFrom="0"
             android:valueTo="60"
@@ -142,37 +141,59 @@
 
     <TextView
         android:id="@+id/change_time_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/change_time"
+        android:textAlignment="center"
         android:textColor="#E8EAF6"
         android:textSize="22sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_layout" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="300dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/menu_layout"
+        android:contentDescription="@string/info_text_button_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_image_background2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.151"
         app:srcCompat="@drawable/rectangular_background" />
+
+    <ImageButton
+        android:id="@+id/info_button_settings"
+        android:layout_width="96dp"
+        android:layout_height="85dp"
+        android:layout_marginEnd="72dp"
+        android:background="@drawable/icon_info_button"
+        android:contentDescription="@string/info_button"
+        android:contextClickable="false"
+        android:elevation="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="220dp"
-        android:layout_height="31dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:cursorVisible="true"
-        android:ems="10"
+
         android:fontFamily="@font/press_start_2p"
         android:text="@string/info_text"
         android:textColor="#0277BD"
@@ -180,9 +201,9 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.524" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
