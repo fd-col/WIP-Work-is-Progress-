@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
 import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import it.wip.database.WIPDatabase
+import it.wip.database.model.User
 import it.wip.databinding.ActivityStartStoryBinding
 import it.wip.viewModel.StartStoryViewModel
 
@@ -26,6 +29,18 @@ class StartStoryActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
+
+        val userDao = WIPDatabase.getInstance(application).userDao()
+
+        //userDao.insert(User(3, "kjn", "kjnsd", 30))
+
+        //applicationContext.deleteDatabase("wip_database")
+
+        //val user = userDao.getAll()[1]
+
+        //Toast.makeText(applicationContext, user.favouriteAvatar, Toast.LENGTH_SHORT).show()
+
+        //viewModel.storyName = user.favouriteAvatar
 
         binding.seekBarStoryTime.value = viewModel.studyTime.value!!
 
