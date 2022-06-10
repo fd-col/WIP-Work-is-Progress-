@@ -126,7 +126,7 @@
     <string name="silent_mode_description">Disables notification sounds.\nSTOP TALKING TO\nPEOPLE!</string>
     <string name="sh_divider">------</string>
     <string name="grrr">\"Grrrr\"</string>
-    <string name="hardcore_mode_description">Enables Silent mode\nand if you exit the\napp your story\nautomatically ends..\n\"EVIL DEV. NOISES\"</string>
+    <string name="hardcore_mode_description">Enables Silent mode\nand if you exit the\napp your story\nautomatically ends.\n\"EVIL LAUGH\"</string>
     <string name="okay_button">bottone per chiudere il dialog</string>
     <string name="parameter"> </string>
 </resources>

@@ -4,16 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
-import androidx.activity.viewModels
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import it.wip.database.WIPDatabase
-import it.wip.database.model.User
+import it.wip.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
 import it.wip.viewModel.StartStoryViewModel
 
@@ -156,6 +153,11 @@ class StartStoryActivity : AppCompatActivity() {
                     avatarTag = avatar.tag.toString()
                 }
             }
+        }
+
+        binding.infoButton.setOnClickListener {
+            val dialogInfo = DialogActivityStoryStarted()
+            dialogInfo.show(supportFragmentManager, "info")
         }
     }
 }
