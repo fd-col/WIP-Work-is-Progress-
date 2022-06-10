@@ -30,7 +30,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
         val view = binding.root
 
-        val parentActivityName = activity?.javaClass?.simpleName
+        // val parentActivityName = activity?.javaClass?.simpleName
 
         binding.homeButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -39,7 +39,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             }
             v?.onTouchEvent(event) ?: true
         }
-
         binding.kingdomButton.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> binding.kingdomButton.setImageResource(R.drawable.crown_button_pressed)
@@ -47,7 +46,6 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
             }
             v?.onTouchEvent(event) ?: true
         }
-
         binding.settingsButton.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> binding.settingsButton.setImageResource(R.drawable.gear_button_pressed)
@@ -57,46 +55,20 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
         }
 
 
-
+        //action when home central button on the menu is pressed
         binding.homeButton.setOnClickListener {
-            if(parentActivityName == "MainActivity")
-                mainActivityTransaction(FrameFragment())
-            else
-                explicitIntent("MainActivity")
+            startActivity(Intent(activity, MainActivity::class.java))
         }
-
+        //action when kingdom left button on the menu is pressed
         binding.kingdomButton.setOnClickListener {
-            if(parentActivityName == "MainActivity")
-                explicitIntent("KingdomActivity",1)
-            else //KingdomActivity
-                Toast.makeText(activity?.applicationContext,"Kingdom transaction",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(activity, KingdomActivity::class.java))
         }
-
+        //action when settings right button on the menu is pressed
         binding.settingsButton.setOnClickListener {
-            if(parentActivityName == "MainActivity")
-                explicitIntent("SettingsActivity",2)
-            else //KingdomActivity
-                Toast.makeText(activity?.applicationContext,"Settings transaction",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(activity, SettingsActivity::class.java))
         }
 
         return view
-    }
-
-    private fun mainActivityTransaction(fragment: Fragment){
-        activity?.supportFragmentManager
-            ?.beginTransaction()
-            ?.replace(R.id.frame_layout, fragment)
-            ?.commit()
-    }
-
-    private fun explicitIntent(targetActivity: String, configuration: Int = 0){
-        val intent = when (targetActivity) {
-            "KingdomActivity" -> Intent(activity, KingdomActivity::class.java)
-            "SettingsActivity" -> Intent(activity, SettingsActivity::class.java)
-            else -> Intent(activity, MainActivity::class.java) //"MainActivity"
-        }
-        intent.putExtra("configuration", configuration)
-        startActivity(intent)
     }
 
 }

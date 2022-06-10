@@ -26,6 +26,7 @@ class FrameFragment: Fragment(R.layout.fragment_frame) {
 
         val shopButton = view?.findViewById<ImageButton>(R.id.shop_button)
 
+        //action when play button on the layout is pressed
         playButton?.setOnClickListener {
             startActivity(Intent(activity, StartStoryActivity::class.java))
         }
@@ -38,14 +39,12 @@ class FrameFragment: Fragment(R.layout.fragment_frame) {
             v?.onTouchEvent(event) ?: true
 
         }
-
+        //action when shop button on the layout is pressed
         shopButton?.setOnClickListener() {
-
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.replace(R.id.frame_layout, ShopFragment())
                 ?.commit()
-
         }
 
         shopButton?.setOnTouchListener { v, event ->
