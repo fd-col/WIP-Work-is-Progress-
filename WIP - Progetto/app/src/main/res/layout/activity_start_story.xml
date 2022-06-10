@@ -102,13 +102,13 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="20dp"
+                        android:contentDescription="@string/slider"
                         android:stepSize="10"
                         android:valueFrom="0"
                         android:valueTo="60"
                         app:haloRadius="18dp"
                         app:thumbColor="#0277BD"
-                        app:trackColorActive="#922196F3"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        app:trackColorActive="#922196F3" />
                 </FrameLayout>
 
                 <TextView

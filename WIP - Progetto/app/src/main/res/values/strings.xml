@@ -25,6 +25,8 @@
     <string name="info_button">bottone per descrivere le impostazioni opzionali</string>
     <string name="under_app_name">barra posta sotto il nome dell\'app</string>
     <string name="shop_button">bottone che indirizza allo shop</string>
+    <string name="slider">slider che mi permette di selezionare il tempo di lavoro ed il
+    tempo di pausa</string>
 
     <!-- fragment_frame -->
     <string name="play_button">tasto play nuova storia</string>
@@ -118,4 +120,13 @@
     <string name="info_text">Informazioni</string>
     <string name="info_text_button_settings">bottone informazioni sull\'app</string>
 
+    <!-- dialogs -->
+    <string name="dialog_background">sfondo del dialog mostrato quando premo il tasto info</string>
+    <string name="shhh">\"Shhhh\"</string>
+    <string name="silent_mode_description">Disables notification sounds.\nSTOP TALKING TO\nPEOPLE!</string>
+    <string name="sh_divider">------</string>
+    <string name="grrr">\"Grrrr\"</string>
+    <string name="hardcore_mode_description">Enables Silent mode\nand if you exit the\napp your story\nautomatically ends..\n\"EVIL DEV. NOISES\"</string>
+    <string name="okay_button">bottone per chiudere il dialog</string>
+    <string name="parameter"> </string>
 </resources>
