@@ -128,11 +128,19 @@
     <string name="grrr">\"Grrrr\"</string>
     <string name="hardcore_mode_description">Enables Silent mode\nand if you exit the\napp your story\nautomatically ends.\n\"EVIL LAUGH\"</string>
     <string name="okay_button">bottone per chiudere il dialog</string>
-    <string name="parameter"> </string>
 
     <string name="order_detail">Order detail</string>
     <string name="order_detail_quote">\"Happy noises\"</string>
     <string name="avatar_order_detail_description">Are you sure you\nwant to buy this\nartwork for 130\ncoins?</string>
+    <string name="yes_button_description">bottone per confermare l\'acquisto</string>
+    <string name="no_button_description">bottone uscire dalla schermata di acquisto</string>
+
+<!-- ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION - ANIMATION -->
+    <!--  P.S: le stringhe quì sotto fanno comunque parte delle stringhe della sezione dialog sopra riportata -->
+        <!--  mettere questa stringa al posto di avatar_order_detail_description in caso si seleziona un background -->
     <string name="background_order_detail_description">Are you sure you want to buy this artwork for 200 coins?</string>
+        <!--  mettere questa stringa al posto di avatar_order_detail_description se si clicca il pulsante yes nel dialog ma i coin a disposizione non sono sufficienti -->
     <string name="not_enought_money">Sorry! not enought coins. We don\'t really want coins, we want you to be productive. Come back again when you achieved enought to deserve this artwork "VERY HUMAN STAFF"</string>
+        <!-- mettere questa stringa al posto di avatar_order_detail_description se si clicca il pulsante yes ed i coin sono sufficienti al fine di impedire all\'utente di spendere coin per sbaglio -->
+    <string name="ask_again">Are you sure you want to proceed with the purchase?</string>
 </resources>

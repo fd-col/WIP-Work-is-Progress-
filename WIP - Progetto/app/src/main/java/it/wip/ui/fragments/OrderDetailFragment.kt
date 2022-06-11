@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import it.wip.DialogFragmentOrderDetail
 import it.wip.R
 
 class OrderDetailFragment: Fragment(R.layout.fragment_order_detail){
@@ -28,6 +28,11 @@ class OrderDetailFragment: Fragment(R.layout.fragment_order_detail){
                 MotionEvent.ACTION_UP -> buyButton.setImageResource(R.drawable.buy_button)
             }
             v?.onTouchEvent(event) ?: true
+        }
+
+        buyButton?.setOnClickListener {
+            val dialogShop = DialogFragmentOrderDetail()
+            dialogShop.show(parentFragmentManager, "shop")
         }
 
         return view

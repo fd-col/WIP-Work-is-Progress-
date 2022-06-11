@@ -45,47 +45,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shop_detail" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
+    <TextView
+        android:id="@+id/shop_detail_description"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="46dp"
+        android:fontFamily="@font/press_start_2p"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/avatar_order_detail_description"
+        android:textAlignment="center"
+        android:textColor="#0277BD"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shop_detail_quote"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/shop_detail_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/press_start_2p"
-            android:lineSpacingExtra="3sp"
-            android:text="@string/avatar_order_detail_description"
-            android:textColor="#0277BD"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shop_detail_quote"
-            app:layout_constraintVertical_bias="0.0" />
-    </ScrollView>
+    <ImageButton
+        android:id="@+id/dialog_no_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="80dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/no_button_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/dialog_yes_button"
+        app:layout_constraintTop_toBottomOf="@+id/shop_detail_description"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/no_button" />
 
+    <ImageButton
+        android:id="@+id/dialog_yes_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginBottom="80dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/yes_button_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shop_detail_description"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/yes_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--
-            <ImageButton
-                android:id="@+id/dialog_okay_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#00FFFFFF"
-                android:contentDescription="@string/actual_coins_string"
-                app:srcCompat="@drawable/okay_button" />
--->

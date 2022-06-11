@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--
+fare una classe .kt che estende Dialog() o come si scrive e
+passargli un parametro Int in modo che:
+- se int = 1 allora si caricano le stringhe dell'esito positivo
+- se int = 2 si caricano le stringhe dell'esito negativo
+ovvero:
+val rootView: View = inflater.inflate(R.layout.layout_123, container, false)
+if(param == 1){
+    rootView.intestazione.text = R.string.stringa_positiva_intestazione
+}else if(param==2){
+    rootView.intestazione.text = R.string.stringa_negativa_intestazione
+}
+return rootView
+NOTA: appurato che si può fare con le stringhe;
+accesso alle stringhe con:
+val a: String = getString(R.strings.nome_stringa)
+
+
+
+se così è troppo intrecciato fai l'if con l'inflate del doppio layout:
+if(param == 1){
+    val rootView: View = inflater.inflate(R.layout.layout_positivo, container, false)
+}else if(param==2){
+    val rootView: View = inflater.inflate(R.layout.layout_negativo, container, false)
+}
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -114,117 +148,6 @@
                 android:background="#00FFFFFF"
                 android:contentDescription="@string/actual_coins_string"
                 app:srcCompat="@drawable/okay_button" />
-        </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
-
-    <ImageView
-        android:id="@+id/dialog_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/dialog_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dialog_352_484" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dialog_background"
-        app:layout_constraintEnd_toEndOf="@+id/dialog_background"
-        app:layout_constraintStart_toStartOf="@+id/dialog_background"
-        app:layout_constraintTop_toTopOf="@+id/dialog_background"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/info_silent_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/silent_mode"
-                android:textColor="#0277BD"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/info_silent_mode_quote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/shhh"
-                android:textColor="#0277BD"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/info_silent_mode_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/press_start_2p"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/silent_mode_description"
-                android:textColor="#0277BD"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/silent_hardcore_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/sh_divider"
-                android:textColor="#0277BD"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/info_hardcore_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/hardcore_mode"
-                android:textColor="#0277BD"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/info_hardcore_mode_quote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/grrr"
-                android:textColor="#0277BD"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/info_hardcore_mode_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/press_start_2p"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/hardcore_mode_description"
-                android:textColor="#0277BD"
-                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
