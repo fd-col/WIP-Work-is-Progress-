@@ -40,6 +40,12 @@ class DialogFragmentOrderDetail : DialogFragment(){
             dismiss()
         }
 
+        rootView.dialog_yes_button.setOnClickListener{
+            val outcome = DialogOutcome()
+            outcome.show(parentFragmentManager, "outcome")
+            dismiss()
+        }
+
         return rootView
     }
 }

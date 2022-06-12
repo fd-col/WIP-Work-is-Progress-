@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/dialog_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/info_dialog"
+        android:contentDescription="@string/dialog_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/outcome_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/not_enought_coins_title"
+        android:textAlignment="center"
+        android:textColor="#0277BD"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/outcome_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
+        android:text="@string/negative_quote"
+        android:textColor="#0277BD"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ScrollView
+        android:id="@+id/outcome_scroll_view"
+        android:layout_width="288dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome_quote"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/outcome_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/not_enought_coins"
+            android:textAlignment="center"
+            android:textColor="#0277BD"
+            android:textSize="16sp" />
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/okay_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/okay_button"
+        app:layout_constraintBottom_toBottomOf="@+id/dialog_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome_scroll_view"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/okay_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--
+fare una classe .kt che estende Dialog() o come si scrive e
+passargli un parametro Int in modo che:
+- se int = 1 allora si caricano le stringhe dell'esito positivo
+- se int = 2 si caricano le stringhe dell'esito negativo
+ovvero:
+val rootView: View = inflater.inflate(R.layout.layout_123, container, false)
+if(param == 1){
+    rootView.intestazione.text = R.string.stringa_positiva_intestazione
+}else if(param==2){
+    rootView.intestazione.text = R.string.stringa_negativa_intestazione
+}
+return rootView
+NOTA: appurato che si può fare con le stringhe;
+accesso alle stringhe con:
+val a: String = getString(R.strings.nome_stringa)
+
+
+
+se così è troppo intrecciato fai l'if con l'inflate del doppio layout:
+if(param == 1){
+    val rootView: View = inflater.inflate(R.layout.layout_positivo, container, false)
+}else if(param==2){
+    val rootView: View = inflater.inflate(R.layout.layout_negativo, container, false)
+}
+-->
