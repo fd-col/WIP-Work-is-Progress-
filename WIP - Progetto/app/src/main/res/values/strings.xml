@@ -89,6 +89,9 @@
 
 
     <!-- activity chapter info -->
+    <string name="stringa_di_prova1">testo casuale</string>
+    <string name="stringa_di_prova2">minuti: 2.07.56</string>
+    <string name="stringa_di_prova3">data: 12/10/2022</string>
     <string name="chapter_info">Chapter Info</string>
     <string name="date_and_time">Date &amp; Time</string>
     <string name="avatar_text">Avatar</string>
