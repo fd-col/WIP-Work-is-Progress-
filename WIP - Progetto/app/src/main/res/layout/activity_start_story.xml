@@ -104,8 +104,9 @@
                         android:layout_marginEnd="20dp"
                         android:contentDescription="@string/slider"
                         android:stepSize="10"
-                        android:valueFrom="0"
-                        android:valueTo="60"
+                        android:value="@{viewModel.studyTime}"
+                        android:valueFrom="10"
+                        android:valueTo="@{viewModel.maxStudyTimeGraphic}"
                         app:haloRadius="18dp"
                         app:thumbColor="#0277BD"
                         app:trackColorActive="#922196F3" />

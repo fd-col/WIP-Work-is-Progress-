@@ -3,16 +3,26 @@ package it.wip.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.view.MotionEvent
+import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import it.wip.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
 import it.wip.viewModel.StartStoryViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StartStoryActivity : AppCompatActivity() {
 
@@ -26,14 +36,26 @@ class StartStoryActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(StartStoryViewModel::class.java)
 
-        binding.viewModel = viewModel
-
         binding.lifecycleOwner = this
+
+        binding.viewModel = viewModel
 
         binding.seekBarStoryTime.value = viewModel.studyTime.value!!
 
-        binding.seekBarStoryTime.setLabelFormatter { value: Float ->
-            "${value.toInt()} min study/${60-value.toInt()} min pause"
+        val seekBarStoryTime = binding.seekBarStoryTime
+
+        binding.storyTitleSetByTheUser.doOnTextChanged { text, _, _, _ ->
+            viewModel.setStoryName(text.toString())
+        }
+
+        seekBarStoryTime.addOnChangeListener { _, value, _ ->
+            viewModel.setStudyBreakTime(value)
+        }
+
+        seekBarStoryTime.setLabelFormatter {
+
+            "${viewModel.studyTime.value!!.toInt()} min study/${viewModel.breakTime.value?.toInt()} min pause"
+
         }
 
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
@@ -108,7 +130,12 @@ class StartStoryActivity : AppCompatActivity() {
         }
 
         binding.startButton.setOnClickListener {
-            startActivity(Intent(this, StoryStartedActivity::class.java))
+
+            val intent = Intent(this, StoryStartedActivity::class.java)
+
+            //intent.putExtra(viewModel.studyTime)
+
+           // startActivity()
         }
 
         //              SWITCH AVATAR

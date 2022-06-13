@@ -7,15 +7,15 @@ import it.wip.database.model.Chapter
 interface ChapterDao {
 
     @Query("SELECT * FROM chapter")
-    fun getAll(): Array<Chapter>
+    suspend fun getAll(): Array<Chapter>
 
     @Insert
-    fun insert(vararg user: Chapter)
+    suspend fun insert(vararg user: Chapter)
 
     @Update
-    fun update(user: Chapter)
+    suspend fun update(user: Chapter)
 
     @Delete
-    fun delete(user: Chapter)
+    suspend fun delete(user: Chapter)
 
 }

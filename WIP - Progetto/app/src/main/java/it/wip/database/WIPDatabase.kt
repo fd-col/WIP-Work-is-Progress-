@@ -7,7 +7,8 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import it.wip.database.dao.*
 import it.wip.database.model.*
-import java.util.concurrent.Executors
+import it.wip.utils.Seeder
+import kotlinx.coroutines.*
 
 @Database(entities = [
     Chapter::class,
@@ -18,46 +19,56 @@ import java.util.concurrent.Executors
     Story::class,
     User::class],
     version = 1)
-abstract class WIPDatabase : RoomDatabase(){
+abstract class WIPDatabase : RoomDatabase() {
 
-    abstract fun chapterDao() : ChapterDao
-    abstract fun preferenceDao() : PreferenceDao
-    abstract fun settingDao() : SettingDao
-    abstract fun shopElementDao() : ShopElementDao
-    abstract fun shoppedDao() : ShoppedDao
-    abstract fun storyDao() : StoryDao
-    abstract fun userDao() : UserDao
+    abstract fun chapterDao(): ChapterDao
+    abstract fun preferenceDao(): PreferenceDao
+    abstract fun settingDao(): SettingDao
+    abstract fun shopElementDao(): ShopElementDao
+    abstract fun shoppedDao(): ShoppedDao
+    abstract fun storyDao(): StoryDao
+    abstract fun userDao(): UserDao
+
+    private class WIPDatabaseCallback(
+        private val scope: CoroutineScope
+    ) : RoomDatabase.Callback() {
+
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            INSTANCE?.let { database ->
+                scope.launch {
+                    Seeder.seed(database)
+                }
+            }
+        }
+    }
 
     companion object {
+
         @Volatile
         private var INSTANCE: WIPDatabase? = null
 
-        fun getInstance(context: Context): WIPDatabase {
+        fun getDatabase(context: Context, coroutineScope: CoroutineScope): WIPDatabase {
 
-            return INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(
+            val tempInstance = INSTANCE
+
+            if (tempInstance != null) {
+                return tempInstance
+            }
+
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
                     context.applicationContext,
                     WIPDatabase::class.java, "wip_database"
                 )
-                    .allowMainThreadQueries()
+                    //.allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
-                    .addCallback(object : RoomDatabase.Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            Executors.newSingleThreadScheduledExecutor().execute(Runnable {
-                                kotlin.run {
-                                    val userDao = getInstance(context).userDao()
-                                    userDao.insert(User(1, "Venere", "Boh", 30, 0))
-                                }
-                            })
-
-                        }
-                    })
+                    .addCallback(WIPDatabaseCallback(coroutineScope))
                     .build()
                     .also { INSTANCE = it }
-
+                INSTANCE = instance
+                return instance
             }
         }
-
     }
-
 }

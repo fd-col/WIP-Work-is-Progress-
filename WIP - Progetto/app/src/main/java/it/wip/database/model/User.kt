@@ -10,9 +10,9 @@ data class User(
     val id: Int,
     @ColumnInfo(name = "favourite_avatar")
     val favouriteAvatar: String,
-    @ColumnInfo(name = "favourite_background")
-    val favouriteBackground: String,
     @ColumnInfo(name = "work_time")
     val workTime: Int,
+    @ColumnInfo(name = "max_work_time")
+    val maxWorkTime: Int,
     val coins: Int
 )

@@ -7,15 +7,15 @@ import it.wip.database.model.Setting
 interface SettingDao {
 
     @Query("SELECT * FROM setting")
-    fun getAll(): Array<Setting>
+    suspend fun getAll(): Array<Setting>
 
     @Insert
-    fun insert(vararg user: Setting)
+    suspend fun insert(vararg user: Setting)
 
     @Update
-    fun update(user: Setting)
+    suspend fun update(user: Setting)
 
     @Delete
-    fun delete(user: Setting)
+    suspend fun delete(user: Setting)
 
 }

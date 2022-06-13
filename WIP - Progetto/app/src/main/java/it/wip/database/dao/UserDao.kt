@@ -7,15 +7,15 @@ import it.wip.database.model.User
 interface UserDao {
 
     @Query("SELECT * FROM user")
-    fun getAll(): Array<User>
+    suspend fun getAll(): Array<User>
 
     @Insert
-    fun insert(vararg user: User)
+    suspend fun insert(vararg user: User)
 
     @Update
-    fun update(user: User)
+    suspend fun update(user: User)
 
     @Delete
-    fun delete(user: User)
+    suspend fun delete(user: User)
 
 }
