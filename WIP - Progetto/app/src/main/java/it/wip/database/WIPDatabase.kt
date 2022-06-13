@@ -46,7 +46,7 @@ abstract class WIPDatabase : RoomDatabase(){
                             Executors.newSingleThreadScheduledExecutor().execute(Runnable {
                                 kotlin.run {
                                     val userDao = getInstance(context).userDao()
-                                    userDao.insert(User(1, "Venere", "Boh", 30))
+                                    userDao.insert(User(1, "Venere", "Boh", 30, 0))
                                 }
                             })
 

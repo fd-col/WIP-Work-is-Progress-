@@ -13,5 +13,6 @@ data class User(
     @ColumnInfo(name = "favourite_background")
     val favouriteBackground: String,
     @ColumnInfo(name = "work_time")
-    val workTime: Int
+    val workTime: Int,
+    val coins: Int
 )

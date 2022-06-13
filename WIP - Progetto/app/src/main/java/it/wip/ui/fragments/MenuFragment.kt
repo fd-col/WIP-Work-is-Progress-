@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.wip.MainActivity
 import it.wip.R
@@ -30,7 +29,7 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
         val view = binding.root
 
-        // val parentActivityName = activity?.javaClass?.simpleName
+        val parentActivityName = activity?.javaClass?.simpleName
 
         binding.homeButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -57,15 +56,18 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
         //action when home central button on the menu is pressed
         binding.homeButton.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
+            if(parentActivityName != "MainActivity")
+                startActivity(Intent(activity, MainActivity::class.java))
         }
         //action when kingdom left button on the menu is pressed
         binding.kingdomButton.setOnClickListener {
-            startActivity(Intent(activity, KingdomActivity::class.java))
+            if(parentActivityName != "KingdomActivity")
+                startActivity(Intent(activity, KingdomActivity::class.java))
         }
         //action when settings right button on the menu is pressed
         binding.settingsButton.setOnClickListener {
-            startActivity(Intent(activity, SettingsActivity::class.java))
+            if(parentActivityName != "SettingsActivity")
+                startActivity(Intent(activity, SettingsActivity::class.java))
         }
 
         return view
