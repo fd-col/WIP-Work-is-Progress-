@@ -1,15 +1,18 @@
 package it.wip.viewModel
 
 import android.app.Application
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
+import it.wip.database.model.User
 import kotlinx.coroutines.launch
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
 
-    //private val db = WIPDatabase.getDatabase(application, viewModelScope)
+    val userDao = WIPDatabase.getDatabase(application, viewModelScope).userDao()
 
-
+    lateinit var user: User
 
     private val _storyName = MutableLiveData("")
     val storyName : LiveData<String>
@@ -31,12 +34,11 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
-    /*init {
+    init {
         viewModelScope.launch {
-            val user = db.userDao().getAll()[0]
-            storyName = user.favouriteAvatar
+            user = userDao.getAll()[0]
         }
-    }*/
+    }
 
     fun setStoryName(storyName: String) {
         this._storyName.value = storyName

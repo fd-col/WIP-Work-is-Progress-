@@ -34,7 +34,7 @@ class StartStoryActivity : AppCompatActivity() {
 
         val binding: ActivityStartStoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_start_story)
 
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(StartStoryViewModel::class.java)
+        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StartStoryViewModel::class.java]
 
         binding.lifecycleOwner = this
 
@@ -133,9 +133,10 @@ class StartStoryActivity : AppCompatActivity() {
 
             val intent = Intent(this, StoryStartedActivity::class.java)
 
-            //intent.putExtra(viewModel.studyTime)
+            intent.putExtra("studyTime", viewModel.studyTime.value)
+            intent.putExtra("breakTime", viewModel.breakTime.value)
 
-           // startActivity()
+            startActivity(intent)
         }
 
         //              SWITCH AVATAR
