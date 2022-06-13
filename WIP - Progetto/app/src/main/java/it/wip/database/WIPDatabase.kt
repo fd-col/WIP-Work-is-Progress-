@@ -61,22 +61,8 @@ abstract class WIPDatabase : RoomDatabase() {
                     context.applicationContext,
                     WIPDatabase::class.java, "wip_database"
                 )
-                    //.allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
-                    .addCallback(object : RoomDatabase.Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            Executors.newSingleThreadScheduledExecutor().execute(Runnable {
-                                kotlin.run {
-                                    val userDao = getInstance(context).userDao()
-                                    userDao.insert(User(1, "Venere", "Boh", 30, 0))
-
-                                    val storyDao = getInstance(context).storyDao()
-                                    storyDao.insert(Story(1, "Coding","11/06/2022", 1))
-                                }
-                            })
-
-                        }
-                    })
+                    .addCallback(WIPDatabaseCallback(coroutineScope))
                     .build()
                     .also { INSTANCE = it }
                 INSTANCE = instance

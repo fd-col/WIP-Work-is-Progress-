@@ -11,8 +11,8 @@ data class User(
     @ColumnInfo(name = "favourite_avatar")
     val favouriteAvatar: String,
     @ColumnInfo(name = "work_time")
-    val studyTime: Int,
+    val studyTime: Float,
     @ColumnInfo(name = "max_work_time")
-    val maxStudyTime: Int,
+    val maxStudyTime: Float,
     val coins: Int
 )

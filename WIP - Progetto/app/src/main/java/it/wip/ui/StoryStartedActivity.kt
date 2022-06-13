@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.widget.Chronometer
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import it.wip.MainActivity
@@ -35,7 +36,6 @@ class StoryStartedActivity : AppCompatActivity(){
         var timeRange1 = (5000..14000)
         var timeRange2 = (15000..20000)
         var timeRange3 = (21000..30000)
-
 
         val stopButton = findViewById<ImageButton>(R.id.stop_button)
         val artwork = findViewById<ImageView>(R.id.canva)

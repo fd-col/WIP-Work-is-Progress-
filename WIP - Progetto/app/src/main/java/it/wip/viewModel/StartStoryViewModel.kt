@@ -1,18 +1,14 @@
 package it.wip.viewModel
 
 import android.app.Application
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
-import it.wip.database.model.User
+import it.wip.database.dao.UserDao
 import kotlinx.coroutines.launch
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
 
-    val userDao = WIPDatabase.getDatabase(application, viewModelScope).userDao()
-
-    lateinit var user: User
+    lateinit var userDao: UserDao
 
     private val _storyName = MutableLiveData("")
     val storyName : LiveData<String>
@@ -22,21 +18,29 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val studyTime : LiveData<Float>
         get() = _studyTime
 
-    private val _maxStudyTime = MutableLiveData(120F) //dal database
+    private val _maxStudyTime = MutableLiveData(60F)
     val maxStudyTime : LiveData<Float>
         get() = _maxStudyTime
 
-    private val _maxStudyTimeGraphic = MutableLiveData(maxStudyTime.value?.minus(10F) ?: 50F)
+    private val _maxStudyTimeGraphic = MutableLiveData(50F)
     val maxStudyTimeGraphic : LiveData<Float>
         get() = _maxStudyTimeGraphic
 
-    private val _breakTime = MutableLiveData(maxStudyTime.value?.minus(10F) ?: 50F)
+    private val _breakTime = MutableLiveData(50F)
     val breakTime : LiveData<Float>
         get() = _breakTime
 
     init {
+        userDao = WIPDatabase.getDatabase(application, viewModelScope).userDao()
+    }
+
+    fun getUser() {
         viewModelScope.launch {
-            user = userDao.getAll()[0]
+            val user = userDao.getAll()[0]
+            _studyTime.value = user.studyTime
+            _maxStudyTime.value = user.maxStudyTime
+            _maxStudyTimeGraphic.value = _maxStudyTime.value!! - 10F
+            _breakTime.value = _maxStudyTime.value!! - 10F
         }
     }
 

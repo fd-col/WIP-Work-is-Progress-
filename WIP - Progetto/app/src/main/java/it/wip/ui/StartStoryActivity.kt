@@ -36,6 +36,8 @@ class StartStoryActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StartStoryViewModel::class.java]
 
+        viewModel.getUser()
+
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
@@ -61,42 +63,63 @@ class StartStoryActivity : AppCompatActivity() {
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
-        // button backwards
         binding.backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+        // button backwards
         binding.backButton.setOnTouchListener { v, event ->
+
             when (event.action) {
+
                 MotionEvent.ACTION_DOWN -> binding.backButton.setImageResource(R.drawable.back_arrow_pressed)
+
                 MotionEvent.ACTION_UP -> binding.backButton.setImageResource(R.drawable.back_arrow)
+
             }
+
             v?.onTouchEvent(event) ?: true
+
         }
 
         binding.infoButton.setOnTouchListener { v, event ->
+
             when (event.action) {
+
                 MotionEvent.ACTION_DOWN -> binding.infoButton.setImageResource(R.drawable.info_button_pressed)
+
                 MotionEvent.ACTION_UP -> binding.infoButton.setImageResource(R.drawable.info_button)
+
             }
+
             v?.onTouchEvent(event) ?: true
 
         }
 
         binding.avatarSxButton.setOnTouchListener { v, event ->
+
             when (event.action) {
+
                 MotionEvent.ACTION_DOWN -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow_pressed)
+
                 MotionEvent.ACTION_UP -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow)
+
             }
+
             v?.onTouchEvent(event) ?: true
 
         }
 
         binding.avatarDxButton.setOnTouchListener { v, event ->
+
             when (event.action) {
+
                 MotionEvent.ACTION_DOWN -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow_pressed)
+
                 MotionEvent.ACTION_UP -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow)
+
             }
+
             v?.onTouchEvent(event) ?: true
 
         }
