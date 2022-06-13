@@ -7,15 +7,15 @@ import it.wip.database.model.Shopped
 interface ShoppedDao {
 
     @Query("SELECT * FROM shopped")
-    fun getAll(): Array<Shopped>
+    suspend fun getAll(): Array<Shopped>
 
     @Insert
-    fun insert(vararg user: Shopped)
+    suspend fun insert(vararg user: Shopped)
 
     @Update
-    fun update(user: Shopped)
+    suspend fun update(user: Shopped)
 
     @Delete
-    fun delete(user: Shopped)
+    suspend fun delete(user: Shopped)
 
 }

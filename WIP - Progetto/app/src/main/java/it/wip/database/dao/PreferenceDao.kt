@@ -7,15 +7,15 @@ import it.wip.database.model.Preference
 interface PreferenceDao {
 
     @Query("SELECT * FROM preference")
-    fun getAll(): Array<Preference>
+    suspend fun getAll(): Array<Preference>
 
     @Insert
-    fun insert(vararg user: Preference)
+    suspend fun insert(vararg user: Preference)
 
     @Update
-    fun update(user: Preference)
+    suspend fun update(user: Preference)
 
     @Delete
-    fun delete(user: Preference)
+    suspend fun delete(user: Preference)
 
 }
