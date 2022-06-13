@@ -47,6 +47,9 @@ abstract class WIPDatabase : RoomDatabase(){
                                 kotlin.run {
                                     val userDao = getInstance(context).userDao()
                                     userDao.insert(User(1, "Venere", "Boh", 30, 0))
+
+                                    val storyDao = getInstance(context).storyDao()
+                                    storyDao.insert(Story(1, "Coding","11/06/2022", 1))
                                 }
                             })
 

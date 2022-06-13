@@ -1,5 +1,6 @@
 package it.wip.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -10,6 +11,7 @@ import androidx.core.content.res.ResourcesCompat
 import it.wip.R
 
 class ChapterInfoActivity : AppCompatActivity() {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chapter_info)
