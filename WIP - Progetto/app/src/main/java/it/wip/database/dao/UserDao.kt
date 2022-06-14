@@ -10,10 +10,10 @@ interface UserDao {
     suspend fun getAll(): Array<User>
 
     @Insert
-    suspend fun insert(vararg user: User)
+    suspend fun insert(vararg users: User)
 
     @Insert
-    fun insertWithoutCoroutines(vararg: User)
+    fun insertWithoutCoroutines(vararg users: User)
 
     @Update
     suspend fun update(user: User)

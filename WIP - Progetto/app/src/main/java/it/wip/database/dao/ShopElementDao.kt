@@ -10,10 +10,10 @@ interface ShopElementDao {
     suspend fun getAll(): Array<ShopElement>
 
     @Insert
-    suspend fun insert(vararg user: ShopElement)
+    suspend fun insert(vararg shopElements: ShopElement)
 
     @Insert
-    fun insertWithoutCoroutines(vararg: ShopElement)
+    fun insertWithoutCoroutines(vararg shopElements: ShopElement)
 
     @Update
     suspend fun update(user: ShopElement)

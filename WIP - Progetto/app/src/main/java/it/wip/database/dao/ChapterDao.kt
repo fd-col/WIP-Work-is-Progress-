@@ -10,7 +10,7 @@ interface ChapterDao {
     suspend fun getAll(): Array<Chapter>
 
     @Insert
-    suspend fun insert(vararg user: Chapter)
+    suspend fun insert(vararg chapters: Chapter)
 
     @Update
     suspend fun update(user: Chapter)

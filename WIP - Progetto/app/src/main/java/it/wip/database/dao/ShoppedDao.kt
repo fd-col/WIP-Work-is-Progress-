@@ -10,7 +10,10 @@ interface ShoppedDao {
     suspend fun getAll(): Array<Shopped>
 
     @Insert
-    suspend fun insert(vararg user: Shopped)
+    suspend fun insert(vararg shopped: Shopped)
+
+    @Insert
+    fun insertWithoutCoroutines(vararg shopped: Shopped)
 
     @Update
     suspend fun update(user: Shopped)

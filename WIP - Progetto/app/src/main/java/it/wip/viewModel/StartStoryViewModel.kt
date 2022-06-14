@@ -1,6 +1,7 @@
 package it.wip.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.UserDao
@@ -29,14 +30,24 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
+    var avatarsName = mutableListOf<String>()
+
     init {
-        val userDao = WIPDatabase.getInstance(application.applicationContext).userDao()
+        val wipDb = WIPDatabase.getInstance(application.applicationContext)
+
         viewModelScope.launch {
-            val user = userDao.getAll()[0]
+            val user = wipDb.userDao().getAll()[0]
             _studyTime.value = user.studyTime
             _maxStudyTime.value = user.maxStudyTime
             _maxStudyTimeGraphic.value = _maxStudyTime.value!! - 10F
             _breakTime.value = _maxStudyTime.value!! - 10F
+
+            val avatars = wipDb.shoppedDao().getAll()
+
+            for(avatar in avatars) {
+                avatarsName.add(avatar.shopElement)
+            }
+
         }
     }
 

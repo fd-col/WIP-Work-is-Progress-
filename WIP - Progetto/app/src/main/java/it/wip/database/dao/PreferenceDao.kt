@@ -10,7 +10,7 @@ interface PreferenceDao {
     suspend fun getAll(): Array<Preference>
 
     @Insert
-    suspend fun insert(vararg user: Preference)
+    suspend fun insert(vararg preferences: Preference)
 
     @Update
     suspend fun update(user: Preference)

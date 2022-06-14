@@ -229,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/venere"
                         android:contentDescription="@string/avatar_description"
-                        android:tag="1"
+                        android:tag="0"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"

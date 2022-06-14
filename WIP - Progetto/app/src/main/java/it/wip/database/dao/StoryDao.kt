@@ -10,7 +10,7 @@ interface StoryDao {
     suspend fun getAll(): Array<Story>
 
     @Insert
-    suspend fun insert(vararg user: Story)
+    suspend fun insert(vararg stories: Story)
 
     @Update
     suspend fun update(user: Story)

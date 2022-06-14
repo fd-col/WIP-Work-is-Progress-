@@ -3,16 +3,20 @@ package it.wip.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
+import it.wip.utils.fromAvatarNameToResource
 import it.wip.viewModel.StartStoryViewModel
 
 class StartStoryActivity : AppCompatActivity() {
@@ -133,46 +137,27 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
-        var avatarTag: String = avatar.tag.toString()
+        var avatarTag: Int = avatar.tag.toString().toInt()
 
-        binding.avatarDxButton.setOnClickListener {
-            when (avatarTag) {
-                "1" -> {
-                    avatar.setBackgroundResource(R.drawable.magritte)
-                    avatar.tag = "2"
-                    avatarTag = avatar.tag.toString()
-                }
-                "2" -> {
-                    avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
-                    avatar.tag = "3"
-                    avatarTag = avatar.tag.toString()
-                }
-                "3" -> {
-                    avatar.setBackgroundResource(R.drawable.venere)
-                    avatar.tag = "1"
-                    avatarTag = avatar.tag.toString()
-                }
-            }
-        }
+        val avatarsName = viewModel.avatarsName
 
         binding.avatarSxButton.setOnClickListener {
-            when (avatarTag) {
-                "1" -> {
-                    avatar.setBackgroundResource(R.drawable.ragazza_col_turbante)
-                    avatar.tag = "3"
-                    avatarTag = avatar.tag.toString()
-                }
-                "2" -> {
-                    avatar.setBackgroundResource(R.drawable.venere)
-                    avatar.tag = "1"
-                    avatarTag = avatar.tag.toString()
-                }
-                "3" -> {
-                    avatar.setBackgroundResource(R.drawable.magritte)
-                    avatar.tag = "2"
-                    avatarTag = avatar.tag.toString()
-                }
+            avatarTag--
+            if(avatarTag < 0) {
+                avatarTag = avatarsName.size - 1
             }
+            avatar.setBackgroundResource(R.drawable.magritte)
+            val tempAvatar = avatarsName[avatarTag]
+            avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
+        }
+
+        binding.avatarDxButton.setOnClickListener {
+            avatarTag++
+            if(avatarTag + 1 > avatarsName.size) {
+                avatarTag = 0
+            }
+            val tempAvatar = avatarsName[avatarTag]
+            avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
         }
 
         binding.infoButton.setOnClickListener {

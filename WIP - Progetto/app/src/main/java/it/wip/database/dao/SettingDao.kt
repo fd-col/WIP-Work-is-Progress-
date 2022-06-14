@@ -10,7 +10,7 @@ interface SettingDao {
     suspend fun getAll(): Array<Setting>
 
     @Insert
-    suspend fun insert(vararg user: Setting)
+    suspend fun insert(vararg settings: Setting)
 
     @Update
     suspend fun update(user: Setting)

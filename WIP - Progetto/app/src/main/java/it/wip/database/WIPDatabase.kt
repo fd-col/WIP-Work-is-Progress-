@@ -1,6 +1,7 @@
 package it.wip.database
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,6 +9,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import it.wip.database.dao.*
 import it.wip.database.model.*
 import kotlinx.coroutines.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.Executors
 
 @Database(entities = [
@@ -46,13 +50,24 @@ abstract class WIPDatabase : RoomDatabase() {
                                 kotlin.run {
                                     val wipDb = getInstance(context)
 
-                                    val userDao = wipDb.userDao()
-                                    userDao.insertWithoutCoroutines(User(1, "Venere", 30F, 120F, 30))
-
-                                    val shopElementDao = wipDb.shopElementDao()
-                                    shopElementDao.insertWithoutCoroutines(
-                                        ShopElement("Venere", "", 0)
+                                    wipDb.userDao().insertWithoutCoroutines(
+                                        User(1, "Venere", 30F, 120F, 30)
                                     )
+
+                                    wipDb.shopElementDao().insertWithoutCoroutines(
+                                        ShopElement("Venere", "", 0),
+                                        ShopElement("Magritte", "", 0),
+                                        ShopElement("Ragazza col turbante", "", 0)
+                                    )
+
+                                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
+
+                                    wipDb.shoppedDao().insertWithoutCoroutines(
+                                        Shopped(1, "Venere", dateFormat.format(Date())),
+                                        Shopped(1, "Magritte", dateFormat.format(Date())),
+                                        Shopped(1, "Ragazza col turbante", dateFormat.format(Date()))
+                                    )
+
                                 }
                             })
 
