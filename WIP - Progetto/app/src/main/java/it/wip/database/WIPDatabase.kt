@@ -19,7 +19,7 @@ import java.util.concurrent.Executors
     Shopped::class,
     Story::class,
     User::class],
-    version = 1)
+    version = 2)
 abstract class WIPDatabase : RoomDatabase() {
 
     abstract fun chapterDao(): ChapterDao
