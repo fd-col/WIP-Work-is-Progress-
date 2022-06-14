@@ -41,8 +41,6 @@ abstract class WIPDatabase : RoomDatabase() {
                     context.applicationContext,
                     WIPDatabase::class.java, "wip_database"
                 )
-                    //.allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             Executors.newSingleThreadScheduledExecutor().execute(Runnable {
@@ -54,6 +52,8 @@ abstract class WIPDatabase : RoomDatabase() {
 
                         }
                     })
+                    .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build()
                     .also { INSTANCE = it }
             }

@@ -9,8 +9,6 @@ import kotlinx.coroutines.launch
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var userDao: UserDao
-
     private val _storyName = MutableLiveData("")
     val storyName : LiveData<String>
         get() = _storyName
@@ -32,7 +30,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         get() = _breakTime
 
     init {
-        userDao = WIPDatabase.getInstance(application.applicationContext).userDao()
+        val userDao = WIPDatabase.getInstance(application.applicationContext).userDao()
         viewModelScope.launch {
             val user = userDao.getAll()[0]
             _studyTime.value = user.studyTime

@@ -3,11 +3,15 @@ package it.wip
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
+import it.wip.database.model.User
 import it.wip.databinding.ActivityMainBinding
 import it.wip.ui.fragments.FrameFragment
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +29,14 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
 
-        WIPDatabase.getInstance(applicationContext)
-
+        val userDao = WIPDatabase.getInstance(applicationContext).userDao()
+        lifecycleScope.launch {
+            try {
+                userDao.getAll()[0]
+            } catch (ex: ArrayIndexOutOfBoundsException) {
+                userDao.insert(User(1, "Venere", 30F, 120F, 30))
+                userDao.getAll()[0]
+            }
+        }
     }
 }
