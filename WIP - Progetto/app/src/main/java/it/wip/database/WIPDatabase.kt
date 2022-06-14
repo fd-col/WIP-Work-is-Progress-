@@ -55,9 +55,11 @@ abstract class WIPDatabase : RoomDatabase() {
                                     )
 
                                     wipDb.shopElementDao().insertWithoutCoroutines(
-                                        ShopElement("Venere", "", 0),
-                                        ShopElement("Magritte", "", 0),
-                                        ShopElement("Ragazza col turbante", "", 0)
+                                        ShopElement("Venere", "avatar","", 0),
+                                        ShopElement("Magritte", "avatar","", 0),
+                                        ShopElement("Ragazza col turbante", "avatar","", 0),
+                                        ShopElement("L'urlo", "avatar", "", 100),
+                                        ShopElement("Creazione di Adamo", "background","", 250),
                                     )
 
                                     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)

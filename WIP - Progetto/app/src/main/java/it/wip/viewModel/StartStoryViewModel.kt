@@ -4,8 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
-import it.wip.database.dao.UserDao
-import it.wip.database.model.User
 import kotlinx.coroutines.launch
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
@@ -30,7 +28,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
-    var avatarsName = mutableListOf<String>()
+    val avatarsName = mutableListOf<String>()
 
     init {
         val wipDb = WIPDatabase.getInstance(application.applicationContext)

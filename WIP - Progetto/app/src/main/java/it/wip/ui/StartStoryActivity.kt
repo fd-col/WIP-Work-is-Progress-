@@ -5,12 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -29,7 +27,8 @@ class StartStoryActivity : AppCompatActivity() {
 
         val binding: ActivityStartStoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_start_story)
 
-        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StartStoryViewModel::class.java]
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StartStoryViewModel::class.java]
 
         binding.lifecycleOwner = this
 
@@ -137,26 +136,24 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
-        var avatarTag: Int = avatar.tag.toString().toInt()
-
-        val avatarsName = viewModel.avatarsName
+        var avatarTag = avatar.tag.toString().toInt()
 
         binding.avatarSxButton.setOnClickListener {
             avatarTag--
             if(avatarTag < 0) {
-                avatarTag = avatarsName.size - 1
+                avatarTag = viewModel.avatarsName.size - 1
             }
             avatar.setBackgroundResource(R.drawable.magritte)
-            val tempAvatar = avatarsName[avatarTag]
+            val tempAvatar = viewModel.avatarsName[avatarTag]
             avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
         }
 
         binding.avatarDxButton.setOnClickListener {
             avatarTag++
-            if(avatarTag + 1 > avatarsName.size) {
+            if(avatarTag + 1 > viewModel.avatarsName.size) {
                 avatarTag = 0
             }
-            val tempAvatar = avatarsName[avatarTag]
+            val tempAvatar = viewModel.avatarsName[avatarTag]
             avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
         }
 
