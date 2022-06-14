@@ -3,11 +3,7 @@ package it.wip.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.view.MotionEvent
-import android.widget.SeekBar
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
@@ -15,14 +11,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import it.wip.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
 import it.wip.viewModel.StartStoryViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class StartStoryActivity : AppCompatActivity() {
 
@@ -35,8 +26,6 @@ class StartStoryActivity : AppCompatActivity() {
         val binding: ActivityStartStoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_start_story)
 
         viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StartStoryViewModel::class.java]
-
-        viewModel.getUser()
 
         binding.lifecycleOwner = this
 

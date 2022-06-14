@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.UserDao
+import it.wip.database.model.User
 import kotlinx.coroutines.launch
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
@@ -31,10 +32,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         get() = _breakTime
 
     init {
-        userDao = WIPDatabase.getDatabase(application, viewModelScope).userDao()
-    }
-
-    fun getUser() {
+        userDao = WIPDatabase.getInstance(application.applicationContext).userDao()
         viewModelScope.launch {
             val user = userDao.getAll()[0]
             _studyTime.value = user.studyTime

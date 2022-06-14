@@ -9,6 +9,7 @@ import it.wip.database.dao.*
 import it.wip.database.model.*
 import it.wip.utils.Seeder
 import kotlinx.coroutines.*
+import java.util.concurrent.Executors
 
 @Database(entities = [
     Chapter::class,
@@ -29,44 +30,32 @@ abstract class WIPDatabase : RoomDatabase() {
     abstract fun storyDao(): StoryDao
     abstract fun userDao(): UserDao
 
-    private class WIPDatabaseCallback(
-        private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
-
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            INSTANCE?.let { database ->
-                scope.launch {
-                    Seeder.seed(database)
-                }
-            }
-        }
-    }
-
     companion object {
-
         @Volatile
         private var INSTANCE: WIPDatabase? = null
 
-        fun getDatabase(context: Context, coroutineScope: CoroutineScope): WIPDatabase {
+        fun getInstance(context: Context): WIPDatabase {
 
-            val tempInstance = INSTANCE
-
-            if (tempInstance != null) {
-                return tempInstance
-            }
-
-            synchronized(this) {
-                val instance = Room.databaseBuilder(
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     WIPDatabase::class.java, "wip_database"
                 )
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
-                    .addCallback(WIPDatabaseCallback(coroutineScope))
+                    .addCallback(object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            Executors.newSingleThreadScheduledExecutor().execute(Runnable {
+                                kotlin.run {
+                                    val userDao = getInstance(context).userDao()
+                                    userDao.insertWithoutCoroutines(User(1, "Venere", 30F, 120F, 30))
+                                }
+                            })
+
+                        }
+                    })
                     .build()
                     .also { INSTANCE = it }
-                INSTANCE = instance
-                return instance
             }
         }
     }

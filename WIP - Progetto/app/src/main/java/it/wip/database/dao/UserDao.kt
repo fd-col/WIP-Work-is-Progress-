@@ -12,6 +12,9 @@ interface UserDao {
     @Insert
     suspend fun insert(vararg user: User)
 
+    @Insert
+    fun insertWithoutCoroutines(vararg: User)
+
     @Update
     suspend fun update(user: User)
 
