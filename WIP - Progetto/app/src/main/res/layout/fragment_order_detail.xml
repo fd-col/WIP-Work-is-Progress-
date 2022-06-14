@@ -1,269 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:theme="@style/Theme.WIP">
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.WIP">
 
-
-    <ImageButton
-        android:id="@+id/order_detail_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/order_back_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/back_arrow" />
-
-
-    <ImageView
-        android:id="@+id/avatar_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/venere"
-        android:contentDescription="@string/avatar_detail_string"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_detail_back_button"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/avatar_name"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/avatar_name_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_detail"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:isScrollContainer="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_name"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/order_detail_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:isScrollContainer="true"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/order_back_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/back_arrow" />
 
-            <ScrollView
-                android:id="@+id/scrollView_order_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/rectangular_background"
-                android:isScrollContainer="true"
-                android:nestedScrollingEnabled="true"
-                android:scrollbarThumbVertical="@color/cardview_shadow_end_color"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/avatar_name"
-                app:layout_constraintVertical_bias="0.0">
-
-                <TextView
-                    android:id="@+id/avatar_description"
-                    android:layout_width="300dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="24dp"
-                    android:fontFamily="@font/press_start_2p"
-                    android:lineSpacingExtra="8sp"
-                    android:text="@string/venere_description"
-                    android:textColor="#0277BD"
-                    android:textSize="16sp" />
-
-            </ScrollView>
-
-            <ImageButton
-                android:id="@+id/buy_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/buy_button"
-                android:contentDescription="@string/buy_button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView_order_detail"
-                app:layout_constraintVertical_bias="0.0" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--
         <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_detail_back_button"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/back_button"
-                app:layout_constraintVertical_bias="1.0">
+                android:gravity="center"
+                android:orientation="vertical">
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/avatar_detail"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-        -->
+                    android:background="@drawable/venere"
+                    android:contentDescription="@string/avatar_detail_string"
+                    android:tag="1" />
 
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:theme="@style/Theme.WIP">
+                <TextView
+                    android:id="@+id/avatar_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/avatar_name_string"
+                    android:textColor="#E8EAF6"
+                    android:textSize="24sp" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-    <ImageButton
-            android:id="@+id/_order_detail_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/order_back_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/back_arrow" />
+                    <ImageView
+                        android:id="@+id/info_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/rectangular_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/info_background" />
 
+                    <TextView
+                        android:id="@+id/avatar_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/press_start_2p"
+                        android:lineSpacingExtra="8sp"
+                        android:text="@string/info"
+                        android:textAlignment="center"
+                        android:textColor="#0277BD"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/info_description"
+                        app:layout_constraintStart_toStartOf="@+id/info_description"
+                        app:layout_constraintTop_toTopOf="@+id/info_description"
+                        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/avatar_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/venere"
-        android:contentDescription="@string/avatar_detail_string"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_order_detail_back_button"
-        app:layout_constraintVertical_bias="0.0" />
+                    <ImageButton
+                        android:id="@+id/shop_info_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:background="@drawable/shop_info_button"
+                        android:contentDescription="@string/shop_info_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/info_description"
+                        app:layout_constraintEnd_toEndOf="@+id/info_description"
+                        app:layout_constraintStart_toStartOf="@+id/info_description"
+                        app:layout_constraintTop_toBottomOf="@+id/avatar_description"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/avatar_name"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/press_start_2p"
-        android:text="@string/avatar_name_string"
-        android:textColor="#E8EAF6"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_detail"
-        app:layout_constraintVertical_bias="0.0" />
+                <ImageButton
+                    android:id="@+id/buy_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/buy_button"
+                    android:contentDescription="@string/buy_button" />
 
-
-
-
-    <ScrollView
-        android:id="@+id/scrollView_order_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/rectangular_background"
-        android:scrollbarThumbVertical="@color/cardview_shadow_end_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_name"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/avatar_description"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/press_start_2p"
-            android:lineSpacingExtra="8sp"
-            android:text="@string/venere_description"
-            android:textColor="#0277BD"
-            android:textSize="16sp" />
-
-    </ScrollView>
-
-    <ImageButton
-        android:id="@+id/buy_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/buy_button"
-        android:contentDescription="@string/buy_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView_order_detail"
-        app:layout_constraintVertical_bias="0.0" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
--->
-
-<!--
-<ImageButton
-            android:id="@+id/_order_detail_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/order_back_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/back_arrow" />
--->
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

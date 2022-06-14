@@ -45,7 +45,7 @@
     <string name="actual_coins_string">110</string>
 
     <!-- fragment order detail -->
-    <string name="avatar_detail_string">immagine dell\'avatar nella schermata dettaglio ordine</string>
+    <string name="avatar_detail_string">immagine dell\'opera nella schermata dettaglio ordine</string>
     <string name="avatar_name_string">Venere</string>
     <string name="buy_button">bottone per effettuare un acquisto</string>
     <string name="venere_description">Painted by Sandro Botticelli between 1482-1485, and
@@ -53,6 +53,9 @@
         of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
         Venus from the sea foam.\n</string>
     <string name="order_back_button">bottone per tornare allo shop</string>
+    <string name="info">Learn about the\n story of this\nartwork</string>
+    <string name="info_background">background sezione info</string>
+    <string name="shop_info_button">bottone per mostrare la storia dell\'opera</string>
 
     <string name="david">David</string>
     <string name="van_gogh_autoritratto">Van Gogh</string>
@@ -61,9 +64,7 @@
     <string name="creazione_di_adamo">Creation of Adam</string>
     <string name="magritte_kiss">Lovers</string>
 
-    <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504, and
-        exposed at the  Galleria dell\'Accademia in Florence, David is a marble sculpture
-        portraying the biblical hero preparing to face Goliath the giant.\n</string>
+    <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504, and exposed at the Galleria dell\'Accademia in Florence, David is a marble sculpture portraying the biblical hero preparing to face Goliath the giant.\n</string>
     <string name="van_gogh_autoritratto_description">Painted by Vincent Van Gogh in 1889, and
         exposed at the Musée d\'Orsay in Paris, Van Gogh\'s self portrait is an artwork made
         of oil on canvas.\n Vincent often presented himself as restrained and serious in
@@ -146,6 +147,10 @@
     <string name="purchase_completed">Purchase\ncompleted</string>
     <string name="positive_quote">\"Rock \'n Roll\"</string>
     <string name="purchase_completed_description">You really\ndeserved it.\nGreat job!\n</string>
+
+    <string name="info_dialog_title">A little\nStory about\nArt</string>
+    <string name="info_dialog_quote">\"Gulp\"</string>
+
 
 
     <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->

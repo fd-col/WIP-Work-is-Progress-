@@ -42,7 +42,8 @@
                 android:text="@string/silent_mode"
                 android:textColor="#0277BD"
                 android:textSize="23sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/info_silent_mode_quote"
@@ -83,7 +84,8 @@
                 android:text="@string/hardcore_mode"
                 android:textColor="#0277BD"
                 android:textSize="21sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/info_hardcore_mode_quote"
