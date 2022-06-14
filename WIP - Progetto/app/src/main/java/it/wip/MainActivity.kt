@@ -3,6 +3,7 @@ package it.wip
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import it.wip.database.WIPDatabase
 import it.wip.databinding.ActivityMainBinding
 import it.wip.ui.fragments.FrameFragment
 import it.wip.ui.fragments.HeaderFragment
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         transaction.add(R.id.menu_layout, MenuFragment())
 
         transaction.commit()
+
+        WIPDatabase.getInstance(applicationContext)
 
     }
 }
