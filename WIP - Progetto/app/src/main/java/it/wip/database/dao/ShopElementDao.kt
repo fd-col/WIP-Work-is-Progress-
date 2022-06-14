@@ -12,6 +12,9 @@ interface ShopElementDao {
     @Insert
     suspend fun insert(vararg user: ShopElement)
 
+    @Insert
+    fun insertWithoutCoroutines(vararg: ShopElement)
+
     @Update
     suspend fun update(user: ShopElement)
 

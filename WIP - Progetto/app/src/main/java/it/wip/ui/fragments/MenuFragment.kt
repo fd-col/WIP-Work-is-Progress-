@@ -3,10 +3,12 @@ package it.wip.ui.fragments
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.wip.MainActivity
 import it.wip.R
@@ -56,7 +58,21 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
         //action when home central button on the menu is pressed
         binding.homeButton.setOnClickListener {
-            if(parentActivityName != "MainActivity")
+
+            val fragments = activity?.supportFragmentManager?.fragments
+
+            var isShopFragment = false
+
+            if (fragments != null) {
+                for(fragment in fragments) {
+                    if(fragment.javaClass.simpleName.toString() == "ShopFragment") {
+                        isShopFragment = true
+                        break
+                    }
+                }
+            }
+
+            if(parentActivityName != "MainActivity" || isShopFragment)
                 startActivity(Intent(activity, MainActivity::class.java))
         }
         //action when kingdom left button on the menu is pressed

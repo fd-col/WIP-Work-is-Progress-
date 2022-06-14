@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import it.wip.database.dao.*
 import it.wip.database.model.*
-import it.wip.utils.Seeder
 import kotlinx.coroutines.*
 import java.util.concurrent.Executors
 
@@ -45,8 +44,15 @@ abstract class WIPDatabase : RoomDatabase() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             Executors.newSingleThreadScheduledExecutor().execute(Runnable {
                                 kotlin.run {
-                                    val userDao = getInstance(context).userDao()
+                                    val wipDb = getInstance(context)
+
+                                    val userDao = wipDb.userDao()
                                     userDao.insertWithoutCoroutines(User(1, "Venere", 30F, 120F, 30))
+
+                                    val shopElementDao = wipDb.shopElementDao()
+                                    shopElementDao.insertWithoutCoroutines(
+                                        ShopElement("Venere", "", 0)
+                                    )
                                 }
                             })
 
