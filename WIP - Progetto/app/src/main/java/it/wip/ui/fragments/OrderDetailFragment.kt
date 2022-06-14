@@ -21,6 +21,7 @@ class OrderDetailFragment: Fragment(R.layout.fragment_order_detail){
         val view = super.onCreateView(inflater, container, savedInstanceState)
 
         val buyButton = view?.findViewById<ImageButton>(R.id.buy_button)
+        val backButton = view?.findViewById<ImageButton>(R.id.order_detail_back_button)
 
         buyButton?.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -30,9 +31,21 @@ class OrderDetailFragment: Fragment(R.layout.fragment_order_detail){
             v?.onTouchEvent(event) ?: true
         }
 
+        backButton?.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> backButton.setImageResource(R.drawable.back_arrow_pressed)
+                MotionEvent.ACTION_UP -> backButton.setImageResource(R.drawable.back_arrow)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+
         buyButton?.setOnClickListener {
             val dialogShop = DialogFragmentOrderDetail()
             dialogShop.show(parentFragmentManager, "shop")
+        }
+
+        backButton?.setOnClickListener {
+
         }
 
         return view
