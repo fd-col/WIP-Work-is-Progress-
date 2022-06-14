@@ -8,7 +8,7 @@
 
 
     <ImageButton
-        android:id="@+id/_order_detail_back_button"
+        android:id="@+id/order_detail_back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_order_detail_back_button"
+        app:layout_constraintTop_toBottomOf="@+id/order_detail_back_button"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -58,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fillViewport="true"
+        android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +68,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:isScrollContainer="true"
+            android:orientation="vertical">
 
             <ScrollView
                 android:id="@+id/scrollView_order_detail"
@@ -80,7 +82,6 @@
                 android:background="@drawable/rectangular_background"
                 android:isScrollContainer="true"
                 android:nestedScrollingEnabled="true"
-                android:overScrollMode="always"
                 android:scrollbarThumbVertical="@color/cardview_shadow_end_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
