@@ -45,7 +45,10 @@ class OrderDetailFragment: Fragment(R.layout.fragment_order_detail){
         }
 
         backButton?.setOnClickListener {
-
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.frame_layout, ShopFragment())
+                ?.commit()
         }
 
         return view
