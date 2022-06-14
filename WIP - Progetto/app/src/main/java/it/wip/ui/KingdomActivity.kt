@@ -4,16 +4,33 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataKingdom
+import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
+import it.wip.viewModel.KingdomViewModel
 
 class KingdomActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: KingdomViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kingdom)
+
+        val binding: ActivityKingdomBinding = DataBindingUtil.setContentView(this, R.layout.activity_kingdom)
+
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[KingdomViewModel::class.java]
+
+        binding.lifecycleOwner = this
+
+        binding.viewModel = viewModel
+
 
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
@@ -67,6 +84,7 @@ class KingdomActivity : AppCompatActivity() {
         rvH.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val rvHAdapter = KingdomListAdapter(this, storyHorizontalList, itemClickListener = itemOnClick)
         rvH.adapter = rvHAdapter
+
 
         // add the menu fragment to the bottom of KingdomActivity
         val transaction = supportFragmentManager.beginTransaction()
