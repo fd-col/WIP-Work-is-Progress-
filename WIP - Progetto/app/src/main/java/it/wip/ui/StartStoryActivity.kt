@@ -123,19 +123,12 @@ class StartStoryActivity : AppCompatActivity() {
             v?.onTouchEvent(event) ?: true
         }
 
-        binding.startButton.setOnClickListener {
 
-            val intent = Intent(this, StoryStartedActivity::class.java)
-
-            intent.putExtra("studyTime", viewModel.studyTime.value)
-            intent.putExtra("breakTime", viewModel.breakTime.value)
-
-            startActivity(intent)
-        }
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
         var avatarTag = avatar.tag.toString().toInt()
+        var selectedAvatar = ""
 
         binding.avatarSxButton.setOnClickListener {
             avatarTag--
@@ -143,7 +136,9 @@ class StartStoryActivity : AppCompatActivity() {
                 avatarTag = viewModel.avatarsName.size - 1
             }
             val tempAvatar = viewModel.avatarsName[avatarTag]
+
             avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
+            selectedAvatar = tempAvatar
         }
 
         binding.avatarDxButton.setOnClickListener {
@@ -152,7 +147,21 @@ class StartStoryActivity : AppCompatActivity() {
                 avatarTag = 0
             }
             val tempAvatar = viewModel.avatarsName[avatarTag]
+
             avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
+            selectedAvatar = tempAvatar
+        }
+
+        binding.startButton.setOnClickListener {
+
+            val intent = Intent(this, StoryStartedActivity::class.java)
+
+            intent.putExtra("studyTime", viewModel.studyTime.value)
+            intent.putExtra("breakTime", viewModel.breakTime.value)
+            intent.putExtra("selectedAvatar", selectedAvatar)
+
+            startActivity(intent)
+
         }
 
         binding.infoButton.setOnClickListener {

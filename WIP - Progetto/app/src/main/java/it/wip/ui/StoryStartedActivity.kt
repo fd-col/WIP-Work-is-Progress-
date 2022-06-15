@@ -8,11 +8,11 @@ import android.view.MotionEvent
 import android.widget.Chronometer
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import it.wip.MainActivity
 import it.wip.R
+import it.wip.utils.fromAvatarNameToResource
 
 class StoryStartedActivity : AppCompatActivity(){
 
@@ -20,6 +20,8 @@ class StoryStartedActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story_started)
+
+        val companionAvatar = findViewById<ImageView>(R.id.companion_image_view)
 
         /*
         * in riferimento al listener "setOnChronometerTickListener", che esegue il contenuto del
@@ -31,11 +33,37 @@ class StoryStartedActivity : AppCompatActivity(){
         var secondAlreadyExecuted = true
         var thirdAlreadyExecuted = true
 
+        //          EXTRAS
+        val extras = intent.extras
+        val avatar: String = extras?.get("selectedAvatar").toString()
+        val floatStudyTime = extras?.get("studyTime").toString().toFloat()
+        val floatBreakTime = extras?.get("breakTime").toString().toFloat()
+        val studyTime = floatStudyTime.toLong()
+        val breakTime = floatBreakTime.toLong()
+
+        /*
+        * study time rappresenta il numero di minuti; lo moltiplichiamo per 60000 per tale unità di
+        * misura in millisecondi dato che il cronometro lavora con i millisecondi
+        * */
+        val leftValueRange1 = (studyTime/4)*60000
+        val leftValueRange2 = leftValueRange1 + leftValueRange1
+        val leftValueRange3 = leftValueRange2 + leftValueRange1
+
+        //time range in cui evolvere l'opera d'arte
+        var maxTime: Long = (studyTime+breakTime)*60000
+        var timeRange1 = (leftValueRange1..leftValueRange1+40000)
+        var timeRange2 = (leftValueRange2..leftValueRange2+40000)
+        var timeRange3 = (leftValueRange3..leftValueRange3+40000)
+        val pauseRange4 = (studyTime..studyTime+40000)
+
+
+
         //slot temporali di prova; sostituire con quelli ricavati dallo slider
-        var maxTime = 40000
-        var timeRange1 = (5000..14000)
-        var timeRange2 = (15000..20000)
-        var timeRange3 = (21000..30000)
+
+        //var maxTime = 40000
+        //var timeRange1 = (5000..14000)
+        //var timeRange2 = (15000..20000)
+        //var timeRange3 = (21000..30000)
 
         val stopButton = findViewById<ImageButton>(R.id.stop_button)
         val artwork = findViewById<ImageView>(R.id.canva)
@@ -45,22 +73,24 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //invocazione metodo per scelta casuale del primo background tra quelli disponibili
         var selectedArtwork = backgroundSelector(artwork)
+        companionAvatar.setBackgroundResource(fromAvatarNameToResource(avatar))
 
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
-            val myTime = (SystemClock.elapsedRealtime() - cronometro.base).toInt()
+            val myTime = (SystemClock.elapsedRealtime() - cronometro.base)
 
             /*
             * if(myTime>=maxTime){...} è il blocco di codice che mette un nuovo quadro e lo fa
             * evolvere quando un quadro viene completamente dipinto
             * */
             if(myTime>=maxTime){
+                companionAvatar.setBackgroundResource(fromAvatarNameToResource(avatar))
                 firstAlreadyExecuted = true
                 secondAlreadyExecuted = true
                 thirdAlreadyExecuted = true
-                timeRange1 = (maxTime+5000..maxTime+14000)
-                timeRange2 = (maxTime+15000..maxTime+20000)
-                timeRange3 = (maxTime+21000..maxTime+30000)
+                timeRange1 = (maxTime+leftValueRange1..maxTime+leftValueRange1+40000)
+                timeRange2 = (maxTime+leftValueRange2..maxTime+leftValueRange2+40000)
+                timeRange3 = (maxTime+leftValueRange3..maxTime+leftValueRange3+40000)
                 maxTime+=maxTime
 
                 // porzione di codice che evita di farmi vedere due volte di fila lo stesso quadro
@@ -93,6 +123,9 @@ class StoryStartedActivity : AppCompatActivity(){
                         backgroundEvolution(artwork, selectedArtwork, 4)
                         thirdAlreadyExecuted = false
                     }
+                }
+                in pauseRange4 -> {
+                    companionAvatar.setBackgroundResource(R.drawable.bonfire)
                 }
             }
         }
