@@ -35,25 +35,25 @@ class KingdomActivity : AppCompatActivity() {
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "Workout", R.drawable.venere_pixellata))
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "ciaoa amoiciic jjsjsjsjs sjsjsj", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study", R.drawable.gear_button))
+            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "3. Geeks View 3", R.drawable.venere_pixellata))
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "3. Geeks View 3", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "4. Geeks View 4", R.drawable.gear_button))
+            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "4. Geeks View 4", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "5. Geeks View 5", R.drawable.venere_pixellata))
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "5. Geeks View 5", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "6. Geeks View 6", R.drawable.gear_button))
+            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "6. Geeks View 6", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "7. Geeks View 7", R.drawable.venere_pixellata))
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "7. Geeks View 7", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "8. Geeks View 8", R.drawable.play_button))
+            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "8. Geeks View 8", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "9. Geeks View 9", R.drawable.stop_button))
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "9. Geeks View 9", "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "10. Geeks View 10", R.drawable.stop_button))
+            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "10. Geeks View 10", "Chapters: 1"))
 
         // data list of stories settled on the horizontal recyclerView inside the KingdomActivity
         val storyHorizontalList = ArrayList<DataKingdom>()

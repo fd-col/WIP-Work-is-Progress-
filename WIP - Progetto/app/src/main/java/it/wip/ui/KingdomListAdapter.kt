@@ -4,12 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataKingdom
-import org.w3c.dom.Text
 
 class KingdomListAdapter(private val context: Context, var list: ArrayList<DataKingdom>,
                          private val itemClickListener: (Int) -> Unit)
@@ -25,12 +23,12 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
     // viewHolder for the vertical recyclerView into KingdomActivity -cards on the left
     inner class KingdomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
-        var image: ImageView = itemView.findViewById(R.id.item_image)
+        var chapters: TextView = itemView.findViewById(R.id.item_chapters)
 
         fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel = list[position]
             title.text = recyclerViewModel.textData
-            image.setImageResource(recyclerViewModel.image)
+            chapters.text = recyclerViewModel.chapters
 
             itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }
@@ -38,12 +36,12 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
     // viewHolder for the vertical recyclerView into KingdomActivity -cards on the right
     inner class KingdomViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var title: TextView = itemView.findViewById(R.id.item_title)
-        var image: ImageView = itemView.findViewById(R.id.item_image)
+        var chapters: TextView = itemView.findViewById(R.id.item_chapters)
 
         fun bind(position: Int, itemClickListener:(Int)->Unit) {
             val recyclerViewModel2 = list[position]
             title.text = recyclerViewModel2.textData
-            image.setImageResource(recyclerViewModel2.image)
+            chapters.text = recyclerViewModel2.chapters
 
             itemView.setOnClickListener { itemClickListener(adapterPosition) }
         }

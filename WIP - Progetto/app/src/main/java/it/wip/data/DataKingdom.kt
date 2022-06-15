@@ -1,11 +1,9 @@
 package it.wip.data
 
-import it.wip.R
+data class DataKingdom(val viewType: Int, val title: String, val numChapters: String="Chapters: 1",
+                       val date: String ="", val time: String = "") {
 
-data class DataKingdom(val viewType: Int, val title: String,
-                       val image: Int = R.drawable.play_button,
-                       val date: String ="", val time: String = ""
-                       ) {
+    val chapters = numChapters
     val textData = title
     val dateData = date
     val timeData = time
