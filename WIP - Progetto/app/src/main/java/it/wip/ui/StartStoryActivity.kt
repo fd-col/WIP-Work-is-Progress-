@@ -3,7 +3,6 @@ package it.wip.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
@@ -124,28 +123,21 @@ class StartStoryActivity : AppCompatActivity() {
             v?.onTouchEvent(event) ?: true
         }
 
-        binding.startButton.setOnClickListener {
 
-            val intent = Intent(this, StoryStartedActivity::class.java)
-
-            intent.putExtra("studyTime", viewModel.studyTime.value)
-            intent.putExtra("breakTime", viewModel.breakTime.value)
-
-            startActivity(intent)
-        }
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
         var avatarTag = avatar.tag.toString().toInt()
+        var selectedAvatar = ""
 
         binding.avatarSxButton.setOnClickListener {
             avatarTag--
             if(avatarTag < 0) {
                 avatarTag = viewModel.avatarsName.size - 1
             }
-            avatar.setBackgroundResource(R.drawable.magritte)
             val tempAvatar = viewModel.avatarsName[avatarTag]
             avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
+            selectedAvatar = tempAvatar
         }
 
         binding.avatarDxButton.setOnClickListener {
@@ -155,6 +147,18 @@ class StartStoryActivity : AppCompatActivity() {
             }
             val tempAvatar = viewModel.avatarsName[avatarTag]
             avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
+            selectedAvatar = tempAvatar
+        }
+
+        binding.startButton.setOnClickListener {
+
+            val intent = Intent(this, StoryStartedActivity::class.java)
+
+            intent.putExtra("studyTime", viewModel.studyTime.value)
+            intent.putExtra("breakTime", viewModel.breakTime.value)
+            intent.putExtra("selectedAvatar", selectedAvatar)
+
+            startActivity(intent)
         }
 
         binding.infoButton.setOnClickListener {
