@@ -29,33 +29,33 @@
     tempo di pausa</string>
 
     <!-- fragment_frame -->
-    <string name="play_button">tasto play nuova storia</string>
-    <string name="frame_background">cornice che contiene il tasto play</string>
+    <string name="play_button">play button new story</string>
+    <string name="frame_background">frame that contains the play button </string>
 
     <!-- fragment_shop -->
     <string name="shop_string">Shop</string>
     <string name="buy_avatars_string">Buy avatars</string>
     <string name="buy_backgrounds_string">Buy backgrounds</string>
     <string name="background_description">foto background</string>
-    <string name="background_dx_arrow">freccia per scorrere a destra i background</string>
-    <string name="background_sx_arrow">freccia per scorrere a sinistra i background</string>
+    <string name="background_dx_arrow">arrow to slide right background</string>
+    <string name="background_sx_arrow">arrow to slide left background</string>
     <string name="avatar_price_string">130</string>
     <string name="background_price_string">200</string>
-    <string name="coin_price_description">icona coin vicino al prezzo</string>
+    <string name="coin_price_description">icon coin into shop </string>
     <string name="actual_coins_string">110</string>
 
     <!-- fragment order detail -->
-    <string name="avatar_detail_string">immagine dell\'opera nella schermata dettaglio ordine</string>
+    <string name="avatar_detail_string">artwork\'s image inside detail order</string>
     <string name="avatar_name_string">Venere</string>
-    <string name="buy_button">bottone per effettuare un acquisto</string>
+    <string name="buy_button">button to buy new avatar/background</string>
     <string name="venere_description">Painted by Sandro Botticelli between 1482-1485, and
         exposed at the Galleria degli uffizi in Florence, The Birth of Venus is an artwork made
         of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
         Venus from the sea foam.\n</string>
-    <string name="order_back_button">bottone per tornare allo shop</string>
+    <string name="order_back_button">button to go back into the shop</string>
     <string name="info">Learn about the\n story of this\nartwork</string>
-    <string name="info_background">background sezione info</string>
-    <string name="shop_info_button">bottone per mostrare la storia dell\'opera</string>
+    <string name="info_background">background info section</string>
+    <string name="shop_info_button">info button for an artwork</string>
 
     <string name="david">David</string>
     <string name="van_gogh_autoritratto">Van Gogh</string>
@@ -91,32 +91,32 @@
 
 
     <!-- activity chapter info -->
-    <string name="stringa_di_prova1">testo casuale</string>
+    <string name="stringa_di_prova1">random text</string>
     <string name="stringa_di_prova2">minuti: 2.07.56</string>
     <string name="stringa_di_prova3">data: 12/10/2022</string>
-    <string name="chapter_info">Chapter Info</string>
+    <string name="chapter_info">Chapter\nInfo</string>
     <string name="date_and_time">Date &amp; Time</string>
     <string name="avatar_text">Avatar</string>
     <string name="chapter_info_start">Start:</string>
     <string name="chapter_info_end">End:</string>
 
     <!-- activity story started -->
-    <string name="stop_button_string">bottone per terminare la sessione di produttività</string>
+    <string name="stop_button_string">button to end productivity session</string>
     <string name="companion_icon">icona che mostra chi parla all\'utente</string>
-    <string name="stand">immagine cavalletto quadro</string>
-    <string name="artwork">immagine quadro che viene disegnato col passare del tempo</string>
+    <string name="stand">easel for painting</string>
+    <string name="artwork">mutable artwork </string>
     <string name="gallery">Gallery: </string>
     <string name="incoraggiamento_1">Good Luck!</string>
 
     <!-- kingdom -->
-    <string name="descrizione_immagine_story">immagine di sfondo della story</string>
-    <string name="titolo_story">Titolo della story</string>
+    <string name="descrizione_immagine_story">background image inside the story </string>
+    <string name="titolo_story">Story Title</string>
 
     <!-- story detail -->
-    <string name="story_detail">Dettagli Story</string>
-    <string name="nome_storia">Nome storia d\'esempio</string>
+    <string name="story_detail">Story\ndetails</string>
+    <string name="nome_storia">story name detail</string>
     <string name="todo">TODO</string>
-    <string name="icon_search_button">Tasto di ricerca per le storie del proprio regno</string>
+    <string name="icon_search_button">search button inside own kingdom</string>
 
     <!-- settings -->
     <string name="change_time">Studio/Pausa</string>
