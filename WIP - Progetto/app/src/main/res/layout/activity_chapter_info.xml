@@ -28,16 +28,17 @@
         android:id="@+id/chapter_info"
         android:layout_width="295dp"
         android:layout_height="37dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/chapter_info"
         android:textColor="#E8EAF6"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider_chapter_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toEndOf="@+id/back_button_story_detail"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/divider_chapter_title"
@@ -64,11 +65,11 @@
         android:text="@string/date_and_time"
         android:textColor="#E8EAF6"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/datetime_story_started"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_chapter_title"
-        app:layout_constraintBottom_toTopOf="@id/datetime_story_started"
         tools:layout_editor_absoluteY="98dp" />
 
     <TextView
@@ -162,10 +163,10 @@
         android:layout_marginTop="148dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangular_background"
+        app:layout_constraintBottom_toTopOf="@id/switch_image_background_chapter_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/switch_image_background_chapter_info"
         app:layout_constraintTop_toBottomOf="@+id/date_and_time">
 
         <com.google.android.material.slider.Slider
@@ -191,10 +192,10 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangular_background"
         android:contentDescription="@string/switch_image_background_description"
+        app:layout_constraintBottom_toTopOf="@id/avatar_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/avatar_text"
         app:layout_constraintTop_toBottomOf="@id/frameLayout_chapter_info"
         tools:layout_editor_absoluteY="410dp" />
 
