@@ -1,6 +1,7 @@
 package it.wip.ui.fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -8,9 +9,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import it.wip.R
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import it.wip.databinding.FragmentShopBinding
+import it.wip.viewModel.ShopViewModel
 
 class ShopFragment: Fragment(){
+
+    private lateinit var viewModel: ShopViewModel
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,19 +27,19 @@ class ShopFragment: Fragment(){
 
         val binding : FragmentShopBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop, container, false)
 
+        viewModel = ViewModelProviders.of(this)[ShopViewModel::class.java]
+
+        binding.coinIconAvatar.setOnClickListener() {
+            Log.e("Avatar", viewModel.avatars.toString())
+            Log.e("Backgrounds", viewModel.backgrounds.toString())
+        }
+
         val sxAvatar = binding.newAvatarSxButton
         val dxAvatar = binding.newAvatarDxButton
         val sxBackground = binding.newBackgroundSxButton
         val dxBackground = binding.newBackgroundDxButton
         val avatarButton = binding.avatars
         val backgroundButton = binding.backgrounds
-
-        //val sxAvatar = view?.findViewById<ImageButton>(R.id.new_avatar_sx_button)
-        //val dxAvatar = view?.findViewById<ImageButton>(R.id.new_avatar_dx_button)
-        //val sxBackground = view?.findViewById<ImageButton>(R.id.new_background_sx_button)
-        //val dxBackground = view?.findViewById<ImageButton>(R.id.new_background_dx_button)
-        //val avatarButton = view?.findViewById<ImageButton>(R.id.avatars)
-        //val backgroundButton = view?.findViewById<ImageButton>(R.id.backgrounds)
 
         sxAvatar.setOnTouchListener { v, event ->
             when (event?.action) {

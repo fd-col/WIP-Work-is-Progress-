@@ -13,25 +13,26 @@ import it.wip.databinding.ActivityMainBinding
 import it.wip.ui.fragments.FrameFragment
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
+import it.wip.utils.seed
 import it.wip.viewModel.ShopViewModel
 import it.wip.viewModel.StartStoryViewModel
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ShopViewModel
+    //private lateinit var viewModel: ShopViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        viewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ShopViewModel::class.java]
+        /*viewModel = ViewModelProvider(this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ShopViewModel::class.java]*/
 
-        binding.lifecycleOwner = this
+        //binding.lifecycleOwner = this
 
-        binding.viewModel = viewModel
+        //binding.viewModel = viewModel
 
         val transaction = supportFragmentManager.beginTransaction()
 
@@ -48,15 +49,9 @@ class MainActivity : AppCompatActivity() {
             try {
                 userDao.getAll()[0]
             } catch (ex: ArrayIndexOutOfBoundsException) {
-                userDao.insert(User(1, "Venere", 30F, 120F, 30))
+                seed(WIPDatabase.getInstance(applicationContext))
                 userDao.getAll()[0]
             }
-        }
-
-        binding.mainLayout.setOnClickListener {
-            //Log.e("Avatar", viewModel.avatars.toString())
-            //Log.e("Backgrounds", viewModel.backgrounds.toString())
-            Log.e("es", getString(R.string.creazione_di_adamo_description))
         }
 
     }

@@ -1,17 +1,14 @@
 package it.wip.database
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import it.wip.database.dao.*
 import it.wip.database.model.*
+import it.wip.utils.seed
 import kotlinx.coroutines.*
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.concurrent.Executors
 
 @Database(entities = [
@@ -48,27 +45,10 @@ abstract class WIPDatabase : RoomDatabase() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             Executors.newSingleThreadScheduledExecutor().execute(Runnable {
                                 kotlin.run {
+
                                     val wipDb = getInstance(context)
 
-                                    wipDb.userDao().insertWithoutCoroutines(
-                                        User(1, "Venere", 30F, 120F, 30)
-                                    )
-
-                                    wipDb.shopElementDao().insertWithoutCoroutines(
-                                        ShopElement("Venere", "avatar","", 0),
-                                        ShopElement("Magritte", "avatar","", 0),
-                                        ShopElement("Ragazza col turbante", "avatar","", 0),
-                                        ShopElement("L'urlo", "avatar", "", 100),
-                                        ShopElement("Creazione di Adamo", "background","", 250),
-                                    )
-
-                                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
-
-                                    wipDb.shoppedDao().insertWithoutCoroutines(
-                                        Shopped(1, "Venere", dateFormat.format(Date())),
-                                        Shopped(1, "Magritte", dateFormat.format(Date())),
-                                        Shopped(1, "Ragazza col turbante", dateFormat.format(Date()))
-                                    )
+                                    seed(wipDb)
 
                                 }
                             })
