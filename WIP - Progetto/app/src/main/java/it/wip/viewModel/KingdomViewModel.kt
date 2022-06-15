@@ -1,6 +1,7 @@
 package it.wip.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,14 +18,16 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
     private val _storyName = MutableLiveData("")
     val storyName : LiveData<String>
         get() = _storyName
-/*
+
     init {
         viewModelScope.launch {
             val story = storyDao.getAll()[0]
+            Log.e("error", story.toString())
             _storyName.value = story.storyName
+
 
         }
     }
 
- */
+
 }

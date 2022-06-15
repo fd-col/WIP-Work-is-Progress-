@@ -2,10 +2,12 @@ package it.wip.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
@@ -13,6 +15,7 @@ import it.wip.data.DataKingdom
 import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.viewModel.KingdomViewModel
+import kotlinx.coroutines.launch
 
 class KingdomActivity : AppCompatActivity() {
 
@@ -34,27 +37,43 @@ class KingdomActivity : AppCompatActivity() {
 
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "ciaoa amoiciic jjsjsjsjs sjsjsj", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "3. Geeks View 3", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "4. Geeks View 4", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "5. Geeks View 5", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "6. Geeks View 6", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "7. Geeks View 7", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "8. Geeks View 8", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "9. Geeks View 9", "Chapters: 1"))
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "10. Geeks View 10", "Chapters: 1"))
-
+        lifecycleScope.launch {
+            storyList.add(
+                DataKingdom(
+                    KingdomListAdapter.THE_FIRST_VIEW,
+                    viewModel.storyName.value!!,
+                    "Chapters: 1"
+                )
+            )
+            Log.e("error", viewModel.storyName.value!!)
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "3. Geeks View 3", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "4. Geeks View 4", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "5. Geeks View 5", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "6. Geeks View 6", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "7. Geeks View 7", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "8. Geeks View 8", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "9. Geeks View 9", "Chapters: 1")
+            )
+            storyList.add(
+                DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "10. Geeks View 10", "Chapters: 1")
+            )
+        }
         // data list of stories settled on the horizontal recyclerView inside the KingdomActivity
         val storyHorizontalList = ArrayList<DataKingdom>()
         for((i, item) in storyList.withIndex()) {

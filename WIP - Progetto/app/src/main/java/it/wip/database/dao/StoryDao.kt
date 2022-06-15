@@ -2,6 +2,7 @@ package it.wip.database.dao
 
 import androidx.room.*
 import it.wip.database.model.Story
+import it.wip.database.model.User
 
 @Dao
 interface StoryDao {
@@ -11,6 +12,9 @@ interface StoryDao {
 
     @Insert
     suspend fun insert(vararg stories: Story)
+
+    @Insert
+    fun insertWithoutCoroutines(vararg stories: Story)
 
     @Update
     suspend fun update(user: Story)
