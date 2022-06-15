@@ -52,7 +52,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/control_panel_down"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:background="@drawable/background_control_panel_story_started_down"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
