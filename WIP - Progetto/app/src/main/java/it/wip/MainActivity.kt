@@ -1,5 +1,6 @@
 package it.wip
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,19 +21,10 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var viewModel: ShopViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        /*viewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ShopViewModel::class.java]*/
-
-        //binding.lifecycleOwner = this
-
-        //binding.viewModel = viewModel
 
         val transaction = supportFragmentManager.beginTransaction()
 
@@ -45,14 +37,18 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
 
         val userDao = WIPDatabase.getInstance(applicationContext).userDao()
-        lifecycleScope.launch {
-            try {
-                userDao.getAll()[0]
-            } catch (ex: ArrayIndexOutOfBoundsException) {
-                seed(WIPDatabase.getInstance(applicationContext))
-                userDao.getAll()[0]
-            }
+
+        val userId = try {
+            userDao.getAllWithoutCoroutines()[0].id
+        } catch (ex: ArrayIndexOutOfBoundsException) {
+            seed(WIPDatabase.getInstance(applicationContext))
+            userDao.getAllWithoutCoroutines()[0].id
         }
+
+        val userIdPreference = applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
+        val editor = userIdPreference.edit()
+        editor.putInt("userId", userId)
+        editor.apply()
 
     }
 }

@@ -3,7 +3,6 @@ package it.wip.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
@@ -14,7 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
-import it.wip.utils.fromAvatarNameToResource
+import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.StartStoryViewModel
 
 class StartStoryActivity : AppCompatActivity() {
@@ -143,9 +142,8 @@ class StartStoryActivity : AppCompatActivity() {
             if(avatarTag < 0) {
                 avatarTag = viewModel.avatarsName.size - 1
             }
-            avatar.setBackgroundResource(R.drawable.magritte)
             val tempAvatar = viewModel.avatarsName[avatarTag]
-            avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
+            avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
         }
 
         binding.avatarDxButton.setOnClickListener {
@@ -154,7 +152,7 @@ class StartStoryActivity : AppCompatActivity() {
                 avatarTag = 0
             }
             val tempAvatar = viewModel.avatarsName[avatarTag]
-            avatar.setBackgroundResource(fromAvatarNameToResource(tempAvatar))
+            avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
         }
 
         binding.infoButton.setOnClickListener {

@@ -10,6 +10,9 @@ interface StoryDao {
     @Query("SELECT * FROM story")
     suspend fun getAll(): Array<Story>
 
+    @Query("SELECT * FROM story WHERE user = :userId")
+    fun getAllByUserWithoutCoroutines(userId: Int): Array<Story>
+
     @Insert
     suspend fun insert(vararg stories: Story)
 

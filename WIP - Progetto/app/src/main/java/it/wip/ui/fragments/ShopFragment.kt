@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import it.wip.R
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import it.wip.databinding.FragmentShopBinding
+import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.ShopViewModel
 
 class ShopFragment: Fragment(){
@@ -74,8 +74,50 @@ class ShopFragment: Fragment(){
         }
 
 
+        val avatars = binding.avatars
+        var avatarsTag = avatars.tag.toString().toInt()
+
+        binding.newAvatarSxButton.setOnClickListener {
+            avatarsTag--
+            if(avatarsTag < 0) {
+                avatarsTag = viewModel.avatars.size - 1
+            }
+            val tempAvatar = viewModel.avatars[avatarsTag]
+            avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+        }
+
+        binding.newAvatarDxButton.setOnClickListener {
+            avatarsTag++
+            if(avatarsTag + 1 > viewModel.avatars.size) {
+                avatarsTag = 0
+            }
+            val tempAvatar = viewModel.avatars[avatarsTag]
+            avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+        }
+
+        val backgrounds = binding.backgrounds
+        var backgroundsTag = backgrounds.tag.toString().toInt()
+
+        binding.newAvatarSxButton.setOnClickListener {
+            avatarsTag--
+            if(avatarsTag < 0) {
+                avatarsTag = viewModel.avatars.size - 1
+            }
+            val tempAvatar = viewModel.avatars[avatarsTag]
+            avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+        }
+
+        binding.newBackgroundDxButton.setOnClickListener {
+            backgroundsTag++
+            if(backgroundsTag + 1 > viewModel.avatars.size) {
+                avatarsTag = 0
+            }
+            val tempAvatar = viewModel.avatars[avatarsTag]
+            avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+        }
+
         // AVATARS AND BACKGROUNDS SWAP
-        var avatarTag: String = avatarButton.tag.toString()
+        /*var avatarTag: String = avatarButton.tag.toString()
         var backgroundTag: String = backgroundButton.tag.toString()
 
         dxAvatar.setOnClickListener {
@@ -171,7 +213,7 @@ class ShopFragment: Fragment(){
                 ?.replace(R.id.frame_layout, OrderDetailFragment("backgroundTag", backgroundTag))
                 ?.commit()
         }
-
+*/
         return binding.root
     }
 }

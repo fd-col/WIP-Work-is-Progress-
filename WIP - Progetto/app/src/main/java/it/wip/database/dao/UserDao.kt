@@ -9,6 +9,9 @@ interface UserDao {
     @Query("SELECT * FROM user")
     suspend fun getAll(): Array<User>
 
+    @Query("SELECT * FROM user")
+    fun getAllWithoutCoroutines(): Array<User>
+
     @Insert
     suspend fun insert(vararg users: User)
 

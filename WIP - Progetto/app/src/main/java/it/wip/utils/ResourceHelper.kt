@@ -2,13 +2,19 @@ package it.wip.utils
 
 import it.wip.R
 
-fun fromAvatarNameToResource(avatarName: String): Int {
+fun fromShopElementNameToResource(avatarName: String): Int {
 
     return when(avatarName) {
 
         "Venere" -> R.drawable.venere
         "Magritte" -> R.drawable.magritte
         "Ragazza col turbante" -> R.drawable.ragazza_col_turbante
+        "L'urlo" -> R.drawable.munch
+        "Autoritratto" -> R.drawable.van_gogh_self_portrait
+        "David" -> R.drawable.david
+        "La creazione di Adamo" -> R.drawable.adam_off_stand
+        "Magritte background" -> R.drawable.magritte_kiss_off_stand
+        "Campo di grano con volo di corvi" -> R.drawable.field_with_crows_off_stand
 
         else -> {
             R.drawable.venere
