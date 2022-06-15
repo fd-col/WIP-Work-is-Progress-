@@ -11,23 +11,6 @@
         android:background="@drawable/pd_1"
         -->
 
-        <!--
-        immage button 1 fede
-        <ImageButton
-            android:id="@+id/menu_home"
-            android:layout_width="0dp"
-            android:layout_height="103dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/paint_button_official"
-            android:contentDescription="tasto home del menù "
-            android:pointerIcon="context_menu"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="@+id/menu_world"
-            app:layout_constraintEnd_toStartOf="@+id/menu_world"
-            app:layout_constraintStart_toEndOf="@+id/menu_settings"
-            app:layout_constraintVertical_bias="0.974"></ImageButton>
-        -->
-
         <ImageButton
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
@@ -44,25 +27,6 @@
             app:layout_constraintVertical_bias="0.945"
             app:srcCompat="@drawable/paint_button" />
 
-        <!--
-        immage button 2 fede
-        <ImageButton
-            android:id="@+id/menu_world"
-            android:layout_width="0dp"
-            android:layout_height="102dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/crown_button_official"
-            android:contentDescription="tasto il mio mondo del menù "
-            android:pointerIcon="context_menu"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/menu_home"
-            app:layout_constraintVertical_bias="0.974">
-        </ImageButton>
-        -->
-
         <ImageButton
             android:id="@+id/kingdomButton"
             android:layout_width="wrap_content"
@@ -78,24 +42,6 @@
             app:layout_constraintVertical_bias="0.974"
             app:srcCompat="@drawable/crown_button"
             tools:ignore="ImageContrastCheck" />
-
-        <!--
-        immage button 3 fede
-        <ImageButton
-            android:id="@+id/menu_settings"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="43dp"
-            android:background="@drawable/gear_button_official"
-            android:contentDescription="tasto impostazioni del menù"
-            android:pointerIcon="context_menu"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="@+id/menu_world"
-            app:layout_constraintEnd_toStartOf="@+id/menu_home"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menu_world"
-            app:layout_constraintVertical_bias="0.974"></ImageButton>
-        -->
 
         <ImageButton
             android:id="@+id/settingsButton"
@@ -114,49 +60,3 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
-<!--
-    <ImageButton
-        android:id="@+id/menu_home"
-        android:layout_width="0dp"
-        android:layout_height="103dp"
-        android:layout_marginBottom="22dp"
-        android:background="@drawable/paint_button"
-        android:contentDescription="tasto home del menù "
-        android:pointerIcon="context_menu"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_world"
-        app:layout_constraintEnd_toStartOf="@+id/menu_world"
-        app:layout_constraintStart_toEndOf="@+id/menu_settings"
-        app:layout_constraintVertical_bias="0.974"></ImageButton>
-
-    <ImageButton
-        android:id="@+id/menu_world"
-        android:layout_width="0dp"
-        android:layout_height="102dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="3dp"
-        android:background="@drawable/crown_button"
-        android:contentDescription="tasto il mio mondo del menù "
-        android:pointerIcon="context_menu"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/menu_home"
-        app:layout_constraintVertical_bias="0.974">
-    </ImageButton>
-
-    <ImageButton
-        android:id="@+id/menu_settings"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="43dp"
-        android:background="@drawable/gear_button"
-        android:contentDescription="tasto impostazioni del menù"
-        android:pointerIcon="context_menu"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="@+id/menu_world"
-        app:layout_constraintEnd_toStartOf="@+id/menu_home"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu_world"
-        app:layout_constraintVertical_bias="0.974"></ImageButton>
--->
