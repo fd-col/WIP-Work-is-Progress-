@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import it.wip.MainActivity
 import it.wip.R
-import it.wip.utils.fromAvatarNameToResource
+import it.wip.utils.fromShopElementNameToResource
 
 class StoryStartedActivity : AppCompatActivity(){
 
@@ -73,7 +73,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //invocazione metodo per scelta casuale del primo background tra quelli disponibili
         var selectedArtwork = backgroundSelector(artwork)
-        companionAvatar.setBackgroundResource(fromAvatarNameToResource(avatar))
+        companionAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
 
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
@@ -84,7 +84,7 @@ class StoryStartedActivity : AppCompatActivity(){
             * evolvere quando un quadro viene completamente dipinto
             * */
             if(myTime>=maxTime){
-                companionAvatar.setBackgroundResource(fromAvatarNameToResource(avatar))
+                companionAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
                 firstAlreadyExecuted = true
                 secondAlreadyExecuted = true
                 thirdAlreadyExecuted = true
