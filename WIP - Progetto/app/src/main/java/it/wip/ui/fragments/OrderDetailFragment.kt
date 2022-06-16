@@ -12,9 +12,12 @@ import androidx.fragment.app.Fragment
 import it.wip.DialogFragmentOrderDetail
 import it.wip.DialogInfo
 import it.wip.R
+import it.wip.database.model.ShopElement
 import it.wip.databinding.FragmentOrderDetailBinding
+import it.wip.utils.fromShopElementNameToDescription
+import it.wip.utils.fromShopElementNameToResource
 
-class OrderDetailFragment(val artTag: String, val artworkId: String): Fragment(){
+class OrderDetailFragment(val shopElement: ShopElement): Fragment(){
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -30,8 +33,12 @@ class OrderDetailFragment(val artTag: String, val artworkId: String): Fragment()
         val shopInfoButton = binding.shopInfoButton
         val artwork = binding.avatarDetail
 
-        artworkSelected(artTag, artworkId, artwork)
+        //artworkSelected(artTag, artworkId, artwork)
 
+
+        artwork.setImageResource(fromShopElementNameToResource(shopElement.elementName))
+
+        binding.avatarName.text = shopElement.elementName
 
         buyButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -70,7 +77,7 @@ class OrderDetailFragment(val artTag: String, val artworkId: String): Fragment()
         }
 
         shopInfoButton.setOnClickListener {
-            val dialogHistoryInfo = DialogInfo()
+            val dialogHistoryInfo = DialogInfo(getString(fromShopElementNameToDescription(shopElement.elementName)))
             dialogHistoryInfo.show(parentFragmentManager, "historyInfo")
         }
 
@@ -79,7 +86,7 @@ class OrderDetailFragment(val artTag: String, val artworkId: String): Fragment()
 
 
     //          AUTO-AGGIORNAMENTO DIPINTO MENTRE SCORRE IL TIMER
-    fun artworkSelected(tag: String, artworkId: String, artwork:ImageView?){
+    /*fun artworkSelected(tag: String, artworkId: String, artwork:ImageView?){
 
         when (tag) {
             "avatarTag" -> {
@@ -97,7 +104,7 @@ class OrderDetailFragment(val artTag: String, val artworkId: String): Fragment()
                 }
             }
         }
-    }
+    }*/
 }
 
 /*

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.dialog_info.view.*
 
-class DialogInfo : DialogFragment(){
+class DialogInfo(val description: String) : DialogFragment(){
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,6 +17,8 @@ class DialogInfo : DialogFragment(){
         savedInstanceState: Bundle?
     ): View {
         val rootView: View = inflater.inflate(R.layout.dialog_info, container, false)
+
+        rootView.info_dialog_description.text = description
 
         rootView.info_dialog_okay_button.setOnTouchListener { v, event ->
             when (event?.action) {

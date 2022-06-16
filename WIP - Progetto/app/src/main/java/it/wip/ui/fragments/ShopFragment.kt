@@ -117,6 +117,20 @@ class ShopFragment: Fragment(){
             backgroundPrice.text = tempBackground.price.toString()
         }
 
+        avatarButton.setOnClickListener {
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.frame_layout, OrderDetailFragment(viewModel.avatars[avatarsTag]))
+                ?.commit()
+        }
+
+        backgroundButton.setOnClickListener {
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.frame_layout, OrderDetailFragment(viewModel.backgrounds[backgroundsTag]))
+                ?.commit()
+        }
+
         /*
 
         avatarButton.setOnClickListener {
