@@ -49,7 +49,9 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
             val avatars = wipDb.shoppedDao().getAllByUser(userId)
 
             for(avatar in avatars) {
+                Log.e("data", avatar.boughtOn)
                 avatarsName.add(avatar.shopElement)
+                Log.e("avatar", avatar.shopElement)
             }
 
         }

@@ -26,15 +26,15 @@ fun seed(wipDb: WIPDatabase) {
         ShopElement("Campo di grano con volo di corvi", "background", "", 300),
     )
 
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ITALY)
 
     wipDb.shoppedDao().insertWithoutCoroutines(
-        Shopped(1, "Venere", dateFormat.format(Date())),
         Shopped(1, "Il figlio dell'uomo", dateFormat.format(Date())),
-        Shopped(1, "Ragazza col turbante", dateFormat.format(Date()))
+        Shopped(1, "Ragazza col turbante", dateFormat.format(Date())),
+        Shopped(1, "Venere", dateFormat.format(Date()))
     )
 
     wipDb.storyDao().insertWithoutCoroutines(
-        Story(1, "Prova", "15/06/2022", 1)
+        Story(1, "Prova", "15-06-2022 11:00:121", 1)
     )
 }
