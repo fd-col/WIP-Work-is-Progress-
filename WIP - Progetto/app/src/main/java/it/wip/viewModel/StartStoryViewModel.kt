@@ -1,6 +1,7 @@
 package it.wip.viewModel
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
@@ -31,25 +32,25 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val avatarsName = mutableListOf<String>()
 
     init {
+
+        val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
+
+        val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
+
         val wipDb = WIPDatabase.getInstance(application.applicationContext)
 
         viewModelScope.launch {
-            val user = wipDb.userDao().getAll()[0]
+            val user = wipDb.userDao().getUserById(userId)
             _studyTime.value = user.studyTime
             _maxStudyTime.value = user.maxStudyTime
             _maxStudyTimeGraphic.value = _maxStudyTime.value!! - 10F
             _breakTime.value = _maxStudyTime.value!! - 10F
 
-            val avatars = wipDb.shoppedDao().getAll()
-
-            Log.e("error", avatars.toString())
+            val avatars = wipDb.shoppedDao().getAllByUser(userId)
 
             for(avatar in avatars) {
                 avatarsName.add(avatar.shopElement)
             }
-
-            for(avatar in avatars)
-                Log.e("avatars", avatar.toString())
 
         }
     }

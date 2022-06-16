@@ -27,8 +27,6 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
 
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
 
-        Log.e("userId", userId.toString())
-
         val story = storyDao.getAllByUserWithoutCoroutines(userId)[0]
         Log.e("story", story.toString())
         _storyName.value = story.storyName

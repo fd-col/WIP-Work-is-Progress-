@@ -59,18 +59,21 @@ class MenuFragment : Fragment(R.layout.fragment_menu) {
 
             val fragments = activity?.supportFragmentManager?.fragments
 
-            var isShopFragment = false
+            var isShop = false
 
             if (fragments != null) {
                 for(fragment in fragments) {
-                    if(fragment.javaClass.simpleName.toString() == "ShopFragment") {
-                        isShopFragment = true
+
+                    val fragmentName = fragment.javaClass.simpleName.toString()
+
+                    if(fragmentName == "ShopFragment" || fragmentName == "OrderDetailFragment") {
+                        isShop = true
                         break
                     }
                 }
             }
 
-            if(parentActivityName != "MainActivity" || isShopFragment)
+            if(parentActivityName != "MainActivity" || isShop)
                 startActivity(Intent(activity, MainActivity::class.java))
         }
         //action when kingdom left button on the menu is pressed
