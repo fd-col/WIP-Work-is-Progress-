@@ -14,6 +14,7 @@ import it.wip.R
 import it.wip.database.model.ShopElement
 import it.wip.databinding.FragmentOrderDetailBinding
 import it.wip.utils.fromShopElementNameToDescription
+import it.wip.utils.fromShopElementNameToLocalizedName
 import it.wip.utils.fromShopElementNameToResource
 
 class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
@@ -35,7 +36,7 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
 
         artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
 
-        binding.avatarName.text = shopElement.elementName
+        binding.avatarName.text = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
 
         buyButton.setOnTouchListener { v, event ->
             when (event?.action) {

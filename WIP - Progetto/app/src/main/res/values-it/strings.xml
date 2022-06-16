@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Artwork names -->
+    <string name="venus">Venere</string>
+    <string name="the_son_of_man">Il figlio dell\'uomo</string>
+    <string name="girl_with_a_pearl_earring">Ragazza col turbante</string>
+    <string name="the_scream">L\'urlo</string>
+    <string name="van_gogh_self_portrait">Van Gogh</string>
+    <string name="david">David</string>
+    <string name="the_creation_of_adam">La creazione di Adamo</string>
+    <string name="magritte_kiss">Gli amanti</string>
+    <string name="weathfield_with_crows">Campo di grano con volo di corvi</string>
+
+</resources>
