@@ -1,21 +1,18 @@
 package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import it.wip.MainActivity
 import it.wip.R
 import it.wip.databinding.FragmentMenuBinding
-import it.wip.ui.KingdomActivity
-import it.wip.ui.SettingsActivity
+import it.wip.ui.activities.KingdomActivity
+import it.wip.ui.activities.SettingsActivity
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 

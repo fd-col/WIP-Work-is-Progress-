@@ -122,7 +122,7 @@
     <!-- settings -->
     <string name="change_time">Studio/Pausa</string>
     <string name="story_time_limit">limite storia\n(minuti)</string>
-    <string name="left_hand_mode">Modalità mancini</string>
+    <string name="left_hand_mode">Lefthand mode</string>
     <string name="info_text">Informazioni</string>
     <string name="info_text_button_settings">bottone informazioni sull\'app</string>
 

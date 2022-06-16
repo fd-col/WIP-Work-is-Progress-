@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import it.wip.R
-import it.wip.ui.StartStoryActivity
+import it.wip.ui.activities.StartStoryActivity
 
 class FrameFragment: Fragment(R.layout.fragment_frame) {
 

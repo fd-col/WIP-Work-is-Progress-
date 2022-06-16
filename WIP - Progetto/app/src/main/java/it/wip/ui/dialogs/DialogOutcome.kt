@@ -1,4 +1,4 @@
-package it.wip
+package it.wip.ui.dialogs
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import it.wip.R
 import kotlinx.android.synthetic.main.dialog_outcome.view.*
 
 class DialogOutcome : DialogFragment() {

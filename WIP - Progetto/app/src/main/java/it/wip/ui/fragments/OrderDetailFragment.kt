@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import it.wip.DialogFragmentOrderDetail
-import it.wip.DialogInfo
+import it.wip.ui.dialogs.DialogFragmentOrderDetail
+import it.wip.ui.dialogs.DialogInfo
 import it.wip.R
 import it.wip.database.model.ShopElement
 import it.wip.databinding.FragmentOrderDetailBinding

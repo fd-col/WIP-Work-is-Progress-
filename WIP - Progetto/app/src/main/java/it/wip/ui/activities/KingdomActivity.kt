@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
@@ -15,7 +14,6 @@ import it.wip.data.DataKingdom
 import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.viewModel.KingdomViewModel
-import kotlinx.coroutines.launch
 
 class KingdomActivity : AppCompatActivity() {
 

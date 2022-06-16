@@ -1,4 +1,4 @@
-package it.wip
+package it.wip.ui.dialogs
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,9 +7,10 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import it.wip.R
 import kotlinx.android.synthetic.main.dialog_info.view.*
 
-class DialogInfo(val description: String) : DialogFragment(){
+class DialogInfo(private val description: String) : DialogFragment(){
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,

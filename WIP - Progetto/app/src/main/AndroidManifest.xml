@@ -22,27 +22,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.StartStoryActivity"
+            android:name=".ui.activities.StartStoryActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.ChapterInfoActivity"
+            android:name=".ui.activities.ChapterInfoActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.StoryStartedActivity"
+            android:name=".ui.activities.StoryStartedActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.KingdomActivity"
+            android:name=".ui.activities.KingdomActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.StoryDetailActivity"
+            android:name=".ui.activities.StoryDetailActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name=".ui.activities.SettingsActivity"
             android:screenOrientation="portrait">
         </activity>
         <meta-data

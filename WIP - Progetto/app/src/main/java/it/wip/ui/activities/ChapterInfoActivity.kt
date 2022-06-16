@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent

@@ -1,4 +1,4 @@
-package it.wip.ui
+package it.wip.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,7 +11,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import it.wip.DialogActivityStoryStarted
+import it.wip.ui.dialogs.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.StartStoryViewModel
