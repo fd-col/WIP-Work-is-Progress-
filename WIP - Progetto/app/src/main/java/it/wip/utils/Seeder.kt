@@ -15,26 +15,26 @@ fun seed(wipDb: WIPDatabase) {
     )
 
     wipDb.shopElementDao().insertWithoutCoroutines(
-        ShopElement("Venere", "avatar", "", 0),
-        ShopElement("Il figlio dell'uomo", "avatar", "", 0),
-        ShopElement("Ragazza col turbante", "avatar", "", 0),
-        ShopElement("L'urlo", "avatar", "", 100),
-        ShopElement("Autoritratto", "avatar", "", 130),
-        ShopElement("David", "avatar", "", 200),
-        ShopElement("Creazione di Adamo", "background", "", 250),
-        ShopElement("Gli amanti", "background", "", 200),
-        ShopElement("Campo di grano con volo di corvi", "background", "", 300),
+        ShopElement("venus", "avatar", "", 0),
+        ShopElement("magritte_apple", "avatar", "", 0),
+        ShopElement("girl_with_pearl_earring", "avatar", "", 0),
+        ShopElement("munch_scream", "avatar", "", 100),
+        ShopElement("self_portrait", "avatar", "", 130),
+        ShopElement("david", "avatar", "", 200),
+        ShopElement("creation_of_adam", "background", "", 250),
+        ShopElement("lovers", "background", "", 200),
+        ShopElement("weathfield_with_crows", "background", "", 300),
     )
 
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ITALY)
 
     wipDb.shoppedDao().insertWithoutCoroutines(
-        Shopped(1, "Venere", dateFormat.format(Date())),
-        Shopped(1, "Il figlio dell'uomo", dateFormat.format(Date())),
-        Shopped(1, "Ragazza col turbante", dateFormat.format(Date()))
+        Shopped(1, "magritte_apple", dateFormat.format(Date())),
+        Shopped(1, "girl_with_pearl_earring", dateFormat.format(Date())),
+        Shopped(1, "venus", dateFormat.format(Date()))
     )
 
     wipDb.storyDao().insertWithoutCoroutines(
-        Story(1, "Prova", "15/06/2022", 1)
+        Story(1, "Prova", "15-06-2022 11:00:121", 1)
     )
 }

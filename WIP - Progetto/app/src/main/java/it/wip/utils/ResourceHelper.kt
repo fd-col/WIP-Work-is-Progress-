@@ -2,40 +2,57 @@ package it.wip.utils
 
 import it.wip.R
 
-fun fromShopElementNameToResource(avatarName: String): Int {
+fun fromShopElementNameToLocalizedName(shopElementName: String): Int {
 
-    return when(avatarName) {
+    return when(shopElementName) {
+        "venus" -> R.string.venus
+        "magritte_apple" -> R.string.the_son_of_man
+        "girl_with_pearl_earring" -> R.string.girl_with_a_pearl_earring
+        "munch_scream" -> R.string.the_scream
+        "self_portrait" -> R.string.van_gogh_self_portrait
+        "david" -> R.string.david
+        "creation_of_adam" -> R.string.the_creation_of_adam
+        "lovers" -> R.string.magritte_kiss
+        "weathfield_with_crows" -> R.string.weathfield_with_crows
 
-        "Venere" -> R.drawable.venere
-        "Il figlio dell'uomo" -> R.drawable.magritte
-        "Ragazza col turbante" -> R.drawable.ragazza_col_turbante
-        "L'urlo" -> R.drawable.munch
-        "Autoritratto" -> R.drawable.van_gogh_self_portrait
-        "David" -> R.drawable.david
-        "Creazione di Adamo" -> R.drawable.adam_off_stand
-        "Gli amanti" -> R.drawable.magritte_kiss_off_stand
-        "Campo di grano con volo di corvi" -> R.drawable.field_with_crows_off_stand
+        else -> {R.string.app_name}
+    }
 
-        else -> {
-            R.drawable.venere
-        }
+}
+
+fun fromShopElementNameToResource(shopElementName: String): Int {
+
+    return when(shopElementName) {
+
+        "venus" -> R.drawable.venere
+        "magritte_apple" -> R.drawable.magritte
+        "girl_with_pearl_earring" -> R.drawable.ragazza_col_turbante
+        "munch_scream" -> R.drawable.munch
+        "self_portrait" -> R.drawable.van_gogh_self_portrait
+        "david" -> R.drawable.david
+        "creation_of_adam" -> R.drawable.adam_off_stand
+        "lovers" -> R.drawable.magritte_kiss_off_stand
+        "weathfield_with_crows" -> R.drawable.field_with_crows_off_stand
+
+        else -> { R.drawable.venere }
     }
 
 }
 
 fun fromShopElementNameToDescription(shopElementName: String): Int {
-    return when(shopElementName) {
-        "Venere" -> R.string.venere_description
-        "Il figlio dell'uomo" -> R.string.magritte_kiss_description
-        "Ragazza col turbante" -> R.string.ragazza_col_turbante //Da modificare
-        "L'urlo" -> R.string.urlo_di_munch_description
-        "Autoritratto" -> R.string.van_gogh_autoritratto_description
-        "David" -> R.string.david_description
-        "Creazione di Adamo" -> R.string.creazione_di_adamo_description
-        "Gli amanti" -> R.string.magritte_kiss_description
-        "Campo di grano con volo di corvi" -> R.string.van_gogh_field_with_crows_description
 
-        else -> {R.string.app_name}
+    return when(shopElementName) {
+        "venus" -> R.string.venere_description
+        "magritte_apple" -> R.string.magritte_kiss_description
+        "girl_with_pearl_earring" -> R.string.girl_with_a_pearl_earring //Da modificare
+        "munch_scream" -> R.string.urlo_di_munch_description
+        "self_portrait" -> R.string.van_gogh_autoritratto_description
+        "david" -> R.string.david_description
+        "creation_of_adam" -> R.string.creazione_di_adamo_description
+        "lovers" -> R.string.magritte_kiss_description
+        "weathfield_with_crows" -> R.string.van_gogh_field_with_crows_description
+
+        else -> { R.string.app_name }
     }
 
 }

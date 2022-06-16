@@ -21,7 +21,7 @@ class StoryStartedActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_story_started)
 
-        val companionAvatar = findViewById<ImageView>(R.id.companion_image_view)
+
 
         /*
         * in riferimento al listener "setOnChronometerTickListener", che esegue il contenuto del
@@ -41,11 +41,14 @@ class StoryStartedActivity : AppCompatActivity(){
         val studyTime = floatStudyTime.toLong()
         val breakTime = floatBreakTime.toLong()
 
+        val selectedAvatar = findViewById<ImageView>(R.id.companion_image_view)
+        selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
+
         /*
         * study time rappresenta il numero di minuti; lo moltiplichiamo per 60000 per tale unità di
         * misura in millisecondi dato che il cronometro lavora con i millisecondi
         * */
-        val leftValueRange1 = (studyTime/4)*60000
+        val leftValueRange1 = ((floatStudyTime/4)*60000).toLong()
         val leftValueRange2 = leftValueRange1 + leftValueRange1
         val leftValueRange3 = leftValueRange2 + leftValueRange1
 
@@ -54,7 +57,7 @@ class StoryStartedActivity : AppCompatActivity(){
         var timeRange1 = (leftValueRange1..leftValueRange1+40000)
         var timeRange2 = (leftValueRange2..leftValueRange2+40000)
         var timeRange3 = (leftValueRange3..leftValueRange3+40000)
-        val pauseRange4 = (studyTime..studyTime+40000)
+        var pauseRange4 = (studyTime*60000..(studyTime+60000)+40000)
 
 
 
@@ -73,24 +76,24 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //invocazione metodo per scelta casuale del primo background tra quelli disponibili
         var selectedArtwork = backgroundSelector(artwork)
-        companionAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
+
 
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
             val myTime = (SystemClock.elapsedRealtime() - cronometro.base)
-
             /*
             * if(myTime>=maxTime){...} è il blocco di codice che mette un nuovo quadro e lo fa
             * evolvere quando un quadro viene completamente dipinto
             * */
             if(myTime>=maxTime){
-                companionAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
+                selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
                 firstAlreadyExecuted = true
                 secondAlreadyExecuted = true
                 thirdAlreadyExecuted = true
                 timeRange1 = (maxTime+leftValueRange1..maxTime+leftValueRange1+40000)
                 timeRange2 = (maxTime+leftValueRange2..maxTime+leftValueRange2+40000)
                 timeRange3 = (maxTime+leftValueRange3..maxTime+leftValueRange3+40000)
+                pauseRange4 = ((studyTime*60000)+maxTime..(studyTime+60000)+40000+maxTime)
                 maxTime+=maxTime
 
                 // porzione di codice che evita di farmi vedere due volte di fila lo stesso quadro
@@ -125,7 +128,7 @@ class StoryStartedActivity : AppCompatActivity(){
                     }
                 }
                 in pauseRange4 -> {
-                    companionAvatar.setBackgroundResource(R.drawable.bonfire)
+                    selectedAvatar.setBackgroundResource(R.drawable.bonfire)
                 }
             }
         }
@@ -151,7 +154,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
 
     //          SCELTA DINAMICA DEL QUADRO
-    fun backgroundSelector (artwork: ImageView): Int{
+    private fun backgroundSelector (artwork: ImageView): Int{
         var selectedArtwork = 1
 
         //il range è 1..3 perchè all'inizio abbiamo solo 3 quadri sbloccati
@@ -173,7 +176,7 @@ class StoryStartedActivity : AppCompatActivity(){
     }
 
     //          AUTO-AGGIORNAMENTO DIPINTO MENTRE SCORRE IL TIMER
-    fun backgroundEvolution(artwork: ImageView, artworkId: Int, artworkCurrentState:Int){
+    private fun backgroundEvolution(artwork: ImageView, artworkId: Int, artworkCurrentState:Int){
 
         when (artworkId) {
             1 -> {

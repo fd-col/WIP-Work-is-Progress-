@@ -57,13 +57,18 @@
     <string name="info_background">background info section</string>
     <string name="shop_info_button">info button for an artwork</string>
 
+    <!-- Artwork names -->
+    <string name="venus">Venus</string>
+    <string name="the_son_of_man">The Son of Man</string>
+    <string name="girl_with_a_pearl_earring">Girl with a Pearl Earring</string>
+    <string name="the_scream">The Scream</string>
+    <string name="van_gogh_self_portrait">Van Gogh</string>
     <string name="david">David</string>
-    <string name="van_gogh_autoritratto">Van Gogh</string>
-    <string name="urlo_di_munch">The Scream</string>
-    <string name="van_gogh_field_with_crows">Field with crows</string>
-    <string name="creazione_di_adamo">Creation of Adam</string>
-    <string name="magritte_kiss">Lovers</string>
-    <string name="ragazza_col_turbante">Ragazza col turbante</string>
+    <string name="the_creation_of_adam">The Creation of Adam</string>
+    <string name="magritte_kiss">The Lovers</string>
+    <string name="weathfield_with_crows">Withfield with crows</string>
+
+
 
     <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504, and exposed at the Galleria dell\'Accademia in Florence, David is a marble sculpture portraying the biblical hero preparing to face Goliath the giant.\n</string>
     <string name="van_gogh_autoritratto_description">Painted by Vincent Van Gogh in 1889, and
@@ -151,6 +156,7 @@
 
     <string name="info_dialog_title">A little\nStory about\nArt</string>
     <string name="info_dialog_quote">\"Gulp\"</string>
+
 
 
 

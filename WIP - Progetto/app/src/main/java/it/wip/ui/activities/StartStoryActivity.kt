@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.ui.dialogs.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
+
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.StartStoryViewModel
 
@@ -127,6 +128,7 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
+        avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarsName[0]))
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = ""
 

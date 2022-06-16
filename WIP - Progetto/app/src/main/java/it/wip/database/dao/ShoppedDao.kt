@@ -9,7 +9,7 @@ interface ShoppedDao {
     @Query("SELECT * FROM shopped")
     suspend fun getAll(): Array<Shopped>
 
-    @Query("SELECT * FROM shopped WHERE user = :userId")
+    @Query("SELECT * FROM shopped WHERE user = :userId ORDER BY bought_on ASC")
     suspend fun getAllByUser(userId: Int): Array<Shopped>
 
     @Insert
