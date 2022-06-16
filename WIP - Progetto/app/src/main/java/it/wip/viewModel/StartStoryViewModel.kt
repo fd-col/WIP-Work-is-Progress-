@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -40,16 +41,18 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         val wipDb = WIPDatabase.getInstance(application.applicationContext)
 
         viewModelScope.launch {
+            runBlocking {
+                val avatars = wipDb.shoppedDao().getAllByUser(userId)
+
+                for(avatar in avatars)
+                    avatarsName.add(avatar.shopElement)
+            }
+            
             val user = wipDb.userDao().getUserById(userId)
             _studyTime.value = user.studyTime
             _maxStudyTime.value = user.maxStudyTime
             _maxStudyTimeGraphic.value = _maxStudyTime.value!! - 10F
             _breakTime.value = _maxStudyTime.value!! - 10F
-
-            val avatars = wipDb.shoppedDao().getAllByUser(userId)
-
-            for(avatar in avatars)
-                avatarsName.add(avatar.shopElement)
 
         }
     }

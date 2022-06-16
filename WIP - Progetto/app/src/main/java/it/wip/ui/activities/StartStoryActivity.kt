@@ -129,6 +129,7 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
+        avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarsName[0]))
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = ""
 
