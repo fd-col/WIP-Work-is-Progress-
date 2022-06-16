@@ -9,6 +9,9 @@ interface ShoppedDao {
     @Query("SELECT * FROM shopped")
     suspend fun getAll(): Array<Shopped>
 
+    @Query("SELECT * FROM shopped WHERE user = :userId")
+    suspend fun getAllByUser(userId: Int): Array<Shopped>
+
     @Insert
     suspend fun insert(vararg shopped: Shopped)
 

@@ -17,7 +17,7 @@ import it.wip.databinding.FragmentOrderDetailBinding
 import it.wip.utils.fromShopElementNameToDescription
 import it.wip.utils.fromShopElementNameToResource
 
-class OrderDetailFragment(val shopElement: ShopElement): Fragment(){
+class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -26,17 +26,15 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment(){
         savedInstanceState: Bundle?
     ): View {
 
-        val binding : FragmentOrderDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_detail, container, false)
+        val binding: FragmentOrderDetailBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_order_detail, container, false)
 
         val buyButton = binding.buyButton
         val backButton = binding.orderDetailBackButton
         val shopInfoButton = binding.shopInfoButton
         val artwork = binding.avatarDetail
 
-        //artworkSelected(artTag, artworkId, artwork)
-
-
-        artwork.setImageResource(fromShopElementNameToResource(shopElement.elementName))
+        artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
 
         binding.avatarName.text = shopElement.elementName
 
@@ -77,48 +75,12 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment(){
         }
 
         shopInfoButton.setOnClickListener {
-            val dialogHistoryInfo = DialogInfo(getString(fromShopElementNameToDescription(shopElement.elementName)))
+            val dialogHistoryInfo =
+                DialogInfo(getString(fromShopElementNameToDescription(shopElement.elementName)))
             dialogHistoryInfo.show(parentFragmentManager, "historyInfo")
         }
 
         return binding.root
     }
 
-
-    //          AUTO-AGGIORNAMENTO DIPINTO MENTRE SCORRE IL TIMER
-    /*fun artworkSelected(tag: String, artworkId: String, artwork:ImageView?){
-
-        when (tag) {
-            "avatarTag" -> {
-                when (artworkId) {
-                    "1" -> artwork?.setBackgroundResource(R.drawable.david)
-                    "2" -> artwork?.setBackgroundResource(R.drawable.munch)
-                    "3" -> artwork?.setBackgroundResource(R.drawable.van_gogh_self_portrait)
-                }
-            }
-            "backgroundTag" -> {
-                when (artworkId) {
-                    "1" -> artwork?.setBackgroundResource(R.drawable.field_with_crows_off_stand)
-                    "2" -> artwork?.setBackgroundResource(R.drawable.adam_off_stand)
-                    "3" -> artwork?.setBackgroundResource(R.drawable.magritte_kiss_off_stand)
-                }
-            }
-        }
-    }*/
 }
-
-/*
-MaterialAlertDialogBuilder(context)
-        .setTitle(resources.getString(R.string.title))
-        .setMessage(resources.getString(R.string.supporting_text))
-        .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
-            // Respond to neutral button press
-        }
-        .setNegativeButton(resources.getString(R.string.decline)) { dialog, which ->
-            // Respond to negative button press
-        }
-        .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
-            // Respond to positive button press
-        }
-        .show()
-* */
