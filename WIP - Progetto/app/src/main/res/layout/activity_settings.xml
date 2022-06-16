@@ -13,126 +13,201 @@
         android:background="@drawable/splash_page_background"
         android:theme="@style/Theme.WIP">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/menu_layout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="132dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/switch_image_background2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/rectangular_background"
-            android:contentDescription="@string/switch_image_background_description"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_story_time"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Switch
-            android:id="@+id/lefHand_mode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/press_start_2p"
-            android:minHeight="48dp"
-            android:text="@string/left_hand_mode"
-            android:textColor="#0277BD"
-            android:textSize="17sp"
-            android:thumbTint="#0277BD"
-            android:trackTint="@drawable/switch_track"
-            app:layout_constraintBottom_toBottomOf="@+id/switch_image_background2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/switch_image_background2"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
-
-        <ImageButton
-            android:id="@+id/edit_button_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="45dp"
-            android:backgroundTint="#00FFFFFF"
-            android:contentDescription="tasto per la modifica del tempo massimo delle storie"
-            android:contextClickable="false"
-            app:layout_constraintBottom_toTopOf="@+id/switch_image_background2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/max_story_time"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-            app:layout_constraintVertical_bias="0.47"
-            app:srcCompat="@android:drawable/ic_menu_edit"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <EditText
-            android:id="@+id/max_story_time"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:autofillHints="story title set by the user"
-            android:background="@drawable/rectangular_background"
-            android:cursorVisible="true"
-            android:ems="10"
-            android:fontFamily="@font/press_start_2p"
-            android:hint="@string/story_time_limit"
-            android:inputType="text"
-            android:minHeight="66dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:textColor="#0277BD"
-            android:textColorHint="#0277BD"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.404"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/rectangular_background"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_layout"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="1.0">
 
-            <com.google.android.material.slider.Slider
-                android:id="@+id/seekBar_settings"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:stepSize="10"
-                android:valueFrom="0"
-                android:valueTo="60"
-                app:haloRadius="18dp"
-                app:thumbColor="#0277BD"
-                app:trackColorActive="#922196F3"
-                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-        </FrameLayout>
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/change_time_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:paddingTop="8dp"
+                    android:text="@string/change_time"
+                    android:textAlignment="center"
+                    android:textColor="#E8EAF6"
+                    android:textSize="22sp"/>
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/rectangular_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/header_layout"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/seekBar_settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="20dp"
+                        android:stepSize="10"
+                        android:valueFrom="0"
+                        android:valueTo="60"
+                        app:haloRadius="18dp"
+                        app:thumbColor="#0277BD"
+                        app:trackColorActive="#922196F3"
+                        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+                </FrameLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/max_story_time"
+                        android:layout_width="270dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:autofillHints="story title set by the user"
+                        android:background="@drawable/rectangular_background"
+                        android:fontFamily="@font/press_start_2p"
+                        android:hint="@string/story_time_limit"
+                        android:inputType="text"
+                        android:minHeight="66dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="20dp"
+                        android:textColor="#0277BD"
+                        android:textColorHint="#0277BD"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/edit_button_settings"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <ImageButton
+                        android:id="@+id/edit_button_settings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:backgroundTint="#00FFFFFF"
+                        android:contentDescription="tasto per la modifica del tempo massimo delle storie"
+                        android:contextClickable="false"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/max_story_time"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        app:srcCompat="@android:drawable/ic_menu_edit"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/leftHand_switch_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/rectangular_background"
+                        android:contentDescription="@string/switch_image_background_description"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <Switch
+                        android:id="@+id/lefHand_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:minHeight="48dp"
+                        android:text="@string/left_hand_mode"
+                        android:textColor="#0277BD"
+                        android:textSize="17sp"
+                        android:thumbTint="#0277BD"
+                        android:trackTint="@drawable/switch_track"
+                        app:layout_constraintBottom_toBottomOf="@+id/leftHand_switch_background"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.493"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/leftHand_switch_background"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/information_background"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/rectangular_background"
+                        android:contentDescription="@string/info_text_button_settings"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/info_setting_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/press_start_2p"
+                        android:text="@string/info_text"
+                        android:textAlignment="center"
+                        android:textColor="#0277BD"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/information_background"
+                        app:layout_constraintTop_toTopOf="@+id/information_background"
+                        app:layout_constraintStart_toStartOf="@id/information_background"
+                        app:layout_constraintEnd_toEndOf="@id/information_background"
+                        app:layout_constraintVertical_bias="0.547"
+                        tools:layout_editor_absoluteX="68dp" />
+
+                    <ImageButton
+                        android:id="@+id/info_button_settings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shop_info_button"
+                        android:contentDescription="@string/info_button"
+                        android:contextClickable="false"
+                        android:elevation="7dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/information_background"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header_layout"
@@ -145,72 +220,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.004" />
 
-        <TextView
-            android:id="@+id/change_time_title"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menu_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="@font/press_start_2p"
-            android:text="@string/change_time"
-            android:textAlignment="center"
-            android:textColor="#E8EAF6"
-            android:textSize="22sp"
-
-            app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_layout" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00FFFFFF"
-            android:contentDescription="@string/info_text_button_settings"
+            android:layout_height="132dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.149"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch_image_background2"
-            app:layout_constraintVertical_bias="0.151"
-            app:srcCompat="@drawable/rectangular_background" />
-
-        <ImageButton
-            android:id="@+id/info_button_settings"
-            android:layout_width="96dp"
-            android:layout_height="85dp"
-            android:layout_marginEnd="72dp"
-            android:background="@drawable/icon_info_button"
-            android:contentDescription="@string/info_button"
-            android:contextClickable="false"
-            android:elevation="7dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/imageButton"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:cursorVisible="true"
-
-            android:fontFamily="@font/press_start_2p"
-            android:text="@string/info_text"
-            android:textColor="#0277BD"
-            android:textColorHint="#0277BD"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.219"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageButton"
-            app:layout_constraintVertical_bias="0.524" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

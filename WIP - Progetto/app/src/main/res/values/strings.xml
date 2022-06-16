@@ -120,11 +120,11 @@
     <string name="icon_search_button">search button inside own kingdom</string>
 
     <!-- settings -->
-    <string name="change_time">Studio/Pausa</string>
+    <string name="change_time">Study/Break</string>
     <string name="story_time_limit">limite storia\n(minuti)</string>
     <string name="left_hand_mode">Lefthand mode</string>
-    <string name="info_text">Informazioni</string>
-    <string name="info_text_button_settings">bottone informazioni sull\'app</string>
+    <string name="info_text">Information</string>
+    <string name="info_text_button_settings">info button about the app</string>
 
     <!-- dialogs -->
     <string name="dialog_background">sfondo del dialog mostrato quando premo il tasto info</string>
