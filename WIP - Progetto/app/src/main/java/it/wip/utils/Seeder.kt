@@ -15,15 +15,12 @@ fun seed(wipDb: WIPDatabase) {
     )
 
     wipDb.shopElementDao().insertWithoutCoroutines(
-        //Avatars
         ShopElement("Venere", "avatar", "", 0),
         ShopElement("Il figlio dell'uomo", "avatar", "", 0),
         ShopElement("Ragazza col turbante", "avatar", "", 0),
         ShopElement("L'urlo", "avatar", "", 100),
         ShopElement("Autoritratto", "avatar", "", 130),
         ShopElement("David", "avatar", "", 200),
-
-        //Backgrounds
         ShopElement("Creazione di Adamo", "background", "", 250),
         ShopElement("Gli amanti", "background", "", 200),
         ShopElement("Campo di grano con volo di corvi", "background", "", 300),
@@ -33,7 +30,7 @@ fun seed(wipDb: WIPDatabase) {
 
     wipDb.shoppedDao().insertWithoutCoroutines(
         Shopped(1, "Venere", dateFormat.format(Date())),
-        Shopped(1, "Magritte", dateFormat.format(Date())),
+        Shopped(1, "Il figlio dell'uomo", dateFormat.format(Date())),
         Shopped(1, "Ragazza col turbante", dateFormat.format(Date()))
     )
 

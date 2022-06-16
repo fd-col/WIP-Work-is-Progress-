@@ -42,9 +42,14 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
             val avatars = wipDb.shoppedDao().getAll()
 
+            Log.e("error", avatars.toString())
+
             for(avatar in avatars) {
                 avatarsName.add(avatar.shopElement)
             }
+
+            for(avatar in avatars)
+                Log.e("avatars", avatar.toString())
 
         }
     }
