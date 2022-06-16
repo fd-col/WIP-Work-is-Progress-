@@ -39,7 +39,7 @@
             android:layout_marginTop="13dp"
             android:layout_marginEnd="2dp"
             android:fontFamily="@font/press_start_2p"
-            android:text="@string/actual_coins_string"
+            android:text="@{viewModel.coins.toString()}"
             android:textColor="#E8EAF6"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

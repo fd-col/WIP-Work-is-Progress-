@@ -47,7 +47,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
                 for(avatar in avatars)
                     avatarsName.add(avatar.shopElement)
             }
-            
+
             val user = wipDb.userDao().getUserById(userId)
             _studyTime.value = user.studyTime
             _maxStudyTime.value = user.maxStudyTime

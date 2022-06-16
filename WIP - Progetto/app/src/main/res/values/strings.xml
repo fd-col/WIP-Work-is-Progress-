@@ -42,7 +42,6 @@
     <string name="avatar_price_string">0</string>
     <string name="background_price_string">250</string>
     <string name="coin_price_description">icon coin into shop </string>
-    <string name="actual_coins_string">110</string>
 
     <!-- fragment order detail -->
     <string name="avatar_detail_string">artwork\'s image inside detail order</string>

@@ -17,7 +17,7 @@ class DialogOutcome : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val actualCoins: Int = getString(R.string.actual_coins_string).toInt()
+        val actualCoins: Int = 130 // Da modificare
         val rootView: View = inflater.inflate(R.layout.dialog_outcome, container, false)
 
         if(actualCoins<130){

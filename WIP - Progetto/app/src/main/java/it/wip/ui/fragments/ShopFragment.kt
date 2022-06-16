@@ -29,6 +29,10 @@ class ShopFragment: Fragment(){
 
         viewModel = ViewModelProviders.of(this)[ShopViewModel::class.java]
 
+        binding.viewModel = viewModel
+
+        binding.lifecycleOwner = this
+
         val sxAvatar = binding.newAvatarSxButton
         val dxAvatar = binding.newAvatarDxButton
         val sxBackground = binding.newBackgroundSxButton
@@ -117,36 +121,54 @@ class ShopFragment: Fragment(){
             backgroundPrice.text = tempBackground.price.toString()
         }
 
+        if(this.arguments?.isEmpty == false) {
+            avatars.setBackgroundResource(fromShopElementNameToResource(this.arguments?.get("selectedAvatar").toString()))
+            avatarsTag = this.requireArguments().getInt("avatarsTag")
+            avatarPrice.text = this.arguments?.get("avatarPrice").toString()
+            backgrounds.setBackgroundResource(fromShopElementNameToResource(this.arguments?.get("selectedBackground").toString()))
+            backgroundsTag = this.requireArguments().getInt("backgroundsTag")
+            backgroundPrice.text = this.arguments?.get("backgroundPrice").toString()
+        }
+
         avatarButton.setOnClickListener {
+
+            val fragment = OrderDetailFragment(viewModel.avatars[avatarsTag])
+
+            val bundle = Bundle()
+            bundle.putString("selectedAvatar", viewModel.avatars[avatarsTag].elementName)
+            bundle.putInt("avatarsTag", avatarsTag)
+            bundle.putInt("avatarPrice", avatarPrice.text.toString().toInt())
+            bundle.putString("selectedBackground", viewModel.backgrounds[backgroundsTag].elementName)
+            bundle.putInt("backgroundsTag", backgroundsTag)
+            bundle.putInt("backgroundPrice", backgroundPrice.text.toString().toInt())
+            fragment.arguments = bundle
+
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.frame_layout, OrderDetailFragment(viewModel.avatars[avatarsTag]))
+                ?.replace(R.id.frame_layout, fragment)
                 ?.commit()
         }
 
         backgroundButton.setOnClickListener {
+
+            val fragment = OrderDetailFragment(viewModel.backgrounds[backgroundsTag])
+
+            val bundle = Bundle()
+            bundle.putString("selectedAvatar", viewModel.avatars[avatarsTag].elementName)
+            bundle.putInt("avatarsTag", avatarsTag)
+            bundle.putInt("avatarPrice", avatarPrice.text.toString().toInt())
+            bundle.putString("selectedBackground", viewModel.backgrounds[backgroundsTag].elementName)
+            bundle.putInt("backgroundsTag", backgroundsTag)
+            bundle.putInt("backgroundPrice", backgroundPrice.text.toString().toInt())
+
+            fragment.arguments = bundle
+
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.frame_layout, OrderDetailFragment(viewModel.backgrounds[backgroundsTag]))
+                ?.replace(R.id.frame_layout, fragment)
                 ?.commit()
         }
 
-        /*
-
-        avatarButton.setOnClickListener {
-            activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.frame_layout, OrderDetailFragment("avatarTag", avatarTag))
-                ?.commit()
-        }
-
-        backgroundButton.setOnClickListener {
-            activity?.supportFragmentManager
-                ?.beginTransaction()
-                ?.replace(R.id.frame_layout, OrderDetailFragment("backgroundTag", backgroundTag))
-                ?.commit()
-        }
-*/
         return binding.root
     }
 }

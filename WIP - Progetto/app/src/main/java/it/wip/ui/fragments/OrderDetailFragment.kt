@@ -2,6 +2,7 @@ package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -68,9 +69,15 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
         }
 
         backButton.setOnClickListener {
+
+            val fragment = ShopFragment()
+
+            val bundle = this.arguments
+            fragment.arguments = bundle
+
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.frame_layout, ShopFragment())
+                ?.replace(R.id.frame_layout, fragment)
                 ?.commit()
         }
 

@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="#00FFFFFF"
-                android:contentDescription="@string/actual_coins_string"
+                android:contentDescription=""
                 app:srcCompat="@drawable/okay_button" />
         </LinearLayout>
     </ScrollView>
