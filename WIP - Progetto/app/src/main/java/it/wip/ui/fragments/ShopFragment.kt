@@ -29,11 +29,6 @@ class ShopFragment: Fragment(){
 
         viewModel = ViewModelProviders.of(this)[ShopViewModel::class.java]
 
-        binding.coinIconAvatar.setOnClickListener() {
-            Log.e("Avatar", viewModel.avatars.toString())
-            Log.e("Backgrounds", viewModel.backgrounds.toString())
-        }
-
         val sxAvatar = binding.newAvatarSxButton
         val dxAvatar = binding.newAvatarDxButton
         val sxBackground = binding.newBackgroundSxButton
@@ -75,130 +70,54 @@ class ShopFragment: Fragment(){
 
 
         val avatars = binding.avatars
+        val avatarPrice = binding.avatarPrice
         var avatarsTag = avatars.tag.toString().toInt()
 
-        binding.newAvatarSxButton.setOnClickListener {
+        sxAvatar.setOnClickListener {
             avatarsTag--
             if(avatarsTag < 0) {
                 avatarsTag = viewModel.avatars.size - 1
             }
             val tempAvatar = viewModel.avatars[avatarsTag]
             avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+            avatarPrice.text = tempAvatar.price.toString()
         }
 
-        binding.newAvatarDxButton.setOnClickListener {
+        dxAvatar.setOnClickListener {
             avatarsTag++
             if(avatarsTag + 1 > viewModel.avatars.size) {
                 avatarsTag = 0
             }
             val tempAvatar = viewModel.avatars[avatarsTag]
             avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+            avatarPrice.text = tempAvatar.price.toString()
         }
 
         val backgrounds = binding.backgrounds
+        val backgroundPrice = binding.backgroundPrice
         var backgroundsTag = backgrounds.tag.toString().toInt()
 
-        binding.newAvatarSxButton.setOnClickListener {
-            avatarsTag--
-            if(avatarsTag < 0) {
-                avatarsTag = viewModel.avatars.size - 1
+        sxBackground.setOnClickListener {
+            backgroundsTag--
+            if(backgroundsTag < 0) {
+                backgroundsTag = viewModel.backgrounds.size - 1
             }
-            val tempAvatar = viewModel.avatars[avatarsTag]
-            avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
-        }
-
-        binding.newBackgroundDxButton.setOnClickListener {
-            backgroundsTag++
-            if(backgroundsTag + 1 > viewModel.avatars.size) {
-                avatarsTag = 0
-            }
-            val tempAvatar = viewModel.avatars[avatarsTag]
-            avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
-        }
-
-        // AVATARS AND BACKGROUNDS SWAP
-        /*var avatarTag: String = avatarButton.tag.toString()
-        var backgroundTag: String = backgroundButton.tag.toString()
-
-        dxAvatar.setOnClickListener {
-            when (avatarTag) {
-                "1" -> {
-                    avatarButton.setBackgroundResource(R.drawable.munch)
-                    avatarButton.tag = "2"
-                    avatarTag = avatarButton.tag.toString()
-                }
-                "2" -> {
-                    avatarButton.setBackgroundResource(R.drawable.van_gogh_self_portrait)
-                    avatarButton.tag = "3"
-                    avatarTag = avatarButton.tag.toString()
-                }
-                "3" -> {
-                    avatarButton.setBackgroundResource(R.drawable.david)
-                    avatarButton.tag = "1"
-                    avatarTag = avatarButton.tag.toString()
-                }
-            }
-        }
-
-        sxAvatar.setOnClickListener {
-            when (avatarTag) {
-                "1" -> {
-                    avatarButton.setBackgroundResource(R.drawable.van_gogh_self_portrait)
-                    avatarButton.tag = "3"
-                    avatarTag = avatarButton.tag.toString()
-                }
-                "2" -> {
-                    avatarButton.setBackgroundResource(R.drawable.david)
-                    avatarButton.tag = "1"
-                    avatarTag = avatarButton.tag.toString()
-                }
-                "3" -> {
-                    avatarButton.setBackgroundResource(R.drawable.munch)
-                    avatarButton.tag = "2"
-                    avatarTag = avatarButton.tag.toString()
-                }
-            }
+            val tempBackground = viewModel.backgrounds[backgroundsTag]
+            backgrounds.setBackgroundResource(fromShopElementNameToResource(tempBackground.elementName))
+            backgroundPrice.text = tempBackground.price.toString()
         }
 
         dxBackground.setOnClickListener {
-            when (backgroundTag) {
-                "1" -> {
-                    backgroundButton.setBackgroundResource(R.drawable.adam_off_stand)
-                    backgroundButton.tag = "2"
-                    backgroundTag = backgroundButton.tag.toString()
-                }
-                "2" -> {
-                    backgroundButton.setBackgroundResource(R.drawable.magritte_kiss_off_stand)
-                    backgroundButton.tag = "3"
-                    backgroundTag = backgroundButton.tag.toString()
-                }
-                "3" -> {
-                    backgroundButton.setBackgroundResource(R.drawable.field_with_crows_off_stand)
-                    backgroundButton.tag = "1"
-                    backgroundTag = backgroundButton.tag.toString()
-                }
+            backgroundsTag++
+            if(backgroundsTag + 1 > viewModel.backgrounds.size) {
+                backgroundsTag = 0
             }
+            val tempBackground = viewModel.backgrounds[backgroundsTag]
+            backgrounds.setBackgroundResource(fromShopElementNameToResource(tempBackground.elementName))
+            backgroundPrice.text = tempBackground.price.toString()
         }
 
-        sxBackground.setOnClickListener {
-            when (backgroundTag) {
-                "1" -> {
-                    backgroundButton.setBackgroundResource(R.drawable.magritte_kiss_off_stand)
-                    backgroundButton.tag = "3"
-                    backgroundTag = backgroundButton.tag.toString()
-                }
-                "2" -> {
-                    backgroundButton.setBackgroundResource(R.drawable.field_with_crows_off_stand)
-                    backgroundButton.tag = "1"
-                    backgroundTag = backgroundButton.tag.toString()
-                }
-                "3" -> {
-                    backgroundButton.setBackgroundResource(R.drawable.adam_off_stand)
-                    backgroundButton.tag = "2"
-                    backgroundTag = backgroundButton.tag.toString()
-                }
-            }
-        }
+        /*
 
         avatarButton.setOnClickListener {
             activity?.supportFragmentManager

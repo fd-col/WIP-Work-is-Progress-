@@ -15,11 +15,18 @@ fun seed(wipDb: WIPDatabase) {
     )
 
     wipDb.shopElementDao().insertWithoutCoroutines(
+        //Avatars
         ShopElement("Venere", "avatar", "", 0),
-        ShopElement("Magritte", "avatar", "", 0),
+        ShopElement("Il figlio dell'uomo", "avatar", "", 0),
         ShopElement("Ragazza col turbante", "avatar", "", 0),
         ShopElement("L'urlo", "avatar", "", 100),
+        ShopElement("Autoritratto", "avatar", "", 130),
+        ShopElement("David", "avatar", "", 200),
+
+        //Backgrounds
         ShopElement("Creazione di Adamo", "background", "", 250),
+        ShopElement("Gli amanti", "background", "", 200),
+        ShopElement("Campo di grano con volo di corvi", "background", "", 300),
     )
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)

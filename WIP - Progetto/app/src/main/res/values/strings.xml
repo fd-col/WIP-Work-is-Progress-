@@ -39,8 +39,8 @@
     <string name="background_description">foto background</string>
     <string name="background_dx_arrow">arrow to slide right background</string>
     <string name="background_sx_arrow">arrow to slide left background</string>
-    <string name="avatar_price_string">130</string>
-    <string name="background_price_string">200</string>
+    <string name="avatar_price_string">0</string>
+    <string name="background_price_string">250</string>
     <string name="coin_price_description">icon coin into shop </string>
     <string name="actual_coins_string">110</string>
 
