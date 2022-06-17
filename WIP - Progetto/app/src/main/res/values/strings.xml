@@ -156,7 +156,7 @@
 
     <string name="order_detail">Order detail</string>
     <string name="order_detail_quote">\"Happy noises\"</string>
-    <string name="avatar_order_detail_description">Are you sure you\nwant to buy this\nartwork for 130\ncoins?</string>
+    <string name="order_detail_description">Are you sure you\nwant to buy this\nartwork for %1$d\ncoins?</string>
     <string name="yes_button_description">bottone per confermare l\'acquisto</string>
     <string name="no_button_description">bottone uscire dalla schermata di acquisto</string>
 

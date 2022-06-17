@@ -18,7 +18,7 @@ import it.wip.utils.fromShopElementNameToDescription
 import it.wip.utils.fromShopElementNameToLocalizedName
 import it.wip.utils.fromShopElementNameToResource
 
-class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
+class OrderDetailFragment(val shopElement: ShopElement, val unlocked: Boolean): Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -38,6 +38,12 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
         artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
 
         binding.avatarName.text = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
+
+
+        if(unlocked)
+            buyButton.visibility = View.INVISIBLE
+        else
+            buyButton.visibility = View.VISIBLE
 
 
         backButton.setOnTouchListener { v, event ->
@@ -85,9 +91,9 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
         }
 
         buyButton.setOnClickListener {
-            val dialogShop = DialogFragmentOrderDetail()
-            dialogShop.show(parentFragmentManager, "shop")
+            DialogFragmentOrderDetail(shopElement.price).show(parentFragmentManager, "shop")
         }
+
 
         return binding.root
     }

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.dialog_fragment_order_detail.view.*
 //CONSULTA: https://www.youtube.com/watch?v=SkFcDWt9GV4
 // FARE TRANSAZIONI CON STRINGHE SOTTO AL COMMENTO "ANIMATION" NEL FILE STRINGS.XML!!!!!!!!!!!!
 
-class DialogFragmentOrderDetail : DialogFragment(){
+class DialogFragmentOrderDetail(val shopElementPrice: Int) : DialogFragment(){
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +21,9 @@ class DialogFragmentOrderDetail : DialogFragment(){
         savedInstanceState: Bundle?
     ): View {
         val rootView: View = inflater.inflate(R.layout.dialog_fragment_order_detail, container, false)
+
+        rootView.shop_detail_description.text = getString(R.string.order_detail_description, shopElementPrice)
+
         rootView.dialog_no_button.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> rootView.dialog_no_button.setImageResource(R.drawable.no_button_pressed)
@@ -42,8 +45,7 @@ class DialogFragmentOrderDetail : DialogFragment(){
         }
 
         rootView.dialog_yes_button.setOnClickListener{
-            val outcome = DialogOutcome()
-            outcome.show(parentFragmentManager, "outcome")
+            DialogOutcome().show(parentFragmentManager, "outcome")
             dismiss()
         }
 

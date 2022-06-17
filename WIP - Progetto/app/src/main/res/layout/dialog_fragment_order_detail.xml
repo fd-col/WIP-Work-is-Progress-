@@ -54,7 +54,7 @@
         android:layout_marginEnd="46dp"
         android:fontFamily="@font/press_start_2p"
         android:lineSpacingExtra="3sp"
-        android:text="@string/avatar_order_detail_description"
+        android:text="@string/order_detail_description"
         android:textAlignment="center"
         android:textColor="#0277BD"
         android:textSize="16sp"

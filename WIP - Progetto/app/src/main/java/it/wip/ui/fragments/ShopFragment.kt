@@ -218,9 +218,14 @@ class ShopFragment: Fragment(){
         }
     }
 
-    private fun fragmentTransactionOrderDetail(shopElement: ShopElement, avatarsTag: Int, avatarPrice: String, backgroundsTag: Int, backgroundPrice: String) {
+    private fun fragmentTransactionOrderDetail(
+        shopElement: ShopElement, avatarsTag: Int, avatarPrice: String, backgroundsTag: Int, backgroundPrice: String) {
 
-        val orderDetailFragment = OrderDetailFragment(shopElement)
+        val orderDetailFragment =
+            if(viewModel.shoppedElementNames.contains(shopElement.elementName))
+                OrderDetailFragment(shopElement, true)
+            else
+                OrderDetailFragment(shopElement, false)
 
         val bundle = Bundle()
 
