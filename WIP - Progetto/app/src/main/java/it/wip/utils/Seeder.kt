@@ -43,7 +43,12 @@ fun seed(wipDb: WIPDatabase) {
     )
 
     wipDb.storyDao().insertWithoutCoroutines(
-        Story(1, "Prova", "15-06-2022 11:00:12", 1),
-        Story(2, "Prova2", "16-06-2022 19:00:12",1)
+        Story(1, "Prova1", "15-06-2022 11:00:12", 1),
+        Story(2, "Prova2", "16-06-2022 19:00:12",1),
+        Story(3, "Prova3","17-06-2022 10:00:12",1),
+        Story(4,"Prova4", dateFormat.format(Date()).toString(), 1),
+        Story(5,"Prova5", dateFormat.format(Date()).toString(), 1)
     )
+
+
 }

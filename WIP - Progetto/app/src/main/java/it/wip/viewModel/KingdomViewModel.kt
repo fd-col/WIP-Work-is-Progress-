@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.StoryDao
 import it.wip.database.dao.UserDao
+import it.wip.database.model.Story
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -21,16 +22,21 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
     val storyName : LiveData<String>
         get() = _storyName
 
+    val storiesName = mutableListOf<String>()
+
     init {
 
         val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
-
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
 
-        val story = storyDao.getAllByUserWithoutCoroutines(userId)[0]
-        Log.e("story", story.toString())
-        _storyName.value = story.storyName
+        val story = storyDao.getAllByUserWithoutCoroutines(userId)
+        viewModelScope.launch {
+
+                for (singleStory in story) {
+                    storiesName.add(singleStory.storyName)
+                }
+
+        }
+
     }
-
-
 }

@@ -37,9 +37,28 @@ class KingdomActivity : AppCompatActivity() {
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
 
-        storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, viewModel.storyName.value!!,
-                "Chapters: 1"))
+        for (i in 0..viewModel.storiesName.lastIndex) {
+            if(i%2==0) {
+                storyList.add(
+                    DataKingdom(
+                        KingdomListAdapter.THE_FIRST_VIEW,
+                        viewModel.storiesName[i],
+                        "Chapters: 0"
+                    )
+                )
+            }
+            else {
+                storyList.add(
+                    DataKingdom(
+                        KingdomListAdapter.THE_SECOND_VIEW,
+                        viewModel.storiesName[i],
+                        "Chapters: 0"
+                    )
+                )
+            }
+        }
+
+        /*
         storyList.add(
             DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study",
                 "Chapters: $numChapters"
@@ -68,6 +87,9 @@ class KingdomActivity : AppCompatActivity() {
         storyList.add(
             DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "10. Geeks View 10", "Chapters: 1")
         )
+        */
+
+
         // data list of stories settled on the horizontal recyclerView inside the KingdomActivity
         val storyHorizontalList = ArrayList<DataKingdom>()
         for((i, item) in storyList.withIndex()) {
