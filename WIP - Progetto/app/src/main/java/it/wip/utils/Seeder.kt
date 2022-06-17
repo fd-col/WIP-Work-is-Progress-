@@ -8,7 +8,7 @@ import java.util.*
 fun seed(wipDb: WIPDatabase) {
 
     wipDb.userDao().insertWithoutCoroutines(
-        User(1, "Venere", 30F, 120F, 30)
+        User(1, "Venere", 30F, 120F, 150)
     )
 
     wipDb.shopElementDao().insertWithoutCoroutines(
@@ -18,13 +18,13 @@ fun seed(wipDb: WIPDatabase) {
         ShopElement("munch_scream", "avatar", "", 100),
         ShopElement("self_portrait", "avatar", "", 130),
         ShopElement("david", "avatar", "", 200),
-        ShopElement("creation_of_adam", "background", "", 250),
-        ShopElement("lovers", "background", "", 200),
-        ShopElement("weathfield_with_crows", "background", "", 300),
 
         ShopElement("the_scream", "background", "", 0),
         ShopElement("the_persistence_of_memory", "background", "", 0),
-        ShopElement("hopper_nighthawks", "background", "", 0)
+        ShopElement("hopper_nighthawks", "background", "", 0),
+        ShopElement("creation_of_adam", "background", "", 250),
+        ShopElement("lovers", "background", "", 200),
+        ShopElement("weathfield_with_crows", "background", "", 300)
     )
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ITALY)

@@ -39,13 +39,6 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
 
         binding.avatarName.text = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
 
-        buyButton.setOnTouchListener { v, event ->
-            when (event?.action) {
-                MotionEvent.ACTION_DOWN -> buyButton.setImageResource(R.drawable.buy_button_pressed)
-                MotionEvent.ACTION_UP -> buyButton.setImageResource(R.drawable.buy_button)
-            }
-            v?.onTouchEvent(event) ?: true
-        }
 
         backButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -63,10 +56,14 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
             v?.onTouchEvent(event) ?: true
         }
 
-        buyButton.setOnClickListener {
-            val dialogShop = DialogFragmentOrderDetail()
-            dialogShop.show(parentFragmentManager, "shop")
+        buyButton.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> buyButton.setImageResource(R.drawable.buy_button_pressed)
+                MotionEvent.ACTION_UP -> buyButton.setImageResource(R.drawable.buy_button)
+            }
+            v?.onTouchEvent(event) ?: true
         }
+
 
         backButton.setOnClickListener {
 
@@ -85,6 +82,11 @@ class OrderDetailFragment(val shopElement: ShopElement): Fragment() {
             val dialogHistoryInfo =
                 DialogInfo(getString(fromShopElementNameToDescription(shopElement.elementName)))
             dialogHistoryInfo.show(parentFragmentManager, "historyInfo")
+        }
+
+        buyButton.setOnClickListener {
+            val dialogShop = DialogFragmentOrderDetail()
+            dialogShop.show(parentFragmentManager, "shop")
         }
 
         return binding.root
