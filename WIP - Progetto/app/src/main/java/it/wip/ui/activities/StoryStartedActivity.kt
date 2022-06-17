@@ -5,24 +5,35 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.MotionEvent
-import android.widget.Chronometer
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import it.wip.MainActivity
 import it.wip.R
+import it.wip.databinding.ActivityStoryStartedBinding
 import it.wip.utils.fromShopElementNameToResource
+import it.wip.viewModel.StoryStartedViewModel
 
 class StoryStartedActivity : AppCompatActivity(){
+
+    private lateinit var viewModel: StoryStartedViewModel
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_story_started)
+
+        val binding: ActivityStoryStartedBinding = DataBindingUtil.setContentView(this, R.layout.activity_story_started)
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StoryStartedViewModel::class.java]
+
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
 
 
+        //              GUARDS
         /*
         * in riferimento al listener "setOnChronometerTickListener", che esegue il contenuto del
         * blocco {} ogni volta che trascorre un secondo, le variabili first, second e
@@ -33,7 +44,10 @@ class StoryStartedActivity : AppCompatActivity(){
         var secondAlreadyExecuted = true
         var thirdAlreadyExecuted = true
 
-        //          EXTRAS
+
+
+
+        //              EXTRAS
         val extras = intent.extras
         val avatar: String = extras?.get("selectedAvatar").toString()
         val floatStudyTime = extras?.get("studyTime").toString().toFloat()
@@ -41,9 +55,19 @@ class StoryStartedActivity : AppCompatActivity(){
         val studyTime = floatStudyTime.toLong()
         val breakTime = floatBreakTime.toLong()
 
-        val selectedAvatar = findViewById<ImageView>(R.id.companion_image_view)
-        selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
 
+
+
+        //              BINDING RESOURCES
+        val stopButton = binding.stopButton
+        val artwork = binding.canva
+        val cronometro = binding.simpleChronometer
+        val selectedAvatar = binding.companionImageView
+
+
+
+
+        //              TIME MANAGEMENT
         /*
         * study time rappresenta il numero di minuti; lo moltiplichiamo per 60000 per tale unità di
         * misura in millisecondi dato che il cronometro lavora con i millisecondi
@@ -59,24 +83,22 @@ class StoryStartedActivity : AppCompatActivity(){
         var timeRange3 = (leftValueRange3..(studyTime*60000)-40000)
         var pauseRange4 = (studyTime*60000..maxTime-40000)
 
-
-
         //slot temporali di prova; sostituire con quelli ricavati dallo slider
-
         //var maxTime = 40000
         //var timeRange1 = (5000..14000)
         //var timeRange2 = (15000..20000)
         //var timeRange3 = (21000..30000)
 
-        val stopButton = findViewById<ImageButton>(R.id.stop_button)
-        val artwork = findViewById<ImageView>(R.id.canva)
-        val cronometro = findViewById<Chronometer>(R.id.simpleChronometer)
+
+
+
+        //              BINDING RESOURCES METHODS AND RELATED CLASS METHODS
+        selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
         cronometro.start()
         cronometro.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
-        //invocazione metodo per scelta casuale del primo background tra quelli disponibili
+        // invocazione metodo per scelta casuale del primo background tra quelli disponibili
         var selectedArtwork = backgroundSelector(artwork)
-
 
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
@@ -133,7 +155,7 @@ class StoryStartedActivity : AppCompatActivity(){
             }
         }
 
-        stopButton?.setOnTouchListener { v, event ->
+        stopButton.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> stopButton.setImageResource(R.drawable.stop_button_pressed)
                 MotionEvent.ACTION_UP -> stopButton.setImageResource(R.drawable.stop_button)
@@ -141,10 +163,7 @@ class StoryStartedActivity : AppCompatActivity(){
             v?.onTouchEvent(event) ?: true
         }
 
-        stopButton?.setOnClickListener {
-            //firstAlreadyExecuted = true
-            //secondAlreadyExecuted = true
-            //thirdAlreadyExecuted = true
+        stopButton.setOnClickListener {
             cronometro.stop()
             startActivity(Intent(this, MainActivity::class.java))
         }
@@ -153,29 +172,45 @@ class StoryStartedActivity : AppCompatActivity(){
 
 
 
-    //          SCELTA DINAMICA DEL QUADRO
+    //              SCELTA DINAMICA DEL QUADRO
     private fun backgroundSelector (artwork: ImageView): Int{
+        val backgrounds = viewModel.backgroundShoppedElements
         var selectedArtwork = 1
 
         //il range è 1..3 perchè all'inizio abbiamo solo 3 quadri sbloccati
-        when ((1..3).random()) {
-            1 -> {
+        when (backgrounds.random()) {
+            "the_persistence_of_memory" -> {
                 artwork.setBackgroundResource(R.drawable.dali_1)
                 selectedArtwork = 1
             }
-            2 -> {
+            "hopper_nighthawks" -> {
                 artwork.setBackgroundResource(R.drawable.hopper_1)
                 selectedArtwork = 2
             }
-            3 -> {
+            "the_scream" -> {
                 artwork.setBackgroundResource(R.drawable.munch_bg_1)
                 selectedArtwork = 3
+            }
+            "creation_of_adam" -> {
+                artwork.setBackgroundResource(R.drawable.adam_1)
+                selectedArtwork = 4
+            }
+            "lovers" -> {
+                artwork.setBackgroundResource(R.drawable.magritte_kiss_1)
+                selectedArtwork = 5
+            }
+            "weathfield_with_crows" -> {
+                artwork.setBackgroundResource(R.drawable.field_with_crows_1)
+                selectedArtwork = 6
             }
         }
         return selectedArtwork
     }
 
-    //          AUTO-AGGIORNAMENTO DIPINTO MENTRE SCORRE IL TIMER
+
+
+
+    //              AUTO-AGGIORNAMENTO DIPINTO MENTRE SCORRE IL TIMER
     private fun backgroundEvolution(artwork: ImageView, artworkId: Int, artworkCurrentState:Int){
 
         when (artworkId) {
@@ -198,6 +233,27 @@ class StoryStartedActivity : AppCompatActivity(){
                     2 -> artwork.setBackgroundResource(R.drawable.munch_bg_2)
                     3 -> artwork.setBackgroundResource(R.drawable.munch_bg_3)
                     4 -> artwork.setBackgroundResource(R.drawable.munch_bg_4)
+                }
+            }
+            4 -> {
+                when (artworkCurrentState) {
+                    2 -> artwork.setBackgroundResource(R.drawable.adam_2)
+                    3 -> artwork.setBackgroundResource(R.drawable.adam_3)
+                    4 -> artwork.setBackgroundResource(R.drawable.adam_4)
+                }
+            }
+            5 -> {
+                when (artworkCurrentState) {
+                    2 -> artwork.setBackgroundResource(R.drawable.magritte_kiss_2)
+                    3 -> artwork.setBackgroundResource(R.drawable.magritte_kiss_3)
+                    4 -> artwork.setBackgroundResource(R.drawable.magritte_kiss_4)
+                }
+            }
+            6 -> {
+                when (artworkCurrentState) {
+                    2 -> artwork.setBackgroundResource(R.drawable.field_with_crows_2)
+                    3 -> artwork.setBackgroundResource(R.drawable.field_with_crows_3)
+                    4 -> artwork.setBackgroundResource(R.drawable.field_with_crows_4)
                 }
             }
         }
