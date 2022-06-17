@@ -1,145 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/splash_page_background">
+<layout>
 
+    <data>
+        <variable
+            name="viewModel"
+            type="it.wip.viewModel.StoryStartedViewModel" />
+    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/control_panel_up"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@drawable/background_control_panel_story_started_up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/splash_page_background">
 
-        <ImageView
-            android:id="@+id/companion_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/companion_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/control_panel_up"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/background_control_panel_story_started_up"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            android:background="@drawable/bonfire" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/messages_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/press_start_2p"
-            android:text="@string/incoraggiamento_1"
-            android:textColor="#0277BD"
-            android:textSize="24sp"
+            <ImageView
+                android:id="@+id/companion_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/companion_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:background="@drawable/bonfire" />
+
+            <TextView
+                android:id="@+id/messages_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="@string/incoraggiamento_1"
+                android:textColor="#0277BD"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/companion_image_view"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.505" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/control_panel_down"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@drawable/background_control_panel_story_started_down"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/companion_image_view"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.505" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent">
 
+            <Chronometer
+                android:id="@+id/simpleChronometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="18dp"
+                android:fontFamily="@font/press_start_2p"
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="@id/control_panel_down"
+                app:layout_constraintEnd_toEndOf="@id/control_panel_down"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@id/control_panel_down"
+                app:layout_constraintTop_toTopOf="@id/control_panel_down"
+                app:layout_constraintVertical_bias="1.0" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/stop_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="13dp"
+                android:background="@drawable/stop_button"
+                android:contentDescription="@string/stop_button_string"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/simpleChronometer"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="RedundantDescriptionCheck" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/control_panel_down"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:background="@drawable/background_control_panel_story_started_down"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Chronometer
-            android:id="@+id/simpleChronometer"
+        <ImageView
+            android:id="@+id/stand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="18dp"
-            android:fontFamily="@font/press_start_2p"
-            android:textColor="@color/white"
-            android:textSize="34sp"
-            app:layout_constraintBottom_toBottomOf="@id/control_panel_down"
-            app:layout_constraintEnd_toEndOf="@id/control_panel_down"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/control_panel_down"
-            app:layout_constraintTop_toTopOf="@id/control_panel_down"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageButton
-            android:id="@+id/stop_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="13dp"
-            android:background="@drawable/stop_button"
-            android:contentDescription="@string/stop_button_string"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/simpleChronometer"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="@string/stand"
+            app:layout_constraintBottom_toTopOf="@+id/control_panel_down"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="RedundantDescriptionCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/control_panel_up"
+            app:layout_constraintVertical_bias="0.423"
+            app:srcCompat="@drawable/story_stand" />
+
+        <ImageView
+            android:id="@+id/canva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="56dp"
+            android:background="@drawable/dali_1"
+            android:contentDescription="@string/artwork"
+            app:layout_constraintBottom_toBottomOf="@+id/stand"
+            app:layout_constraintEnd_toEndOf="@+id/stand"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/stand"
+            app:layout_constraintTop_toTopOf="@+id/stand"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <!--
+        <ImageView
+            android:id="@+id/artwork_off_stand"
+            android:layout_width="53dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/control_panel_down"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/my_gallery"
+            app:layout_constraintTop_toBottomOf="@+id/stand"
+            app:layout_constraintVertical_bias="0.503"
+            app:srcCompat="@drawable/dali_off_stand" />
+        -->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/stand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
-        android:contentDescription="@string/stand"
-        app:layout_constraintBottom_toTopOf="@+id/control_panel_down"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/control_panel_up"
-        app:layout_constraintVertical_bias="0.423"
-        app:srcCompat="@drawable/story_stand" />
-
-    <ImageView
-        android:id="@+id/canva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/dali_1"
-        android:contentDescription="@string/artwork"
-        app:layout_constraintBottom_toBottomOf="@+id/stand"
-        app:layout_constraintEnd_toEndOf="@+id/stand"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/stand"
-        app:layout_constraintTop_toTopOf="@+id/stand"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <!--
-    <ImageView
-        android:id="@+id/artwork_off_stand"
-        android:layout_width="53dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/control_panel_down"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/my_gallery"
-        app:layout_constraintTop_toBottomOf="@+id/stand"
-        app:layout_constraintVertical_bias="0.503"
-        app:srcCompat="@drawable/dali_off_stand" />
-    -->
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
