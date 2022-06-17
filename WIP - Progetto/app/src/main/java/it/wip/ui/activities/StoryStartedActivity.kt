@@ -2,6 +2,7 @@ package it.wip.ui.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.MotionEvent
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import it.wip.MainActivity
 import it.wip.R
 import it.wip.databinding.ActivityStoryStartedBinding
+import it.wip.utils.ScreenStateReceiver
+import it.wip.utils.encouragementQuotes
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.StoryStartedViewModel
 
@@ -63,6 +66,22 @@ class StoryStartedActivity : AppCompatActivity(){
         val artwork = binding.canva
         val cronometro = binding.simpleChronometer
         val selectedAvatar = binding.companionImageView
+        val quote = binding.messagesTextView
+
+
+
+
+        //              DEVICE WAKE-UP
+        // Scelta della prima quote che dice l'avatar
+        val firstEncouragementQuote = encouragementQuotes().random()
+        quote.setText(firstEncouragementQuote)
+
+        // Cambio quotes dell'avatar quando sblocchi il telefono
+        val intentFilter = IntentFilter(Intent.ACTION_SCREEN_ON)
+        intentFilter.addAction(Intent.ACTION_SCREEN_OFF)
+        var currentState = "study"
+        val mReceiver = ScreenStateReceiver(quote, currentState)
+        registerReceiver(mReceiver, intentFilter)
 
 
 
@@ -109,6 +128,7 @@ class StoryStartedActivity : AppCompatActivity(){
             * */
             if(myTime>=maxTime){
                 selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
+                currentState = "study"
                 firstAlreadyExecuted = true
                 secondAlreadyExecuted = true
                 thirdAlreadyExecuted = true
@@ -151,6 +171,7 @@ class StoryStartedActivity : AppCompatActivity(){
                 }
                 in pauseRange4 -> {
                     selectedAvatar.setBackgroundResource(R.drawable.bonfire)
+                    currentState = "pause"
                 }
             }
         }

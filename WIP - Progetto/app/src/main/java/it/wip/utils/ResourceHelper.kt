@@ -63,3 +63,41 @@ fun fromShopElementNameToDescription(shopElementName: String): Int {
     }
 
 }
+
+
+//          FUNZIONE PER LA RACCOLTA DELLE FRASI DI INCORAGGIAMENTO
+fun encouragementQuotes():MutableList<Int>{
+    val allQuotes = mutableListOf<Int>()
+    val quote1: Int = R.string.incoraggiamento_1
+    val quote2: Int = R.string.incoraggiamento_2
+    val quote3: Int = R.string.incoraggiamento_3
+    val quote4: Int = R.string.incoraggiamento_4
+    val quote5: Int = R.string.incoraggiamento_5
+    val quote6: Int = R.string.incoraggiamento_6
+
+    allQuotes.add(quote1)
+    allQuotes.add(quote2)
+    allQuotes.add(quote3)
+    allQuotes.add(quote4)
+    allQuotes.add(quote5)
+    allQuotes.add(quote6)
+
+    return allQuotes
+}
+
+
+//          FUNZIONE PER LA RACCOLTA DELLE FRASI DI PAUSA
+fun pauseQuotes():MutableList<Int>{
+    val allQuotes = mutableListOf<Int>()
+    val quote1: Int = R.string.pausa_1
+    val quote2: Int = R.string.pausa_2
+    val quote3: Int = R.string.pausa_3
+    val quote4: Int = R.string.pausa_4
+
+    allQuotes.add(quote1)
+    allQuotes.add(quote2)
+    allQuotes.add(quote3)
+    allQuotes.add(quote4)
+
+    return allQuotes
+}

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,9 +9,7 @@
             type="it.wip.viewModel.StoryStartedViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/splash_page_background">
@@ -36,22 +36,33 @@
                 app:layout_constraintVertical_bias="0.0"
                 android:background="@drawable/bonfire" />
 
-            <TextView
-                android:id="@+id/messages_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/incoraggiamento_1"
-                android:textColor="#0277BD"
-                android:textSize="24sp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/companion_image_view"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.505" />
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/messages_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/incoraggiamento_1"
+                    android:textAlignment="center"
+                    android:textColor="#0277BD"
+                    android:textSize="24sp" />
+
+            </ScrollView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,23 +142,6 @@
             app:layout_constraintStart_toStartOf="@+id/stand"
             app:layout_constraintTop_toTopOf="@+id/stand"
             app:layout_constraintVertical_bias="0.0" />
-
-
-        <!--
-        <ImageView
-            android:id="@+id/artwork_off_stand"
-            android:layout_width="53dp"
-            android:layout_height="34dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/control_panel_down"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/my_gallery"
-            app:layout_constraintTop_toBottomOf="@+id/stand"
-            app:layout_constraintVertical_bias="0.503"
-            app:srcCompat="@drawable/dali_off_stand" />
-        -->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
