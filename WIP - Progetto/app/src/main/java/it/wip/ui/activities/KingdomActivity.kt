@@ -13,6 +13,7 @@ import it.wip.R
 import it.wip.data.DataKingdom
 import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
+import it.wip.utils.KingdomListAdapter
 import it.wip.viewModel.KingdomViewModel
 
 class KingdomActivity : AppCompatActivity() {
@@ -27,28 +28,25 @@ class KingdomActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[KingdomViewModel::class.java]
-
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
+
+        val numChapters : Int = 2
+
 
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
 
         storyList.add(
-            DataKingdom(
-                KingdomListAdapter.THE_FIRST_VIEW,
-                viewModel.storyName.value!!,
-                "Chapters: 1"
-            )
-        )
-        Log.e("error", viewModel.storyName.value!!)
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, viewModel.storyName.value!!,
+                "Chapters: 1"))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study", "Chapters: 1")
-        )
+            DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "Study",
+                "Chapters: $numChapters"
+            ))
         storyList.add(
-            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, "3. Geeks View 3", "Chapters: 1")
-        )
+            DataKingdom(KingdomListAdapter.THE_FIRST_VIEW, viewModel.storyName.value!!,
+                "Chapters: 1"))
         storyList.add(
             DataKingdom(KingdomListAdapter.THE_SECOND_VIEW, "4. Geeks View 4", "Chapters: 1")
         )

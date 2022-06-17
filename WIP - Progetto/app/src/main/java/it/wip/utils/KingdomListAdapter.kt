@@ -1,4 +1,4 @@
-package it.wip.ui.activities
+package it.wip.utils
 
 import android.content.Context
 import android.view.LayoutInflater

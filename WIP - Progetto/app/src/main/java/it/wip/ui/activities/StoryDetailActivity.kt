@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import it.wip.R
 import it.wip.data.DataKingdom
 import it.wip.ui.fragments.MenuFragment
+import it.wip.utils.KingdomListAdapter
 
 class StoryDetailActivity(): AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
