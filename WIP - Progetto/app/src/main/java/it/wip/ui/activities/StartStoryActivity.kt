@@ -128,16 +128,16 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
-        avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarsName[0]))
+        avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarShoppedElements[0]))
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = ""
 
         binding.avatarSxButton.setOnClickListener {
             avatarTag--
             if(avatarTag < 0) {
-                avatarTag = viewModel.avatarsName.size - 1
+                avatarTag = viewModel.avatarShoppedElements.size - 1
             }
-            val tempAvatar = viewModel.avatarsName[avatarTag]
+            val tempAvatar = viewModel.avatarShoppedElements[avatarTag]
 
             avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
             selectedAvatar = tempAvatar
@@ -145,10 +145,10 @@ class StartStoryActivity : AppCompatActivity() {
 
         binding.avatarDxButton.setOnClickListener {
             avatarTag++
-            if(avatarTag + 1 > viewModel.avatarsName.size) {
+            if(avatarTag + 1 > viewModel.avatarShoppedElements.size) {
                 avatarTag = 0
             }
-            val tempAvatar = viewModel.avatarsName[avatarTag]
+            val tempAvatar = viewModel.avatarShoppedElements[avatarTag]
 
             avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
             selectedAvatar = tempAvatar

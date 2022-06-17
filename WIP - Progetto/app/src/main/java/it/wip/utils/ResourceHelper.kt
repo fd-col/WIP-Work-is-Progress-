@@ -15,6 +15,10 @@ fun fromShopElementNameToLocalizedName(shopElementName: String): Int {
         "lovers" -> R.string.magritte_kiss
         "weathfield_with_crows" -> R.string.weathfield_with_crows
 
+        "the_scream" -> R.string.the_scream
+        "the_persistence_of_memory" -> R.string.the_persistence_of_memory
+        "hopper_nighthawks" -> R.string.hopper_nighthawks
+
         else -> {R.string.app_name}
     }
 
@@ -33,6 +37,9 @@ fun fromShopElementNameToResource(shopElementName: String): Int {
         "creation_of_adam" -> R.drawable.adam_off_stand
         "lovers" -> R.drawable.magritte_kiss_off_stand
         "weathfield_with_crows" -> R.drawable.field_with_crows_off_stand
+        "the_scream" -> R.drawable.munch_off_stand
+        "the_persistence_of_memory" -> R.drawable.dali_off_stand
+        "hopper_nighthawks" -> R.drawable.hopper_off_stand
 
         else -> { R.drawable.venere }
     }

@@ -24,6 +24,10 @@ fun seed(wipDb: WIPDatabase) {
         ShopElement("creation_of_adam", "background", "", 250),
         ShopElement("lovers", "background", "", 200),
         ShopElement("weathfield_with_crows", "background", "", 300),
+
+        ShopElement("the_scream", "background", "", 0),
+        ShopElement("the_persistence_of_memory", "background", "", 0),
+        ShopElement("hopper_nighthawks", "background", "", 0)
     )
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ITALY)
@@ -31,7 +35,11 @@ fun seed(wipDb: WIPDatabase) {
     wipDb.shoppedDao().insertWithoutCoroutines(
         Shopped(1, "girl_with_pearl_earring", dateFormat.format(Date())),
         Shopped(1, "magritte_apple", dateFormat.format(Date())),
-        Shopped(1, "venus", dateFormat.format(Date()))
+        Shopped(1, "venus", dateFormat.format(Date())),
+
+        Shopped(1, "the_scream", dateFormat.format(Date())),
+        Shopped(1, "the_persistence_of_memory", dateFormat.format(Date())),
+        Shopped(1, "hopper_nighthawks", dateFormat.format(Date()))
     )
 
     wipDb.storyDao().insertWithoutCoroutines(

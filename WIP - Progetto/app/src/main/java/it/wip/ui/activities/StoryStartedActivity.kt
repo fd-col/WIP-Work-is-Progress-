@@ -54,10 +54,10 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //time range in cui evolvere l'opera d'arte
         var maxTime: Long = (studyTime+breakTime)*60000
-        var timeRange1 = (leftValueRange1..leftValueRange1+40000)
-        var timeRange2 = (leftValueRange2..leftValueRange2+40000)
-        var timeRange3 = (leftValueRange3..leftValueRange3+40000)
-        var pauseRange4 = (studyTime*60000..(studyTime+60000)+40000)
+        var timeRange1 = (leftValueRange1..leftValueRange2-40000)
+        var timeRange2 = (leftValueRange2..leftValueRange3-40000)
+        var timeRange3 = (leftValueRange3..(studyTime*60000)-40000)
+        var pauseRange4 = (studyTime*60000..maxTime-40000)
 
 
 
@@ -90,10 +90,10 @@ class StoryStartedActivity : AppCompatActivity(){
                 firstAlreadyExecuted = true
                 secondAlreadyExecuted = true
                 thirdAlreadyExecuted = true
-                timeRange1 = (maxTime+leftValueRange1..maxTime+leftValueRange1+40000)
-                timeRange2 = (maxTime+leftValueRange2..maxTime+leftValueRange2+40000)
-                timeRange3 = (maxTime+leftValueRange3..maxTime+leftValueRange3+40000)
-                pauseRange4 = ((studyTime*60000)+maxTime..(studyTime+60000)+40000+maxTime)
+                timeRange1 = (maxTime+leftValueRange1..maxTime+leftValueRange2-40000)
+                timeRange2 = (maxTime+leftValueRange2..maxTime+leftValueRange3-40000)
+                timeRange3 = (maxTime+leftValueRange3..maxTime+(studyTime*60000)-40000)
+                pauseRange4 = ((studyTime*60000)+maxTime..maxTime+maxTime-40000)
                 maxTime+=maxTime
 
                 // porzione di codice che evita di farmi vedere due volte di fila lo stesso quadro

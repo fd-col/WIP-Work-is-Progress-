@@ -2,7 +2,6 @@ package it.wip.viewModel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
 import kotlinx.coroutines.launch
@@ -30,22 +29,42 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
-    val avatarsName = mutableListOf<String>()
+    //val avatarsName = mutableListOf<String>()
+    val allShoppedElements = mutableListOf<String>()
+    val shopElements = mutableListOf<String>()
+
+
+    val avatarShoppedElements = mutableListOf<String>()
 
     init {
 
         val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
-
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
-
         val wipDb = WIPDatabase.getInstance(application.applicationContext)
 
         viewModelScope.launch {
             runBlocking {
-                val avatars = wipDb.shoppedDao().getAllByUser(userId)
+                val currentShoppedElements = wipDb.shoppedDao().getAllByUser(userId)
+                val allElements = wipDb.shopElementDao().getAll()
 
-                for(avatar in avatars)
-                    avatarsName.add(avatar.shopElement)
+                for(i in currentShoppedElements){
+                    //avatarsName.add(avatar.shopElement)
+                    allShoppedElements.add(i.shopElement)
+                }
+                for (i in allElements){
+                    if(i.type == "avatar"){
+                        shopElements.add(i.elementName)
+                    }
+                }
+
+                for(i in allShoppedElements){
+                    for(j in shopElements){
+                        if(i==j){
+                            avatarShoppedElements.add(i)
+                        }
+                    }
+                }
+
             }
 
             val user = wipDb.userDao().getUserById(userId)
