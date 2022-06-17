@@ -11,6 +11,8 @@ import it.wip.database.WIPDatabase
 import it.wip.database.model.ShopElement
 import it.wip.utils.fromShopElementNameToDescription
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.LinkedHashMap
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,6 +23,8 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
     val avatars = mutableListOf<ShopElement>()
 
     val backgrounds = mutableListOf<ShopElement>()
+
+    val shoppedElementNames = mutableListOf<String>()
 
     init {
 
@@ -44,6 +48,11 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
                 else
                     backgrounds.add(shopElement)
             }
+
+            val shoppedElements = wipDb.shoppedDao().getAllByUser(userId)
+
+            for(shoppedElement in shoppedElements)
+                shoppedElementNames.add(shoppedElement.shopElement)
 
         }
 
