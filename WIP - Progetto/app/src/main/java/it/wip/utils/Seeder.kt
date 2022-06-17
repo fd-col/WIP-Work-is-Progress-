@@ -1,10 +1,7 @@
 package it.wip.utils
 
 import it.wip.database.WIPDatabase
-import it.wip.database.model.ShopElement
-import it.wip.database.model.Shopped
-import it.wip.database.model.Story
-import it.wip.database.model.User
+import it.wip.database.model.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,8 +44,26 @@ fun seed(wipDb: WIPDatabase) {
         Story(2, "Prova2", "16-06-2022 19:00:12",1),
         Story(3, "Prova3","17-06-2022 10:00:12",1),
         Story(4,"Prova4", dateFormat.format(Date()).toString(), 1),
-        Story(5,"Prova5", dateFormat.format(Date()).toString(), 1)
+        Story(5,"Prova5", dateFormat.format(Date()).toString(), 1),
+        Story(6,"Prova6", dateFormat.format(Date()).toString(), 1),
+        Story(7,"Prova7", dateFormat.format(Date()).toString(), 1),
     )
 
+    wipDb.chapterDao().insertWithoutCoroutines(
+        Chapter(1, "Capitolo1",
+            "1.07.56", "17/06/22 10.20.20", 1, 1),
+        Chapter(2, "Capitolo2",
+        "1.07.56", "17/06/22 15.20.20", 3, 1),
+        Chapter(3, "Capitolo3",
+        "1.07.56", "17/06/22 16.20.20", 3, 1),
+        Chapter(4, "Capitolo4",
+        "1.07.56", "17/06/2022 16.20.20", 2, 1),
+        Chapter(5, "Capitolo5",
+            "1.07.56", "17/06/22 17.20.20", 2, 1),
+        Chapter(6, "Capitolo6",
+            "1.07.56", "17/06/22 18.20.20", 1, 1),
+        Chapter(7, "Capitolo7",
+            "1.07.56", "17/06/22 19.20.20", 1, 1)
+    )
 
 }
