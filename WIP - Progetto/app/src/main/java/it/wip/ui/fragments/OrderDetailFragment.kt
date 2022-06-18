@@ -2,13 +2,13 @@ package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import it.wip.ui.dialogs.DialogFragmentOrderDetail
 import it.wip.ui.dialogs.DialogInfo
 import it.wip.R
@@ -17,8 +17,9 @@ import it.wip.databinding.FragmentOrderDetailBinding
 import it.wip.utils.fromShopElementNameToDescription
 import it.wip.utils.fromShopElementNameToLocalizedName
 import it.wip.utils.fromShopElementNameToResource
+import it.wip.viewModel.DialogOrderDetailViewModel
 
-class OrderDetailFragment(val shopElement: ShopElement, val unlocked: Boolean): Fragment() {
+class OrderDetailFragment(val shopElement: ShopElement, private val unlocked: Boolean): Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -91,7 +92,7 @@ class OrderDetailFragment(val shopElement: ShopElement, val unlocked: Boolean): 
         }
 
         buyButton.setOnClickListener {
-            DialogFragmentOrderDetail(shopElement.price).show(parentFragmentManager, "shop")
+            DialogFragmentOrderDetail(shopElement).show(parentFragmentManager, "shop")
         }
 
 

@@ -9,10 +9,10 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "favourite_avatar")
-    val favouriteAvatar: String,
+    var favouriteAvatar: String,
     @ColumnInfo(name = "work_time")
-    val studyTime: Float,
+    var studyTime: Float,
     @ColumnInfo(name = "max_work_time")
-    val maxStudyTime: Float,
-    val coins: Int
+    var maxStudyTime: Float,
+    var coins: Int
 )
