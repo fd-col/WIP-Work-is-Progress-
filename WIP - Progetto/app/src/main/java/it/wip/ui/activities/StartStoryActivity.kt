@@ -130,7 +130,7 @@ class StartStoryActivity : AppCompatActivity() {
         val avatar = binding.avatar
         avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarShoppedElements[0]))
         var avatarTag = avatar.tag.toString().toInt()
-        var selectedAvatar = ""
+        var selectedAvatar = "girl_with_pearl_earring"
 
         binding.avatarSxButton.setOnClickListener {
             avatarTag--

@@ -21,6 +21,8 @@ import it.wip.viewModel.StoryStartedViewModel
 
 class StoryStartedActivity : AppCompatActivity(){
 
+    //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAA
+
     private lateinit var viewModel: StoryStartedViewModel
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
@@ -55,8 +57,8 @@ class StoryStartedActivity : AppCompatActivity(){
         val avatar: String = extras?.get("selectedAvatar").toString()
         val floatStudyTime = extras?.get("studyTime").toString().toFloat()
         val floatBreakTime = extras?.get("breakTime").toString().toFloat()
-        val studyTime = floatStudyTime.toLong()
-        val breakTime = floatBreakTime.toLong()
+        val studyTime = ((floatStudyTime.toLong())*60000)
+        val breakTime = ((floatBreakTime.toLong())*60000)
 
 
 
@@ -94,13 +96,14 @@ class StoryStartedActivity : AppCompatActivity(){
         val leftValueRange1 = ((floatStudyTime/4)*60000).toLong()
         val leftValueRange2 = leftValueRange1 + leftValueRange1
         val leftValueRange3 = leftValueRange2 + leftValueRange1
+        var actualTime: Long = 0
 
         //time range in cui evolvere l'opera d'arte
-        var maxTime: Long = (studyTime+breakTime)*60000
+        var maxTime: Long = studyTime+breakTime
         var timeRange1 = (leftValueRange1..leftValueRange2-40000)
         var timeRange2 = (leftValueRange2..leftValueRange3-40000)
-        var timeRange3 = (leftValueRange3..(studyTime*60000)-40000)
-        var pauseRange4 = (studyTime*60000..maxTime-40000)
+        var timeRange3 = (leftValueRange3..studyTime-40000)
+        var pauseRange4 = (studyTime..maxTime-40000)
 
         //slot temporali di prova; sostituire con quelli ricavati dallo slider
         //var maxTime = 40000
@@ -122,6 +125,7 @@ class StoryStartedActivity : AppCompatActivity(){
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
             val myTime = (SystemClock.elapsedRealtime() - cronometro.base)
+            actualTime = myTime
             /*
             * if(myTime>=maxTime){...} è il blocco di codice che mette un nuovo quadro e lo fa
             * evolvere quando un quadro viene completamente dipinto
@@ -134,8 +138,8 @@ class StoryStartedActivity : AppCompatActivity(){
                 thirdAlreadyExecuted = true
                 timeRange1 = (maxTime+leftValueRange1..maxTime+leftValueRange2-40000)
                 timeRange2 = (maxTime+leftValueRange2..maxTime+leftValueRange3-40000)
-                timeRange3 = (maxTime+leftValueRange3..maxTime+(studyTime*60000)-40000)
-                pauseRange4 = ((studyTime*60000)+maxTime..maxTime+maxTime-40000)
+                timeRange3 = (maxTime+leftValueRange3..maxTime+studyTime-40000)
+                pauseRange4 = (studyTime+maxTime..maxTime+maxTime-40000)
                 maxTime+=maxTime
 
                 // porzione di codice che evita di farmi vedere due volte di fila lo stesso quadro
@@ -186,6 +190,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
         stopButton.setOnClickListener {
             cronometro.stop()
+            viewModel.coinCalculator(studyTime, breakTime, actualTime)
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
