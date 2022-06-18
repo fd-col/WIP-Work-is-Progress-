@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var _coins = MutableLiveData(0)
+    private val _coins = MutableLiveData(0)
     val coins: LiveData<Int>
         get() = _coins
 
