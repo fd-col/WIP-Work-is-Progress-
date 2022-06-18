@@ -2,17 +2,13 @@ package it.wip.viewModel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
 import it.wip.database.model.ShopElement
-import it.wip.utils.fromShopElementNameToDescription
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.LinkedHashMap
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
 

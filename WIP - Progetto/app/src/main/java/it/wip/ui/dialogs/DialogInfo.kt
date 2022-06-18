@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import it.wip.R
-import kotlinx.android.synthetic.main.dialog_info.view.*
+import it.wip.databinding.DialogInfoBinding
 
 class DialogInfo(private val description: String) : DialogFragment(){
     @SuppressLint("ClickableViewAccessibility")
@@ -17,22 +18,26 @@ class DialogInfo(private val description: String) : DialogFragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val rootView: View = inflater.inflate(R.layout.dialog_info, container, false)
 
-        rootView.info_dialog_description.text = description
+        val binding: DialogInfoBinding =
+            DataBindingUtil.inflate(inflater, R.layout.dialog_info, container, false)
 
-        rootView.info_dialog_okay_button.setOnTouchListener { v, event ->
+        val okayButton = binding.infoDialogOkayButton
+
+       binding.infoDialogDescription.text = description
+
+        okayButton.setOnTouchListener { v, event ->
             when (event?.action) {
-                MotionEvent.ACTION_DOWN -> rootView.info_dialog_okay_button.setImageResource(R.drawable.okay_button_pressed)
-                MotionEvent.ACTION_UP -> rootView.info_dialog_okay_button.setImageResource(R.drawable.okay_button)
+                MotionEvent.ACTION_DOWN -> okayButton.setImageResource(R.drawable.okay_button_pressed)
+                MotionEvent.ACTION_UP -> okayButton.setImageResource(R.drawable.okay_button)
             }
             v?.onTouchEvent(event) ?: true
         }
 
-        rootView.info_dialog_okay_button.setOnClickListener{
+        okayButton.setOnClickListener{
             dismiss()
         }
 
-        return rootView
+        return binding.root
     }
 }

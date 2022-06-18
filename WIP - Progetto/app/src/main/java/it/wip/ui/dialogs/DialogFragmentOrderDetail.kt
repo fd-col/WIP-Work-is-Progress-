@@ -2,7 +2,6 @@ package it.wip.ui.dialogs
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -68,9 +67,13 @@ class DialogFragmentOrderDetail(private val shopElement: ShopElement) : DialogFr
 
         dialogYesButton.setOnClickListener{
 
-            viewModel.buyShopElement(shopElement.price)
+            var shopped = false
 
-            DialogOutcome().show(parentFragmentManager, "outcome")
+            if(viewModel.buyShopElement(shopElement.price))
+                shopped = true
+
+            DialogOutcome(shopped).show(parentFragmentManager, "outcome")
+
             dismiss()
         }
 
