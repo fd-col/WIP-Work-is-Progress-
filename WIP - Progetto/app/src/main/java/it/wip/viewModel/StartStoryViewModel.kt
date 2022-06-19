@@ -1,7 +1,9 @@
 package it.wip.viewModel
 
 import android.app.Application
+import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.media.AudioManager
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
 import kotlinx.coroutines.launch
@@ -83,6 +85,19 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     fun setStudyBreakTime(studyTime: Float) {
         this._studyTime.value = studyTime
         this._breakTime.value = this._maxStudyTime.value?.minus(this._studyTime.value!!)
+    }
+
+    fun silenceNormal(context: Context, state: Boolean): Boolean{
+        var switchState = state
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        if(switchState){
+            audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
+            switchState = false
+        }else{
+            audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
+            switchState = true
+        }
+        return switchState
     }
 
 }

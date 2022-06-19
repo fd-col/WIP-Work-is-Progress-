@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.ui.dialogs.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
-
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.StartStoryViewModel
 
@@ -52,8 +51,21 @@ class StartStoryActivity : AppCompatActivity() {
 
         }
 
+
+
+
+
+
+
+        
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+
+        var switchState = true
+        applicationContext
+        binding.switchSilentMode.setOnClickListener{
+            switchState = viewModel.silenceNormal(applicationContext, switchState)
+        }
 
         binding.backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

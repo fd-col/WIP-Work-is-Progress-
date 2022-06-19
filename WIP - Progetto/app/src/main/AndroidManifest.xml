@@ -4,6 +4,9 @@
     package="it.wip"
     tools:ignore="LockedOrientationActivity">
 
+    <!-- Permesso per settare il telefono in modalità silenziosa -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
