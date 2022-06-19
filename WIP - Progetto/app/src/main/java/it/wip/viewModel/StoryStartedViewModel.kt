@@ -53,9 +53,18 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
 
     fun coinCalculator(studyTime: Long, breakTime: Long, actualTime: Long){
-        val meritCoefficient = studyTime/breakTime
+        var meritCoefficient = studyTime/breakTime
+        if(meritCoefficient<1){
+            meritCoefficient = 1
+        }
         val studyPlusPause = studyTime+breakTime
-        val earnedCoins = (meritCoefficient*(actualTime/studyPlusPause)).toInt()
+        val earnedCoins: Int
+
+        if(actualTime>studyPlusPause){
+            earnedCoins = (meritCoefficient*(actualTime/studyPlusPause)).toInt()
+        }else{
+            earnedCoins = (meritCoefficient*(actualTime/studyTime)).toInt()
+        }
 
         viewModelScope.launch {
             val user = db.userDao().getUserById(id)
