@@ -52,7 +52,7 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
 
 
-    fun coinCalculator(studyTime: Long, breakTime: Long, actualTime: Long){
+    fun coinCalculator(studyTime: Long, breakTime: Long, actualTime: Long): String{
         var meritCoefficient = studyTime/breakTime
         if(meritCoefficient<1){
             meritCoefficient = 1
@@ -71,5 +71,7 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
             user.coins = user.coins+earnedCoins
             db.userDao().update(user)
         }
+
+        return earnedCoins.toString()
     }
 }

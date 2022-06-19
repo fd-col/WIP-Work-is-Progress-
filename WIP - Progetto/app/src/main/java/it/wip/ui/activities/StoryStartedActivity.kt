@@ -11,10 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import it.wip.MainActivity
 import it.wip.R
 import it.wip.databinding.ActivityStoryStartedBinding
-import it.wip.ui.dialogs.DialogInfo
+import it.wip.ui.dialogs.DialogCoins
 import it.wip.utils.*
 import it.wip.viewModel.StoryStartedViewModel
 
@@ -194,10 +193,9 @@ class StoryStartedActivity : AppCompatActivity(){
 
         stopButton.setOnClickListener {
             cronometro.stop()
-            viewModel.coinCalculator(studyTime, breakTime, actualTime)
-            //val dialogCoin = DialogInfo(infoType = 1, coins = 1)
-            //dialogCoin.show(supportFragmentManager, "coinInfo")
-            startActivity(Intent(this, MainActivity::class.java))
+            val coinsReceived = viewModel.coinCalculator(studyTime, breakTime, actualTime)
+            val dialogCoin = DialogCoins(coinsReceived)
+            dialogCoin.show(supportFragmentManager, "coinInfo")
         }
     }
 
