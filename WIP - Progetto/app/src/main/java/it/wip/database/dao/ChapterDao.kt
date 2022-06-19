@@ -2,7 +2,6 @@ package it.wip.database.dao
 
 import androidx.room.*
 import it.wip.database.model.Chapter
-import it.wip.database.model.Story
 
 @Dao
 interface ChapterDao {

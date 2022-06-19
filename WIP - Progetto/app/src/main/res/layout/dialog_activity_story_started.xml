@@ -1,233 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <ImageView
-        android:id="@+id/dialog_background"
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/info_dialog"
-        android:contentDescription="@string/dialog_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="282dp"
-        android:layout_height="384dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/dialog_background"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:background="@drawable/info_dialog"
+            android:contentDescription="@string/dialog_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/info_silent_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/silent_mode"
-                android:textColor="#0277BD"
-                android:textSize="23sp"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="282dp"
+            android:layout_height="384dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-            <TextView
-                android:id="@+id/info_silent_mode_quote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/shhh"
-                android:textColor="#0277BD"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/info_silent_mode_description"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/press_start_2p"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/silent_mode_description"
-                android:textAlignment="center"
-                android:textColor="#0277BD"
-                android:textSize="14sp" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/silent_hardcore_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/sh_divider"
-                android:textColor="#0277BD"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/info_silent_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/silent_mode"
+                    android:textColor="#0277BD"
+                    android:textSize="23sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
 
-            <TextView
-                android:id="@+id/info_hardcore_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/hardcore_mode"
-                android:textColor="#0277BD"
-                android:textSize="21sp"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/info_silent_mode_quote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/shhh"
+                    android:textColor="#0277BD"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/info_hardcore_mode_quote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/grrr"
-                android:textColor="#0277BD"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/info_silent_mode_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/silent_mode_description"
+                    android:textAlignment="center"
+                    android:textColor="#0277BD"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/info_hardcore_mode_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/press_start_2p"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/hardcore_mode_description"
-                android:textAlignment="center"
-                android:textColor="#0277BD"
-                android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/silent_hardcore_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/sh_divider"
+                    android:textColor="#0277BD"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/dialog_okay_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#00FFFFFF"
-                android:contentDescription=""
-                app:srcCompat="@drawable/okay_button" />
-        </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/info_hardcore_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/hardcore_mode"
+                    android:textColor="#0277BD"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
 
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+                <TextView
+                    android:id="@+id/info_hardcore_mode_quote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/press_start_2p"
+                    android:text="@string/grrr"
+                    android:textColor="#0277BD"
+                    android:textSize="16sp" />
 
-    <ImageView
-        android:id="@+id/dialog_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/dialog_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dialog_352_484" />
+                <TextView
+                    android:id="@+id/info_hardcore_mode_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/press_start_2p"
+                    android:lineSpacingExtra="3sp"
+                    android:text="@string/hardcore_mode_description"
+                    android:textAlignment="center"
+                    android:textColor="#0277BD"
+                    android:textSize="14sp" />
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dialog_background"
-        app:layout_constraintEnd_toEndOf="@+id/dialog_background"
-        app:layout_constraintStart_toStartOf="@+id/dialog_background"
-        app:layout_constraintTop_toTopOf="@+id/dialog_background"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/info_silent_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/silent_mode"
-                android:textColor="#0277BD"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/info_silent_mode_quote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/shhh"
-                android:textColor="#0277BD"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/info_silent_mode_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/press_start_2p"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/silent_mode_description"
-                android:textColor="#0277BD"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/silent_hardcore_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/sh_divider"
-                android:textColor="#0277BD"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/info_hardcore_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/hardcore_mode"
-                android:textColor="#0277BD"
-                android:textSize="21sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/info_hardcore_mode_quote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/press_start_2p"
-                android:text="@string/grrr"
-                android:textColor="#0277BD"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/info_hardcore_mode_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/press_start_2p"
-                android:lineSpacingExtra="3sp"
-                android:text="@string/hardcore_mode_description"
-                android:textColor="#0277BD"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
--->
+                <ImageButton
+                    android:id="@+id/dialog_okay_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#00FFFFFF"
+                    android:contentDescription=""
+                    app:srcCompat="@drawable/okay_button" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

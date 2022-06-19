@@ -11,17 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import it.wip.MainActivity
 import it.wip.R
 import it.wip.databinding.ActivityStoryStartedBinding
-import it.wip.utils.ScreenStateReceiver
-import it.wip.utils.encouragementQuotes
-import it.wip.utils.fromShopElementNameToResource
+import it.wip.ui.dialogs.DialogCoins
+import it.wip.utils.*
 import it.wip.viewModel.StoryStartedViewModel
 
 class StoryStartedActivity : AppCompatActivity(){
-
-    //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAA
 
     private lateinit var viewModel: StoryStartedViewModel
 
@@ -41,13 +37,14 @@ class StoryStartedActivity : AppCompatActivity(){
         //              GUARDS
         /*
         * in riferimento al listener "setOnChronometerTickListener", che esegue il contenuto del
-        * blocco {} ogni volta che trascorre un secondo, le variabili first, second e
-        * thirdAlreadyExecuted garantiscono che la funzione "backgroundEvolution" venga eseguita
+        * blocco {} ogni volta che trascorre un secondo, le variabili first, second, third e
+        * fourthAlreadyExecuted garantiscono che la funzione "backgroundEvolution" venga eseguita
         * una sola volta per slot temporale
         * */
         var firstAlreadyExecuted = true
         var secondAlreadyExecuted = true
         var thirdAlreadyExecuted = true
+        var fourthAlreadyExecuted = true
 
 
 
@@ -57,8 +54,30 @@ class StoryStartedActivity : AppCompatActivity(){
         val avatar: String = extras?.get("selectedAvatar").toString()
         val floatStudyTime = extras?.get("studyTime").toString().toFloat()
         val floatBreakTime = extras?.get("breakTime").toString().toFloat()
+
+
+
+
+        //              TIME MANAGEMENT
+        /*
+        * study time rappresenta il tempo di studio espresso in minuti; lo moltiplichiamo per 60000
+        * al fine di tradurre tale misura in millisecondi dato che il cronometro lavora con i
+        * millisecondi; analogamente accade con le altre variabili espresse in questa sezione.
+        * */
         val studyTime = ((floatStudyTime.toLong())*60000)
         val breakTime = ((floatBreakTime.toLong())*60000)
+        val step1 = ((floatStudyTime/4)*60000).toLong()
+        val step2 = step1 + step1
+        val step3 = step2 + step1
+
+        var leftValueRange1 = step1
+        var leftValueRange2 = step2
+        var leftValueRange3 = step3
+        var pauseMoment = studyTime
+        var actualTime: Long = 0
+
+        //time range in cui evolvere l'opera d'arte
+        var maxTime: Long = studyTime+breakTime
 
 
 
@@ -76,40 +95,15 @@ class StoryStartedActivity : AppCompatActivity(){
         //              DEVICE WAKE-UP
         // Scelta della prima quote che dice l'avatar
         val firstEncouragementQuote = encouragementQuotes().random()
+        val firstPauseQuote = pauseQuotes().random()
         quote.setText(firstEncouragementQuote)
 
         // Cambio quotes dell'avatar quando sblocchi il telefono
         val intentFilter = IntentFilter(Intent.ACTION_SCREEN_ON)
         intentFilter.addAction(Intent.ACTION_SCREEN_OFF)
         var currentState = "study"
-        val mReceiver = ScreenStateReceiver(quote, currentState)
+        var mReceiver = ScreenStateReceiver(quote, currentState)
         registerReceiver(mReceiver, intentFilter)
-
-
-
-
-        //              TIME MANAGEMENT
-        /*
-        * study time rappresenta il numero di minuti; lo moltiplichiamo per 60000 per tale unità di
-        * misura in millisecondi dato che il cronometro lavora con i millisecondi
-        * */
-        val leftValueRange1 = ((floatStudyTime/4)*60000).toLong()
-        val leftValueRange2 = leftValueRange1 + leftValueRange1
-        val leftValueRange3 = leftValueRange2 + leftValueRange1
-        var actualTime: Long = 0
-
-        //time range in cui evolvere l'opera d'arte
-        var maxTime: Long = studyTime+breakTime
-        var timeRange1 = (leftValueRange1..leftValueRange2-40000)
-        var timeRange2 = (leftValueRange2..leftValueRange3-40000)
-        var timeRange3 = (leftValueRange3..studyTime-40000)
-        var pauseRange4 = (studyTime..maxTime-40000)
-
-        //slot temporali di prova; sostituire con quelli ricavati dallo slider
-        //var maxTime = 40000
-        //var timeRange1 = (5000..14000)
-        //var timeRange2 = (15000..20000)
-        //var timeRange3 = (21000..30000)
 
 
 
@@ -128,19 +122,29 @@ class StoryStartedActivity : AppCompatActivity(){
             actualTime = myTime
             /*
             * if(myTime>=maxTime){...} è il blocco di codice che mette un nuovo quadro e lo fa
-            * evolvere quando un quadro viene completamente dipinto
+            * evolvere quando un quadro viene completamente dipinto.
+            *
+            * gli altri esle if(..){}  costituiscono il blocco di codice che mi evolve il quadro a seconda dello slot
+            * temporale in cui mi trovo
             * */
             if(myTime>=maxTime){
                 selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
-                currentState = "study"
                 firstAlreadyExecuted = true
                 secondAlreadyExecuted = true
                 thirdAlreadyExecuted = true
-                timeRange1 = (maxTime+leftValueRange1..maxTime+leftValueRange2-40000)
-                timeRange2 = (maxTime+leftValueRange2..maxTime+leftValueRange3-40000)
-                timeRange3 = (maxTime+leftValueRange3..maxTime+studyTime-40000)
-                pauseRange4 = (studyTime+maxTime..maxTime+maxTime-40000)
+                fourthAlreadyExecuted = true
+                leftValueRange1 = maxTime+step1
+                leftValueRange2 = maxTime+step2
+                leftValueRange3 = maxTime+step3
+                pauseMoment = maxTime+studyTime
                 maxTime+=maxTime
+
+                // setto il receiver in modo che mostri quotes di incoraggiamento
+                unregisterReceiver(mReceiver)
+                currentState = "study"
+                mReceiver = ScreenStateReceiver(quote, currentState)
+                registerReceiver(mReceiver, intentFilter)
+                quote.setText(firstEncouragementQuote)
 
                 // porzione di codice che evita di farmi vedere due volte di fila lo stesso quadro
                 var newSelectedArtwork = backgroundSelector(artwork)
@@ -148,34 +152,33 @@ class StoryStartedActivity : AppCompatActivity(){
                     newSelectedArtwork = backgroundSelector(artwork)
                 }
                 selectedArtwork = newSelectedArtwork
-            }
-
-            /*
-            * when (myTime){...} è il blocco di codice che mi evolve il quadro a seconda dello slot
-            * temporale in cui mi trovo
-            * */
-            when (myTime){
-                in timeRange1 -> {
-                    if(firstAlreadyExecuted) {
-                        backgroundEvolution(artwork, selectedArtwork, 2)
-                        firstAlreadyExecuted = false
-                    }
-                }
-                in timeRange2 -> {
-                    if(secondAlreadyExecuted) {
-                        backgroundEvolution(artwork, selectedArtwork, 3)
-                        secondAlreadyExecuted = false
-                    }
-                }
-                in timeRange3 -> {
-                    if(thirdAlreadyExecuted) {
-                        backgroundEvolution(artwork, selectedArtwork, 4)
-                        thirdAlreadyExecuted = false
-                    }
-                }
-                in pauseRange4 -> {
+            }else if(myTime>=pauseMoment){
+                if(fourthAlreadyExecuted) {
+                    backgroundEvolution(artwork, selectedArtwork, 4)
+                    fourthAlreadyExecuted = false
                     selectedAvatar.setBackgroundResource(R.drawable.bonfire)
+
+                    // setto il receiver in modo che mostri quotes relative alla pausa
+                    unregisterReceiver(mReceiver)
                     currentState = "pause"
+                    mReceiver = ScreenStateReceiver(quote, currentState)
+                    registerReceiver(mReceiver, intentFilter)
+                    quote.setText(firstPauseQuote)
+                }
+            }else if(myTime>=leftValueRange3){
+                if(thirdAlreadyExecuted) {
+                    backgroundEvolution(artwork, selectedArtwork, 4)
+                    thirdAlreadyExecuted = false
+                }
+            }else if(myTime>=leftValueRange2){
+                if(secondAlreadyExecuted) {
+                    backgroundEvolution(artwork, selectedArtwork, 3)
+                    secondAlreadyExecuted = false
+                }
+            } else if(myTime>=leftValueRange1){
+                if(firstAlreadyExecuted) {
+                    backgroundEvolution(artwork, selectedArtwork, 2)
+                    firstAlreadyExecuted = false
                 }
             }
         }
@@ -190,8 +193,9 @@ class StoryStartedActivity : AppCompatActivity(){
 
         stopButton.setOnClickListener {
             cronometro.stop()
-            viewModel.coinCalculator(studyTime, breakTime, actualTime)
-            startActivity(Intent(this, MainActivity::class.java))
+            val coinsReceived = viewModel.coinCalculator(studyTime, breakTime, actualTime)
+            val dialogCoin = DialogCoins(coinsReceived)
+            dialogCoin.show(supportFragmentManager, "coinInfo")
         }
     }
 

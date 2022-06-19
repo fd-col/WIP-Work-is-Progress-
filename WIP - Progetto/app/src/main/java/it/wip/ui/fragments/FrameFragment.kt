@@ -40,7 +40,7 @@ class FrameFragment: Fragment(R.layout.fragment_frame) {
 
         }
         //action when shop button on the layout is pressed
-        shopButton?.setOnClickListener() {
+        shopButton?.setOnClickListener {
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.replace(R.id.frame_layout, ShopFragment())

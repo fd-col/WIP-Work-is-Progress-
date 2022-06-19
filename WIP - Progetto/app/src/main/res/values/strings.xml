@@ -175,6 +175,12 @@
     <string name="info_dialog_title">A little\nStory about\nArt</string>
     <string name="info_dialog_quote">\"Gulp\"</string>
 
+    <string name="coin_dialog_title">Payday</string>
+    <string name="coin_dialog_quote">\"Cha Ching\"</string>
+    <string name="coin_dialog_description_1">You earned</string>
+    <string name="coin_dialog_description_2">0</string>
+    <string name="coin_dialog_description_3">coins</string>
+
 
 
 

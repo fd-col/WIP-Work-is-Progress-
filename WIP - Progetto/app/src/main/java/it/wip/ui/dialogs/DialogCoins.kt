@@ -1,6 +1,7 @@
 package it.wip.ui.dialogs
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -8,10 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import it.wip.MainActivity
 import it.wip.R
-import it.wip.databinding.DialogInfoBinding
+import it.wip.databinding.DialogCoinsBinding
 
-class DialogInfo(private val description: String) : DialogFragment(){
+class DialogCoins(val coins: String) : DialogFragment(){
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,12 +21,13 @@ class DialogInfo(private val description: String) : DialogFragment(){
         savedInstanceState: Bundle?
     ): View {
 
-        val binding: DialogInfoBinding =
-            DataBindingUtil.inflate(inflater, R.layout.dialog_info, container, false)
+        val binding: DialogCoinsBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_coins, container, false)
 
-        val okayButton = binding.infoDialogOkayButton
 
-       binding.infoDialogDescription.text = description
+        val okayButton = binding.coinDialogOkayButton
+        val earnedCoins = binding.coinDialogDescription2
+        earnedCoins.text = coins
+
 
         okayButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -35,7 +38,10 @@ class DialogInfo(private val description: String) : DialogFragment(){
         }
 
         okayButton.setOnClickListener{
-            dismiss()
+            startActivity(Intent(activity, MainActivity::class.java))
+        }
+        dialog?.setOnCancelListener{
+            startActivity(Intent(activity, MainActivity::class.java))
         }
 
         return binding.root

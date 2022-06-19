@@ -3,21 +3,13 @@ package it.wip
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
-import it.wip.database.model.User
 import it.wip.databinding.ActivityMainBinding
 import it.wip.ui.fragments.FrameFragment
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
 import it.wip.utils.seed
-import it.wip.viewModel.ShopViewModel
-import it.wip.viewModel.StartStoryViewModel
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
