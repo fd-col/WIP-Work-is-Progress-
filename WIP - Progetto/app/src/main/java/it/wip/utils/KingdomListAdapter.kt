@@ -93,24 +93,24 @@ class KingdomListAdapter(private val context: Context, var list: ArrayList<DataK
             THE_FIRST_VIEW -> {
                 return KingdomViewHolder(
                     LayoutInflater.from(context)
-                        .inflate(R.layout.kingdom_story_left_item, parent, false)
+                        .inflate(R.layout.item_kingdom_story_left, parent, false)
                 )
             }
             THE_SECOND_VIEW -> return KingdomViewHolder2(
                 LayoutInflater.from(context)
-                    .inflate(R.layout.kingdom_story_right_item, parent, false)
+                    .inflate(R.layout.item_kingdom_story_right, parent, false)
             )
             THE_THIRD_VIEW -> return KingdomViewHolder3(
                 LayoutInflater.from(context)
-                    .inflate(R.layout.kingdom_chapter_left_item, parent, false)
+                    .inflate(R.layout.item_kingdom_chapter_left, parent, false)
             )
             THE_FORTH_VIEW -> return KingdomViewHolder4(
                 LayoutInflater.from(context)
-                    .inflate(R.layout.kingdom_chapter_right_item, parent, false)
+                    .inflate(R.layout.item_kingdom_chapter_right, parent, false)
             )
             else -> return KingdomHorizontalViewHolder(
                 LayoutInflater.from(context)
-                    .inflate(R.layout.kingdom_header_item, parent, false)
+                    .inflate(R.layout.item_kingdom_header, parent, false)
             )
         }
     }

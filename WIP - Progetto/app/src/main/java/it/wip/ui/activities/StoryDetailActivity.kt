@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,6 +17,7 @@ import it.wip.databinding.ActivityStoryDetailBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.utils.KingdomListAdapter
 import it.wip.viewModel.StoryDetailViewModel
+import org.w3c.dom.Text
 
 class StoryDetailActivity: AppCompatActivity() {
 
@@ -34,41 +36,55 @@ class StoryDetailActivity: AppCompatActivity() {
 
         val rv = findViewById<RecyclerView>(R.id.recycler_vertical_details)
         val backButton = findViewById<ImageButton>(R.id.back_button_story_detail)
+        val storyDetailTitle = findViewById<TextView>(R.id.story_detail_title)
+
+        val storyTitle = intent.getStringExtra("storyName")
+        storyDetailTitle.text = storyTitle
+
+        var numTotChapters: MutableList<Int> = mutableListOf()
+        var numChapters = 0
 
 
         val storyDetailList = ArrayList<DataKingdom>()
 
         for (i in 0..viewModel.chaptersName.lastIndex) {
             if (i % 2 == 0) {
-                storyDetailList.add(
-                    DataKingdom(
-                        KingdomListAdapter.THE_FIRST_VIEW,
-                        viewModel.chaptersName[i],
-                        "",
-                        date = "17/06/2022",
-                        time = "1.02.23"
+                //get intent extra "storyPosition" from the KingdomActivity
+                val storyPosition = this.intent.getIntExtra("storyPosition", 3)
+                //check the storyIDs inside the List of chapters are equals to the storyPositions, used as storyID
+                if(viewModel.chapterStoryId[i] == storyPosition) {
+
+                    storyDetailList.add(
+                        DataKingdom(
+                            KingdomListAdapter.THE_THIRD_VIEW,
+                            viewModel.chaptersName[i],
+                            "",
+                            viewModel.chapterDates[i],
+                            viewModel.chapterTimes[i]
+                        )
                     )
-                )
+                    numChapters++
+                }
             } else {
-                storyDetailList.add(
-                    DataKingdom(
-                        KingdomListAdapter.THE_SECOND_VIEW,
-                        viewModel.chaptersName[i],
-                        "",
-                        date = "17/06/2022",
-                        time = "1.02.23"
+                //get the storyPosition from the KingdomActivity
+                var storyPosition = this.intent.getIntExtra("storyPosition", 3)
+                //check the storyIDs inside the List of chapters are equals to the storyPosition used as storyID
+                if(viewModel.chapterStoryId[i] == storyPosition) {
+
+                    storyDetailList.add(
+                        DataKingdom(
+                            KingdomListAdapter.THE_FORTH_VIEW,
+                            viewModel.chaptersName[i],
+                            "",
+                            viewModel.chapterDates[i],
+                            viewModel.chapterTimes[i]
+                        )
                     )
-                )
+                    numChapters++
+                }
             }
+            numTotChapters.add(numChapters)
         }
-            /*
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Capitolo1", date = "11/11/2022", time = "1.01.23"))
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_FORTH_VIEW, "Capitolo2", date = "11/11/2022", time = "1.01.23"))
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Capitolo3", date = "11/11/2022", time = "1.01.23"))
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_FORTH_VIEW, "Capitolo4", date = "11/11/2022", time = "1.01.23"))
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_THIRD_VIEW, "Capitolo5", date = "11/11/2022", time = "1.01.23"))
-        storyDetailList.add(DataKingdom(KingdomListAdapter.THE_FORTH_VIEW, "Capitolo6", date = "11/11/2022", time = "1.01.23"))
-*/
 
         // method for activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
@@ -82,6 +98,7 @@ class StoryDetailActivity: AppCompatActivity() {
         rv.layoutManager = LinearLayoutManager(this)
         val rvAdapter = KingdomListAdapter(this, storyDetailList, itemClickListener = itemOnClick)
         rv.adapter = rvAdapter
+
 
 
         // add the menu fragment to the bottom of StoryDetailActivity
@@ -100,6 +117,6 @@ class StoryDetailActivity: AppCompatActivity() {
             }
             v?.onTouchEvent(event) ?: true
         }
-
     }
+
 }

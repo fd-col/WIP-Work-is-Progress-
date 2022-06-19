@@ -2,7 +2,6 @@ package it.wip.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -32,18 +31,17 @@ class KingdomActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-
+        val numChapters = 1
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
 
-        val numChapters : Int = 2
         for (i in 0..viewModel.storiesName.lastIndex) {
             if(i%2==0) {
                 storyList.add(
                     DataKingdom(
                         KingdomListAdapter.THE_FIRST_VIEW,
                         viewModel.storiesName[i],
-                        "Chapters:  $numChapters"
+                        "Chapters: $numChapters"
                     )
                 )
             }
@@ -52,7 +50,7 @@ class KingdomActivity : AppCompatActivity() {
                     DataKingdom(
                         KingdomListAdapter.THE_SECOND_VIEW,
                         viewModel.storiesName[i],
-                        "Chapters: 0"
+                        "Chapters: $numChapters"
                     )
                 )
             }
@@ -69,11 +67,15 @@ class KingdomActivity : AppCompatActivity() {
         val rvV = findViewById<RecyclerView>(R.id.rv_vertical)
         val rvH = findViewById<RecyclerView>(R.id.rv_horizontal)
 
-        // method for activate the new activity StoryDetailActivity when clicked the single story
+        // method to activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
             rvV.adapter!!.notifyDataSetChanged()
-            Toast.makeText(this,"$position. item clicked.",Toast.LENGTH_SHORT).show()
+            val realPosition = position+1 //add 1 because the count start from 0
+            Toast.makeText(this,"$realPosition. item clicked.",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StoryDetailActivity()::class.java)
+
+            intent.putExtra("storyPosition", "$realPosition".toInt())
+            intent.putExtra("storyName", storyList[position].title)
             startActivity(intent)
         }
 

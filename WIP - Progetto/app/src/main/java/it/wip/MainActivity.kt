@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
 
+
         val userDao = WIPDatabase.getInstance(applicationContext).userDao()
 
         val userId = try {
@@ -49,6 +50,24 @@ class MainActivity : AppCompatActivity() {
         val editor = userIdPreference.edit()
         editor.putInt("userId", userId)
         editor.apply()
+
+
+/*ROVA
+        val storyDao = WIPDatabase.getInstance(applicationContext).storyDao()
+
+        val storyId = try {
+            storyDao.getAllByUserWithoutCoroutines(userId)[0].id
+        } catch (ex: ArrayIndexOutOfBoundsException) {
+            seed(WIPDatabase.getInstance(applicationContext))
+            storyDao.getAllByUserWithoutCoroutines(userId)[0].id
+        }
+
+        val storyIdPreference = applicationContext.getSharedPreferences("storyId", Context.MODE_PRIVATE)
+        val editor2 = storyIdPreference.edit()
+        editor2.putInt("storyId", userId)
+        editor2.apply()
+
+ */
 
     }
 }

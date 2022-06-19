@@ -34,6 +34,7 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
 
         val story = storyDao.getAllByUserWithoutCoroutines(userId)
         val chapter = chapterDao.getAllByUserWithoutCoroutines(userId)
+
         viewModelScope.launch {
                 for (singleStory in story) {
                     storiesName.add(singleStory.storyName)

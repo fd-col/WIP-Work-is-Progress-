@@ -13,19 +13,26 @@ class StoryDetailViewModel(application: Application) : AndroidViewModel(applicat
     var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
 
     val chaptersName = mutableListOf<String>()
-    val storiesCorrelated = mutableListOf<Int>()
+    val chapterStoryId = mutableListOf<Int>()
+    val chapterDates = mutableListOf<String>()
+    val chapterTimes = mutableListOf<String>()
 
     init {
 
         val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
+/*PROVA
+        val storyIdPreference = application.applicationContext.getSharedPreferences("storyId", Context.MODE_PRIVATE)
+        val storyId = storyIdPreference.getInt("storyId", Context.MODE_PRIVATE)
 
+ */
         val chapter = chapterDao.getAllByUserWithoutCoroutines(userId)
         viewModelScope.launch {
-
             for(singleChapter in chapter) {
                 chaptersName.add(singleChapter.chapterName)
-                storiesCorrelated.add(singleChapter.story) // story returns the story's id correlated to the chapter
+                chapterStoryId.add(singleChapter.story)
+                chapterDates.add(singleChapter.createdOn)
+                chapterTimes.add(singleChapter.time)
             }
         }
 
