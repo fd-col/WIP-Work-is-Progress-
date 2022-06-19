@@ -79,6 +79,16 @@ class KingdomActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // method to change focus inside KingdomActivity to a single story clicked
+        val itemHorizontalOnClick: (Int) -> Unit = { position ->
+            rvV.adapter!!.notifyDataSetChanged()
+            val realPosition = position+1 //add 1 because the count start from 0
+            Toast.makeText(this,"$realPosition. item clicked.",Toast.LENGTH_SHORT).show()
+
+            rvH.scrollToPosition(position)
+            rvV.scrollToPosition(position)
+        }
+
 
         // assign layout and adapter to the vertical (background of KingdomActivity) recycleView
         rvV.layoutManager = LinearLayoutManager(this)
@@ -87,7 +97,7 @@ class KingdomActivity : AppCompatActivity() {
 
         // assign layout and adapter to the horizontal (header of KingdomActivity) recycleView
         rvH.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val rvHAdapter = KingdomListAdapter(this, storyHorizontalList, itemClickListener = itemOnClick)
+        val rvHAdapter = KingdomListAdapter(this, storyHorizontalList, itemClickListener = itemHorizontalOnClick)
         rvH.adapter = rvHAdapter
 
 
