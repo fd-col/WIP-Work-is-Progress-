@@ -36,6 +36,28 @@
     <string name="back_button">Button to return to home</string>
     <string name="info_button">Button to describe the optional settings</string>
     <string name="slider">Seekbar that allows you to select the working time and the pause time</string>
+    <string name="work">work</string>
+    <string name="pause">pause</string>
+
+    <!-- Story started -->
+    <string name="stop_button_string">Button to end the productivity session</string>
+    <string name="companion_icon">Selected avatar</string>
+    <string name="stand">Easel</string>
+    <string name="artwork">Canvas</string>
+
+    <!-- Story started: motivational phrases -->
+    <string name="incoraggiamento_1">Good Luck!</string>
+    <string name="incoraggiamento_2">Lock the device!</string>
+    <string name="incoraggiamento_3">Put the device away</string>
+    <string name="incoraggiamento_4">Don\'t lose focus</string>
+    <string name="incoraggiamento_5">Don\'t give up!</string>
+    <string name="incoraggiamento_6">Give all of yourself</string>
+
+    <!-- Story started: pause -->
+    <string name="pausa_1">Great work!</string>
+    <string name="pausa_2">Here, have a little break</string>
+    <string name="pausa_3">Well done!</string>
+    <string name="pausa_4">Coffee break</string>
 
     <!-- Shop -->
     <string name="shop_string" translatable="false">Shop</string>
@@ -106,33 +128,6 @@
         The Lovers represents the conflict between true identity and the image of a person in
         the mind of his lover.\n</string>
 
-    <!-- Chapter info -->
-    <string name="chapter_info">Chapter\nInfo</string>
-    <string name="date_and_time">Date &amp; Time</string>
-    <string name="avatar_text" translatable="false">Avatar</string>
-    <string name="chapter_info_start">Start:</string>
-    <string name="chapter_info_end">End:</string>
-
-    <!-- Story started -->
-    <string name="stop_button_string">Button to end the productivity session</string>
-    <string name="companion_icon">Selected avatar</string>
-    <string name="stand">Easel</string>
-    <string name="artwork">Canvas</string>
-
-    <!-- Story started: motivational phrases -->
-    <string name="incoraggiamento_1">Good Luck!</string>
-    <string name="incoraggiamento_2">Lock the device!</string>
-    <string name="incoraggiamento_3">Put the device away</string>
-    <string name="incoraggiamento_4">Don\'t lose focus</string>
-    <string name="incoraggiamento_5">Don\'t give up!</string>
-    <string name="incoraggiamento_6">Give all of yourself</string>
-
-    <!-- Story started: pause -->
-    <string name="pausa_1">Great work!</string>
-    <string name="pausa_2">Here, have a little break</string>
-    <string name="pausa_3">Well done!</string>
-    <string name="pausa_4">Coffee break</string>
-
     <!-- kingdom -->
     <string name="descrizione_immagine_story">background image inside the story </string>
     <string name="story_title">Story Title</string>
@@ -150,10 +145,18 @@
     <string name="todo">TODO</string>
     <string name="icon_search_button">search button inside own kingdom</string>
 
+    <!-- Chapter info -->
+    <string name="chapter_info">Chapter\nInfo</string>
+    <string name="date_and_time">Date &amp; Time</string>
+    <string name="avatar_text" translatable="false">Avatar</string>
+    <string name="chapter_info_start">Start:</string>
+    <string name="chapter_info_end">End:</string>
+
     <!-- settings -->
-    <string name="change_time">Study/Break</string>
-    <string name="story_time_limit">limite storia\n(minuti)</string>
+    <string name="change_time">Work/Break</string>
+    <string name="story_time_limit">Time limit\n(minutes)</string>
     <string name="left_hand_mode">Lefthand mode</string>
+    <!-- ???? -->
     <string name="info_text">Information</string>
     <string name="info_text_button_settings">info button about the app</string>
 

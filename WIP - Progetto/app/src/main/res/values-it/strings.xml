@@ -27,6 +27,28 @@
     <string name="back_button">Bottone per tornare alla home</string>
     <string name="info_button">Bottone per descrivere le impostazioni opzionali</string>
     <string name="slider">Barra di posizionamento che permette di selezionare il tempo di lavoro ed il tempo di pausa</string>
+    <string name="work">lavoro</string>
+    <string name="pause">pausa</string>
+
+    <!-- Story started -->
+    <string name="stop_button_string">Bottone per terminare la sessione di produttività</string>
+    <string name="companion_icon">Avatar selezionato</string>
+    <string name="stand">Cavalletto</string>
+    <string name="artwork">Tela</string>
+
+    <!-- Story started: motivational phrases -->
+    <string name="incoraggiamento_1">Buona fortuna!</string>
+    <string name="incoraggiamento_2">Blocca il dispositivo!</string>
+    <string name="incoraggiamento_3">Metti via il dispositivo</string>
+    <string name="incoraggiamento_4">Non perdere il ritmo</string>
+    <string name="incoraggiamento_5">Non mollare!</string>
+    <string name="incoraggiamento_6">Dai tutto te stesso</string>
+
+    <!-- Story started: pause -->
+    <string name="pausa_1">Ottimo lavoro!</string>
+    <string name="pausa_2">Fai una piccola pausa</string>
+    <string name="pausa_3">Ben fatto!</string>
+    <string name="pausa_4">Pausa caffè</string>
 
     <!-- Shop -->
     <string name="buy_avatars_string">Compra avatar</string>
@@ -90,24 +112,12 @@
     <string name="chapter_info_start">Inizio:</string>
     <string name="chapter_info_end">Fine:</string>
 
-    <!-- Story started -->
-    <string name="stop_button_string">Bottone per terminare la sessione di produttività</string>
-    <string name="companion_icon">Avatar selezionato</string>
-    <string name="stand">Cavalletto</string>
-    <string name="artwork">Tela</string>
-
-    <!-- Story started: motivational phrases -->
-    <string name="incoraggiamento_1">Buona fortuna!</string>
-    <string name="incoraggiamento_2">Blocca il dispositivo!</string>
-    <string name="incoraggiamento_3">Metti via il dispositivo</string>
-    <string name="incoraggiamento_4">Non perdere il ritmo</string>
-    <string name="incoraggiamento_5">Non mollare!</string>
-    <string name="incoraggiamento_6">Dai tutto te stesso</string>
-
-    <!-- Story started: pause -->
-    <string name="pausa_1">Ottimo lavoro!</string>
-    <string name="pausa_2">Fai una piccola pausa</string>
-    <string name="pausa_3">Ben fatto!</string>
-    <string name="pausa_4">Pausa caffè</string>
+    <!-- settings -->
+    <string name="change_time">Lavoro/Pausa</string>
+    <string name="story_time_limit">Tempo limite\n(minuti)</string>
+    <string name="left_hand_mode">Modalità mancino</string>
+    <!-- ???? -->
+    <string name="info_text">Information</string>
+    <string name="info_text_button_settings">info button about the app</string>
 
 </resources>

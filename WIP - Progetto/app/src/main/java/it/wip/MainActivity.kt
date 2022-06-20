@@ -3,6 +3,7 @@ package it.wip
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import it.wip.database.WIPDatabase
 import it.wip.databinding.ActivityMainBinding
@@ -42,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         val editor = userIdPreference.edit()
         editor.putInt("userId", userId)
         editor.apply()
-
 
 /*ROVA
         val storyDao = WIPDatabase.getInstance(applicationContext).storyDao()

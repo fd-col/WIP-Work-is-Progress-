@@ -47,7 +47,8 @@ class StartStoryActivity : AppCompatActivity() {
 
         seekBarStoryTime.setLabelFormatter {
 
-            "${viewModel.studyTime.value!!.toInt()} min study/${viewModel.breakTime.value?.toInt()} min pause"
+            "${viewModel.studyTime.value!!.toInt()} min " +
+                    getString(R.string.work) + "/${viewModel.breakTime.value?.toInt()} min " + getString(R.string.pause)
 
         }
 
