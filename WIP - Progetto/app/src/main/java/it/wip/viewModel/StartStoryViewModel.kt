@@ -31,6 +31,9 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
+    private val _switchState = MutableLiveData(true)
+    private val _hSwitchState = MutableLiveData(true)
+
     //val avatarsName = mutableListOf<String>()
     private val allShoppedElements = mutableListOf<String>()
     private val shopElements = mutableListOf<String>()
@@ -90,46 +93,46 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
-    // SWITCH SILENT MODE - NORMAL MODE
-    fun silenceNormal(context: Context, state: Boolean): Boolean{
-        var switchState = state
+    //              SWITCH SILENT MODE - NORMAL MODE
+    fun silenceNormal(context: Context){
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        if(switchState){
+        if(_switchState.value!!){
             audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-            switchState = false
+            _switchState.value = false
         }else{
             audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-            switchState = true
+            _switchState.value = true
         }
-        return switchState
     }
 
 
 
 
-    // SWITCH SILENT MODE - HARDCORE MODE
-    fun hardcoreMode(switchSilentMode: Switch, switch1: Boolean, switch2: Boolean, context: Context): Array<Boolean> {
+    //              SWITCH SILENT MODE - HARDCORE MODE
+    fun hardcoreMode(switchSilentMode: Switch, context: Context){
 
-        var switchState = switch1
-        var hSwitchState = switch2
-        if (switchState && hSwitchState) {
+        if (_switchState.value!! && _hSwitchState.value!!) {
             switchSilentMode.isChecked = true
-            silenceNormal(context, switchState)
-            switchState = false
-            hSwitchState = false
+            silenceNormal(context)
+            _switchState.value = false
+            _hSwitchState.value = false
             switchSilentMode.isClickable = false
-        } else if (!switchState && !hSwitchState) {
+        } else if (!_switchState.value!! && !_hSwitchState.value!!) {
             switchSilentMode.isChecked = false
-            silenceNormal(context, switchState)
-            switchState = true
-            hSwitchState = true
+            silenceNormal(context)
+            _switchState.value = true
+            _hSwitchState.value = true
             switchSilentMode.isClickable = true
-        } else if (!switchState && hSwitchState) {
-            hSwitchState = false
-            switchState = false
+        } else if (!_switchState.value!! && _hSwitchState.value!!) {
+            _switchState.value = false
+            _hSwitchState.value = false
             switchSilentMode.isClickable = false
         }
+    }
 
-        return arrayOf(switchState, hSwitchState)
+
+    //              RETURN SELECTED MODE
+    fun selectedMode(): Int {
+        return if (_hSwitchState.value!!) { 0 } else { 1 }
     }
 }

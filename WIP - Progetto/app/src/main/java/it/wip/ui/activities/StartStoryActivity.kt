@@ -58,17 +58,13 @@ class StartStoryActivity : AppCompatActivity() {
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
-        var switchState = true
+
         binding.switchSilentMode.setOnClickListener{
-            switchState = viewModel.silenceNormal(applicationContext, switchState)
+            viewModel.silenceNormal(applicationContext)
         }
 
-        var hSwitchState = true
-        var flagArray: Array<Boolean>
         binding.switchHardcoreMode.setOnClickListener{
-            flagArray = viewModel.hardcoreMode(binding.switchSilentMode, switchState, hSwitchState, applicationContext)
-            switchState = flagArray[0]
-            hSwitchState = flagArray[1]
+            viewModel.hardcoreMode(binding.switchSilentMode, applicationContext)
         }
 
 
@@ -179,11 +175,10 @@ class StartStoryActivity : AppCompatActivity() {
         binding.startButton.setOnClickListener {
 
             val intent = Intent(this, StoryStartedActivity::class.java)
-
             intent.putExtra("studyTime", viewModel.studyTime.value)
             intent.putExtra("breakTime", viewModel.breakTime.value)
             intent.putExtra("selectedAvatar", selectedAvatar)
-
+            intent.putExtra("mode", viewModel.selectedMode())
             startActivity(intent)
 
         }
