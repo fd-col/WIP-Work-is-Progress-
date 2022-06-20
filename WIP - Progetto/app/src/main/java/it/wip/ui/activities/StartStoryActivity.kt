@@ -54,18 +54,28 @@ class StartStoryActivity : AppCompatActivity() {
 
 
 
-
-
-
-        
+        //              SWITCH
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
         var switchState = true
-        applicationContext
         binding.switchSilentMode.setOnClickListener{
             switchState = viewModel.silenceNormal(applicationContext, switchState)
         }
+
+        var hSwitchState = true
+        var flagArray: Array<Boolean>
+        binding.switchHardcoreMode.setOnClickListener{
+            flagArray = viewModel.hardcoreMode(binding.switchSilentMode, switchState, hSwitchState, applicationContext)
+            switchState = flagArray[0]
+            hSwitchState = flagArray[1]
+        }
+
+
+
+
+
+
 
         binding.backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

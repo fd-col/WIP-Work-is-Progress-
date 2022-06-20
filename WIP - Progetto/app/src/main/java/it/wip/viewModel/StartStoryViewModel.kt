@@ -1,9 +1,9 @@
 package it.wip.viewModel
 
 import android.app.Application
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.media.AudioManager
+import android.widget.Switch
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
 import kotlinx.coroutines.launch
@@ -32,8 +32,8 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         get() = _breakTime
 
     //val avatarsName = mutableListOf<String>()
-    val allShoppedElements = mutableListOf<String>()
-    val shopElements = mutableListOf<String>()
+    private val allShoppedElements = mutableListOf<String>()
+    private val shopElements = mutableListOf<String>()
 
 
     val avatarShoppedElements = mutableListOf<String>()
@@ -87,6 +87,10 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         this._breakTime.value = this._maxStudyTime.value?.minus(this._studyTime.value!!)
     }
 
+
+
+
+    // SWITCH SILENT MODE - NORMAL MODE
     fun silenceNormal(context: Context, state: Boolean): Boolean{
         var switchState = state
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -100,4 +104,32 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         return switchState
     }
 
+
+
+
+    // SWITCH SILENT MODE - HARDCORE MODE
+    fun hardcoreMode(switchSilentMode: Switch, switch1: Boolean, switch2: Boolean, context: Context): Array<Boolean> {
+
+        var switchState = switch1
+        var hSwitchState = switch2
+        if (switchState && hSwitchState) {
+            switchSilentMode.isChecked = true
+            silenceNormal(context, switchState)
+            switchState = false
+            hSwitchState = false
+            switchSilentMode.isClickable = false
+        } else if (!switchState && !hSwitchState) {
+            switchSilentMode.isChecked = false
+            silenceNormal(context, switchState)
+            switchState = true
+            hSwitchState = true
+            switchSilentMode.isClickable = true
+        } else if (!switchState && hSwitchState) {
+            hSwitchState = false
+            switchState = false
+            switchSilentMode.isClickable = false
+        }
+
+        return arrayOf(switchState, hSwitchState)
+    }
 }
