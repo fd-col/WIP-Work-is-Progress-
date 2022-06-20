@@ -15,11 +15,11 @@ fun seed(wipDb: WIPDatabase) {
         ShopElement("magritte_apple", "avatar", "", 0),
         ShopElement("girl_with_pearl_earring", "avatar", "", 0),
         ShopElement("venus", "avatar", "", 0),
-        ShopElement("munch_scream", "avatar", "", 100),
+        ShopElement("the_scream", "avatar", "", 100),
         ShopElement("self_portrait", "avatar", "", 130),
         ShopElement("david", "avatar", "", 200),
 
-        ShopElement("the_scream", "background", "", 0),
+        ShopElement("the_scream_background", "background", "", 0),
         ShopElement("the_persistence_of_memory", "background", "", 0),
         ShopElement("hopper_nighthawks", "background", "", 0),
         ShopElement("creation_of_adam", "background", "", 250),
@@ -34,7 +34,7 @@ fun seed(wipDb: WIPDatabase) {
         Shopped(1, "magritte_apple", dateFormat.format(Date())),
         Shopped(1, "venus", dateFormat.format(Date())),
 
-        Shopped(1, "the_scream", dateFormat.format(Date())),
+        Shopped(1, "the_scream_background", dateFormat.format(Date())),
         Shopped(1, "the_persistence_of_memory", dateFormat.format(Date())),
         Shopped(1, "hopper_nighthawks", dateFormat.format(Date()))
     )

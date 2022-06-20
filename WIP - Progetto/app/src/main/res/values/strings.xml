@@ -1,60 +1,67 @@
 <resources>
-    <string name="app_name">WIP</string>
+    <string name="app_name" translatable="false">WIP</string>
 
-    <!-- stringa riferita nel file splash_page.xml -->
-    <string name="splash_page_icon_describer">Icona della spash page dell\'app WIP</string>
-    <string name="quote_describer">Quote dell\'app WIP, essa recita: if it matters, paint it</string>
-    <string name="pennello">pulsante pennello che porta alla home page</string>
-    <string name="corona">pulsante corona che porta alla page regno</string>
-    <string name="impostazioni">pulsante impostazioni che porta alla page impostazioni</string>
+    <!-- Splash Page -->
+    <string name="splash_page_icon_describer">Splash page icon</string>
+    <string name="quote_describer" translatable="false">If it matters, paint it</string>
 
-    <!-- start_story.xml -->
+    <!-- Frame -->
+    <string name="shop_button">Button that displays the shop</string>
+    <string name="play_button">Button that displays the screen for starting the productivity session</string>
+
+    <!-- Menu -->
+    <string name="home">Home button that displays the home</string>
+    <string name="kingdom">Kingdom button that displays your kingdom</string>
+    <string name="settings">Settings button that displays the application settings</string>
+
+    <!-- Start story -->
     <string name="new_story_default">New story</string>
     <string name="new_story_title">Title</string>
     <string name="story_time_textview">Story time</string>
     <string name="optional_settings_textview">Opt. settings</string>
     <string name="silent_mode">Silent mode</string>
     <string name="hardcore_mode">Hardcore mode</string>
-    <string name="switch_image_background_description">background switch</string>
     <string name="choose_avatar_textview">Choose avatar</string>
-    <string name="avatar_description">foto avatar selezionabile</string>
-    <string name="avatar_dx_arrow">freccia per scorrere a destra gli avatar disponibili</string>
-    <string name="avatar_sx_arrow">freccia per scorrere a sinistra gli avatar disponibili</string>
-    <string name="start_story_button">bottone per iniziare la sessione di produttività</string>
-    <string name="back_button">bottone per tornare alla home page</string>
-    <string name="info_button">bottone per descrivere le impostazioni opzionali</string>
-    <string name="under_app_name">barra posta sotto il nome dell\'app</string>
-    <string name="shop_button">bottone che indirizza allo shop</string>
-    <string name="slider">slider che mi permette di selezionare il tempo di lavoro ed il
-    tempo di pausa</string>
 
-    <!-- fragment_frame -->
-    <string name="play_button">play button new story</string>
-    <string name="frame_background">frame that contains the play button </string>
 
-    <!-- fragment_shop -->
-    <string name="shop_string">Shop</string>
+
+    <!-- Dovrebbe essere dinamico -->
+    <string name="avatar_description" translatable="false">Avatar</string>
+
+
+
+    <string name="avatar_dx_arrow">Arrow to scroll right through the available avatars</string>
+    <string name="avatar_sx_arrow">Arrow to scroll left through the available avatars</string>
+    <string name="start_story_button">Button to start the productivity session</string>
+    <string name="back_button">Button to return to home</string>
+    <string name="info_button">Button to describe the optional settings</string>
+    <string name="slider">Seekbar that allows you to select the working time and the pause time</string>
+
+    <!-- Shop -->
+    <string name="shop_string" translatable="false">Shop</string>
     <string name="buy_avatars_string">Buy avatars</string>
     <string name="buy_backgrounds_string">Buy backgrounds</string>
-    <string name="background_description">foto background</string>
-    <string name="background_dx_arrow">arrow to slide right background</string>
-    <string name="background_sx_arrow">arrow to slide left background</string>
-    <string name="avatar_price_string">0</string>
-    <string name="background_price_string">250</string>
-    <string name="coin_price_description">icon coin into shop </string>
 
-    <!-- fragment order detail -->
-    <string name="avatar_detail_string">artwork\'s image inside detail order</string>
-    <string name="avatar_name_string">Venere</string>
-    <string name="buy_button">button to buy new avatar/background</string>
-    <string name="venere_description">Painted by Sandro Botticelli between 1482-1485, and
-        exposed at the Galleria degli uffizi in Florence, The Birth of Venus is an artwork made
-        of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
-        Venus from the sea foam.\n</string>
-    <string name="order_back_button">button to go back into the shop</string>
+
+
+    <!-- Dovrebbe essere dinamico -->
+    <string name="background_description" translatable="false">foto background</string>
+
+
+
+    <string name="background_dx_arrow">Arrow to scroll right through the available backgrounds</string>
+    <string name="background_sx_arrow">Arrow to scroll left through the available backgrounds</string>
+    <string name="avatar_price_string" translatable="false">0</string>
+    <string name="background_price_string" translatable="false">0</string>
+    <string name="coin_price_description">Coins available</string>
+
+    <!-- Order detail -->
+    <string name="avatar_detail_string">Artwork</string>
+    <string name="avatar_name_string" translatable="false">Venus</string>
+    <string name="buy_button">Button to buy the artwork</string>
+    <string name="order_back_button">Button to return into the shop</string>
     <string name="info">Learn about the\n story of this\nartwork</string>
-    <string name="info_background">background info section</string>
-    <string name="shop_info_button">info button for an artwork</string>
+    <string name="shop_info_button">Button showing the description of the artwork</string>
 
     <!-- Artwork names -->
     <string name="venus">Venus</string>
@@ -66,13 +73,17 @@
     <string name="the_creation_of_adam">The Creation of Adam</string>
     <string name="magritte_kiss">The Lovers</string>
     <string name="weathfield_with_crows">Withfield with crows</string>
-
     <string name="the_persistence_of_memory">The Persistence of Memory</string>
     <string name="hopper_nighthawks">Nighthawks</string>
 
-
-
-    <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504, and exposed at the Galleria dell\'Accademia in Florence, David is a marble sculpture portraying the biblical hero preparing to face Goliath the giant.\n</string>
+    <!-- Artwork descriptions -->
+    <string name="venere_description">Painted by Sandro Botticelli between 1482-1485, and
+        exposed at the Galleria degli Uffizi in Florence, The Birth of Venus is an artwork made
+        of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
+        Venus from the sea foam.\n</string>
+    <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504,
+        and exposed at the Galleria dell\'Accademia in Florence, David is a marble sculpture
+        portraying the biblical hero preparing to face Goliath the giant.\n</string>
     <string name="van_gogh_autoritratto_description">Painted by Vincent Van Gogh in 1889, and
         exposed at the Musée d\'Orsay in Paris, Van Gogh\'s self portrait is an artwork made
         of oil on canvas.\n Vincent often presented himself as restrained and serious in
@@ -80,7 +91,6 @@
     <string name="urlo_di_munch_description">Painted by Edvard Munch in 1893, and
         exposed at the National Gallery in Oslo, The Scream is an artwork made of oil, tempera,
         pastel and crayon on cardboard symbolizing the anxiety of the human condition.\n</string>
-
     <string name="van_gogh_field_with_crows_description">Painted by Vincent Van Gogh in 1890, and
         exposed at the Van Gogh Museum in Amsterdam, Wheatfield with crows is an artwork made of
         oil on canvas.\n Van Gogh painted his wheatfields under stormy skies to express sadness and
@@ -96,44 +106,42 @@
         The Lovers represents the conflict between true identity and the image of a person in
         the mind of his lover.\n</string>
 
-
-
-    <!-- activity chapter info -->
-    <string name="chapter_title">Chapter title</string>
-    <string name="chapter_time">time: 2.01.23</string>
-    <string name="chapter_date">data: 12/10/2022</string>
+    <!-- Chapter info -->
     <string name="chapter_info">Chapter\nInfo</string>
     <string name="date_and_time">Date &amp; Time</string>
-    <string name="creation_date">creation date</string>
-    <string name="total_time_studying">total study time</string>
-    <string name="avatar_text">Avatar</string>
+    <string name="avatar_text" translatable="false">Avatar</string>
     <string name="chapter_info_start">Start:</string>
     <string name="chapter_info_end">End:</string>
 
-    <!-- activity story started -->
-    <string name="stop_button_string">button to end productivity session</string>
-    <string name="companion_icon">icona che mostra chi parla all\'utente</string>
-    <string name="stand">easel for painting</string>
-    <string name="artwork">mutable artwork</string>
+    <!-- Story started -->
+    <string name="stop_button_string">Button to end the productivity session</string>
+    <string name="companion_icon">Selected avatar</string>
+    <string name="stand">Easel</string>
+    <string name="artwork">Canvas</string>
 
-    <!-- activity story started: incoraggiamento -->
+    <!-- Story started: motivational phrases -->
     <string name="incoraggiamento_1">Good Luck!</string>
-    <string name="incoraggiamento_2">Lock the phone!</string>
-    <string name="incoraggiamento_3">Put the phone away</string>
+    <string name="incoraggiamento_2">Lock the device!</string>
+    <string name="incoraggiamento_3">Put the device away</string>
     <string name="incoraggiamento_4">Don\'t lose focus</string>
     <string name="incoraggiamento_5">Don\'t give up!</string>
-    <string name="incoraggiamento_6">Give all yourself</string>
+    <string name="incoraggiamento_6">Give all of yourself</string>
 
-    <!-- activity story started: pausa -->
+    <!-- Story started: pause -->
     <string name="pausa_1">Great work!</string>
     <string name="pausa_2">Here, have a little break</string>
     <string name="pausa_3">Well done!</string>
-    <string name="pausa_4">Coffee time</string>
+    <string name="pausa_4">Coffee break</string>
 
     <!-- kingdom -->
     <string name="descrizione_immagine_story">background image inside the story </string>
     <string name="story_title">Story Title</string>
     <string name="num_of_chapters">chapter\'s number</string>
+    <string name="chapter_title">Chapter title</string>
+    <string name="chapter_time">time: 2.01.23</string>
+    <string name="chapter_date">data: 12/10/2022</string>
+    <string name="creation_date">creation date</string>
+    <string name="total_time_studying">total study time</string>
 
     <!-- story detail -->
     <string name="story_detail">Story\ndetails</string>
