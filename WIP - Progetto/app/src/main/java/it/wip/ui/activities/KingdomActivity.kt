@@ -2,7 +2,13 @@ package it.wip.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +20,9 @@ import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.utils.KingdomListAdapter
 import it.wip.viewModel.KingdomViewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class KingdomActivity : AppCompatActivity() {
 
@@ -21,26 +30,32 @@ class KingdomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kingdom)
 
         val binding: ActivityKingdomBinding = DataBindingUtil.setContentView(this, R.layout.activity_kingdom)
-
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[KingdomViewModel::class.java]
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val numChapters = 1
+        val numChapters = ""
+
+
+        //date last story on top of the vertical reycler view
+        val lastStoryDate = findViewById<TextView>(R.id.data_ultima_story)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
+        lastStoryDate.text = viewModel.sortedList[0].createdOn
+
+
         // data list of stories settled on the vertical recyclerView inside the KingdomActivity
         val storyList = ArrayList<DataKingdom>()
 
-        for (i in 0..viewModel.storiesName.lastIndex) {
+        for (i in 0..viewModel.sortedList.lastIndex) {
             if(i%2==0) {
                 storyList.add(
                     DataKingdom(
                         KingdomListAdapter.THE_FIRST_VIEW,
-                        viewModel.storiesName[i],
+                        viewModel.sortedList[i].storyName,
                         "Chapters: $numChapters"
                     )
                 )
@@ -49,7 +64,7 @@ class KingdomActivity : AppCompatActivity() {
                 storyList.add(
                     DataKingdom(
                         KingdomListAdapter.THE_SECOND_VIEW,
-                        viewModel.storiesName[i],
+                        viewModel.sortedList[i].storyName,
                         "Chapters: $numChapters"
                     )
                 )
@@ -67,6 +82,8 @@ class KingdomActivity : AppCompatActivity() {
         val rvV = findViewById<RecyclerView>(R.id.rv_vertical)
         val rvH = findViewById<RecyclerView>(R.id.rv_horizontal)
 
+
+
         // method to activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
             rvV.adapter!!.notifyDataSetChanged()
@@ -74,7 +91,7 @@ class KingdomActivity : AppCompatActivity() {
             Toast.makeText(this,"$realPosition. item clicked.",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StoryDetailActivity()::class.java)
 
-            intent.putExtra("storyPosition", "$realPosition".toInt())
+            intent.putExtra("storyPosition", position)
             intent.putExtra("storyName", storyList[position].title)
             startActivity(intent)
         }

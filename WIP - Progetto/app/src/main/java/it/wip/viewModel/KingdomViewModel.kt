@@ -14,34 +14,27 @@ import it.wip.database.dao.UserDao
 import it.wip.database.model.Story
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class KingdomViewModel(application: Application) : AndroidViewModel(application) {
 
     var storyDao: StoryDao = WIPDatabase.getInstance(application.applicationContext).storyDao()
-    var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
-/*
-    private val _storyName = MutableLiveData("")
-    val storyName : LiveData<String>
-        get() = _storyName
-*/
-    val storiesName = mutableListOf<String>()
-    val chaptersName = mutableListOf<String>()
+
+
+    var sortedList = listOf<Story>()
 
     init {
-
+        //get user from SharedPreferences
         val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
-
+        //get all Story by userId detection
         val story = storyDao.getAllByUserWithoutCoroutines(userId)
-        val chapter = chapterDao.getAllByUserWithoutCoroutines(userId)
 
         viewModelScope.launch {
-                for (singleStory in story) {
-                    storiesName.add(singleStory.storyName)
-                }
-                for(singleChapter in chapter) {
-                    chaptersName.add(singleChapter.chapterName)
-                }
+                val format: DateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
+                sortedList = story.sortedByDescending { format.parse(it.createdOn) }
         }
 
     }

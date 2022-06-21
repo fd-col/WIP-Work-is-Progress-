@@ -6,36 +6,40 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.ChapterDao
+import it.wip.database.model.Story
 import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StoryDetailViewModel(application: Application) : AndroidViewModel(application) {
 
-    var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
 
-    val chaptersName = mutableListOf<String>()
-    val chapterStoryId = mutableListOf<Int>()
-    val chapterDates = mutableListOf<String>()
-    val chapterTimes = mutableListOf<String>()
     val chaptersId = mutableListOf<Int>()
+
+    val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
+    val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
+
+
+    var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
+    val chapter = chapterDao.getAllByUserWithoutCoroutines(userId)
+
+    var sortedList = listOf<Story>()
 
     init {
 
-        val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
-        val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
-/*PROVA
-        val storyIdPreference = application.applicationContext.getSharedPreferences("storyId", Context.MODE_PRIVATE)
-        val storyId = storyIdPreference.getInt("storyId", Context.MODE_PRIVATE)
+        val story = WIPDatabase.getInstance(application.applicationContext).storyDao().getAllByUserWithoutCoroutines(userId)
 
- */
-        val chapter = chapterDao.getAllByUserWithoutCoroutines(userId)
         viewModelScope.launch {
-            for(singleChapter in chapter) {
-                chaptersName.add(singleChapter.chapterName)
-                chapterStoryId.add(singleChapter.story)
-                chapterDates.add(singleChapter.createdOn)
-                chapterTimes.add(singleChapter.time)
+            val format: DateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
+            sortedList = story.sortedByDescending { format.parse(it.createdOn) }
+/*
+            for(singleChapter in chapter){
                 chaptersId.add(singleChapter.id)
             }
+            manca ordinare gli id
+ */
+
         }
 
     }

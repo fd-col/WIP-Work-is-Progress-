@@ -39,53 +39,61 @@ class StoryDetailActivity: AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.back_button_story_detail)
         val storyDetailTitle = findViewById<TextView>(R.id.story_detail_title)
 
+        //get the story name related with the story clicked
         val storyTitle = intent.getStringExtra("storyName")
+        //set the story detail name related with the story clicked
         storyDetailTitle.text = storyTitle
+
+
 
         var numTotChapters: MutableList<Int> = mutableListOf()
         var numChapters = 0
 
 
+
         val storyDetailList = ArrayList<DataKingdom>()
 
-        for (i in 0..viewModel.chaptersName.lastIndex) {
-            if (i % 2 == 0) {
-                //get intent extra "storyPosition" from the KingdomActivity
-                val storyPosition = this.intent.getIntExtra("storyPosition", 3)
-                //check the storyIDs inside the List of chapters are equals to the storyPositions, used as storyID
-                if(viewModel.chapterStoryId[i] == storyPosition) {
+            //get intent extra "storyPosition" from the KingdomActivity
+        val storyPosition = intent.getIntExtra("storyPosition", 3)
+
+
+
+        //check all inside all chapters' list
+        for (i in 0..viewModel.chapter.lastIndex) {
+            //check the storyIDs inside the List of chapters are equals to the storyPositions, used as storyID
+            if (viewModel.sortedList[storyPosition].id == viewModel.chapter[i].story) {
+
+                if (i % 2 == 0) {
 
                     storyDetailList.add(
                         DataKingdom(
                             KingdomListAdapter.THE_THIRD_VIEW,
-                            viewModel.chaptersName[i],
+                            viewModel.chapter[i].chapterName,
                             "",
-                            viewModel.chapterDates[i],
-                            viewModel.chapterTimes[i]
+                            viewModel.chapter[i].createdOn,
+                            viewModel.chapter[i].time
                         )
                     )
-                    numChapters++
-                }
-            } else {
-                //get the storyPosition from the KingdomActivity
-                var storyPosition = intent.getIntExtra("storyPosition", 3)
-                //check the storyIDs inside the List of chapters are equals to the storyPosition used as storyID
-                if(viewModel.chapterStoryId[i] == storyPosition) {
+                    //numChapters++
+                } else {
 
                     storyDetailList.add(
                         DataKingdom(
                             KingdomListAdapter.THE_FORTH_VIEW,
-                            viewModel.chaptersName[i],
+                            viewModel.chapter[i].chapterName,
                             "",
-                            viewModel.chapterDates[i],
-                            viewModel.chapterTimes[i]
+                            viewModel.chapter[i].createdOn,
+                            viewModel.chapter[i].time
                         )
                     )
-                    numChapters++
+                    //numChapters++
                 }
+
             }
-            numTotChapters.add(numChapters)
+            //numTotChapters.add(numChapters)
         }
+
+
 
         // method for activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
@@ -94,8 +102,8 @@ class StoryDetailActivity: AppCompatActivity() {
             Toast.makeText(this,"$position. item clicked.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ChapterInfoActivity()::class.java)
 
-            intent.putExtra("chapterPosition", "$realPosition".toInt())
-            intent.putExtra("chapterId", viewModel.chaptersId[position])
+            intent.putExtra("chapterPosition", position)
+            //intent.putExtra("chapterId", viewModel.chaptersId[position])
             startActivity(intent)
         }
 
