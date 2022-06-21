@@ -42,7 +42,6 @@
         android:id="@+id/divider_chapter_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/under_app_name"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         app:layout_constraintBottom_toTopOf="@id/date_and_time"
@@ -51,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/chapter_info"
         app:srcCompat="@drawable/under_app_name"
-        tools:ignore="ImageContrastCheck" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/date_and_time"
@@ -191,12 +190,13 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangular_background"
-        android:contentDescription="@string/switch_image_background_description"
         app:layout_constraintBottom_toTopOf="@id/avatar_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout_chapter_info" />
+        app:layout_constraintTop_toBottomOf="@id/frameLayout_chapter_info"
+        tools:layout_editor_absoluteY="410dp"
+        tools:ignore="ContentDescription" />
 
     <Switch
         android:id="@+id/switch_hardcore_mode_chapter_info"

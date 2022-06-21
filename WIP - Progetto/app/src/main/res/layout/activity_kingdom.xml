@@ -44,7 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:contentDescription="@string/under_app_name"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_horizontal"
             app:srcCompat="@drawable/under_app_name"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <ImageButton
             android:id="@+id/search_button"

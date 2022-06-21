@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Splash Page -->
+    <string name="splash_page_icon_describer">Icona splash page</string>
+
+    <!-- Frame -->
+    <string name="shop_button">Bottone che visualizza lo shop</string>
+    <string name="play_button">Bottone che visualizza la schermata per iniziare la sessione di produttività</string>
+
+    <!-- Menu -->
+    <string name="home">Pulsante home che visualizza la home</string>
+    <string name="kingdom">Pulsante regno che visualizza il proprio regno</string>
+    <string name="settings">Pulsante impostazioni che visualizza le impostazioni dell\'applicazione</string>
+
+    <!-- Start story -->
+    <string name="new_story_default">Nuova storia</string>
+    <string name="new_story_title">Titolo</string>
+    <string name="story_time_textview">Tempo della storia</string>
+    <string name="optional_settings_textview">Impost. storia</string>
+    <string name="silent_mode">Mod. silenzio</string>
+    <string name="hardcore_mode">Mod. hardcode</string>
+    <string name="choose_avatar_textview">Scegli avatar</string>
+    <string name="avatar_dx_arrow">Freccia per scorrere a destra gli avatar disponibili</string>
+    <string name="avatar_sx_arrow">Freccia per scorrere a sinistra gli avatar disponibili</string>
+    <string name="start_story_button">Bottone per iniziare la sessione di produttività</string>
+    <string name="back_button">Bottone per tornare alla home</string>
+    <string name="info_button">Bottone per descrivere le impostazioni opzionali</string>
+    <string name="slider">Barra di posizionamento che permette di selezionare il tempo di lavoro ed il tempo di pausa</string>
+    <string name="work">lavoro</string>
+    <string name="pause">pausa</string>
+
+    <!-- Story started -->
+    <string name="stop_button_string">Bottone per terminare la sessione di produttività</string>
+    <string name="companion_icon">Avatar selezionato</string>
+    <string name="stand">Cavalletto</string>
+    <string name="artwork">Tela</string>
+
+    <!-- Story started: motivational phrases -->
+    <string name="incoraggiamento_1">Buona fortuna!</string>
+    <string name="incoraggiamento_2">Blocca il dispositivo!</string>
+    <string name="incoraggiamento_3">Metti via il dispositivo</string>
+    <string name="incoraggiamento_4">Non perdere il ritmo</string>
+    <string name="incoraggiamento_5">Non mollare!</string>
+    <string name="incoraggiamento_6">Dai tutto te stesso</string>
+
+    <!-- Story started: pause -->
+    <string name="pausa_1">Ottimo lavoro!</string>
+    <string name="pausa_2">Fai una piccola pausa</string>
+    <string name="pausa_3">Ben fatto!</string>
+    <string name="pausa_4">Pausa caffè</string>
+
+    <!-- Shop -->
+    <string name="buy_avatars_string">Compra avatar</string>
+    <string name="buy_backgrounds_string">Compra dipinti</string>
+    <string name="background_dx_arrow">Freccia per scorrere a destra i dipinti disponibili</string>
+    <string name="background_sx_arrow">Freccia per scorrere a sinistra i dipinti disponibili</string>
+    <string name="coin_price_description">Monete disponibili</string>
+
+    <!-- Order detail -->
+    <string name="avatar_detail_string">Opera d\'arte</string>
+    <string name="buy_button">Bottone per comprare l\'opera d\'arte</string>
+    <string name="order_back_button">Bottone per tornare allo shop</string>
+    <string name="info">Scopri la storia\n di questa\n opera d\'arte</string>
+    <string name="shop_info_button">Bottone che mostra la descrizione dell\'opera d\'arte</string>
+
     <!-- Artwork names -->
     <string name="venus">Venere</string>
     <string name="the_son_of_man">Il figlio dell\'uomo</string>
@@ -11,5 +74,50 @@
     <string name="the_creation_of_adam">La creazione di Adamo</string>
     <string name="magritte_kiss">Gli amanti</string>
     <string name="weathfield_with_crows">Campo di grano con volo di corvi</string>
+    <string name="the_persistence_of_memory">La persistenza della memoria</string>
+    <string name="hopper_nighthawks">I nottambuli</string>
+
+    <!-- Artwork descriptions -->
+    <string name="venere_description">Dipinto da Sandro Botticelli tra il 1482-1485, e
+        esposta alla Galleria degli Uffizi di Firenze, La nascita di Venere è un\'opera d\'arte realizzata
+        con tempera e polvere d\'alabastro su tela raffigurante il mito della nascita della dea
+        Venere dalla schiuma del mare.\n</string>
+    <string name="david_description">Scolpito da Michelangelo Buonarroti tra il 1501 e il 1504,
+        ed esposto alla Galleria dell\'Accademia di Firenze, David è una scultura in marmo
+        raffigurante l\'eroe biblico che si prepara ad affrontare Golia il gigante.\n</string>
+    <string name="van_gogh_autoritratto_description">Dipinto da Vincent Van Gogh nel 1889, e
+        esposto al Museo d\'Orsay di Parigi, l\'autoritratto di Van Gogh è un\'opera d\'arte
+        realizzata con la tecnica dell\'olio su tela.\n Vincent si presentava spesso come sobrio e serio
+        nei suoi autoritratti, con uno sguardo concentrato sul viso.\n</string>
+    <string name="urlo_di_munch_description">Dipinto da Edvard Munch nel 1893, e
+        esposto alla Galleria nazionale di Oslo, L\'urlo è un\'opera, realizzata con olio, tempera,
+        pastello e pastello su cartone, che simboleggia l\'ansia della condizione umana.\n</string>
+    <string name="van_gogh_field_with_crows_description">Dipinto da Vincent Van Gogh nel 1890, e
+        esposto al Museo Van Gogh di Amsterdam, Campo di grano con volo di corvi è un\'opera d\'arte realizzata
+        con la tecnica olio su tela.\n Van Gogh dipinse i suoi campi di grano sotto cieli tempestosi per esprimere tristezza e
+        estrema solitudine, ma allo stesso tempo voleva mostrare ciò che considerava salutare e fortificante.\n</string>
+    <string name="creazione_di_adamo_description">Dipinto da Michelangelo Buonarroti intorno al 1512,
+        La Creazione di Adamo è un affresco locato sul soffitto della Cappella Sistina
+        e che illustra Dio che dà la vita ad Adamo, il primo uomo.\n
+        L\'affresco fa parte di un complesso schema iconografico ed è cronologicamente il quarto nella
+        serie di pannelli raffiguranti gli episodi della Genesi.\n</string>
+    <string name="magritte_kiss_description">Dipinto da René Magritte nel 1928, ed esposto al
+        Museum of Modern Art di New York, The Lovers è un\'opera d\'arte realizzata con olio su tela.\n
+        Gli amanti rappresenta il conflitto tra la vera identità e l\'immagine di una persona nella
+        mente del suo amante.\n</string>
+
+    <!-- Chapter info -->
+    <string name="chapter_info">Info\nCapitolo</string>
+    <string name="date_and_time">Data &amp; Ora</string>
+    <string name="chapter_info_start">Inizio:</string>
+    <string name="chapter_info_end">Fine:</string>
+
+    <!-- settings -->
+    <string name="change_time">Lavoro/Pausa</string>
+    <string name="story_time_limit">Tempo limite\n(minuti)</string>
+    <string name="left_hand_mode">Modalità mancino</string>
+    <!-- ???? -->
+    <string name="info_text">Information</string>
+    <string name="info_text_button_settings">info button about the app</string>
 
 </resources>

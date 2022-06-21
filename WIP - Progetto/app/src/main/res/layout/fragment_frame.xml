@@ -28,14 +28,14 @@
         android:id="@+id/frame_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/frame_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/frame_adapted" />
+        app:srcCompat="@drawable/frame_adapted"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/shop_button"

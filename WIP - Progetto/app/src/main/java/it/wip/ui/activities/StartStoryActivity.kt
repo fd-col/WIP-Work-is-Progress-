@@ -47,25 +47,32 @@ class StartStoryActivity : AppCompatActivity() {
 
         seekBarStoryTime.setLabelFormatter {
 
-            "${viewModel.studyTime.value!!.toInt()} min study/${viewModel.breakTime.value?.toInt()} min pause"
+            "${viewModel.studyTime.value!!.toInt()} min " +
+                    getString(R.string.work) + "/${viewModel.breakTime.value?.toInt()} min " + getString(R.string.pause)
 
         }
 
 
 
 
-
-
-
-        
+        //              SWITCH
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
-        var switchState = true
-        applicationContext
+
         binding.switchSilentMode.setOnClickListener{
-            switchState = viewModel.silenceNormal(applicationContext, switchState)
+            viewModel.silenceNormal(applicationContext)
         }
+
+        binding.switchHardcoreMode.setOnClickListener{
+            viewModel.hardcoreMode(binding.switchSilentMode, applicationContext)
+        }
+
+
+
+
+
+
 
         binding.backButton.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
@@ -169,11 +176,10 @@ class StartStoryActivity : AppCompatActivity() {
         binding.startButton.setOnClickListener {
 
             val intent = Intent(this, StoryStartedActivity::class.java)
-
             intent.putExtra("studyTime", viewModel.studyTime.value)
             intent.putExtra("breakTime", viewModel.breakTime.value)
             intent.putExtra("selectedAvatar", selectedAvatar)
-
+            intent.putExtra("mode", viewModel.selectedMode())
             startActivity(intent)
 
         }
