@@ -57,6 +57,7 @@
         android:id="@+id/date_and_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/press_start_2p"
         android:letterSpacing="0.0"
         android:text="@string/date_and_time"
@@ -66,8 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_chapter_title"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintTop_toBottomOf="@id/divider_chapter_title" />
 
     <TextView
         android:id="@+id/end_chapter_info"
@@ -115,7 +115,7 @@
         android:id="@+id/datetime_story_ended"
         android:layout_width="238dp"
         android:layout_height="37dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="35dp"
         android:autofillHints="story title set by the user"
@@ -188,6 +188,7 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/rectangular_background"
         android:contentDescription="@string/switch_image_background_description"
@@ -195,8 +196,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/frameLayout_chapter_info"
-        tools:layout_editor_absoluteY="410dp" />
+        app:layout_constraintTop_toBottomOf="@id/frameLayout_chapter_info" />
 
     <Switch
         android:id="@+id/switch_hardcore_mode_chapter_info"
@@ -242,6 +242,7 @@
         android:id="@+id/avatar_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="140dp"
         android:fontFamily="@font/press_start_2p"
         android:text="@string/avatar_text"

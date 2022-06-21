@@ -16,6 +16,7 @@ class StoryDetailViewModel(application: Application) : AndroidViewModel(applicat
     val chapterStoryId = mutableListOf<Int>()
     val chapterDates = mutableListOf<String>()
     val chapterTimes = mutableListOf<String>()
+    val chaptersId = mutableListOf<Int>()
 
     init {
 
@@ -33,6 +34,7 @@ class StoryDetailViewModel(application: Application) : AndroidViewModel(applicat
                 chapterStoryId.add(singleChapter.story)
                 chapterDates.add(singleChapter.createdOn)
                 chapterTimes.add(singleChapter.time)
+                chaptersId.add(singleChapter.id)
             }
         }
 

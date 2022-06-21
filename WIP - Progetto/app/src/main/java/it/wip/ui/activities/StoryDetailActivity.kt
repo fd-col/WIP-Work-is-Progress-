@@ -2,6 +2,7 @@ package it.wip.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.indexOf
 import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.TextView
@@ -67,7 +68,7 @@ class StoryDetailActivity: AppCompatActivity() {
                 }
             } else {
                 //get the storyPosition from the KingdomActivity
-                var storyPosition = this.intent.getIntExtra("storyPosition", 3)
+                var storyPosition = intent.getIntExtra("storyPosition", 3)
                 //check the storyIDs inside the List of chapters are equals to the storyPosition used as storyID
                 if(viewModel.chapterStoryId[i] == storyPosition) {
 
@@ -89,8 +90,12 @@ class StoryDetailActivity: AppCompatActivity() {
         // method for activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
             rv.adapter!!.notifyDataSetChanged()
+            val realPosition = position+1 //add 1 because the count start from 0
             Toast.makeText(this,"$position. item clicked.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, ChapterInfoActivity::class.java)
+            val intent = Intent(this, ChapterInfoActivity()::class.java)
+
+            intent.putExtra("chapterPosition", "$realPosition".toInt())
+            intent.putExtra("chapterId", viewModel.chaptersId[position])
             startActivity(intent)
         }
 

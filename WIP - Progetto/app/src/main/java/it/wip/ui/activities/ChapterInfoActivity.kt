@@ -23,6 +23,12 @@ class ChapterInfoActivity : AppCompatActivity() {
         switchHardcoreMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
 
 
+        val chaptersId = intent.getIntExtra("chaptersId", 0)
+        //devo creare il view model, da cui far ritornare i dati relativi solamente al
+        //capitolo con l'id "chapterId"
+
+        //NOTA: può essere conveniente usare le SharedPreferences per gli "storyIds" e i "chapterIds"
+
 
         backButton.setOnClickListener {
             startActivity(Intent(this, StoryDetailActivity::class.java))
