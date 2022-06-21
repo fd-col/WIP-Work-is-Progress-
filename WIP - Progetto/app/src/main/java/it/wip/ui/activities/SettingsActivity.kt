@@ -3,6 +3,8 @@ package it.wip.ui.activities
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.accessibility.AccessibilityEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
@@ -61,17 +63,16 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        maxStoryTime.setOnClickListener {
-            if(currentText.length > 4)
-                maxStoryTime.setSelection(currentText.substring(0, currentText.length - 4).length)
-        }
+        maxStoryTime.accessibilityDelegate = object: View.AccessibilityDelegate() {
 
-        maxStoryTime.setOnTouchListener { v, event ->
+            override fun sendAccessibilityEvent(host: View?, eventType: Int) {
+                super.sendAccessibilityEvent(host, eventType)
+                if (eventType == AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED){
+                    if(currentText.length > 4)
+                        maxStoryTime.setSelection(currentText.substring(0, currentText.length - 4).length)
+                }
+            }
 
-            if(currentText.length > 4)
-                maxStoryTime.setSelection(currentText.substring(0, currentText.length - 4).length)
-
-            v?.onTouchEvent(event) ?: true
         }
 
         binding.lefHandMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
