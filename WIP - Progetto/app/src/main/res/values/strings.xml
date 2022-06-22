@@ -192,10 +192,4 @@
     <string name="coin_dialog_description_2">0</string>
     <string name="coin_dialog_description_3">coins</string>
 
-
-
-
-    <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-    <string name="background_order_detail_description">Are you sure you want to buy this artwork for 200 coins?</string>
-
 </resources>

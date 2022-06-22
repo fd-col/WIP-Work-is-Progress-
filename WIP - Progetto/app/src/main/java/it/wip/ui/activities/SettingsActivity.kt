@@ -1,10 +1,13 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
@@ -12,15 +15,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.R
 import it.wip.databinding.ActivitySettingsBinding
+
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
 import it.wip.viewModel.SettingsViewModel
+import kotlin.math.roundToInt
 
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SettingsViewModel
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,11 +38,16 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.viewModel = viewModel
 
+        val seekBarSettings = binding.seekBarSettings
         val maxStoryTime = binding.maxStoryTime
+        val lefthandMode = binding.lefhandMode
 
-        val slider = findViewById<com.google.android.material.slider.Slider>(R.id.seekBar_settings)
-        slider.setLabelFormatter { value: Float ->
-            "${value.toInt()} min " + getString(R.string.work) + "/${60-value.toInt()} min " + getString(R.string.pause)
+        seekBarSettings.setLabelFormatter { value: Float ->
+            "${value.toInt()} min " + getString(R.string.work) + "/${viewModel.breakTime} min " + getString(R.string.pause)
+        }
+
+        seekBarSettings.addOnChangeListener { _, value, _ ->
+            viewModel.setStudyBreakTime(value)
         }
 
         var currentText = ""
@@ -47,9 +57,9 @@ class SettingsActivity : AppCompatActivity() {
             if(text.toString() != currentText) {
 
                 currentText =
-                    if(text.toString().contains(" min"))
-                        text.toString().substring(0, text!!.length - 4) + " min"
-                    else
+                    if(text.toString().contains(" min")) {
+                            text?.substring(0, text.length - 4).toString() + " min"
+                    } else
                         text.toString() + " min"
 
                 maxStoryTime.setText(currentText)
@@ -75,7 +85,52 @@ class SettingsActivity : AppCompatActivity() {
 
         }
 
-        binding.lefHandMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        maxStoryTime.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
+                inputMethodManager?.hideSoftInputFromWindow(v.windowToken, 0)
+
+                if(currentText != "") {
+                    val currentValue = currentText.substring(0, currentText.length - 4).toFloat()
+
+                    var maxStudyTime = currentValue.toInt()
+
+                    maxStudyTime = (maxStudyTime / 10.0).roundToInt() * 10
+
+                    if(maxStudyTime < 60)
+                        maxStudyTime = 60
+
+                    viewModel.setMaxStudyTime(maxStudyTime)
+
+                    if(viewModel.studyTime.value!! > maxStudyTime)
+                        viewModel.setStudyBreakTime(maxStudyTime.toFloat() - 10)
+
+                    /*if(maxStudyTime < 60) {
+                        viewModel.setMaxStudyTime(60)
+                        if(viewModel.studyTime.value!! > 60)
+                            viewModel.setStudyBreakTime(50F)
+                    }
+                    else {
+                        viewModel.setMaxStudyTime(maxStudyTime)
+                        if(viewModel.studyTime.value!! > currentValue)
+                            viewModel.setStudyBreakTime(currentValue - 10)
+                    }*/
+
+                } else {
+                    maxStoryTime.setText(viewModel.maxStudyTime.value.toString())
+                }
+
+                true
+            } else
+                false
+        }
+
+        lefthandMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+
+        lefthandMode.setOnCheckedChangeListener { _, checked ->
+            viewModel.setLefthandMode(checked)
+        }
 
         // add the menu fragment to the bottom of KingdomActivity
         val transaction = supportFragmentManager.beginTransaction()

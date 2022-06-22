@@ -19,9 +19,9 @@ interface ChapterDao {
     fun insertWithoutCoroutines(vararg chapters: Chapter)
 
     @Update
-    suspend fun update(user: Chapter)
+    suspend fun update(chapter: Chapter)
 
     @Delete
-    suspend fun delete(user: Chapter)
+    suspend fun delete(chapter: Chapter)
 
 }

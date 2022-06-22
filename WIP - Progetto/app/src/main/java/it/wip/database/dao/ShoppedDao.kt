@@ -19,9 +19,9 @@ interface ShoppedDao {
     fun insertWithoutCoroutines(vararg shopped: Shopped)
 
     @Update
-    suspend fun update(user: Shopped)
+    suspend fun update(shopped: Shopped)
 
     @Delete
-    suspend fun delete(user: Shopped)
+    suspend fun delete(shopped: Shopped)
 
 }

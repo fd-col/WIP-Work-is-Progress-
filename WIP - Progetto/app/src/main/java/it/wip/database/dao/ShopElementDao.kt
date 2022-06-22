@@ -16,9 +16,9 @@ interface ShopElementDao {
     fun insertWithoutCoroutines(vararg shopElements: ShopElement)
 
     @Update
-    suspend fun update(user: ShopElement)
+    suspend fun update(shopElement: ShopElement)
 
     @Delete
-    suspend fun delete(user: ShopElement)
+    suspend fun delete(shopElement: ShopElement)
 
 }

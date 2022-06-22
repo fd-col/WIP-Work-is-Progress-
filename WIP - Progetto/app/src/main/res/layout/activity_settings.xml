@@ -64,8 +64,9 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="20dp"
                         android:stepSize="10"
-                        android:valueFrom="0"
-                        android:valueTo="60"
+                        android:value="@{viewModel.studyTime}"
+                        android:valueFrom="10"
+                        android:valueTo="@{viewModel.maxStudyTimeGraphic}"
                         app:haloRadius="18dp"
                         app:thumbColor="#0277BD"
                         app:trackColorActive="#922196F3"
@@ -88,12 +89,14 @@
                         android:fontFamily="@font/press_start_2p"
                         android:hint="@string/story_time_limit"
                         android:inputType="number"
+                        android:imeOptions="actionDone"
                         android:minHeight="66dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="10dp"
                         android:paddingRight="20dp"
                         android:textColor="#0277BD"
                         android:textColorHint="#0277BD"
+                        android:text="@{viewModel.maxStudyTime.toString()}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/edit_button_settings"
                         app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <ImageView
-                        android:id="@+id/leftHand_switch_background"
+                        android:id="@+id/lefthand_switch_background"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -134,7 +137,7 @@
                         tools:ignore="ContentDescription" />
 
                     <Switch
-                        android:id="@+id/lefHand_mode"
+                        android:id="@+id/lefhand_mode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/press_start_2p"
@@ -144,11 +147,12 @@
                         android:textSize="17sp"
                         android:thumbTint="#0277BD"
                         android:trackTint="@drawable/switch_track"
-                        app:layout_constraintBottom_toBottomOf="@+id/leftHand_switch_background"
+                        android:checked="@{viewModel.lefthandMode}"
+                        app:layout_constraintBottom_toBottomOf="@+id/lefthand_switch_background"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.493"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/leftHand_switch_background"
+                        app:layout_constraintTop_toTopOf="@+id/lefthand_switch_background"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

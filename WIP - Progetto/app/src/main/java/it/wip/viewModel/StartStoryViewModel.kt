@@ -1,8 +1,10 @@
 package it.wip.viewModel
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.media.AudioManager
+import android.util.Log
 import android.widget.Switch
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
@@ -19,9 +21,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val studyTime : LiveData<Float>
         get() = _studyTime
 
-    private val _maxStudyTime = MutableLiveData(60F)
-    val maxStudyTime : LiveData<Float>
-        get() = _maxStudyTime
+    private var maxStudyTime = 60F
 
     private val _maxStudyTimeGraphic = MutableLiveData(50F)
     val maxStudyTimeGraphic : LiveData<Float>
@@ -73,10 +73,11 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
             }
 
             val user = wipDb.userDao().getUserById(userId)
-            _studyTime.value = user.studyTime
-            _maxStudyTime.value = user.maxStudyTime
-            _maxStudyTimeGraphic.value = _maxStudyTime.value!! - 10F
-            _breakTime.value = _maxStudyTime.value!! - 10F
+
+            _studyTime.value = user.studyTime.toFloat()
+            maxStudyTime = user.maxStudyTime.toFloat()
+            _maxStudyTimeGraphic.value = maxStudyTime - 10F
+            _breakTime.value = maxStudyTime - 10F
 
         }
     }
@@ -87,7 +88,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
     fun setStudyBreakTime(studyTime: Float) {
         this._studyTime.value = studyTime
-        this._breakTime.value = this._maxStudyTime.value?.minus(this._studyTime.value!!)
+        this._breakTime.value = maxStudyTime.minus(this._studyTime.value!!)
     }
 
 
@@ -109,7 +110,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
 
     //              SWITCH SILENT MODE - HARDCORE MODE
-    fun hardcoreMode(switchSilentMode: Switch, context: Context){
+    fun hardcoreMode(@SuppressLint("UseSwitchCompatOrMaterialCode") switchSilentMode: Switch, context: Context){
 
         if (_switchState.value!! && _hSwitchState.value!!) {
             switchSilentMode.isChecked = true
