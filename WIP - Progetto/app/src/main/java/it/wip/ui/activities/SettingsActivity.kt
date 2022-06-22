@@ -3,7 +3,6 @@ package it.wip.ui.activities
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.inputmethod.EditorInfo
@@ -100,22 +99,15 @@ class SettingsActivity : AppCompatActivity() {
 
                     if(maxStudyTime < 60)
                         maxStudyTime = 60
+                    else if(maxStudyTime > 120)
+                        maxStudyTime = 120
 
                     viewModel.setMaxStudyTime(maxStudyTime)
 
                     if(viewModel.studyTime.value!! > maxStudyTime)
                         viewModel.setStudyBreakTime(maxStudyTime.toFloat() - 10)
 
-                    /*if(maxStudyTime < 60) {
-                        viewModel.setMaxStudyTime(60)
-                        if(viewModel.studyTime.value!! > 60)
-                            viewModel.setStudyBreakTime(50F)
-                    }
-                    else {
-                        viewModel.setMaxStudyTime(maxStudyTime)
-                        if(viewModel.studyTime.value!! > currentValue)
-                            viewModel.setStudyBreakTime(currentValue - 10)
-                    }*/
+                    currentText = "$maxStudyTime min"
 
                 } else {
                     maxStoryTime.setText(viewModel.maxStudyTime.value.toString())
