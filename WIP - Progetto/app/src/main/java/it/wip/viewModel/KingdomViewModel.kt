@@ -22,7 +22,7 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
 
     var storyDao: StoryDao = WIPDatabase.getInstance(application.applicationContext).storyDao()
 
-
+    // list of Story sorted to be sorted by date of creation
     var sortedList = listOf<Story>()
 
     init {

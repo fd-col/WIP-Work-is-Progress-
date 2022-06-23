@@ -56,7 +56,9 @@ class KingdomActivity : AppCompatActivity() {
                     DataKingdom(
                         KingdomListAdapter.THE_FIRST_VIEW,
                         viewModel.sortedList[i].storyName,
+                        viewModel.sortedList[i].id,
                         "Chapters: $numChapters"
+
                     )
                 )
             }
@@ -65,6 +67,7 @@ class KingdomActivity : AppCompatActivity() {
                     DataKingdom(
                         KingdomListAdapter.THE_SECOND_VIEW,
                         viewModel.sortedList[i].storyName,
+                        viewModel.sortedList[i].id,
                         "Chapters: $numChapters"
                     )
                 )
@@ -75,7 +78,7 @@ class KingdomActivity : AppCompatActivity() {
         val storyHorizontalList = ArrayList<DataKingdom>()
         for((i, item) in storyList.withIndex()) {
             storyHorizontalList.add(DataKingdom(
-                KingdomListAdapter.THE_HORIZONTAL_VIEW, storyList[i].textData))
+                KingdomListAdapter.THE_HORIZONTAL_VIEW, storyList[i].textData, storyList[i].itemID))
         }
 
 
@@ -91,7 +94,7 @@ class KingdomActivity : AppCompatActivity() {
             Toast.makeText(this,"$realPosition. item clicked.",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StoryDetailActivity()::class.java)
 
-            intent.putExtra("storyPosition", position)
+            intent.putExtra("storyID", storyList[position].itemID)
             intent.putExtra("storyName", storyList[position].title)
             startActivity(intent)
         }

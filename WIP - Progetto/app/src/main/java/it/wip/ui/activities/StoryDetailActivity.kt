@@ -34,10 +34,10 @@ class StoryDetailActivity: AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-
+        val storyDetailTitle = findViewById<TextView>(R.id.story_detail_title)
         val rv = findViewById<RecyclerView>(R.id.recycler_vertical_details)
         val backButton = findViewById<ImageButton>(R.id.back_button_story_detail)
-        val storyDetailTitle = findViewById<TextView>(R.id.story_detail_title)
+
 
         //get the story name related with the story clicked
         val storyTitle = intent.getStringExtra("storyName")
@@ -45,42 +45,41 @@ class StoryDetailActivity: AppCompatActivity() {
         storyDetailTitle.text = storyTitle
 
 
-
-        var numTotChapters: MutableList<Int> = mutableListOf()
-        var numChapters = 0
-
+        //get the story ID related with the story clicked in the Kingdom
+        val storyID = intent.getIntExtra("storyID", 0)
 
 
+        //create the list of Chapters
         val storyDetailList = ArrayList<DataKingdom>()
 
-            //get intent extra "storyPosition" from the KingdomActivity
-        val storyPosition = intent.getIntExtra("storyPosition", 3)
 
-
-
-        //check all inside all chapters' list
+        //iterate over all chapters inside our DB
         for (i in 0..viewModel.chapter.lastIndex) {
-            //check the storyIDs inside the List of chapters are equals to the storyPositions, used as storyID
-            if (viewModel.sortedList[storyPosition].id == viewModel.chapter[i].story) {
-
+            //check if id's story, given by the previous intent "storyID", is the same as chapters
+            if (storyID == viewModel.chapter[i].story) {
+                //put Cards with data to the left
                 if (i % 2 == 0) {
 
                     storyDetailList.add(
                         DataKingdom(
                             KingdomListAdapter.THE_THIRD_VIEW,
                             viewModel.chapter[i].chapterName,
+                            viewModel.chapter[i].id,
                             "",
                             viewModel.chapter[i].createdOn,
                             viewModel.chapter[i].time
                         )
                     )
                     //numChapters++
+
+                //put Cards with data to the right
                 } else {
 
                     storyDetailList.add(
                         DataKingdom(
                             KingdomListAdapter.THE_FORTH_VIEW,
                             viewModel.chapter[i].chapterName,
+                            viewModel.chapter[i].id,
                             "",
                             viewModel.chapter[i].createdOn,
                             viewModel.chapter[i].time
@@ -99,11 +98,10 @@ class StoryDetailActivity: AppCompatActivity() {
         val itemOnClick: (Int) -> Unit = { position ->
             rv.adapter!!.notifyDataSetChanged()
             val realPosition = position+1 //add 1 because the count start from 0
-            Toast.makeText(this,"$position. item clicked.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"$realPosition. item clicked.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ChapterInfoActivity()::class.java)
 
-            intent.putExtra("chapterPosition", position)
-            //intent.putExtra("chapterId", viewModel.chaptersId[position])
+            intent.putExtra("chapterID", storyDetailList[position].itemID)
             startActivity(intent)
         }
 
@@ -119,10 +117,11 @@ class StoryDetailActivity: AppCompatActivity() {
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
 
+
+        //button to go back in the previous view
         backButton.setOnClickListener {
             startActivity(Intent(this, KingdomActivity::class.java))
         }
-
         backButton.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> backButton.setImageResource(R.drawable.back_arrow_pressed)
