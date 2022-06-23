@@ -166,7 +166,7 @@
     <string name="silent_mode_description">Disables notification sounds.\nSTOP TALKING TO\nPEOPLE!</string>
     <string name="sh_divider">------</string>
     <string name="grrr">\"Grrrr\"</string>
-    <string name="hardcore_mode_description">Enables Silent mode\nand if you exit the\napp your story\nautomatically ends.\n\"EVIL LAUGH\"</string>
+    <string name="hardcore_mode_description">Enables Silent mode and if you exit the app your story automatically ends.\n\nIn other words, you can only lock and unlock the phone but make sure to wait some seconds between locking and unlocking.\n\"EVIL LAUGH\"</string>
     <string name="okay_button">bottone per chiudere il dialog</string>
 
     <string name="order_detail">Order detail</string>
