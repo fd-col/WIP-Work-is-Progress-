@@ -192,4 +192,12 @@
     <string name="coin_dialog_description_2">0</string>
     <string name="coin_dialog_description_3">coins</string>
 
+    <string name="hardcore_dialog_title">Game Over</string>
+    <string name="hardcore_dialog_quote">\"Mamma mia\"</string>
+    <string name="hardcore_dialog_description_1">The key to being focused is to intensely enjoy whatever you are doing.</string>
+    <string name="hardcore_dialog_description_2">-David Allio\n</string>
+    <string name="hardcore_dialog_description_3">Also, you earn</string>
+    <string name="hardcore_dialog_description_4">0</string>
+    <string name="hardcore_dialog_description_5">coins.\nYes, hardcore mode means no checkpoints</string>
+
 </resources>
