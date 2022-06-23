@@ -11,9 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import it.wip.MainActivity
 import it.wip.R
-import it.wip.databinding.DialogCoinsBinding
+import it.wip.databinding.DialogHardcoreModeBinding
 
-class DialogCoins(val coins: String) : DialogFragment(){
+class DialogHardcoreMode : DialogFragment(){
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,13 +21,9 @@ class DialogCoins(val coins: String) : DialogFragment(){
         savedInstanceState: Bundle?
     ): View {
 
-        val binding: DialogCoinsBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_coins, container, false)
+        val binding: DialogHardcoreModeBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_hardcore_mode, container, false)
 
-
-        val okayButton = binding.coinDialogOkayButton
-        val earnedCoins = binding.coinDialogDescription2
-        earnedCoins.text = coins
-
+        val okayButton = binding.hardcoreDialogOkayButton
 
         okayButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -40,7 +36,6 @@ class DialogCoins(val coins: String) : DialogFragment(){
         okayButton.setOnClickListener{
             startActivity(Intent(activity, MainActivity::class.java))
         }
-
         dialog?.setOnCancelListener{
             startActivity(Intent(activity, MainActivity::class.java))
         }

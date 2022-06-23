@@ -1,11 +1,16 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.app.ActivityManager
+import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.MotionEvent
+import android.widget.Chronometer
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -14,8 +19,10 @@ import androidx.lifecycle.ViewModelProvider
 import it.wip.R
 import it.wip.databinding.ActivityStoryStartedBinding
 import it.wip.ui.dialogs.DialogCoins
+import it.wip.ui.dialogs.DialogHardcoreMode
 import it.wip.utils.*
 import it.wip.viewModel.StoryStartedViewModel
+
 
 class StoryStartedActivity : AppCompatActivity(){
 
@@ -31,6 +38,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
 
 
 
@@ -104,6 +112,15 @@ class StoryStartedActivity : AppCompatActivity(){
         var currentState = "study"
         var mReceiver = ScreenStateReceiver(quote, currentState)
         registerReceiver(mReceiver, intentFilter)
+
+
+
+        //              DEVICE SCREEN OFF
+        //val pauseIntentFilter = IntentFilter(Intent.ACTION_SCREEN_OFF)
+        //val screenOffDetector = ScreenOffDetector(viewModel)
+        //registerReceiver(screenOffDetector, pauseIntentFilter)
+        registerReceiver(viewModel.screenOffDetector, viewModel.pauseIntentFilter)
+
 
 
 
@@ -193,9 +210,47 @@ class StoryStartedActivity : AppCompatActivity(){
 
         stopButton.setOnClickListener {
             cronometro.stop()
+            unregisterReceiver(viewModel.screenOffDetector)
             val coinsReceived = viewModel.coinCalculator(studyTime, breakTime, actualTime)
             val dialogCoin = DialogCoins(coinsReceived)
             dialogCoin.show(supportFragmentManager, "coinInfo")
+        }
+    }
+
+
+
+
+    override fun onRestart() {
+        super.onRestart()
+
+        val extras = intent.extras
+        val selectedMode = extras?.get("mode").toString().toInt()
+
+        if(selectedMode==1){
+            if(viewModel.flag3){
+                viewModel.flag3 = false
+            }else{
+                viewModel.flag2 = true
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val extras = intent.extras
+        val selectedMode = extras?.get("mode").toString().toInt()
+
+        val stopChronometer = findViewById<Chronometer>(R.id.simpleChronometer)
+
+        if(selectedMode==1){
+            if(viewModel.flag2){
+                viewModel.flag2 = false
+                stopChronometer.stop()
+                unregisterReceiver(viewModel.screenOffDetector)
+                val dialogHardcoreMode = DialogHardcoreMode()
+                dialogHardcoreMode.show(supportFragmentManager, "dialogHardcoreMode")
+            }
         }
     }
 
@@ -207,7 +262,6 @@ class StoryStartedActivity : AppCompatActivity(){
         val backgrounds = viewModel.backgroundShoppedElements
         var selectedArtwork = 1
 
-        //il range è 1..3 perchè all'inizio abbiamo solo 3 quadri sbloccati
         when (backgrounds.random()) {
             "the_persistence_of_memory" -> {
                 artwork.setBackgroundResource(R.drawable.dali_1)
