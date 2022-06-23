@@ -2,9 +2,12 @@ package it.wip.viewModel
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
+import it.wip.utils.ScreenOffDetector
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -15,6 +18,13 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
     val backgroundShoppedElements = mutableListOf<String>()
     val db: WIPDatabase
     val id: Int
+
+    //var flag1: Boolean = false
+    var flag2: Boolean = false
+    var flag3: Boolean = false
+
+    val pauseIntentFilter = IntentFilter(Intent.ACTION_SCREEN_OFF)
+    val screenOffDetector = ScreenOffDetector(this)
 
     init {
 
