@@ -19,9 +19,26 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
     val db: WIPDatabase
     val id: Int
 
-    //var flag1: Boolean = false
+
+
+
+    //              GUARDS
+    /*
+    * in riferimento al listener "setOnChronometerTickListener", che esegue il contenuto del
+    * blocco {} ogni volta che trascorre un secondo, le variabili first, second, third e
+    * fourthAlreadyExecuted garantiscono che la funzione "backgroundEvolution" venga eseguita
+    * una sola volta per slot temporale
+    * */
+    var firstAlreadyExecuted = true
+    var secondAlreadyExecuted = true
+    var thirdAlreadyExecuted = true
+    var fourthAlreadyExecuted = true
+
+
+
+
+    var flag1: Boolean = false
     var flag2: Boolean = false
-    var flag3: Boolean = false
 
     val pauseIntentFilter = IntentFilter(Intent.ACTION_SCREEN_OFF)
     val screenOffDetector = ScreenOffDetector(this)

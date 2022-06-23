@@ -1,14 +1,10 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
-import android.app.ActivityManager
-import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import android.view.MotionEvent
 import android.widget.Chronometer
 import android.widget.ImageView
@@ -49,10 +45,10 @@ class StoryStartedActivity : AppCompatActivity(){
         * fourthAlreadyExecuted garantiscono che la funzione "backgroundEvolution" venga eseguita
         * una sola volta per slot temporale
         * */
-        var firstAlreadyExecuted = true
-        var secondAlreadyExecuted = true
-        var thirdAlreadyExecuted = true
-        var fourthAlreadyExecuted = true
+        //var firstAlreadyExecuted = true
+        //var secondAlreadyExecuted = true
+        //var thirdAlreadyExecuted = true
+        //var fourthAlreadyExecuted = true
 
 
 
@@ -108,7 +104,6 @@ class StoryStartedActivity : AppCompatActivity(){
 
         // Cambio quotes dell'avatar quando sblocchi il telefono
         val intentFilter = IntentFilter(Intent.ACTION_SCREEN_ON)
-        intentFilter.addAction(Intent.ACTION_SCREEN_OFF)
         var currentState = "study"
         var mReceiver = ScreenStateReceiver(quote, currentState)
         registerReceiver(mReceiver, intentFilter)
@@ -116,11 +111,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
 
         //              DEVICE SCREEN OFF
-        //val pauseIntentFilter = IntentFilter(Intent.ACTION_SCREEN_OFF)
-        //val screenOffDetector = ScreenOffDetector(viewModel)
-        //registerReceiver(screenOffDetector, pauseIntentFilter)
         registerReceiver(viewModel.screenOffDetector, viewModel.pauseIntentFilter)
-
 
 
 
@@ -146,10 +137,10 @@ class StoryStartedActivity : AppCompatActivity(){
             * */
             if(myTime>=maxTime){
                 selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
-                firstAlreadyExecuted = true
-                secondAlreadyExecuted = true
-                thirdAlreadyExecuted = true
-                fourthAlreadyExecuted = true
+                viewModel.firstAlreadyExecuted = true
+                viewModel.secondAlreadyExecuted = true
+                viewModel.thirdAlreadyExecuted = true
+                viewModel.fourthAlreadyExecuted = true
                 leftValueRange1 = maxTime+step1
                 leftValueRange2 = maxTime+step2
                 leftValueRange3 = maxTime+step3
@@ -170,9 +161,9 @@ class StoryStartedActivity : AppCompatActivity(){
                 }
                 selectedArtwork = newSelectedArtwork
             }else if(myTime>=pauseMoment){
-                if(fourthAlreadyExecuted) {
+                if(viewModel.fourthAlreadyExecuted) {
                     backgroundEvolution(artwork, selectedArtwork, 4)
-                    fourthAlreadyExecuted = false
+                    viewModel.fourthAlreadyExecuted = false
                     selectedAvatar.setBackgroundResource(R.drawable.bonfire)
 
                     // setto il receiver in modo che mostri quotes relative alla pausa
@@ -183,19 +174,19 @@ class StoryStartedActivity : AppCompatActivity(){
                     quote.setText(firstPauseQuote)
                 }
             }else if(myTime>=leftValueRange3){
-                if(thirdAlreadyExecuted) {
+                if(viewModel.thirdAlreadyExecuted) {
                     backgroundEvolution(artwork, selectedArtwork, 4)
-                    thirdAlreadyExecuted = false
+                    viewModel.thirdAlreadyExecuted = false
                 }
             }else if(myTime>=leftValueRange2){
-                if(secondAlreadyExecuted) {
+                if(viewModel.secondAlreadyExecuted) {
                     backgroundEvolution(artwork, selectedArtwork, 3)
-                    secondAlreadyExecuted = false
+                    viewModel.secondAlreadyExecuted = false
                 }
             } else if(myTime>=leftValueRange1){
-                if(firstAlreadyExecuted) {
+                if(viewModel.firstAlreadyExecuted) {
                     backgroundEvolution(artwork, selectedArtwork, 2)
-                    firstAlreadyExecuted = false
+                    viewModel.firstAlreadyExecuted = false
                 }
             }
         }
@@ -211,6 +202,7 @@ class StoryStartedActivity : AppCompatActivity(){
         stopButton.setOnClickListener {
             cronometro.stop()
             unregisterReceiver(viewModel.screenOffDetector)
+            unregisterReceiver(mReceiver)
             val coinsReceived = viewModel.coinCalculator(studyTime, breakTime, actualTime)
             val dialogCoin = DialogCoins(coinsReceived)
             dialogCoin.show(supportFragmentManager, "coinInfo")
@@ -227,8 +219,8 @@ class StoryStartedActivity : AppCompatActivity(){
         val selectedMode = extras?.get("mode").toString().toInt()
 
         if(selectedMode==1){
-            if(viewModel.flag3){
-                viewModel.flag3 = false
+            if(viewModel.flag1){
+                viewModel.flag1 = false
             }else{
                 viewModel.flag2 = true
             }
