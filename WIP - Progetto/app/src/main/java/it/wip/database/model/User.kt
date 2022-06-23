@@ -11,8 +11,8 @@ data class User(
     @ColumnInfo(name = "favourite_avatar")
     var favouriteAvatar: String,
     @ColumnInfo(name = "work_time")
-    var studyTime: Float,
+    var studyTime: Int,
     @ColumnInfo(name = "max_work_time")
-    var maxStudyTime: Float,
+    var maxStudyTime: Int,
     var coins: Int
 )

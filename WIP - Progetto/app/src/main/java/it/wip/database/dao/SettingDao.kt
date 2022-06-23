@@ -12,10 +12,13 @@ interface SettingDao {
     @Insert
     suspend fun insert(vararg settings: Setting)
 
+    @Insert
+    fun insertWithoutCoroutines(vararg setting: Setting)
+
     @Update
-    suspend fun update(user: Setting)
+    suspend fun update(setting: Setting)
 
     @Delete
-    suspend fun delete(user: Setting)
+    suspend fun delete(setting: Setting)
 
 }

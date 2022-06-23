@@ -22,9 +22,9 @@ interface StoryDao {
     fun insertWithoutCoroutines(vararg stories: Story)
 
     @Update
-    suspend fun update(user: Story)
+    suspend fun update(story: Story)
 
     @Delete
-    suspend fun delete(user: Story)
+    suspend fun delete(story: Story)
 
 }

@@ -8,7 +8,7 @@ import java.util.*
 fun seed(wipDb: WIPDatabase) {
 
     wipDb.userDao().insertWithoutCoroutines(
-        User(1, "Venere", 30F, 120F, 150)
+        User(1, "Venere", 30, 120, 150)
     )
 
     wipDb.shopElementDao().insertWithoutCoroutines(
@@ -68,6 +68,16 @@ fun seed(wipDb: WIPDatabase) {
             "03.21.32", "21/06/22 22.20.20", 4, 1),
         Chapter(9,"Capitol9",
             "03.21.32", "21/06/22 12.20.20", 6, 1)
+    )
+
+    wipDb.settingDao().insertWithoutCoroutines(
+        Setting("lefthand_mode"),
+        Setting("silent_mode"),
+        Setting("hardcore_mode")
+    )
+
+    wipDb.preferenceDao().insertWithoutCoroutines(
+        Preference(1, "lefthand_mode")
     )
 
 }
