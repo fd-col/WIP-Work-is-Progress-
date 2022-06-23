@@ -117,7 +117,7 @@
     <string name="story_time_limit">Tempo limite\n(minuti)</string>
     <string name="left_hand_mode">Modalità mancino</string>
     <!-- ???? -->
-    <string name="info_text">Information</string>
-    <string name="info_text_button_settings">info button about the app</string>
+    <string name="info_text">Informazioni</string>
+    <string name="info_text_button_settings">icona per informazioni sull\'app</string>
 
 </resources>
