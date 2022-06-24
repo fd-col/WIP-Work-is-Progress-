@@ -12,7 +12,40 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  String s = 'assets/images/play_button.png';
+  String imagesPath = 'assets/images/';
+
+  String playButtonPath = 'assets/images/play_button.png';
+
+  String homeButtonPath = 'assets/images/paint_button.png';
+
+  late Image playButtonPressed;
+  late Image homeButtonPressed;
+
+  @override
+  void initState() {
+    super.initState();
+    playButtonPressed = Image.asset('${imagesPath}play_button_pressed.png');
+    homeButtonPressed = Image.asset('${imagesPath}paint_button_pressed.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(playButtonPressed.image, context);
+    precacheImage(homeButtonPressed.image, context);
+  }
+
+  void setPlayButtonPath(String playButtonPath) {
+    setState(() {
+      this.playButtonPath = imagesPath + playButtonPath;
+    });
+  }
+
+  void setHomeButtonPath(String homeButtonPath) {
+    setState(() {
+      this.homeButtonPath = imagesPath + homeButtonPath;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,30 +81,45 @@ class _HomeState extends State<Home> {
                               fit: BoxFit.fill
                           )
                       ),
+                      padding: const EdgeInsets.only(top: 33, bottom: 33, left: 37, right: 37),
                       child: GestureDetector(
                           onTapDown: (_){
-                            setState(() {s = 'assets/images/play_button_pressed.png';});
+                            setState(() {setPlayButtonPath('play_button_pressed.png');});
                           },
                           onPanDown: (_){
-                            setState(() {s = 'assets/images/play_button_pressed.png';});
-                          },
-                          onPanCancel: (){
-                            setState(() {s = 'assets/images/play_button.png';});
+                            setState(() {setPlayButtonPath('play_button_pressed.png');});
                           },
                           onTapCancel: (){
-                            setState(() {s = 'assets/images/play_button.png';});
+                            setState(() {setPlayButtonPath('play_button.png');});
                           },
-                          child: IconButton(
-                              padding: const EdgeInsets.only(top: 0, bottom: 0, left: 10, right: 10),
-                              icon: Image.asset(s),
-                              iconSize: 200,
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/start-story');
-                              }
-                          )
+                          onPanEnd: (_){
+                            setState(() {setPlayButtonPath('play_button.png');});
+                          },
+                          onTap: () {
+                            Navigator.pushNamed(context, '/start-story');
+                            setState(() {setPlayButtonPath('play_button.png');});
+                          },
+                          child: Image.asset(playButtonPath),
                       )
                   ),
-                  Image.asset('assets/images/paint_button.png')
+                  GestureDetector(
+                      onTapDown: (_){
+                        setState(() {setHomeButtonPath('paint_button_pressed.png');});
+                      },
+                      onPanDown: (_){
+                        setState(() {setHomeButtonPath('paint_button_pressed.png');});
+                      },
+                      onTapCancel: (){
+                        setState(() {setHomeButtonPath('paint_button.png');});
+                      },
+                      onPanEnd: (_){
+                        setState(() {setHomeButtonPath('paint_button.png');});
+                      },
+                      onTap: (){
+                        setState(() {setHomeButtonPath('paint_button.png');});
+                      },
+                      child: Image.asset(homeButtonPath)
+                  )
                 ],
               ),
             ),
