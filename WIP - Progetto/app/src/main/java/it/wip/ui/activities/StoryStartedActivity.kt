@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import android.view.MotionEvent
 import android.widget.Chronometer
 import android.widget.ImageView
@@ -60,13 +59,14 @@ class StoryStartedActivity : AppCompatActivity(){
         val step2 = step1 + step1
         val step3 = step2 + step1
 
+        // i time range ci dicono dopo quanto tempo far evolvere un quadro
         var leftValueRange1 = step1
         var leftValueRange2 = step2
         var leftValueRange3 = step3
         var pauseMoment = studyTime
         var actualTime: Long = 0
 
-        //time range in cui evolvere l'opera d'arte
+        //time range totale in cui evolvere l'opera d'arte
         var maxTime: Long = studyTime+breakTime
 
 

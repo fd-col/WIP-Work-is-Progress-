@@ -156,7 +156,7 @@
 
     <!-- settings -->
     <string name="change_time">Work/Break</string>
-    <string name="preview">Preview</string>
+    <string name="default_partition">Default partition</string>
     <string name="story_time_limit">Time limit\n(minutes)</string>
     <string name="ergonomy">Ergonomy</string>
     <string name="left_hand_mode">Lefthand mode</string>

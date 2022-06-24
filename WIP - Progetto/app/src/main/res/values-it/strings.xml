@@ -96,7 +96,7 @@
 
     <!-- settings -->
     <string name="change_time">Lavoro/Pausa</string>
-    <string name="preview">Anteprima</string>
+    <string name="default_partition">Partizione di default</string>
     <string name="story_time_limit">Tempo limite\n(minuti)</string>
     <string name="ergonomy">Ergonomia</string>
     <string name="left_hand_mode">Modalità mancino</string>

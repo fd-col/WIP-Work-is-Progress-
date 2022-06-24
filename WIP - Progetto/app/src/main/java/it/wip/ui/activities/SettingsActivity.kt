@@ -35,24 +35,40 @@ class SettingsActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[SettingsViewModel::class.java]
 
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
 
+
+
+
+        //              BINDING RESOURCES
         val seekBarSettings = binding.seekBarSettings
         val maxStoryTime = binding.maxStoryTime
         val lefthandMode = binding.lefhandMode
         val settingsInfoButton = binding.settingsInfoButton
 
+
+
+
+        //              GRAPHICAL LISTENERS RELATED TO BINDING RESOURCES
+
+        // ------------------------ SEEKBAR LISTENERS ------------------------
+        // listener che aggiorna il testo sulla seekbar quando scorriamo il thumb lungo il track
         seekBarSettings.setLabelFormatter { value: Float ->
             "${value.toInt()} min " + getString(R.string.work) + "/${viewModel.breakTime} min " + getString(R.string.pause)
         }
 
+        /*
+        * listener che setta la partizione del tempo studio/pausa di default (si ha aggiornamento dei dati nel db);
+        * in altre parole, questo listener imposta la partizione studio/pausa che esce di default in startStoryActivity
+        */
         seekBarSettings.addOnChangeListener { _, value, _ ->
             viewModel.setStudyBreakTime(value)
         }
 
+        // ------------------------ EDIT-TEXT LISTENERS ------------------------
         var currentText = ""
 
+        // listener che aggiorna dinamicamente il testo nell'edit text a seconda di ciò che scriviamo
         maxStoryTime.doOnTextChanged { text, _, _, _ ->
 
             if(text.toString() != currentText) {
@@ -74,6 +90,10 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
+        /*
+        * listener che impedisce lo spostamento del cursore nell'edit-text al fine di non permettere
+        * all'utente l'inserimento di valori oltre la stringa "min"
+        * */
         maxStoryTime.accessibilityDelegate = object: View.AccessibilityDelegate() {
 
             override fun sendAccessibilityEvent(host: View?, eventType: Int) {
@@ -86,6 +106,13 @@ class SettingsActivity : AppCompatActivity() {
 
         }
 
+        /*
+        * listener che gestisce:
+        * - tempo minimo impostabile come max-time
+        * - tempo massimo impostabile come max-time
+        * - arrotondamento a multipli di 10 del valore immesso da tastiera
+        * con relativi aggiornamenti nel viewModel e nel DB
+        * */
         maxStoryTime.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
 
@@ -120,12 +147,14 @@ class SettingsActivity : AppCompatActivity() {
                 false
         }
 
+        // ------------------------ SWITCH LISTENER & FONT-SETTER ------------------------
         lefthandMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
         lefthandMode.setOnCheckedChangeListener { _, checked ->
             viewModel.setLefthandMode(checked)
         }
 
+        // ------------------------ BUTTON LISTENERS ------------------------
         settingsInfoButton.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> settingsInfoButton.setImageResource(R.drawable.shop_info_button_pressed)
@@ -139,11 +168,14 @@ class SettingsActivity : AppCompatActivity() {
             dialogSettings.show(supportFragmentManager, "dialogSettings")
         }
 
-        // add the menu fragment to the bottom of KingdomActivity
+
+
+
+        //              MENU-BAR MANAGER
+        // aggiunge il fragment menu nel bottom del KingdomActivity per garantire coerenza grafica
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.header_layout, HeaderFragment())
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
-
     }
 }
