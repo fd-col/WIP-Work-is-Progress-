@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
@@ -31,17 +32,22 @@ class StartStoryActivity : AppCompatActivity() {
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[StartStoryViewModel::class.java]
 
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
 
         //binding.seekBarStoryTime.value = viewModel.studyTime.value!!
 
         val seekBarStoryTime = binding.seekBarStoryTime
 
+        //new story title
+        val adapter = ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,viewModel.storyNamesList.toList())
+        binding.storyTitleSetByTheUser.threshold = 1
+        binding.storyTitleSetByTheUser.setAdapter(adapter)
+
         binding.storyTitleSetByTheUser.doOnTextChanged { text, _, _, _ ->
             viewModel.setStoryName(text.toString())
         }
 
+        // new story work-break time
         seekBarStoryTime.addOnChangeListener { _, value, _ ->
             viewModel.setStudyBreakTime(value)
         }

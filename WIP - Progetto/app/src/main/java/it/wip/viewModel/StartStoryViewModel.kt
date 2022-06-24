@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.media.AudioManager
-import android.util.Log
 import android.widget.Switch
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
@@ -41,14 +40,26 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
     val avatarShoppedElements = mutableListOf<String>()
 
+    var storyNamesList = mutableListOf<String>()
+
     init {
 
         val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
         val wipDb = WIPDatabase.getInstance(application.applicationContext)
 
+        val storyDao = wipDb.storyDao()
+        val story = storyDao.getAllByUserWithoutCoroutines(userId)
+
+
         viewModelScope.launch {
+            //put all story's name in a List to pass inside the AutoCompleteTextView
+            for(singleStory in story) {
+                storyNamesList.add(singleStory.storyName)
+            }
+
             runBlocking {
+
                 val currentShoppedElements = wipDb.shoppedDao().getAllByUser(userId)
                 val allElements = wipDb.shopElementDao().getAll()
 

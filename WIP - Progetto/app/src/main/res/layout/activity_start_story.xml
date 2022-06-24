@@ -56,13 +56,13 @@
                     android:textColor="#E8EAF6"
                     android:textSize="24sp" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/story_title_set_by_the_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
                     android:autofillHints="story title set by the user"
                     android:background="@drawable/rectangular_background"
                     android:cursorVisible="true"
@@ -72,6 +72,7 @@
                     android:inputType="text"
                     android:minHeight="66dp"
                     android:padding="20dp"
+                    android:popupBackground="@color/blue_primary"
                     android:text="@{viewModel.storyName.toString()}"
                     android:textColor="#0277BD"
                     android:textColorHint="#0277BD" />
