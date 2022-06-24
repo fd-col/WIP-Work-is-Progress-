@@ -12,6 +12,8 @@ import kotlinx.coroutines.runBlocking
 
 class StartStoryViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val app = application
+
     private val _storyName = MutableLiveData("")
     val storyName : LiveData<String>
         get() = _storyName
@@ -30,8 +32,9 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
-    private val _switchState = MutableLiveData(true)
-    private val _hSwitchState = MutableLiveData(true)
+    private val _silenceMode = MutableLiveData(true)
+
+    private val _hardcoreMode = MutableLiveData(true)
 
     //val avatarsName = mutableListOf<String>()
     private val allShoppedElements = mutableListOf<String>()
@@ -44,9 +47,9 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
     init {
 
-        val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
+        val userIdPreference = app.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
-        val wipDb = WIPDatabase.getInstance(application.applicationContext)
+        val wipDb = WIPDatabase.getInstance(app.applicationContext)
 
         val storyDao = wipDb.storyDao()
         val story = storyDao.getAllByUserWithoutCoroutines(userId)
@@ -106,14 +109,14 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
 
     //              SWITCH SILENT MODE - NORMAL MODE
-    fun silenceNormal(context: Context){
-        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        if(_switchState.value!!){
+    fun silenceNormal(){
+        val audioManager = app.applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        if(_silenceMode.value!!){
             audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-            _switchState.value = false
+            _silenceMode.value = false
         }else{
             audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-            _switchState.value = true
+            _silenceMode.value = true
         }
     }
 
@@ -121,23 +124,23 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
 
     //              SWITCH SILENT MODE - HARDCORE MODE
-    fun hardcoreMode(@SuppressLint("UseSwitchCompatOrMaterialCode") switchSilentMode: Switch, context: Context){
+    fun hardcoreMode(@SuppressLint("UseSwitchCompatOrMaterialCode") switchSilentMode: Switch){
 
-        if (_switchState.value!! && _hSwitchState.value!!) {
+        if (_silenceMode.value!! && _hardcoreMode.value!!) {
             switchSilentMode.isChecked = true
-            silenceNormal(context)
-            _switchState.value = false
-            _hSwitchState.value = false
+            silenceNormal()
+            _silenceMode.value = false
+            _hardcoreMode.value = false
             switchSilentMode.isClickable = false
-        } else if (!_switchState.value!! && !_hSwitchState.value!!) {
+        } else if (!_silenceMode.value!! && !_hardcoreMode.value!!) {
             switchSilentMode.isChecked = false
-            silenceNormal(context)
-            _switchState.value = true
-            _hSwitchState.value = true
+            silenceNormal()
+            _silenceMode.value = true
+            _hardcoreMode.value = true
             switchSilentMode.isClickable = true
-        } else if (!_switchState.value!! && _hSwitchState.value!!) {
-            _switchState.value = false
-            _hSwitchState.value = false
+        } else if (!_silenceMode.value!! && _hardcoreMode.value!!) {
+            _silenceMode.value = false
+            _hardcoreMode.value = false
             switchSilentMode.isClickable = false
         }
     }
@@ -145,6 +148,6 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
     //              RETURN SELECTED MODE
     fun selectedMode(): Int {
-        return if (_hSwitchState.value!!) { 0 } else { 1 }
+        return if (_hardcoreMode.value!!) { 0 } else { 1 }
     }
 }

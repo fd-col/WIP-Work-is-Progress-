@@ -3,7 +3,6 @@ package it.wip.ui.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -68,11 +67,11 @@ class StartStoryActivity : AppCompatActivity() {
 
 
         binding.switchSilentMode.setOnClickListener{
-            viewModel.silenceNormal(applicationContext)
+            viewModel.silenceNormal()
         }
 
         binding.switchHardcoreMode.setOnClickListener{
-            viewModel.hardcoreMode(binding.switchSilentMode, applicationContext)
+            viewModel.hardcoreMode(binding.switchSilentMode)
         }
 
 

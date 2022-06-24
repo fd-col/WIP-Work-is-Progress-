@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.Chronometer
 import android.widget.ImageView
@@ -34,21 +35,6 @@ class StoryStartedActivity : AppCompatActivity(){
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
-
-
-
-        //              GUARDS
-        /*
-        * in riferimento al listener "setOnChronometerTickListener", che esegue il contenuto del
-        * blocco {} ogni volta che trascorre un secondo, le variabili first, second, third e
-        * fourthAlreadyExecuted garantiscono che la funzione "backgroundEvolution" venga eseguita
-        * una sola volta per slot temporale
-        * */
-        //var firstAlreadyExecuted = true
-        //var secondAlreadyExecuted = true
-        //var thirdAlreadyExecuted = true
-        //var fourthAlreadyExecuted = true
 
 
 
@@ -228,6 +214,7 @@ class StoryStartedActivity : AppCompatActivity(){
     }
 
     override fun onResume() {
+
         super.onResume()
 
         val extras = intent.extras
