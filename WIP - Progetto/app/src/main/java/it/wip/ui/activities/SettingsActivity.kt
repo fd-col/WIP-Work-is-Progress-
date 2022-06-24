@@ -3,6 +3,7 @@ package it.wip.ui.activities
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.inputmethod.EditorInfo
@@ -14,7 +15,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.R
 import it.wip.databinding.ActivitySettingsBinding
-
+import it.wip.ui.dialogs.DialogSettings
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
 import it.wip.viewModel.SettingsViewModel
@@ -40,6 +41,7 @@ class SettingsActivity : AppCompatActivity() {
         val seekBarSettings = binding.seekBarSettings
         val maxStoryTime = binding.maxStoryTime
         val lefthandMode = binding.lefhandMode
+        val settingsInfoButton = binding.settingsInfoButton
 
         seekBarSettings.setLabelFormatter { value: Float ->
             "${value.toInt()} min " + getString(R.string.work) + "/${viewModel.breakTime} min " + getString(R.string.pause)
@@ -122,6 +124,19 @@ class SettingsActivity : AppCompatActivity() {
 
         lefthandMode.setOnCheckedChangeListener { _, checked ->
             viewModel.setLefthandMode(checked)
+        }
+
+        settingsInfoButton.setOnTouchListener { v, event ->
+            when (event?.action) {
+                MotionEvent.ACTION_DOWN -> settingsInfoButton.setImageResource(R.drawable.shop_info_button_pressed)
+                MotionEvent.ACTION_UP -> settingsInfoButton.setImageResource(R.drawable.shop_info_button)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+
+        settingsInfoButton.setOnClickListener{
+            val dialogSettings = DialogSettings()
+            dialogSettings.show(supportFragmentManager, "dialogSettings")
         }
 
         // add the menu fragment to the bottom of KingdomActivity

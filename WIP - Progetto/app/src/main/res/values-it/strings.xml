@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="version">Versione 1.0</string>
+
     <!-- Splash Page -->
     <string name="splash_page_icon_describer">Icona splash page</string>
 
@@ -94,10 +96,14 @@
 
     <!-- settings -->
     <string name="change_time">Lavoro/Pausa</string>
+    <string name="preview">Anteprima</string>
     <string name="story_time_limit">Tempo limite\n(minuti)</string>
+    <string name="ergonomy">Ergonomia</string>
     <string name="left_hand_mode">Modalità mancino</string>
+    <string name="about_the_app">Riguardo l\'app</string>
+
     <!-- ???? -->
-    <string name="info_text">Informazioni</string>
+    <string name="info_text">Info</string>
     <string name="info_text_button_settings">icona per informazioni sull\'app</string>
 
 </resources>

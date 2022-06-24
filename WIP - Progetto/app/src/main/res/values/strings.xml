@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">WIP</string>
+    <string name="app_under_name" translatable="false">Work Is Progress</string>
+    <string name="version">Version 1.0</string>
 
     <!-- Splash Page -->
     <string name="splash_page_icon_describer">Splash page icon</string>
@@ -154,10 +156,13 @@
 
     <!-- settings -->
     <string name="change_time">Work/Break</string>
+    <string name="preview">Preview</string>
     <string name="story_time_limit">Time limit\n(minutes)</string>
+    <string name="ergonomy">Ergonomy</string>
     <string name="left_hand_mode">Lefthand mode</string>
+    <string name="about_the_app">About the app</string>
     <!-- ???? -->
-    <string name="info_text">Information</string>
+    <string name="info_text">Info</string>
     <string name="info_text_button_settings">info button about the app</string>
 
     <!-- dialogs -->
