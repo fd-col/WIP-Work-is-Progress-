@@ -17,6 +17,70 @@ class _StartStoryState extends State<StartStory> {
   bool _silenceMode = false;
   bool _hardcoreMode = false;
 
+  String imagesPath = 'assets/images/';
+
+  String backButtonPath = 'assets/images/back_button.png';
+  String infoButtonPath = 'assets/images/info_button.png';
+  String sxButtonPath = 'assets/images/avatar_sx_arrow.png';
+  String dxButtonPath = 'assets/images/avatar_dx_arrow.png';
+  String startStoryButtonPath = 'assets/images/start_story_button.png';
+
+  late Image backButtonPressed;
+  late Image infoButtonPressed;
+  late Image sxButtonPressed;
+  late Image dxButtonPressed;
+  late Image startStoryButtonPressed;
+
+  @override
+  void initState() {
+    super.initState();
+    backButtonPressed = Image.asset('${imagesPath}back_button_pressed.png');
+    infoButtonPressed = Image.asset('${imagesPath}info_button_pressed.png');
+    sxButtonPressed = Image.asset('${imagesPath}avatar_sx_arrow_pressed.png');
+    dxButtonPressed = Image.asset('${imagesPath}avatar_dx_arrow_pressed.png');
+    startStoryButtonPressed = Image.asset('${imagesPath}start_story_button_pressed.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(backButtonPressed.image, context);
+    precacheImage(infoButtonPressed.image, context);
+    precacheImage(sxButtonPressed.image, context);
+    precacheImage(dxButtonPressed.image, context);
+    precacheImage(startStoryButtonPressed.image, context);
+  }
+
+  void setBackButtonPath(String backButtonPath) {
+    setState(() {
+      this.backButtonPath = imagesPath + backButtonPath;
+    });
+  }
+
+  void setInfoButtonPath(String infoButtonPath) {
+    setState(() {
+      this.infoButtonPath = imagesPath + infoButtonPath;
+    });
+  }
+
+  void setSxButtonPath(String sxButtonPath) {
+    setState(() {
+      this.sxButtonPath = imagesPath + sxButtonPath;
+    });
+  }
+
+  void setDxButtonPath(String dxButtonPath) {
+    setState(() {
+      this.dxButtonPath = imagesPath + dxButtonPath;
+    });
+  }
+
+  void setStartStoryButtonPath(String startStoryButtonPath) {
+    setState(() {
+      this.startStoryButtonPath = imagesPath + startStoryButtonPath;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,10 +100,23 @@ class _StartStoryState extends State<StartStory> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset('assets/images/back_button.png', height: 60, width: 60, fit: BoxFit.cover)
+                        onTapDown: (_){
+                          setBackButtonPath('back_button_pressed.png');
+                        },
+                        onPanDown: (_){
+                          setBackButtonPath('back_button_pressed.png');
+                        },
+                        onTapCancel: (){
+                          setBackButtonPath('back_button.png');
+                        },
+                        onPanEnd: (_){
+                          setBackButtonPath('back_button.png');
+                        },
+                        onTap: () {
+                          Navigator.pop(context);
+                          setBackButtonPath('back_button.png');
+                        },
+                      child: Image.asset(backButtonPath, height: 60, width: 60, fit: BoxFit.cover)
                     )
                   ),
                   const Text(
@@ -185,10 +262,26 @@ class _StartStoryState extends State<StartStory> {
                         ),
                         Align(
                           alignment: Alignment.topCenter,
-                          child: IconButton(
-                            icon: Image.asset('assets/images/info_button.png'),
-                            onPressed: () {  },
-                          ),
+                          child: GestureDetector(
+                              onTapDown: (_){
+                                setInfoButtonPath('info_button_pressed.png');
+                              },
+                              onPanDown: (_){
+                                setInfoButtonPath('info_button_pressed.png');
+                              },
+                              onTapCancel: (){
+                                setInfoButtonPath('info_button.png');
+                              },
+                              onPanEnd: (_){
+                                setInfoButtonPath('info_button.png');
+                              },
+                            child: IconButton(
+                              icon: Image.asset(infoButtonPath),
+                              onPressed: () {
+                                setInfoButtonPath('info_button.png');
+                              }
+                            )
+                          )
                         )
                       ],
                     )
@@ -205,12 +298,27 @@ class _StartStoryState extends State<StartStory> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(
-                          padding: const EdgeInsets.only(right: 30),
-                          icon: Image.asset('assets/images/avatar_sx_arrow.png'),
-                          iconSize: 50,
-                          onPressed: () {
-                          }
+                      GestureDetector(
+                          onTapDown: (_){
+                            setSxButtonPath('avatar_sx_arrow_pressed.png');
+                          },
+                          onPanDown: (_){
+                            setSxButtonPath('avatar_sx_arrow_pressed.png');
+                          },
+                          onTapCancel: (){
+                            setSxButtonPath('avatar_sx_arrow.png');
+                          },
+                          onPanEnd: (_){
+                            setSxButtonPath('avatar_sx_arrow.png');
+                          },
+                          child: IconButton(
+                              padding: const EdgeInsets.only(right: 30),
+                              icon: Image.asset(sxButtonPath),
+                              iconSize: 50,
+                              onPressed: () {
+                                setSxButtonPath('avatar_sx_arrow.png');
+                              }
+                          )
                       ),
                       SizedBox(
                           height: 100,
@@ -220,20 +328,48 @@ class _StartStoryState extends State<StartStory> {
                               child: Image.asset('assets/images/venere.png'),
                           )
                       ),
-                      IconButton(
-                          padding: const EdgeInsets.only(left: 30),
-                          icon: Image.asset('assets/images/avatar_dx_arrow.png'),
-                          iconSize: 50,
-                          onPressed: () {
-                        }
-                      ),
+                      GestureDetector(
+                          onTapDown: (_){
+                            setDxButtonPath('avatar_dx_arrow_pressed.png');
+                          },
+                          onPanDown: (_){
+                            setDxButtonPath('avatar_dx_arrow_pressed.png');
+                          },
+                          onTapCancel: (){
+                            setDxButtonPath('avatar_dx_arrow.png');
+                          },
+                          onPanEnd: (_){
+                            setDxButtonPath('avatar_dx_arrow.png');
+                          },
+                        child: IconButton(
+                            padding: const EdgeInsets.only(left: 30),
+                            icon: Image.asset(dxButtonPath),
+                            iconSize: 50,
+                            onPressed: () {
+                              setDxButtonPath('avatar_dx_arrow.png');
+                            }
+                        )
+                      )
                     ],
                   ),
                   GestureDetector(
+                      onTapDown: (_){
+                        setStartStoryButtonPath('start_story_button_pressed.png');
+                      },
+                      onPanDown: (_){
+                        setStartStoryButtonPath('start_story_button_pressed.png');
+                      },
+                      onTapCancel: (){
+                        setStartStoryButtonPath('start_story_button.png');
+                      },
+                      onPanEnd: (_){
+                        setStartStoryButtonPath('start_story_button.png');
+                      },
                     onTap: () {
                       Navigator.pushNamed(context, '/story-started');
+                      setStartStoryButtonPath('start_story_button.png');
                     },
-                    child: Image.asset('assets/images/start_story_button.png')
+                    child: Image.asset(startStoryButtonPath)
                   )
 
                 ]

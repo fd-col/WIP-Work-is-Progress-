@@ -15,7 +15,6 @@ class _HomeState extends State<Home> {
   String imagesPath = 'assets/images/';
 
   String playButtonPath = 'assets/images/play_button.png';
-
   String homeButtonPath = 'assets/images/paint_button.png';
 
   late Image playButtonPressed;
@@ -84,39 +83,39 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.only(top: 33, bottom: 33, left: 37, right: 37),
                       child: GestureDetector(
                           onTapDown: (_){
-                            setState(() {setPlayButtonPath('play_button_pressed.png');});
+                            setPlayButtonPath('play_button_pressed.png');
                           },
                           onPanDown: (_){
-                            setState(() {setPlayButtonPath('play_button_pressed.png');});
+                            setPlayButtonPath('play_button_pressed.png');
                           },
                           onTapCancel: (){
-                            setState(() {setPlayButtonPath('play_button.png');});
+                            setPlayButtonPath('play_button.png');
                           },
                           onPanEnd: (_){
-                            setState(() {setPlayButtonPath('play_button.png');});
+                            setPlayButtonPath('play_button.png');
                           },
                           onTap: () {
                             Navigator.pushNamed(context, '/start-story');
-                            setState(() {setPlayButtonPath('play_button.png');});
+                            setPlayButtonPath('play_button.png');
                           },
                           child: Image.asset(playButtonPath),
                       )
                   ),
                   GestureDetector(
                       onTapDown: (_){
-                        setState(() {setHomeButtonPath('paint_button_pressed.png');});
+                        setHomeButtonPath('paint_button_pressed.png');
                       },
                       onPanDown: (_){
-                        setState(() {setHomeButtonPath('paint_button_pressed.png');});
+                        setHomeButtonPath('paint_button_pressed.png');
                       },
                       onTapCancel: (){
-                        setState(() {setHomeButtonPath('paint_button.png');});
+                        setHomeButtonPath('paint_button.png');
                       },
                       onPanEnd: (_){
-                        setState(() {setHomeButtonPath('paint_button.png');});
+                        setHomeButtonPath('paint_button.png');
                       },
                       onTap: (){
-                        setState(() {setHomeButtonPath('paint_button.png');});
+                        setHomeButtonPath('paint_button.png');
                       },
                       child: Image.asset(homeButtonPath)
                   )

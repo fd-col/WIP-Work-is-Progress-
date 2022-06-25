@@ -20,10 +20,29 @@ class _StoryStartedState extends State<StoryStarted> {
   String minutesText = '00';
   String secondsText = '00';
 
+  String imagesPath = 'assets/images/';
+
+  String stopButtonPath = 'assets/images/stop_button.png';
+
+  late Image stopButtonPressed;
+
   @override
   void initState() {
     super.initState();
+    stopButtonPressed = Image.asset('${imagesPath}stop_button_pressed.png');
     startTimer();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(stopButtonPressed.image, context);
+  }
+
+  void setStopButtonPath(String stopButtonPath) {
+    setState(() {
+      this.stopButtonPath = imagesPath + stopButtonPath;
+    });
   }
 
   void startTimer() {
@@ -111,10 +130,23 @@ class _StoryStartedState extends State<StoryStarted> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           GestureDetector(
+                              onTapDown: (_){
+                                setStopButtonPath('stop_button_pressed.png');
+                              },
+                              onPanDown: (_){
+                                setStopButtonPath('stop_button_pressed.png');
+                              },
+                              onTapCancel: (){
+                                setStopButtonPath('stop_button.png');
+                              },
+                              onPanEnd: (_){
+                                setStopButtonPath('stop_button.png');
+                              },
                               onTap: () {
                                 Navigator.pop(context);
+                                setStopButtonPath('stop_button.png');
                               },
-                              child: Image.asset('assets/images/stop_button.png')
+                              child: Image.asset(stopButtonPath)
                           ),
                           Text(
                             '$minutesText:$secondsText',
