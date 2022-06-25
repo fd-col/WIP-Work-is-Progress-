@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-
+            android:contentDescription="@string/story_name"
             android:fontFamily="@font/press_start_2p"
             android:text="@string/story_detail"
             android:textColor="#E8EAF6"

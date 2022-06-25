@@ -43,6 +43,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
     val avatarShoppedElements = mutableListOf<String>()
 
+    //list of story's names to fill AutoCompleteTextView
     var storyNamesList = mutableListOf<String>()
 
     init {

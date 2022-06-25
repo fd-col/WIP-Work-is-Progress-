@@ -38,4 +38,11 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
         }
 
     }
+
+    //function to delete last story inserted in Kingdom
+    suspend fun deleteLastStory(){
+        val allStories = storyDao.getAll()
+        val lastStoryIndex = allStories.lastIndex
+        storyDao.delete(allStories[lastStoryIndex])
+    }
 }

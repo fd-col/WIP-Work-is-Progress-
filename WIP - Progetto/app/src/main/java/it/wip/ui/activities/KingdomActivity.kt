@@ -20,6 +20,8 @@ import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.utils.KingdomListAdapter
 import it.wip.viewModel.KingdomViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -119,6 +121,12 @@ class KingdomActivity : AppCompatActivity() {
         rvH.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         val rvHAdapter = KingdomListAdapter(this, storyHorizontalList, itemClickListener = itemHorizontalOnClick)
         rvH.adapter = rvHAdapter
+
+
+        //button to delete a story by position
+        binding.searchButton.setOnClickListener {
+            GlobalScope.launch { viewModel.deleteLastStory() }
+        }
 
 
         // add the menu fragment to the bottom of KingdomActivity

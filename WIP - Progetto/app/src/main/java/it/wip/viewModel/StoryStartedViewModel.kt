@@ -7,9 +7,13 @@ import android.content.IntentFilter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
+import it.wip.database.dao.StoryDao
+import it.wip.database.model.Story
 import it.wip.utils.ScreenOffDetector
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StoryStartedViewModel(application: Application) : AndroidViewModel(application){
 
@@ -19,7 +23,8 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
     val db: WIPDatabase
     val id: Int
 
-
+    private val storyDao: StoryDao
+    val story: Array<Story>
 
 
     //              GUARDS
@@ -50,6 +55,9 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
         val wipDb_ = WIPDatabase.getInstance(application.applicationContext)
         db = wipDb_
         id = userId_
+
+        storyDao = wipDb_.storyDao()
+        story = storyDao.getAllByUserWithoutCoroutines(userId_)
 
         viewModelScope.launch {
             runBlocking {
@@ -100,5 +108,16 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
         }
 
         return earnedCoins.toString()
+    }
+
+    suspend fun addNewStory(newStoryName:String){
+        val allStories = storyDao.getAll()
+        val lastStoryIndex = allStories.lastOrNull()?.id
+        val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
+        if (lastStoryIndex != null) {
+            storyDao.insert(Story(lastStoryIndex+1, newStoryName,
+                                    dateFormat.format(Date()).toString(), id))
+        }
+
     }
 }

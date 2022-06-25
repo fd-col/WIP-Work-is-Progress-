@@ -25,7 +25,6 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
     init {
 
         val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
-
         val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
 
         val wipDb = WIPDatabase.getInstance(application.applicationContext)

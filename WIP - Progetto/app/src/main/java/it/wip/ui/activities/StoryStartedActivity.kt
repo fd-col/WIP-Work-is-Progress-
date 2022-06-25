@@ -18,11 +18,14 @@ import it.wip.ui.dialogs.DialogCoins
 import it.wip.ui.dialogs.DialogHardcoreMode
 import it.wip.utils.*
 import it.wip.viewModel.StoryStartedViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class StoryStartedActivity : AppCompatActivity(){
 
     private lateinit var viewModel: StoryStartedViewModel
+    private var myTime: Long = 0
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +43,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //              EXTRAS
         val extras = intent.extras
+        val newStoryName = extras?.get("newStoryName").toString()
         val avatar: String = extras?.get("selectedAvatar").toString()
         val floatStudyTime = extras?.get("studyTime").toString().toFloat()
         val floatBreakTime = extras?.get("breakTime").toString().toFloat()
@@ -112,7 +116,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
-            val myTime = (SystemClock.elapsedRealtime() - cronometro.base)
+            myTime = (SystemClock.elapsedRealtime() - cronometro.base)
             actualTime = myTime
             /*
             * if(myTime>=maxTime){...} è il blocco di codice che mette un nuovo quadro e lo fa
@@ -185,6 +189,7 @@ class StoryStartedActivity : AppCompatActivity(){
             v?.onTouchEvent(event) ?: true
         }
 
+        //actions executed when stop button is clicked
         stopButton.setOnClickListener {
             cronometro.stop()
             unregisterReceiver(viewModel.screenOffDetector)
@@ -192,11 +197,13 @@ class StoryStartedActivity : AppCompatActivity(){
             val coinsReceived = viewModel.coinCalculator(studyTime, breakTime, actualTime)
             val dialogCoin = DialogCoins(coinsReceived)
             dialogCoin.show(supportFragmentManager, "coinInfo")
+            //after checking a minum time of 30 seconds, the story will be add to the Kingdom
+            if(myTime>30000) {
+                //call method to insert the new story
+                GlobalScope.launch { viewModel.addNewStory(newStoryName) }
+            }
         }
     }
-
-
-
 
     override fun onRestart() {
         super.onRestart()

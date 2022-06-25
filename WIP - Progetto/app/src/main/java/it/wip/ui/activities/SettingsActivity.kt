@@ -33,7 +33,6 @@ class SettingsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[SettingsViewModel::class.java]
-
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -154,6 +153,7 @@ class SettingsActivity : AppCompatActivity() {
             viewModel.setLefthandMode(checked)
         }
 
+
         // ------------------------ BUTTON LISTENERS ------------------------
         settingsInfoButton.setOnTouchListener { v, event ->
             when (event?.action) {
@@ -173,6 +173,9 @@ class SettingsActivity : AppCompatActivity() {
 
         //              MENU-BAR MANAGER
         // aggiunge il fragment menu nel bottom del KingdomActivity per garantire coerenza grafica
+
+
+        // add the menu fragment to the bottom of KingdomActivity
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.header_layout, HeaderFragment())
         transaction.add(R.id.menu_layout, MenuFragment())

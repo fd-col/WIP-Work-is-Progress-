@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import it.wip.MainActivity
 import it.wip.R
@@ -86,57 +87,34 @@ class StartStoryActivity : AppCompatActivity() {
 
         // button backwards
         binding.backButton.setOnTouchListener { v, event ->
-
             when (event.action) {
-
                 MotionEvent.ACTION_DOWN -> binding.backButton.setImageResource(R.drawable.back_arrow_pressed)
-
                 MotionEvent.ACTION_UP -> binding.backButton.setImageResource(R.drawable.back_arrow)
-
             }
-
             v?.onTouchEvent(event) ?: true
-
         }
 
         binding.infoButton.setOnTouchListener { v, event ->
-
             when (event.action) {
-
                 MotionEvent.ACTION_DOWN -> binding.infoButton.setImageResource(R.drawable.info_button_pressed)
-
                 MotionEvent.ACTION_UP -> binding.infoButton.setImageResource(R.drawable.info_button)
-
             }
-
             v?.onTouchEvent(event) ?: true
-
         }
 
         binding.avatarSxButton.setOnTouchListener { v, event ->
-
             when (event.action) {
-
                 MotionEvent.ACTION_DOWN -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow_pressed)
-
                 MotionEvent.ACTION_UP -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow)
-
             }
-
             v?.onTouchEvent(event) ?: true
-
         }
 
         binding.avatarDxButton.setOnTouchListener { v, event ->
-
             when (event.action) {
-
                 MotionEvent.ACTION_DOWN -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow_pressed)
-
                 MotionEvent.ACTION_UP -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow)
-
             }
-
             v?.onTouchEvent(event) ?: true
 
         }
@@ -181,12 +159,18 @@ class StartStoryActivity : AppCompatActivity() {
 
         binding.startButton.setOnClickListener {
 
-            val intent = Intent(this, StoryStartedActivity::class.java)
-            intent.putExtra("studyTime", viewModel.studyTime.value)
-            intent.putExtra("breakTime", viewModel.breakTime.value)
-            intent.putExtra("selectedAvatar", selectedAvatar)
-            intent.putExtra("mode", viewModel.selectedMode())
-            startActivity(intent)
+            //IL CONTROLLO CHE IL NOME NON SIA VUOTO, ANCORA NON FUNZIONA
+            if(binding.storyTitleSetByTheUser.text.isNullOrBlank())
+                Toast.makeText(this,"Please insert a name for your new story", Toast.LENGTH_SHORT).show()
+            else {
+                val intent = Intent(this, StoryStartedActivity::class.java)
+                intent.putExtra("newStoryName", viewModel.storyName.value)
+                intent.putExtra("studyTime", viewModel.studyTime.value)
+                intent.putExtra("breakTime", viewModel.breakTime.value)
+                intent.putExtra("selectedAvatar", selectedAvatar)
+                intent.putExtra("mode", viewModel.selectedMode())
+                startActivity(intent)
+            }
 
         }
 
