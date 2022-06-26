@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'Home.dart';
-import 'StartStory.dart';
-import 'StoryStarted.dart';
+import 'view/story_started.dart';
+import 'view/home.dart';
+import 'view/start_story.dart';
 
 class WIP extends StatelessWidget {
   const WIP({Key? key}) : super(key: key);

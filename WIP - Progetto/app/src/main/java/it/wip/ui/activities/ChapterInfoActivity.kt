@@ -46,17 +46,14 @@ class ChapterInfoActivity : AppCompatActivity() {
         //get the chapter ID related with the chapter clicked in the StoryDetail
         val chapterID = intent.getIntExtra("chapterID", 0)
 
-        for(i in 0..viewModel.chapter.lastIndex){
-            if(chapterID == viewModel.chapter[i].id) {
-                datetimeStoryStarted.text = viewModel.chapter[i].createdOn
-                //datetimeStoryEnded
-                //seekBar
-                //switchSilentMode
-                //switchHardcoreMode
-                //avatar.setImageResource(viewModel.chapter[i].avatar)
-            }
+        val chapter = viewModel.getChapter(chapterID)
 
-        }
+        datetimeStoryStarted.text = chapter.createdOn
+        //datetimeStoryEnded
+        //seekBar
+        //switchSilentMode
+        //switchHardcoreMode
+        //avatar.setImageResource(viewModel.chapter[i].avatar)
 
 
 

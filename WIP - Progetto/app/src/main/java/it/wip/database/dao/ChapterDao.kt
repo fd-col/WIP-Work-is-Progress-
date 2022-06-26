@@ -9,8 +9,11 @@ interface ChapterDao {
     @Query("SELECT * FROM chapter")
     suspend fun getAll(): Array<Chapter>
 
-    @Query("SELECT * FROM chapter WHERE user = :userId")
-    fun getAllByUserWithoutCoroutines(userId: Int): Array<Chapter>
+    @Query("SELECT * FROM chapter WHERE story = :chapterId")
+    fun getAllById(chapterId: Int): Array<Chapter>
+
+    @Query("SELECT * FROM chapter WHERE story = :storyId")
+    fun getAllByStory(storyId: Int): Array<Chapter>
 
     @Insert
     suspend fun insert(vararg chapters: Chapter)

@@ -1,8 +1,8 @@
 package it.wip.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.indexOf
 import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.TextView
@@ -18,12 +18,12 @@ import it.wip.databinding.ActivityStoryDetailBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.utils.KingdomListAdapter
 import it.wip.viewModel.StoryDetailViewModel
-import org.w3c.dom.Text
 
 class StoryDetailActivity: AppCompatActivity() {
 
     lateinit var viewModel: StoryDetailViewModel
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,21 +53,23 @@ class StoryDetailActivity: AppCompatActivity() {
         val storyDetailList = ArrayList<DataKingdom>()
 
 
+        val chapters = viewModel.getChapters(storyID)
+
         //iterate over all chapters inside our DB
-        for (i in 0..viewModel.chapter.lastIndex) {
+        for (i in 0..chapters.lastIndex) {
             //check if id's story, given by the previous intent "storyID", is the same as chapters
-            if (storyID == viewModel.chapter[i].story) {
+            if (storyID == chapters[i].story) {
                 //put Cards with data to the left
                 if (i % 2 == 0) {
 
                     storyDetailList.add(
                         DataKingdom(
                             KingdomListAdapter.THE_THIRD_VIEW,
-                            viewModel.chapter[i].chapterName,
-                            viewModel.chapter[i].id,
-                            "",
-                            viewModel.chapter[i].createdOn,
-                            viewModel.chapter[i].time
+                            chapters[i].chapterName,
+                            chapters[i].id,
+                            chapters.size.toString(),
+                            chapters[i].createdOn,
+                            chapters[i].time
                         )
                     )
                     //numChapters++
@@ -78,11 +80,11 @@ class StoryDetailActivity: AppCompatActivity() {
                     storyDetailList.add(
                         DataKingdom(
                             KingdomListAdapter.THE_FORTH_VIEW,
-                            viewModel.chapter[i].chapterName,
-                            viewModel.chapter[i].id,
-                            "",
-                            viewModel.chapter[i].createdOn,
-                            viewModel.chapter[i].time
+                            chapters[i].chapterName,
+                            chapters[i].id,
+                            chapters.size.toString(),
+                            chapters[i].createdOn,
+                            chapters[i].time
                         )
                     )
                     //numChapters++

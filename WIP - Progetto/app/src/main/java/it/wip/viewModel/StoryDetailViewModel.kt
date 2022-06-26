@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.ChapterDao
+import it.wip.database.model.Chapter
 import it.wip.database.model.Story
 import kotlinx.coroutines.launch
 import java.text.DateFormat
@@ -19,6 +20,9 @@ class StoryDetailViewModel(application: Application) : AndroidViewModel(applicat
 
     
     var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
-    val chapter = chapterDao.getAllByUserWithoutCoroutines(userId)
+
+    fun getChapters(storyId: Int): Array<Chapter> {
+        return chapterDao.getAllByStory(storyId);
+    }
 
 }

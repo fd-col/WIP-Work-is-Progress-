@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:wip_flutter/database/dao/user_dao.dart';
+import 'package:wip_flutter/database/wip_db.dart';
+
+import '../database/model/user.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -11,6 +17,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  late Database wipDb;
 
   String imagesPath = 'assets/images/';
 
@@ -25,6 +33,17 @@ class _HomeState extends State<Home> {
     super.initState();
     playButtonPressed = Image.asset('${imagesPath}play_button_pressed.png');
     homeButtonPressed = Image.asset('${imagesPath}paint_button_pressed.png');
+
+    getData();
+
+  }
+
+  Future<String> getData() async {
+    Database wipDb = await WIPDb.getDb();
+
+    List<User> users = await UserDao.getAll(wipDb);
+
+    return users[0].id.toString();
   }
 
   @override
@@ -118,6 +137,12 @@ class _HomeState extends State<Home> {
                         setHomeButtonPath('paint_button.png');
                       },
                       child: Image.asset(homeButtonPath)
+                  ),
+                  FutureBuilder(
+                    future: getData(),
+                      builder: (BuildContext context, AsyncSnapshot<String> text) {
+                        return Text(text.data.toString());
+                      }
                   )
                 ],
               ),
