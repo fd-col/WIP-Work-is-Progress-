@@ -40,37 +40,36 @@ class KingdomActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val numChapters = ""
+
+        //last story's date on top of vertical reycler view
+        binding.dataUltimaStory.text = viewModel.sortedList[0].createdOn
 
 
-        //date last story on top of the vertical reycler view
-        val lastStoryDate = findViewById<TextView>(R.id.data_ultima_story)
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ITALY)
-        lastStoryDate.text = viewModel.sortedList[0].createdOn
-
-
-        // data list of stories settled on the vertical recyclerView inside the KingdomActivity
+        // List of Stories inside the vertical recyclerView (inside the KingdomActivity)
         val storyList = ArrayList<DataKingdom>()
 
         for (i in 0..viewModel.sortedList.lastIndex) {
-            if(i%2==0) {
+            //return an array of Chapters filtered by the Story's ID
+            val chapters = viewModel.getChapters(viewModel.sortedList[i].id)
+
+            if(i%2==0) { //even indexes on the left
                 storyList.add(
                     DataKingdom(
                         KingdomListAdapter.THE_FIRST_VIEW,
                         viewModel.sortedList[i].storyName,
                         viewModel.sortedList[i].id,
-                        "Chapters: $numChapters"
+                        "Chapters:\n${chapters.size}"
 
                     )
                 )
             }
-            else {
+            else { //odd indexes on the left
                 storyList.add(
                     DataKingdom(
                         KingdomListAdapter.THE_SECOND_VIEW,
                         viewModel.sortedList[i].storyName,
                         viewModel.sortedList[i].id,
-                        "Chapters: $numChapters"
+                        "Chapters:\n${chapters.size}"
                     )
                 )
             }

@@ -33,6 +33,8 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     val breakTime : LiveData<Float>
         get() = _breakTime
 
+
+
     private val _silenceMode = MutableLiveData(true)
 
     private val _hardcoreMode = MutableLiveData(true)
@@ -106,8 +108,6 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
         this._studyTime.value = studyTime
         this._breakTime.value = maxStudyTime.minus(this._studyTime.value!!)
     }
-
-
 
 
     //              SWITCH SILENT MODE - NORMAL MODE

@@ -3,6 +3,7 @@ package it.wip.ui.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.*
@@ -13,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import it.wip.R
 import it.wip.databinding.ActivityChapterInfoBinding
 import it.wip.databinding.ActivityStoryDetailBinding
+import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.ChapterInfoViewModel
 import it.wip.viewModel.StoryDetailViewModel
+import kotlin.math.absoluteValue
 
 class ChapterInfoActivity : AppCompatActivity() {
 
@@ -31,29 +34,37 @@ class ChapterInfoActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
 
-        val datetimeStoryStarted = findViewById<TextView>(R.id.datetime_story_started)
-        val datetimeStoryEnded = findViewById<TextView>(R.id.datetime_story_ended)
+        val datetimeStoryDate= binding.datetimeStoryDate
+        val datetimeStoryTime = binding.datetimeStoryTime
         //seekBar create problems
         //val seekBar = findViewById<SeekBar>(R.id.seekBar_chapter_info)
-        val switchSilentMode = findViewById<Switch>(R.id.switch_silent_mode_chapter_info)
-        val switchHardcoreMode = findViewById<Switch>(R.id.switch_hardcore_mode_chapter_info)
-        val avatar = findViewById<ImageView>(R.id.avatar_chapter_info)
-        val backButton = findViewById<ImageButton>(R.id.back_button_story_detail)
+        val switchSilentMode = binding.switchSilentModeChapterInfo
+        val switchHardcoreMode = binding.switchHardcoreModeChapterInfo
+        val avatarChoosed = binding.avatarChapterInfo
+        val backButton = binding.backButtonStoryDetail
 
-        switchSilentMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
-        switchHardcoreMode.setTypeface(ResourcesCompat.getFont(this, R.font.press_start_2p))
+
+        //get the switchers' mode from the intent
+        switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        switchSilentMode.isChecked=true
+        switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        switchHardcoreMode.isChecked = true
 
         //get the chapter ID related with the chapter clicked in the StoryDetail
         val chapterID = intent.getIntExtra("chapterID", 0)
 
+        //return the Chapter with chapterID taken by the intent in StoryDetail
         val chapter = viewModel.getChapter(chapterID)
 
-        datetimeStoryStarted.text = chapter.createdOn
-        //datetimeStoryEnded
-        //seekBar
-        //switchSilentMode
-        //switchHardcoreMode
-        //avatar.setImageResource(viewModel.chapter[i].avatar)
+        //set "date" on the Chapter Info created for chapterID
+        datetimeStoryDate.text = chapter.createdOn
+        datetimeStoryDate.movementMethod = ScrollingMovementMethod()
+
+        //set "time" on the Chapter Info created for chapterID
+        datetimeStoryTime.text = chapter.time
+
+        //set "avatar" on the Chapter Info created for chapterID
+        avatarChoosed.setBackgroundResource(fromShopElementNameToResource(chapter.avatar))
 
 
 

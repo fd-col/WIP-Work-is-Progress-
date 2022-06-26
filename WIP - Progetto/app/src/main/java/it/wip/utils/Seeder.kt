@@ -1,5 +1,6 @@
 package it.wip.utils
 
+import it.wip.R
 import it.wip.database.WIPDatabase
 import it.wip.database.model.*
 import java.text.SimpleDateFormat
@@ -51,23 +52,23 @@ fun seed(wipDb: WIPDatabase) {
 
     wipDb.chapterDao().insertWithoutCoroutines(
         Chapter(1, "Capitol1",
-            "00.05.01", "21/06/22 10.20.20", 1),
+            "00:30", "21/06/22 10.20.20", "venere",1),
         Chapter(2, "Capitol2",
-        "1.07.12", "20/06/22 15.20.20", 2),
+            "00:30", "20/06/22 15.20.20", "venere",2),
         Chapter(3, "Capitol3",
-        "2.07.56", "19/06/22 16.20.20", 2),
+            "00:30", "19/06/22 16.20.20","venere",2),
         Chapter(4, "Capitol4",
-        "4.01.26", "18/06/22 16.20.20", 2),
+            "00:30", "18/06/22 16.20.20", "venere",2),
         Chapter(5, "Capitol5",
-            "01.23.45", "17/06/22 17.20.20", 5),
+            "00:30", "17/06/22 17.20.20", "venere",5),
         Chapter(6, "Capitol6",
-            "00.07.02", "16/06/22 18.20.20", 3),
+            "00:30", "16/06/22 18.20.20", "venere",3),
         Chapter(7, "Capitol7",
-            "03.21.32", "15/06/22 19.20.20", 7),
+            "00:30", "15/06/22 19.20.20", "venere",7),
         Chapter(8,"Capitol8",
-            "03.21.32", "21/06/22 22.20.20", 4),
+            "00.30", "21/06/22 22.20.20", "venere",4),
         Chapter(9,"Capitol9",
-            "03.21.32", "21/06/22 12.20.20", 6)
+            "00:30", "21/06/22 12.20.20", "venere",6)
     )
 
     wipDb.settingDao().insertWithoutCoroutines(

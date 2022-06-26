@@ -46,8 +46,8 @@ class StoryStartedActivity : AppCompatActivity(){
         val extras = intent.extras
         val newStoryName = extras?.get("newStoryName").toString()
         val avatar: String = extras?.get("selectedAvatar").toString()
-        val floatStudyTime = extras?.get("studyTime").toString().toFloat()
-        val floatBreakTime = extras?.get("breakTime").toString().toFloat()
+        val floatStudyTime = extras?.get("studyTime") as Float
+        val floatBreakTime = extras?.get("breakTime") as Float
 
 
 
@@ -202,8 +202,10 @@ class StoryStartedActivity : AppCompatActivity(){
             dialogCoin.show(supportFragmentManager, "coinInfo")
             //after checking a minum time of 30 seconds, the story will be add to the Kingdom
             if(myTime>=10000) {
-                //call method to insert the new story
-                lifecycleScope.launch { viewModel.addNewStory(newStoryName, myTime) }
+                //CALL METHOD TO INSERT A NEW STORY
+                lifecycleScope.launch { viewModel.addNewStory(newStoryName,
+                    cronometro.text.toString(), avatar
+                ) }
             }
         }
     }

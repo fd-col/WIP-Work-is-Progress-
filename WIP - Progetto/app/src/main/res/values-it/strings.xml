@@ -91,8 +91,8 @@
     <!-- Chapter info -->
     <string name="chapter_info">Info\nCapitolo</string>
     <string name="date_and_time">Data &amp; Ora</string>
-    <string name="chapter_info_start">Inizio:</string>
-    <string name="chapter_info_end">Fine:</string>
+    <string name="chapter_info_date">Data:</string>
+    <string name="chapter_info_time">Tempo:</string>
 
     <!-- settings -->
     <string name="change_time">Lavoro/Pausa</string>

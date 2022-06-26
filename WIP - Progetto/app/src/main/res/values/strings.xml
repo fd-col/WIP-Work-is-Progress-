@@ -151,8 +151,8 @@
     <string name="chapter_info">Chapter\nInfo</string>
     <string name="date_and_time">Date &amp; Time</string>
     <string name="avatar_text" translatable="false">Avatar</string>
-    <string name="chapter_info_start">Start:</string>
-    <string name="chapter_info_end">End:</string>
+    <string name="chapter_info_date">Date:</string>
+    <string name="chapter_info_time">Time:</string>
 
     <!-- settings -->
     <string name="change_time">Work/Break</string>

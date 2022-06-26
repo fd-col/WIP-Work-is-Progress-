@@ -118,7 +118,7 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
     }
 
     //function to add a new story
-    suspend fun addNewStory(newStoryName: String, myTime: Long){
+    suspend fun addNewStory(newStoryName: String, myTime: String, selectedAvatar: String){
         //take all stories to add the new one at the end of the DB
         val allStories = storyDao.getAll()
         val lastStoryIndex = allStories.lastIndex
@@ -144,8 +144,8 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                     db.chapterDao().insert(
                         Chapter(
                             chapter[lastChapterIndex].id + 1, "Chapter ${userChapters.size + 1}",
-                            myTime.toString(), dateFormat.format(Date()).toString(),
-                            userStoryNamesId[newStoryName]!!
+                            myTime, dateFormat.format(Date()).toString(),
+                            selectedAvatar, userStoryNamesId[newStoryName]!!
                         )
                     )
                 }
@@ -157,13 +157,13 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                         allStories[lastStoryIndex].id + 1, newStoryName,
                         dateFormat.format(Date()).toString(), userId
                     )
-
                     storyDao.insert(newStory)
+
                     db.chapterDao().insert(
                         Chapter(
                             chapter[lastChapterIndex].id + 1, "Chapter 1",
-                            myTime.toString(), dateFormat.format(Date()).toString(),
-                            newStory.id
+                            myTime, dateFormat.format(Date()).toString(),
+                            selectedAvatar, newStory.id
                         )
                     )
 

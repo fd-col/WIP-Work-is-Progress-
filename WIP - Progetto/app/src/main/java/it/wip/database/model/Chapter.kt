@@ -23,5 +23,6 @@ data class Chapter(
     val time: String,
     @ColumnInfo(name = "created_on")
     val createdOn: String,
+    val avatar: String,
     val story: Int
 )

@@ -89,6 +89,7 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
+        val avatarSource = avatar.sourceLayoutResId
         avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarShoppedElements[0]))
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = "girl_with_pearl_earring"
@@ -163,6 +164,7 @@ class StartStoryActivity : AppCompatActivity() {
                 intent.putExtra("studyTime", viewModel.studyTime.value)
                 intent.putExtra("breakTime", viewModel.breakTime.value)
                 intent.putExtra("selectedAvatar", selectedAvatar)
+                intent.putExtra("avatarID", avatar.tag.toString().toInt())
                 intent.putExtra("mode", viewModel.selectedMode())
                 startActivity(intent)
             }

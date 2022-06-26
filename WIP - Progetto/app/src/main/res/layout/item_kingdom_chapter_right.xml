@@ -58,7 +58,7 @@
                 android:textAlignment="center"
                 android:textColor="#0277BD"
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/item_date"
@@ -73,7 +73,7 @@
                 android:textAlignment="center"
                 android:textColor="#0277BD"
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/item_time"
@@ -89,7 +89,7 @@
                 android:textAlignment="center"
                 android:textColor="#0277BD"
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

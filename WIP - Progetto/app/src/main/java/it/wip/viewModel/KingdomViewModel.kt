@@ -11,6 +11,7 @@ import it.wip.database.WIPDatabase
 import it.wip.database.dao.ChapterDao
 import it.wip.database.dao.StoryDao
 import it.wip.database.dao.UserDao
+import it.wip.database.model.Chapter
 import it.wip.database.model.Story
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -21,6 +22,7 @@ import java.util.*
 class KingdomViewModel(application: Application) : AndroidViewModel(application) {
 
     var storyDao: StoryDao = WIPDatabase.getInstance(application.applicationContext).storyDao()
+    var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
 
     // list of Story sorted to be sorted by date of creation
     var sortedList = listOf<Story>()
@@ -39,10 +41,16 @@ class KingdomViewModel(application: Application) : AndroidViewModel(application)
 
     }
 
+    fun getChapters(storyId: Int): Array<Chapter> {
+        return chapterDao.getAllByStory(storyId)
+    }
+/*
     //function to delete last story inserted in Kingdom
     suspend fun deleteLastStory(){
         val allStories = storyDao.getAll()
         val lastStoryIndex = allStories.lastIndex
         storyDao.delete(allStories[lastStoryIndex])
     }
+
+ */
 }

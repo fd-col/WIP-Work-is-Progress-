@@ -15,14 +15,14 @@ import java.util.*
 
 class StoryDetailViewModel(application: Application) : AndroidViewModel(application) {
 
-    val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
+    private val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
     val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
 
     
     var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
 
     fun getChapters(storyId: Int): Array<Chapter> {
-        return chapterDao.getAllByStory(storyId);
+        return chapterDao.getAllByStory(storyId)
     }
 
 }
