@@ -4,10 +4,13 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
+import it.wip.database.dao.ChapterDao
 import it.wip.database.dao.StoryDao
+import it.wip.database.model.Chapter
 import it.wip.database.model.Story
 import it.wip.utils.ScreenOffDetector
 import kotlinx.coroutines.launch
@@ -25,6 +28,10 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
     private val storyDao: StoryDao
     val story: Array<Story>
+
+    private val chapterDao: ChapterDao
+    val chapter: Array<Chapter>
+    private var increment: Int = 1
 
 
     //              GUARDS
@@ -58,6 +65,9 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
         storyDao = wipDb_.storyDao()
         story = storyDao.getAllByUserWithoutCoroutines(userId_)
+
+        chapterDao = wipDb_.chapterDao()
+        chapter = chapterDao.getAllByUserWithoutCoroutines(userId_)
 
         viewModelScope.launch {
             runBlocking {
@@ -110,14 +120,59 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
         return earnedCoins.toString()
     }
 
-    suspend fun addNewStory(newStoryName:String){
+    //function to add a new story
+    suspend fun addNewStory(newStoryName: String, myTime: Long){
+        //take all stories to add the new one at the end of the DB
         val allStories = storyDao.getAll()
-        val lastStoryIndex = allStories.lastOrNull()?.id
+        val lastStoryIndex = allStories.lastIndex+1
+        Log.e("error", lastStoryIndex.toString())
+
+        val lastChapterIndex = chapter.lastIndex+1
+        Log.e("error", lastChapterIndex.toString())
+
         val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
-        if (lastStoryIndex != null) {
-            storyDao.insert(Story(lastStoryIndex+1, newStoryName,
-                                    dateFormat.format(Date()).toString(), id))
-        }
+
+        viewModelScope.launch {
+            runBlocking() {
+                //take user's stories and check if the new Story name is already in the DB
+                for (singleStory in story) {
+                    Log.e("error", singleStory.toString())
+
+                    //if the story is already in the DB, then add another chapter to the story
+                    if (singleStory.storyName == newStoryName) {
+                        Log.e("error", newStoryName)
+                        chapterDao.insert(
+                            Chapter(
+                                chapter[lastChapterIndex].id + 1, "Chapter $increment",
+                                myTime.toString(), dateFormat.format(Date()).toString(),
+                                singleStory.id, id
+                            )
+                        )
+                        increment++ //increment index for chapter's names into a story already created
+                    }
+                    //in case there isn't another story with the same name of that one we want to crate,
+                    // add a new one with a chapter inside into the DB
+                    else {
+                        chapterDao.insert(
+                            Chapter(
+                                chapter[lastChapterIndex].id + 1, "Chapter 1",
+                                myTime.toString(), dateFormat.format(Date()).toString(),
+                                allStories[lastStoryIndex].id + 1, id
+                            )
+                        )
+                        storyDao.insert(
+                            Story(
+                                allStories[lastStoryIndex].id + 1, newStoryName,
+                                dateFormat.format(Date()).toString(), id
+                            )
+                        )
+                    }
+
+
+                }
+            }//runBlocking
+
+        }//viewModelScope
 
     }
 }

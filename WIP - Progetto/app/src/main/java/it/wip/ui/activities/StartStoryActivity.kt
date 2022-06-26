@@ -43,6 +43,7 @@ class StartStoryActivity : AppCompatActivity() {
         binding.storyTitleSetByTheUser.threshold = 1
         binding.storyTitleSetByTheUser.setAdapter(adapter)
 
+
         binding.storyTitleSetByTheUser.doOnTextChanged { text, _, _, _ ->
             viewModel.setStoryName(text.toString())
         }
@@ -60,9 +61,7 @@ class StartStoryActivity : AppCompatActivity() {
         }
 
 
-
-
-        //              SWITCH
+        //              SWITCH      -SILENT MODE    -HARDCORE MODE
         binding.switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
         binding.switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
@@ -74,26 +73,7 @@ class StartStoryActivity : AppCompatActivity() {
         binding.switchHardcoreMode.setOnClickListener{
             viewModel.hardcoreMode(binding.switchSilentMode)
         }
-
-
-
-
-
-
-
-        binding.backButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
-        // button backwards
-        binding.backButton.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> binding.backButton.setImageResource(R.drawable.back_arrow_pressed)
-                MotionEvent.ACTION_UP -> binding.backButton.setImageResource(R.drawable.back_arrow)
-            }
-            v?.onTouchEvent(event) ?: true
-        }
-
+        //INFO ABOUT MODEs
         binding.infoButton.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> binding.infoButton.setImageResource(R.drawable.info_button_pressed)
@@ -101,32 +81,10 @@ class StartStoryActivity : AppCompatActivity() {
             }
             v?.onTouchEvent(event) ?: true
         }
-
-        binding.avatarSxButton.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow_pressed)
-                MotionEvent.ACTION_UP -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow)
-            }
-            v?.onTouchEvent(event) ?: true
+        binding.infoButton.setOnClickListener {
+            val dialogInfo = DialogActivityStoryStarted()
+            dialogInfo.show(supportFragmentManager, "info")
         }
-
-        binding.avatarDxButton.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow_pressed)
-                MotionEvent.ACTION_UP -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow)
-            }
-            v?.onTouchEvent(event) ?: true
-
-        }
-
-        binding.startButton.setOnTouchListener { v, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> binding.startButton.setImageResource(R.drawable.start_story_button_pressed)
-                MotionEvent.ACTION_UP -> binding.startButton.setImageResource(R.drawable.start_story_button)
-            }
-            v?.onTouchEvent(event) ?: true
-        }
-
 
 
         //              SWITCH AVATAR
@@ -135,6 +93,15 @@ class StartStoryActivity : AppCompatActivity() {
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = "girl_with_pearl_earring"
 
+
+        //AVATARS CHOOSE BEFORE STARTING A STORY
+        binding.avatarSxButton.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow_pressed)
+                MotionEvent.ACTION_UP -> binding.avatarSxButton.setImageResource(R.drawable.avatar_sx_arrow)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
         binding.avatarSxButton.setOnClickListener {
             avatarTag--
             if(avatarTag < 0) {
@@ -146,6 +113,13 @@ class StartStoryActivity : AppCompatActivity() {
             selectedAvatar = tempAvatar
         }
 
+        binding.avatarDxButton.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow_pressed)
+                MotionEvent.ACTION_UP -> binding.avatarDxButton.setImageResource(R.drawable.avatar_dx_arrow)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
         binding.avatarDxButton.setOnClickListener {
             avatarTag++
             if(avatarTag + 1 > viewModel.avatarShoppedElements.size) {
@@ -157,9 +131,30 @@ class StartStoryActivity : AppCompatActivity() {
             selectedAvatar = tempAvatar
         }
 
-        binding.startButton.setOnClickListener {
 
-            //IL CONTROLLO CHE IL NOME NON SIA VUOTO, ANCORA NON FUNZIONA
+        // button backwards
+        binding.backButton.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        binding.backButton.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> binding.backButton.setImageResource(R.drawable.back_arrow_pressed)
+                MotionEvent.ACTION_UP -> binding.backButton.setImageResource(R.drawable.back_arrow)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+
+
+        //button to start the new Story
+        binding.startButton.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> binding.startButton.setImageResource(R.drawable.start_story_button_pressed)
+                MotionEvent.ACTION_UP -> binding.startButton.setImageResource(R.drawable.start_story_button)
+            }
+            v?.onTouchEvent(event) ?: true
+        }
+        binding.startButton.setOnClickListener {
+            //check if the new story title is empty or not
             if(binding.storyTitleSetByTheUser.text.isNullOrBlank())
                 Toast.makeText(this,"Please insert a name for your new story", Toast.LENGTH_SHORT).show()
             else {
@@ -171,12 +166,7 @@ class StartStoryActivity : AppCompatActivity() {
                 intent.putExtra("mode", viewModel.selectedMode())
                 startActivity(intent)
             }
-
         }
 
-        binding.infoButton.setOnClickListener {
-            val dialogInfo = DialogActivityStoryStarted()
-            dialogInfo.show(supportFragmentManager, "info")
-        }
     }
 }

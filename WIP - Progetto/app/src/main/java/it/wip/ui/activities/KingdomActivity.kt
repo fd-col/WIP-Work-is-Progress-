@@ -122,12 +122,12 @@ class KingdomActivity : AppCompatActivity() {
         val rvHAdapter = KingdomListAdapter(this, storyHorizontalList, itemClickListener = itemHorizontalOnClick)
         rvH.adapter = rvHAdapter
 
-
-        //button to delete a story by position
+/*
+        //BUTTON TO DELETE A STORY (BE CAREFUL)
         binding.searchButton.setOnClickListener {
             GlobalScope.launch { viewModel.deleteLastStory() }
         }
-
+*/
 
         // add the menu fragment to the bottom of KingdomActivity
         val transaction = supportFragmentManager.beginTransaction()

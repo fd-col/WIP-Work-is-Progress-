@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 class StoryStartedActivity : AppCompatActivity(){
 
     private lateinit var viewModel: StoryStartedViewModel
-    private var myTime: Long = 0
+
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,6 +114,8 @@ class StoryStartedActivity : AppCompatActivity(){
         // invocazione metodo per scelta casuale del primo background tra quelli disponibili
         var selectedArtwork = backgroundSelector(artwork)
 
+
+        var myTime: Long = 0
         //listener che gestisce cosa fare a schermo ogni volta che il tempo incrementa
         cronometro.setOnChronometerTickListener {
             myTime = (SystemClock.elapsedRealtime() - cronometro.base)
@@ -198,9 +200,9 @@ class StoryStartedActivity : AppCompatActivity(){
             val dialogCoin = DialogCoins(coinsReceived)
             dialogCoin.show(supportFragmentManager, "coinInfo")
             //after checking a minum time of 30 seconds, the story will be add to the Kingdom
-            if(myTime>30000) {
+            if(myTime>=10000) {
                 //call method to insert the new story
-                GlobalScope.launch { viewModel.addNewStory(newStoryName) }
+                GlobalScope.launch { viewModel.addNewStory(newStoryName, myTime) }
             }
         }
     }
