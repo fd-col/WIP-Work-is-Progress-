@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import it.wip.R
 import it.wip.databinding.ActivityStoryStartedBinding
 import it.wip.ui.dialogs.DialogCoins
@@ -202,7 +203,7 @@ class StoryStartedActivity : AppCompatActivity(){
             //after checking a minum time of 30 seconds, the story will be add to the Kingdom
             if(myTime>=10000) {
                 //call method to insert the new story
-                GlobalScope.launch { viewModel.addNewStory(newStoryName, myTime) }
+                lifecycleScope.launch { viewModel.addNewStory(newStoryName, myTime) }
             }
         }
     }

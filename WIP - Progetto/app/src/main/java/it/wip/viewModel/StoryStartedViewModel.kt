@@ -138,9 +138,11 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                 for (singleStory in story) {
                     Log.e("error", singleStory.toString())
 
+                    Log.e("newStoryName", newStoryName)
+                    Log.e("storyNameOfTheStory",singleStory.storyName)
                     //if the story is already in the DB, then add another chapter to the story
                     if (singleStory.storyName == newStoryName) {
-                        Log.e("error", newStoryName)
+                        Log.e("in DB", newStoryName)
                         chapterDao.insert(
                             Chapter(
                                 chapter[lastChapterIndex].id + 1, "Chapter $increment",
@@ -153,6 +155,12 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                     //in case there isn't another story with the same name of that one we want to crate,
                     // add a new one with a chapter inside into the DB
                     else {
+                        storyDao.insert(
+                            Story(
+                                allStories[lastStoryIndex].id + 1, newStoryName,
+                                dateFormat.format(Date()).toString(), id
+                            )
+                        )
                         chapterDao.insert(
                             Chapter(
                                 chapter[lastChapterIndex].id + 1, "Chapter 1",
@@ -160,12 +168,7 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                                 allStories[lastStoryIndex].id + 1, id
                             )
                         )
-                        storyDao.insert(
-                            Story(
-                                allStories[lastStoryIndex].id + 1, newStoryName,
-                                dateFormat.format(Date()).toString(), id
-                            )
-                        )
+
                     }
 
 
