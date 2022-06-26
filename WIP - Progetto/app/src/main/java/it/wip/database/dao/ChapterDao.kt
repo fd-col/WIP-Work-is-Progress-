@@ -9,7 +9,7 @@ interface ChapterDao {
     @Query("SELECT * FROM chapter")
     suspend fun getAll(): Array<Chapter>
 
-    @Query("SELECT * FROM chapter WHERE story = :chapterId")
+    @Query("SELECT * FROM chapter WHERE id = :chapterId")
     fun getAllById(chapterId: Int): Array<Chapter>
 
     @Query("SELECT * FROM chapter WHERE story = :storyId")

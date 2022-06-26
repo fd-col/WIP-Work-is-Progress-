@@ -64,9 +64,10 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
         viewModelScope.launch {
 
-            chapter = db.chapterDao().getAll()
-
             runBlocking {
+
+                chapter = db.chapterDao().getAll()
+
                 val currentShoppedElements = wipDb_.shoppedDao().getAllByUser(userId_)
                 val allElements = wipDb_.shopElementDao().getAll()
 
