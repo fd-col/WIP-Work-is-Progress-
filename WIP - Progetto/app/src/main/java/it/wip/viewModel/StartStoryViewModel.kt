@@ -148,7 +148,7 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-    //              RETURN SELECTED MODE
+    //              RETURN SELECTED MODE -0 for hardcore mode, -1 for silence mode
     fun selectedMode(): Int {
         return if (_hardcoreMode.value!!) { 0 } else { 1 }
     }

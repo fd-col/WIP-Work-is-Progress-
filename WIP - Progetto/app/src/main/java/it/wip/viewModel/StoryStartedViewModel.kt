@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import it.wip.R
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.StoryDao
 import it.wip.database.model.Chapter
@@ -117,8 +118,11 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
         return earnedCoins.toString()
     }
 
-    //function to add a new story
-    suspend fun addNewStory(newStoryName: String, myTime: String, selectedAvatar: String){
+
+
+    //FUNCTION TO ADD A NEW STORY
+    suspend fun addNewStory(newStoryName: String, myTime: String, studyTime: Int,
+                            breakTime: Int, selectedMode: Int, selectedAvatar: String) {
         //take all stories to add the new one at the end of the DB
         val allStories = storyDao.getAll()
         val lastStoryIndex = allStories.lastIndex
@@ -145,6 +149,7 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                         Chapter(
                             chapter[lastChapterIndex].id + 1, "Chapter ${userChapters.size + 1}",
                             myTime, dateFormat.format(Date()).toString(),
+                            studyTime, breakTime, selectedMode,
                             selectedAvatar, userStoryNamesId[newStoryName]!!
                         )
                     )
@@ -163,6 +168,7 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                         Chapter(
                             chapter[lastChapterIndex].id + 1, "Chapter 1",
                             myTime, dateFormat.format(Date()).toString(),
+                            studyTime, breakTime, selectedMode,
                             selectedAvatar, newStory.id
                         )
                     )

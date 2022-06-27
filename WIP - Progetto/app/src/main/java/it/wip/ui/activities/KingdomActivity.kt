@@ -2,13 +2,7 @@ package it.wip.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -20,10 +14,6 @@ import it.wip.databinding.ActivityKingdomBinding
 import it.wip.ui.fragments.MenuFragment
 import it.wip.utils.KingdomListAdapter
 import it.wip.viewModel.KingdomViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class KingdomActivity : AppCompatActivity() {
@@ -90,9 +80,6 @@ class KingdomActivity : AppCompatActivity() {
 
         // method to activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
-            rvV.adapter!!.notifyDataSetChanged()
-            val realPosition = position+1 //add 1 because the count start from 0
-            Toast.makeText(this,"$realPosition. item clicked.",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StoryDetailActivity()::class.java)
 
             intent.putExtra("storyID", storyList[position].itemID)
@@ -102,9 +89,6 @@ class KingdomActivity : AppCompatActivity() {
 
         // method to change focus inside KingdomActivity to a single story clicked
         val itemHorizontalOnClick: (Int) -> Unit = { position ->
-            rvV.adapter!!.notifyDataSetChanged()
-            val realPosition = position+1 //add 1 because the count start from 0
-            Toast.makeText(this,"$realPosition. item clicked.",Toast.LENGTH_SHORT).show()
 
             rvH.scrollToPosition(position)
             rvV.scrollToPosition(position)

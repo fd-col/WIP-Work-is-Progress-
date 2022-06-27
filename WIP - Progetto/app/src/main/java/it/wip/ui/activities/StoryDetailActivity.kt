@@ -99,9 +99,6 @@ class StoryDetailActivity: AppCompatActivity() {
 
         // method for activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
-            rv.adapter!!.notifyDataSetChanged()
-            val realPosition = position+1 //add 1 because the count start from 0
-            Toast.makeText(this,"$realPosition. item clicked.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, ChapterInfoActivity()::class.java)
 
             intent.putExtra("chapterID", storyDetailList[position].itemID)

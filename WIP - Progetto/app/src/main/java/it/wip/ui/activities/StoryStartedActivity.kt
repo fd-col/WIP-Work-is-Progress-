@@ -19,7 +19,6 @@ import it.wip.ui.dialogs.DialogCoins
 import it.wip.ui.dialogs.DialogHardcoreMode
 import it.wip.utils.*
 import it.wip.viewModel.StoryStartedViewModel
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
@@ -44,10 +43,11 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //              EXTRAS
         val extras = intent.extras
-        val newStoryName = extras?.get("newStoryName").toString()
-        val avatar: String = extras?.get("selectedAvatar").toString()
+        val newStoryName = extras?.get("newStoryName") as String
+        val avatar: String = extras?.get("selectedAvatar") as String
         val floatStudyTime = extras?.get("studyTime") as Float
         val floatBreakTime = extras?.get("breakTime") as Float
+        val selectedMode = extras.get("mode") as Int
 
 
 
@@ -204,7 +204,8 @@ class StoryStartedActivity : AppCompatActivity(){
             if(myTime>=10000) {
                 //CALL METHOD TO INSERT A NEW STORY
                 lifecycleScope.launch { viewModel.addNewStory(newStoryName,
-                    cronometro.text.toString(), avatar
+                    cronometro.text.toString(), floatStudyTime.toInt(), floatBreakTime.toInt(),
+                    selectedMode, avatar
                 ) }
             }
         }

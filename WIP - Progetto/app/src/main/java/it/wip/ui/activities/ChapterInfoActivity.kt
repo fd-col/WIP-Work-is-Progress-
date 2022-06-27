@@ -36,19 +36,12 @@ class ChapterInfoActivity : AppCompatActivity() {
 
         val datetimeStoryDate= binding.datetimeStoryDate
         val datetimeStoryTime = binding.datetimeStoryTime
-        //seekBar create problems
-        //val seekBar = findViewById<SeekBar>(R.id.seekBar_chapter_info)
+
+        val seekBar = binding.seekBarChapterInfo
         val switchSilentMode = binding.switchSilentModeChapterInfo
         val switchHardcoreMode = binding.switchHardcoreModeChapterInfo
         val avatarChoosed = binding.avatarChapterInfo
         val backButton = binding.backButtonStoryDetail
-
-
-        //get the switchers' mode from the intent
-        switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
-        switchSilentMode.isChecked=true
-        switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
-        switchHardcoreMode.isChecked = true
 
         //get the chapter ID related with the chapter clicked in the StoryDetail
         val chapterID = intent.getIntExtra("chapterID", 0)
@@ -56,12 +49,26 @@ class ChapterInfoActivity : AppCompatActivity() {
         //return the Chapter with chapterID taken by the intent in StoryDetail
         val chapter = viewModel.getChapter(chapterID)
 
-        //set "date" on the Chapter Info created for chapterID
+        //set "date" on the Chapter Info related to chapterID
         datetimeStoryDate.text = chapter.createdOn
         datetimeStoryDate.movementMethod = ScrollingMovementMethod()
 
         //set "time" on the Chapter Info created for chapterID
         datetimeStoryTime.text = chapter.time
+
+
+        //set "seekBar" value on the Chapter Info related to chapterID
+        seekBar.setLabelFormatter {
+            "${chapter.studyTime} min " +
+                    getString(R.string.work) + "/${chapter.breakTime} min " + getString(
+                R.string.pause)
+        }
+
+        //set "mode" on the Chapter Info related to chapterID
+        switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        switchSilentMode.isChecked = chapter.mode==1
+        switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        switchHardcoreMode.isChecked = chapter.mode==0
 
         //set "avatar" on the Chapter Info created for chapterID
         avatarChoosed.setBackgroundResource(fromShopElementNameToResource(chapter.avatar))
