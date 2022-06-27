@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:wip_flutter/arguments/story_started_arguments.dart';
+import 'package:wip_flutter/utils/resource_helper.dart';
 
 class StoryStarted extends StatefulWidget {
   const StoryStarted({Key? key, required this.title}) : super(key: key);
@@ -25,6 +27,8 @@ class _StoryStartedState extends State<StoryStarted> {
   String stopButtonPath = 'assets/images/stop_button.png';
 
   late Image stopButtonPressed;
+
+  StoryStartedArguments? args;
 
   @override
   void initState() {
@@ -68,6 +72,12 @@ class _StoryStartedState extends State<StoryStarted> {
 
   @override
   Widget build(BuildContext context) {
+
+    args ??= ModalRoute
+          .of(context)!
+          .settings
+          .arguments as StoryStartedArguments;
+
     return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
@@ -92,7 +102,7 @@ class _StoryStartedState extends State<StoryStarted> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.asset('assets/images/venere.png'),
+                          Image.asset(fromShopElementToPath(args!.selectedAvatar)),
                           const Flexible(
                               child: Text(
                                 'Dai tutto te stesso',
@@ -143,7 +153,7 @@ class _StoryStartedState extends State<StoryStarted> {
                                 setStopButtonPath('stop_button.png');
                               },
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.popUntil(context, ModalRoute.withName('/'));
                                 setStopButtonPath('stop_button.png');
                               },
                               child: Image.asset(stopButtonPath)

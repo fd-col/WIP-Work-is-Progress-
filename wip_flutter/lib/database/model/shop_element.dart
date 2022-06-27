@@ -5,10 +5,20 @@ class ShopElement {
   final String description;
   final int price;
 
-  ShopElement({required this.elementName, required this.type, required this.description, required this.price});
+  ShopElement({
+    required this.elementName,
+    required this.type,
+    required this.description,
+    required this.price
+  });
 
   Map<String, dynamic> toMap() {
-    return {'elementName': elementName, 'type': type, 'description': description, 'price': price};
+    return {
+      'element_name': elementName,
+      'type': type,
+      'description': description,
+      'price': price
+    };
   }
 
 }

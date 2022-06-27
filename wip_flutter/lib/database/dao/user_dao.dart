@@ -11,15 +11,15 @@ class UserDao {
     });
   }
 
-  static Future<void> insertUser(Database db, User user) async {
+  static Future<void> insert(Database db, User user) async {
     await db.insert('user', user.toMap());
   }
 
-  static Future<void> updateUser(Database db, User user) async {
+  static Future<void> update(Database db, User user) async {
     await db.update('user', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
   }
 
-  static Future<void> deleteUser(Database db, int id) async {
+  static Future<void> delete(Database db, int id) async {
     await db.delete('user', where: 'id = ?', whereArgs: [id]);
   }
 

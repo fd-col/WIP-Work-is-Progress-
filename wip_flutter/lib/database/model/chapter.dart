@@ -4,12 +4,27 @@ class Chapter {
   final String chapterName;
   final int time;
   final String createdOn;
+  final String avatar;
   final int story;
 
-  Chapter({required this.id, required this.chapterName, required this.time, required this.createdOn, required this.story});
+  Chapter({
+    required this.id,
+    required this.chapterName,
+    required this.time,
+    required this.createdOn,
+    required this.avatar,
+    required this.story
+  });
 
   Map<String, dynamic> toMap() {
-    return {'id': id, 'storyName': chapterName, 'time': time, 'createdOn': createdOn, 'story': story};
+    return {
+      'id': id,
+      'chapter_name': chapterName,
+      'time': time,
+      'created_on': createdOn,
+      'avatar': avatar,
+      'story': story
+    };
   }
 
 }
