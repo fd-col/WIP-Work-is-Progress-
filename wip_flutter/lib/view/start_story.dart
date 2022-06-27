@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sound_mode/permission_handler.dart';
 import 'package:sound_mode/sound_mode.dart';
 import 'package:sound_mode/utils/ringer_mode_statuses.dart';
 import 'package:sqflite/sqflite.dart';
@@ -101,20 +102,27 @@ class _StartStoryState extends State<StartStory> {
 
   void setSilentMode(bool flag) async{
 
-    RingerModeStatus ringerStatus = await SoundMode.ringerModeStatus;
-    print(ringerStatus.toString());
-    if(flag) {
-      try {
-        await SoundMode.setSoundMode(RingerModeStatus.silent);
-      } on PlatformException {
-        print('Please enable permissions required');
-      }
+    bool? isGranted = await PermissionHandler.permissionsGranted;
+
+    if (!isGranted!) {
+      // Opens the Do Not Disturb Access settings to grant the access
+      await PermissionHandler.openDoNotDisturbSetting();
     } else {
-      try {
-        await SoundMode.setSoundMode(RingerModeStatus.normal);
-      } on PlatformException {
-        print('Please enable permissions required');
+
+      if(flag) {
+        try {
+          await SoundMode.setSoundMode(RingerModeStatus.silent);
+        } on PlatformException {
+          print('Please enable permissions required');
+        }
+      } else {
+        try {
+          await SoundMode.setSoundMode(RingerModeStatus.normal);
+        } on PlatformException {
+          print('Please enable permissions required');
+        }
       }
+
     }
 
   }
@@ -310,10 +318,10 @@ class _StartStoryState extends State<StartStory> {
                                       setState((){
                                             if(!_hardcoreMode) {
                                               _silenceMode = value;
+                                              setSilentMode(value);
                                             }
                                           }
                                       );
-                                      setSilentMode(value);
                                     }
                                 )
                               ]

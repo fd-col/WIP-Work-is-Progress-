@@ -132,7 +132,7 @@ class SettingsActivity : AppCompatActivity() {
 
                     viewModel.setMaxStudyTime(maxStudyTime)
 
-                    if(viewModel.studyTime.value!! > maxStudyTime)
+                    if(viewModel.studyTime.value!! >= maxStudyTime)
                         viewModel.setStudyBreakTime(maxStudyTime.toFloat() - 10)
 
                     currentText = "$maxStudyTime min"
