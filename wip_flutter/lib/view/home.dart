@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:wip_flutter/database/dao/chapter_dao.dart';
+import 'package:wip_flutter/database/dao/shop_element_dao.dart';
+import 'package:wip_flutter/database/dao/shopped_dao.dart';
+import 'package:wip_flutter/database/dao/story_dao.dart';
 import 'package:wip_flutter/database/dao/user_dao.dart';
+import 'package:wip_flutter/database/model/shop_element.dart';
+import 'package:wip_flutter/database/model/shopped.dart';
 import 'package:wip_flutter/database/wip_db.dart';
 
+import '../database/model/chapter.dart';
+import '../database/model/story.dart';
 import '../database/model/user.dart';
 
 
@@ -33,17 +41,6 @@ class _HomeState extends State<Home> {
     super.initState();
     playButtonPressed = Image.asset('${imagesPath}play_button_pressed.png');
     homeButtonPressed = Image.asset('${imagesPath}paint_button_pressed.png');
-
-    getData();
-
-  }
-
-  Future<String> getData() async {
-    Database wipDb = await WIPDb.getDb();
-
-    List<User> users = await UserDao.getAll(wipDb);
-
-    return users[0].id.toString();
   }
 
   @override
@@ -137,12 +134,6 @@ class _HomeState extends State<Home> {
                         setHomeButtonPath('paint_button.png');
                       },
                       child: Image.asset(homeButtonPath)
-                  ),
-                  FutureBuilder(
-                    future: getData(),
-                      builder: (BuildContext context, AsyncSnapshot<String> text) {
-                        return Text(text.data.toString());
-                      }
                   )
                 ],
               ),

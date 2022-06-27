@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sound_mode/sound_mode.dart';
+import 'package:sound_mode/utils/ringer_mode_statuses.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:wip_flutter/utils/resource_helper.dart';
+
+import '../arguments/story_started_arguments.dart';
+import '../database/dao/shopped_dao.dart';
+import '../database/model/shopped.dart';
+import '../database/wip_db.dart';
+
 
 class StartStory extends StatefulWidget {
   const StartStory({Key? key, required this.title}) : super(key: key);
@@ -11,8 +23,9 @@ class StartStory extends StatefulWidget {
 }
 
 class _StartStoryState extends State<StartStory> {
+  String storyTitle = '';
   double _studyTime = 20;
-  double _pause = 40;
+  double _pause = 100;
   final double _maxSlider = 120;
   bool _silenceMode = false;
   bool _hardcoreMode = false;
@@ -31,6 +44,10 @@ class _StartStoryState extends State<StartStory> {
   late Image dxButtonPressed;
   late Image startStoryButtonPressed;
 
+  List<String> shoppedElementNames = <String>[];
+  String avatarImage = 'assets/images/frame.png';
+  int avatarTag = 0;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +56,7 @@ class _StartStoryState extends State<StartStory> {
     sxButtonPressed = Image.asset('${imagesPath}avatar_sx_arrow_pressed.png');
     dxButtonPressed = Image.asset('${imagesPath}avatar_dx_arrow_pressed.png');
     startStoryButtonPressed = Image.asset('${imagesPath}start_story_button_pressed.png');
+    getShoppedElements();
   }
 
   @override
@@ -78,6 +96,64 @@ class _StartStoryState extends State<StartStory> {
   void setStartStoryButtonPath(String startStoryButtonPath) {
     setState(() {
       this.startStoryButtonPath = imagesPath + startStoryButtonPath;
+    });
+  }
+
+  void setSilentMode(bool flag) async{
+
+    RingerModeStatus ringerStatus = await SoundMode.ringerModeStatus;
+    print(ringerStatus.toString());
+    if(flag) {
+      try {
+        await SoundMode.setSoundMode(RingerModeStatus.silent);
+      } on PlatformException {
+        print('Please enable permissions required');
+      }
+    } else {
+      try {
+        await SoundMode.setSoundMode(RingerModeStatus.normal);
+      } on PlatformException {
+        print('Please enable permissions required');
+      }
+    }
+
+  }
+
+  void getShoppedElements() async {
+
+    Database wipDb = await WIPDb.getDb();
+
+    List<Shopped> shoppedList = await ShoppedDao.getAllByUser(wipDb, 1);
+
+    for(Shopped shopped in shoppedList) {
+      shoppedElementNames.add(shopped.shopElement);
+    }
+
+    setState(() {
+      avatarImage = fromShopElementToPath(shoppedElementNames.first);
+    });
+
+  }
+
+  void sxButtonAction() {
+    avatarTag--;
+    if(avatarTag < 0) {
+      avatarTag = shoppedElementNames.length - 1;
+    }
+
+    setState(() {
+      avatarImage = fromShopElementToPath(shoppedElementNames[avatarTag]);
+    });
+  }
+
+  void dxButtonAction() {
+    avatarTag++;
+    if(avatarTag + 1 > shoppedElementNames.length) {
+      avatarTag = 0;
+    }
+
+    setState(() {
+      avatarImage = fromShopElementToPath(shoppedElementNames[avatarTag]);
     });
   }
 
@@ -137,22 +213,27 @@ class _StartStoryState extends State<StartStory> {
                       )
                     ),
                     padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: const Center(
+                    child: Center(
                         child: TextField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Nuova storia',
                               hintStyle: TextStyle(
                                   color: Color.fromARGB(255, 2, 119, 189),
                                   fontFamily: 'PressStart2P',
                                   fontSize: 16
-                              )
+                              ),
                           ),
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Color.fromARGB(255, 2, 119, 189),
                               fontFamily: 'PressStart2P',
                               fontSize: 16
-                          )
+                          ),
+                          onChanged: (value){
+                            setState(() {
+                              storyTitle = value;
+                            });
+                          }
                         )
                     ),
                   ),
@@ -232,6 +313,7 @@ class _StartStoryState extends State<StartStory> {
                                             }
                                           }
                                       );
+                                      setSilentMode(value);
                                     }
                                 )
                               ]
@@ -254,6 +336,7 @@ class _StartStoryState extends State<StartStory> {
                                         _hardcoreMode = value;
                                       }
                                       );
+                                      setSilentMode(value);
                                     }
                                 )
                               ],
@@ -278,7 +361,72 @@ class _StartStoryState extends State<StartStory> {
                             child: IconButton(
                               icon: Image.asset(infoButtonPath),
                               onPressed: () {
+
                                 setInfoButtonPath('info_button.png');
+
+                                showDialog(context: context, builder: (context) => AlertDialog(
+                                  contentPadding: EdgeInsets.zero,
+                                  content: Container(
+                                    height: 400,
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/images/info_dialog.png'),
+                                        fit: BoxFit.fill
+                                      )
+                                    ),
+                                    child: Center(
+                                      child: Wrap(
+                                        direction: Axis.vertical,
+                                        alignment: WrapAlignment.center,
+                                        crossAxisAlignment: WrapCrossAlignment.center,
+                                        spacing: 10,
+                                        children: const [
+                                          Text(
+                                            'Payday',
+                                            style: TextStyle(
+                                              color: Color.fromARGB(255, 2, 119, 189),
+                                              fontFamily: 'PressStart2P',
+                                              fontSize: 22,
+                                            )
+                                          ),
+                                          Text(
+                                            '"Cha Ching"',
+                                            style: TextStyle(
+                                              color: Color.fromARGB(255, 2, 119, 189),
+                                              fontFamily: 'PressStart2P',
+                                              fontSize: 16,
+                                            )
+                                          ),
+                                          Text(
+                                              '\nYou earned',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(255, 2, 119, 189),
+                                                fontFamily: 'PressStart2P',
+                                                fontSize: 16,
+                                              )
+                                          ),
+                                          Text(
+                                              '0',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(255, 2, 119, 189),
+                                                fontFamily: 'PressStart2P',
+                                                fontSize: 22,
+                                              )
+                                          ),
+                                          Text(
+                                              'coins',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(255, 2, 119, 189),
+                                                fontFamily: 'PressStart2P',
+                                                fontSize: 16,
+                                              )
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ));
+
                               }
                             )
                           )
@@ -317,6 +465,7 @@ class _StartStoryState extends State<StartStory> {
                               iconSize: 50,
                               onPressed: () {
                                 setSxButtonPath('avatar_sx_arrow.png');
+                                sxButtonAction();
                               }
                           )
                       ),
@@ -325,7 +474,7 @@ class _StartStoryState extends State<StartStory> {
                           width: 60,
                           child: FittedBox(
                               fit: BoxFit.cover,
-                              child: Image.asset('assets/images/venere.png'),
+                              child: Image.asset(avatarImage),
                           )
                       ),
                       GestureDetector(
@@ -347,6 +496,7 @@ class _StartStoryState extends State<StartStory> {
                             iconSize: 50,
                             onPressed: () {
                               setDxButtonPath('avatar_dx_arrow.png');
+                              dxButtonAction();
                             }
                         )
                       )
@@ -366,8 +516,31 @@ class _StartStoryState extends State<StartStory> {
                         setStartStoryButtonPath('start_story_button.png');
                       },
                     onTap: () {
-                      Navigator.pushNamed(context, '/story-started');
+
                       setStartStoryButtonPath('start_story_button.png');
+
+                      if(storyTitle != '') {
+                        Navigator.pushNamed(
+                            context,
+                            '/story-started',
+                            arguments: StoryStartedArguments(
+                                storyTitle: storyTitle,
+                                studyTime: _studyTime,
+                                breakTime: _pause,
+                                selectedAvatar: shoppedElementNames[avatarTag]
+                            )
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: 'Inserire il titolo della storia',
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.white,
+                            textColor: const Color.fromARGB(255, 2, 119, 189),
+                            fontSize: 16
+                        );
+                      }
                     },
                     child: Image.asset(startStoryButtonPath)
                   )
