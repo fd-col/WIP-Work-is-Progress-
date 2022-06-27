@@ -136,7 +136,7 @@
     <string name="num_of_chapters">chapter\'s number</string>
     <string name="chapter_title">Chapter title</string>
     <string name="chapter_time">time: 2.01.23</string>
-    <string name="chapter_date">data: 12/10/2022</string>
+    <string name="chapter_date">date: 12/10/2022</string>
     <string name="creation_date">creation date</string>
     <string name="total_time_studying">total study time</string>
 
@@ -153,6 +153,7 @@
     <string name="avatar_text" translatable="false">Avatar</string>
     <string name="chapter_info_date">Date:</string>
     <string name="chapter_info_time">Time:</string>
+    <string name="chapter_info_study_break">Study/Break:</string>
 
     <!-- settings -->
     <string name="change_time">Work/Break</string>

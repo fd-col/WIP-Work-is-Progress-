@@ -88,11 +88,29 @@
     <string name="creazione_di_adamo_description">Dipinto da Michelangelo Buonarroti intorno al 1512, La Creazione di Adamo è un affresco locato sul soffitto della Cappella Sistina che illustra Dio che dà la vita ad Adamo, il primo uomo.\nL\'affresco fa parte di un complesso schema iconografico ed è cronologicamente il quarto nella serie di pannelli raffiguranti gli episodi della Genesi.\n</string>
     <string name="magritte_kiss_description">Dipinto da René Magritte nel 1928, ed esposto al Museum of Modern Art di New York, The Lovers è un\'opera d\'arte realizzata con olio su tela che rappresenta il conflitto tra la vera identità e l\'immagine di una persona nella mente del suo amante.\n</string>
 
+    <!-- kingdom -->
+    <string name="descrizione_immagine_story">Immagine di sfondo dentro la storia </string>
+    <string name="story_title">Titolo della storia</string>
+    <string name="num_of_chapters">numero di capitoli</string>
+    <string name="chapter_title">Titolo del capitolo</string>
+    <string name="chapter_time">tempo: 2.01.23</string>
+    <string name="chapter_date">data: 12/10/2022</string>
+    <string name="creation_date">data di creazione</string>
+    <string name="total_time_studying">tempo totale di studio</string>
+
+    <!-- story detail -->
+    <string name="story_detail">Dettagli\nStoria</string>
+    <string name="story_detail_title">Titolo riferito alla storia </string>
+    <string name="story_name">nome della storia</string>
+    <string name="todo">TODO</string>
+    <string name="icon_search_button">pulsante di ricerca dentro al regno</string>
+
     <!-- Chapter info -->
     <string name="chapter_info">Info\nCapitolo</string>
     <string name="date_and_time">Data &amp; Ora</string>
     <string name="chapter_info_date">Data:</string>
     <string name="chapter_info_time">Tempo:</string>
+    <string name="chapter_info_study_break">Studio/Pausa:</string>
 
     <!-- settings -->
     <string name="change_time">Lavoro/Pausa</string>
