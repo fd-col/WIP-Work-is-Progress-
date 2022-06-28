@@ -73,25 +73,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
+
                 <TextView
-                    android:id="@+id/date_and_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/press_start_2p"
-                    android:letterSpacing="0.0"
-                    android:text="@string/date_and_time"
-                    android:textColor="#E8EAF6"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toTopOf="@id/date_chapter_info"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.496"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divider_chapter_title" />
-
-
-                    <TextView
                         android:id="@+id/date_chapter_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -103,7 +86,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/datetime_story_date"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/date_and_time"
+                        app:layout_constraintTop_toBottomOf="@id/divider_chapter_title"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
@@ -113,7 +96,6 @@
                         android:layout_marginTop="12dp"
                         android:background="@drawable/rectangular_background"
                         android:fontFamily="@font/press_start_2p"
-                        android:hint="1242354356"
                         android:paddingTop="26dp"
                         android:scrollbars="horizontal"
                         android:textAlignment="center"

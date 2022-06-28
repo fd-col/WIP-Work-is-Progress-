@@ -96,7 +96,6 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
         _lefthandMode.value = checked
 
         viewModelScope.launch {
-
             val preferenceDao = wipDb.preferenceDao()
 
             if(checked) {

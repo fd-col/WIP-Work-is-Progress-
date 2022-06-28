@@ -151,6 +151,11 @@ class SettingsActivity : AppCompatActivity() {
 
         lefthandMode.setOnCheckedChangeListener { _, checked ->
             viewModel.setLefthandMode(checked)
+            if(checked)
+                this.window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
+                //super.setTheme(R.style.RightToLefTheme)
+            else
+                window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
         }
 
 

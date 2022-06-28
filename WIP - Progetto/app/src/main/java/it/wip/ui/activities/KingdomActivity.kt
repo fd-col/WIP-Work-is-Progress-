@@ -31,10 +31,6 @@ class KingdomActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
 
-        //last story's date on top of vertical reycler view
-        binding.dataUltimaStory.text = viewModel.sortedList[0].createdOn
-
-
         // List of Stories inside the vertical recyclerView (inside the KingdomActivity)
         val storyList = ArrayList<DataKingdom>()
 

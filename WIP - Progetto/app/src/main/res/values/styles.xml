@@ -5,4 +5,9 @@
         <item name="android:textSize">44sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-</resources>
+
+    <style name="RightToLefTheme" parent="Theme.AppCompat">
+        <item name="android:layoutDirection">rtl</item>
+    </style>
+
+    </resources>
