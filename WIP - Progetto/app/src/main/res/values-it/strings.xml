@@ -22,7 +22,7 @@
     <string name="story_time_textview">Tempo della storia</string>
     <string name="optional_settings_textview">Impost. storia</string>
     <string name="silent_mode">Mod. silenzio</string>
-    <string name="hardcore_mode">Mod. hardcode</string>
+    <string name="hardcore_mode">Mod. hardcore</string>
     <string name="choose_avatar_textview">Scegli avatar</string>
     <string name="avatar_dx_arrow">Freccia per scorrere a destra gli avatar disponibili</string>
     <string name="avatar_sx_arrow">Freccia per scorrere a sinistra gli avatar disponibili</string>
