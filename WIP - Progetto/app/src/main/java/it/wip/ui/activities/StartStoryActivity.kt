@@ -157,7 +157,7 @@ class StartStoryActivity : AppCompatActivity() {
         binding.startButton.setOnClickListener {
             //check if the new story title is empty or not
             if(binding.storyTitleSetByTheUser.text.isNullOrBlank())
-                Toast.makeText(this,"Please insert a name for your new story", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,getString(R.string.story_title_empty_message), Toast.LENGTH_SHORT).show()
             else {
                 val intent = Intent(this, StoryStartedActivity::class.java)
                 intent.putExtra("newStoryName", viewModel.storyName.value)

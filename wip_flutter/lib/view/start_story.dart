@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sound_mode/permission_handler.dart';
 import 'package:sound_mode/sound_mode.dart';
 import 'package:sound_mode/utils/ringer_mode_statuses.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
+import 'package:wip_flutter/view/wip_dialog.dart';
 
 import '../arguments/story_started_arguments.dart';
 import '../database/dao/shopped_dao.dart';
@@ -101,20 +103,27 @@ class _StartStoryState extends State<StartStory> {
 
   void setSilentMode(bool flag) async{
 
-    RingerModeStatus ringerStatus = await SoundMode.ringerModeStatus;
-    print(ringerStatus.toString());
-    if(flag) {
-      try {
-        await SoundMode.setSoundMode(RingerModeStatus.silent);
-      } on PlatformException {
-        print('Please enable permissions required');
-      }
+    bool? isGranted = await PermissionHandler.permissionsGranted;
+
+    if (!isGranted!) {
+      // Opens the Do Not Disturb Access settings to grant the access
+      await PermissionHandler.openDoNotDisturbSetting();
     } else {
-      try {
-        await SoundMode.setSoundMode(RingerModeStatus.normal);
-      } on PlatformException {
-        print('Please enable permissions required');
+
+      if(flag) {
+        try {
+          await SoundMode.setSoundMode(RingerModeStatus.silent);
+        } on PlatformException {
+          print('Please enable permissions required');
+        }
+      } else {
+        try {
+          await SoundMode.setSoundMode(RingerModeStatus.normal);
+        } on PlatformException {
+          print('Please enable permissions required');
+        }
       }
+
     }
 
   }
@@ -310,10 +319,10 @@ class _StartStoryState extends State<StartStory> {
                                       setState((){
                                             if(!_hardcoreMode) {
                                               _silenceMode = value;
+                                              setSilentMode(value);
                                             }
                                           }
                                       );
-                                      setSilentMode(value);
                                     }
                                 )
                               ]
@@ -364,68 +373,24 @@ class _StartStoryState extends State<StartStory> {
 
                                 setInfoButtonPath('info_button.png');
 
-                                showDialog(context: context, builder: (context) => AlertDialog(
-                                  contentPadding: EdgeInsets.zero,
-                                  content: Container(
-                                    height: 400,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage('assets/images/info_dialog.png'),
-                                        fit: BoxFit.fill
-                                      )
-                                    ),
-                                    child: Center(
-                                      child: Wrap(
-                                        direction: Axis.vertical,
-                                        alignment: WrapAlignment.center,
-                                        crossAxisAlignment: WrapCrossAlignment.center,
-                                        spacing: 10,
-                                        children: const [
-                                          Text(
-                                            'Payday',
-                                            style: TextStyle(
-                                              color: Color.fromARGB(255, 2, 119, 189),
-                                              fontFamily: 'PressStart2P',
-                                              fontSize: 22,
-                                            )
-                                          ),
-                                          Text(
-                                            '"Cha Ching"',
-                                            style: TextStyle(
-                                              color: Color.fromARGB(255, 2, 119, 189),
-                                              fontFamily: 'PressStart2P',
-                                              fontSize: 16,
-                                            )
-                                          ),
-                                          Text(
-                                              '\nYou earned',
-                                              style: TextStyle(
-                                                color: Color.fromARGB(255, 2, 119, 189),
-                                                fontFamily: 'PressStart2P',
-                                                fontSize: 16,
-                                              )
-                                          ),
-                                          Text(
-                                              '0',
-                                              style: TextStyle(
-                                                color: Color.fromARGB(255, 2, 119, 189),
-                                                fontFamily: 'PressStart2P',
-                                                fontSize: 22,
-                                              )
-                                          ),
-                                          Text(
-                                              'coins',
-                                              style: TextStyle(
-                                                color: Color.fromARGB(255, 2, 119, 189),
-                                                fontFamily: 'PressStart2P',
-                                                fontSize: 16,
-                                              )
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ));
+                                showDialog(context: context, builder: (context) {
+
+                                  List<String> otherText = <String>[];
+
+                                  otherText.add('Disattiva i suoni\ndelle notifiche.\nBASTA PARLARE\nCON LE PERSONE!');
+
+                                  List<Widget> children = makeChildrenSection('Mod.\nsilenzio', '"Shhhh"', otherText, true);
+
+                                  otherText.clear();
+
+                                  otherText.add('Abilita la modalità\nsilenzionsa e se\nesci dall\'app la\ntua storia termina\nautomaticamente.');
+
+                                  otherText.add('In altre parole,\npuoi solo bloccare\ne sbloccare\nil telefono, ma\nassicurati di\nattendere alcuni\nsecondi tra il\nblocco e lo\nsblocco.\n"RISATA MALEFICA"');
+
+                                  children.addAll(makeChildrenSection('Mod.\nhardcore', '"Grrrrr"', otherText, false));
+
+                                  return makeDialog(children, context);
+                                });
 
                               }
                             )

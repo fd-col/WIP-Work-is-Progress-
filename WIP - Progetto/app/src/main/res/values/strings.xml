@@ -19,6 +19,7 @@
     <!-- Start story -->
     <string name="new_story_default">New story</string>
     <string name="new_story_title">Title</string>
+    <string name="story_title_empty_message">Please insert a name for your story</string>
     <string name="story_time_textview">Story time</string>
     <string name="optional_settings_textview">Opt. settings</string>
     <string name="silent_mode">Silent mode</string>
@@ -130,21 +131,21 @@
         The Lovers represents the conflict between true identity and the image of a person in
         the mind of his lover.\n</string>
 
-    <!-- kingdom -->
-    <string name="descrizione_immagine_story">background image inside the story </string>
+    <!-- Kingdom -->
     <string name="story_title">Story Title</string>
-    <string name="num_of_chapters">chapter\'s number</string>
+    <string name="num_of_chapters">Number of chapters</string>
     <string name="chapter_title">Chapter title</string>
     <string name="chapter_time">time: 2.01.23</string>
     <string name="chapter_date">date: 12/10/2022</string>
-    <string name="creation_date">creation date</string>
-    <string name="total_time_studying">total study time</string>
+    <string name="creation_date">Creation date</string>
+    <string name="total_time_studying">Total study time</string>
 
-    <!-- story detail -->
+    <!-- Story detail -->
     <string name="story_detail">Story\ndetails</string>
     <string name="story_detail_title">Story Related Title</string>
-    <string name="story_name">story name detail</string>
-    <string name="todo">TODO</string>
+    <string name="story_name">Story name</string>
+
+    <!-- Da eliminare -->
     <string name="icon_search_button">search button inside own kingdom</string>
 
     <!-- Chapter info -->
@@ -153,57 +154,55 @@
     <string name="avatar_text" translatable="false">Avatar</string>
     <string name="chapter_info_date">Date:</string>
     <string name="chapter_info_time">Time:</string>
-    <string name="chapter_info_study_break">Study/Break:</string>
+    <string name="chapter_info_study_break">Work/Break:</string>
 
-    <!-- settings -->
+    <!-- Settings -->
     <string name="change_time">Work/Break</string>
     <string name="default_partition">Default partition</string>
     <string name="story_time_limit">Time limit\n(minutes)</string>
     <string name="ergonomy">Ergonomy</string>
     <string name="left_hand_mode">Lefthand mode</string>
     <string name="about_the_app">About the app</string>
-    <!-- ???? -->
     <string name="info_text">Info</string>
-    <string name="info_text_button_settings">info button about the app</string>
+    <string name="info_text_button_settings">Button the shows informations about the application</string>
 
-    <!-- dialogs -->
-    <string name="dialog_background">sfondo del dialog mostrato quando premo il tasto info</string>
-    <string name="shhh">\"Shhhh\"</string>
+    <!-- Dialogs -->
+    <string name="shhh" translatable="false">\"Shhhh\"</string>
     <string name="silent_mode_description">Disables notification sounds.\nSTOP TALKING TO\nPEOPLE!</string>
-    <string name="sh_divider">------</string>
-    <string name="grrr">\"Grrrr\"</string>
+    <string name="sh_divider" translatable="false">------</string>
+    <string name="grrr" translatable="false">\"Grrrr\"</string>
     <string name="hardcore_mode_description">Enables Silent mode and if you exit the app your story automatically ends.\n\nIn other words, you can only lock and unlock the phone but make sure to wait some seconds between locking and unlocking.\n\"EVIL LAUGH\"</string>
-    <string name="okay_button">bottone per chiudere il dialog</string>
+    <string name="okay_button">Button that closes the popup</string>
 
     <string name="order_detail">Order detail</string>
-    <string name="order_detail_quote">\"Happy noises\"</string>
+    <string name="order_detail_quote" translatable="false">\"Happy noises\"</string>
     <string name="order_detail_description">Are you sure you\nwant to buy this\nartwork for %1$d\ncoins?</string>
     <string name="yes_button_description">bottone per confermare l\'acquisto</string>
     <string name="no_button_description">bottone uscire dalla schermata di acquisto</string>
 
     <string name="not_enought_coins_title">Not enought\ncoins</string>
-    <string name="negative_quote">\"Sad noises\"</string>
-    <string name="not_enought_coins">Sorry\! not enought\ncoins. We don\'t\nreally want coins,\nwe want you to be\nproductive.\nCome back again\nwhen you achieve\nenought to deserve\nthis artwork.\n</string>
+    <string name="negative_quote" translatable="false">\"Sad noises\"</string>
+    <string name="not_enought_coins">Sorry\! Not enough\ncoins. We don\'treally \nwant coins, we want you\nto be productive.\nCome back again\nwhen you will earn enough \ncoins to deserve\nthis artwork.\n</string>
 
     <string name="purchase_completed">Purchase\ncompleted</string>
-    <string name="positive_quote">\"Rock \'n Roll\"</string>
+    <string name="positive_quote" translatable="false">\"Rock \'n Roll\"</string>
     <string name="purchase_completed_description">You really\ndeserved it.\nGreat job!\n</string>
 
-    <string name="info_dialog_title">A little\nStory about\nArt</string>
-    <string name="info_dialog_quote">\"Gulp\"</string>
+    <string name="info_dialog_title">A little\nStory about\nthis Artwork</string>
+    <string name="info_dialog_quote" translatable="false">\"Gulp\"</string>
 
     <string name="coin_dialog_title">Payday</string>
-    <string name="coin_dialog_quote">\"Cha Ching\"</string>
+    <string name="coin_dialog_quote" translatable="false">\"Cha Ching\"</string>
     <string name="coin_dialog_description_1">You earned</string>
-    <string name="coin_dialog_description_2">0</string>
+    <string name="coin_dialog_description_2" translatable="false">0</string>
     <string name="coin_dialog_description_3">coins</string>
 
-    <string name="hardcore_dialog_title">Game Over</string>
-    <string name="hardcore_dialog_quote">\"Mamma mia\"</string>
+    <string name="hardcore_dialog_title" translatable="false">Game Over</string>
+    <string name="hardcore_dialog_quote" translatable="false">\"Mamma mia\"</string>
     <string name="hardcore_dialog_description_1">The key to being focused is to intensely enjoy whatever you are doing.</string>
-    <string name="hardcore_dialog_description_2">-David Allio\n</string>
-    <string name="hardcore_dialog_description_3">Also, you earn</string>
-    <string name="hardcore_dialog_description_4">0</string>
+    <string name="hardcore_dialog_description_2" translatable="false">-David Allio\n</string>
+    <string name="hardcore_dialog_description_3">Also, you earned</string>
+    <string name="hardcore_dialog_description_4" translatable="false">0</string>
     <string name="hardcore_dialog_description_5">coins.\nYes, hardcore mode means no checkpoints</string>
 
 </resources>
