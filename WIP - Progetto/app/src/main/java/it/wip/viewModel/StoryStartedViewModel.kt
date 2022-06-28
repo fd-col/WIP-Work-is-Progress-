@@ -123,28 +123,30 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
     //FUNCTION TO ADD A NEW STORY
     suspend fun addNewStory(newStoryName: String, myTime: String, studyTime: Int,
                             breakTime: Int, selectedMode: Int, selectedAvatar: String) {
-        //take all stories to add the new one at the end of the DB
-        val allStories = storyDao.getAll()
-        val lastStoryIndex = allStories.lastIndex
+        if(!flag2) { //if the user go out the story when started in harcore mode,
+                    // don't add the story to his Kingdom
+            //take all stories to add the new one at the end of the DB
+            val allStories = storyDao.getAll()
+            val lastStoryIndex = allStories.lastIndex
 
-        val lastChapterIndex = chapter.lastIndex
+            val lastChapterIndex = chapter.lastIndex
 
-        val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
+            val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
 
-        viewModelScope.launch {
-                //take user's stories and check if the new Story name is already in the DB
-
+            viewModelScope.launch {
+                //take all user's storyName and put them in a Map with its IDs
                 val userStoryNamesId = mutableMapOf<String, Int>()
-
-                for(userStory in userStories) {
+                for (userStory in userStories) {
                     userStoryNamesId[userStory.storyName] = userStory.id
                 }
 
-                //if the story is already in the DB, then add another chapter to the story
+                //if the story is already in the DB, then add another chapter to that story
                 if (userStoryNamesId.containsKey(newStoryName)) {
 
-                    val userChapters = db.chapterDao().getAllByStory(userStoryNamesId[newStoryName]!!)
+                    val userChapters =
+                        db.chapterDao().getAllByStory(userStoryNamesId[newStoryName]!!)
 
+                    //add a Chapter to the story with storyName property
                     db.chapterDao().insert(
                         Chapter(
                             chapter[lastChapterIndex].id + 1, "Chapter ${userChapters.size + 1}",
@@ -154,16 +156,16 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                         )
                     )
                 }
-                //in case there isn't another story with the same name of that one we want to crate,
-                // add a new one with a chapter inside into the DB
+                //in case there isn't another story with the same name we want to create,
+                // add the new one (with a chapter inside) into the DB
                 else {
-
                     val newStory = Story(
                         allStories[lastStoryIndex].id + 1, newStoryName,
                         dateFormat.format(Date()).toString(), userId
                     )
-                    storyDao.insert(newStory)
+                    storyDao.insert(newStory) //add a new Story to the Kingdom
 
+                    //insert a first Chapter to the new story
                     db.chapterDao().insert(
                         Chapter(
                             chapter[lastChapterIndex].id + 1, "Chapter 1",
@@ -174,8 +176,10 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
                     )
 
                 }
+            }//viewModelScope
 
-        }//viewModelScope
-
+        }//if(flag2)
     }
+
+
 }

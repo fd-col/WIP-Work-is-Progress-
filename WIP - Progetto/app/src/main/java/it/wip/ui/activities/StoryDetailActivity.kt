@@ -120,7 +120,12 @@ class StoryDetailActivity: AppCompatActivity() {
 
         //button to go back in the previous view
         backButton.setOnClickListener {
-            startActivity(Intent(this, KingdomActivity::class.java))
+            val bundle = Bundle()
+            bundle.putInt("storyID", storyID)
+
+            val intent = Intent(this, KingdomActivity::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
         }
         backButton.setOnTouchListener { v, event ->
             when (event.action) {
