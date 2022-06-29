@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'menu.dart';
+import 'wip_menu.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key, required this.title}) : super(key: key);
@@ -96,7 +96,7 @@ class _SettingsState extends State<Settings> {
                     )
                 )
               ),
-              Menu()
+              WIPMenu()
             ]
           ),
         ),

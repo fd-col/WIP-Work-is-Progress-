@@ -5,6 +5,8 @@ import 'package:wip_flutter/arguments/story_started_arguments.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_dialog.dart';
 
+import '../arguments/wip_dialog_arguments.dart';
+
 class StoryStarted extends StatefulWidget {
   const StoryStarted({Key? key, required this.title}) : super(key: key);
 
@@ -227,7 +229,14 @@ class _StoryStartedState extends State<StoryStarted> {
 
                                   List<Widget> children = makeChildrenSection('Giorno di\npaga', '"Cha Ching"', otherText, true);
 
-                                  return makeDialog(children, context, 300, true);
+                                  var args = WIPDialogArguments(
+                                      children: children,
+                                      dialogHeight: 300,
+                                      popUntilRoot: true
+                                  );
+
+                                  return WIPDialog(args: args);
+
                                 });
                                 setStopButtonPath('stop_button.png');
                               },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'menu.dart';
+import 'wip_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
                           child: Image.asset(playButtonPath),
                       )
                   ),
-                  const Menu()
+                  const WIPMenu()
                 ],
               ),
             ),

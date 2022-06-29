@@ -5,6 +5,7 @@ import 'package:sound_mode/permission_handler.dart';
 import 'package:sound_mode/sound_mode.dart';
 import 'package:sound_mode/utils/ringer_mode_statuses.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:wip_flutter/arguments/wip_dialog_arguments.dart';
 import 'package:wip_flutter/database/dao/shop_element_dao.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_dialog.dart';
@@ -405,7 +406,14 @@ class _StartStoryState extends State<StartStory> {
 
                                   children.addAll(makeChildrenSection('Mod.\nhardcore', '"Grrrrr"', otherText, false));
 
-                                  return makeDialog(children, context, 600, false);
+                                  var args = WIPDialogArguments(
+                                    children: children,
+                                    dialogHeight: 600,
+                                    popUntilRoot: false
+                                  );
+
+                                  return WIPDialog(args: args);
+
                                 });
 
                               }

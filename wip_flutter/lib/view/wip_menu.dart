@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Menu extends StatefulWidget {
-  const Menu({Key? key}) : super(key: key);
+class WIPMenu extends StatefulWidget {
+  const WIPMenu({Key? key}) : super(key: key);
 
   @override
-  State<Menu> createState() => _MenuState();
+  State<WIPMenu> createState() => _WIPMenuState();
 }
 
-class _MenuState extends State<Menu> {
+class _WIPMenuState extends State<WIPMenu> {
 
   String menuImagesPath = 'assets/images/menu/';
 
