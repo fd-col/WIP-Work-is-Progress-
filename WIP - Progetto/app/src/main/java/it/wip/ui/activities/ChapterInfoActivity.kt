@@ -88,7 +88,9 @@ class ChapterInfoActivity : AppCompatActivity() {
         //button to go back in the previous view
         backButton.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("chapterID", chapterID)
+
+            val storyID = intent.getIntExtra("storyID", 0)
+            bundle.putInt("storyID", storyID)
 
             val intent = Intent(this, StoryDetailActivity::class.java)
             intent.putExtras(bundle)

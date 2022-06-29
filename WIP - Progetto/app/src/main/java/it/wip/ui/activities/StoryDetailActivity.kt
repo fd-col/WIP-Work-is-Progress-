@@ -112,6 +112,7 @@ class StoryDetailActivity: AppCompatActivity() {
         val itemOnClick: (Int) -> Unit = { position ->
             val intent = Intent(this, ChapterInfoActivity()::class.java)
 
+            intent.putExtra("storyID", storyID)
             intent.putExtra("chapterID", storyDetailList[position].itemID)
             startActivity(intent)
         }
