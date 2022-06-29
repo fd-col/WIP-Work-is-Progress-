@@ -67,6 +67,7 @@ flutter:
     - assets/images/background/
     - assets/images/dialog/
     - assets/images/home/
+    - assets/images/menu/
     - assets/images/shared/
     - assets/images/start-story/
     - assets/images/story-started/

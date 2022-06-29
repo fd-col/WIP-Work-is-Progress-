@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+
+import 'menu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -13,39 +14,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  late Database wipDb;
-
   String imagesPath = 'assets/images/home/';
 
   String playButtonPath = 'assets/images/home/play_button.png';
-  String homeButtonPath = 'assets/images/home/home_button.png';
 
   late Image playButtonPressed;
-  late Image homeButtonPressed;
 
   @override
   void initState() {
     super.initState();
     playButtonPressed = Image.asset('${imagesPath}play_button_pressed.png');
-    homeButtonPressed = Image.asset('${imagesPath}home_button_pressed.png');
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     precacheImage(playButtonPressed.image, context);
-    precacheImage(homeButtonPressed.image, context);
   }
 
   void setPlayButtonPath(String playButtonPath) {
     setState(() {
       this.playButtonPath = imagesPath + playButtonPath;
-    });
-  }
-
-  void setHomeButtonPath(String homeButtonPath) {
-    setState(() {
-      this.homeButtonPath = imagesPath + homeButtonPath;
     });
   }
 
@@ -104,24 +93,7 @@ class _HomeState extends State<Home> {
                           child: Image.asset(playButtonPath),
                       )
                   ),
-                  GestureDetector(
-                      onTapDown: (_){
-                        setHomeButtonPath('home_button_pressed.png');
-                      },
-                      onPanDown: (_){
-                        setHomeButtonPath('home_button_pressed.png');
-                      },
-                      onTapCancel: (){
-                        setHomeButtonPath('home_button.png');
-                      },
-                      onPanEnd: (_){
-                        setHomeButtonPath('home_button.png');
-                      },
-                      onTap: (){
-                        setHomeButtonPath('home_button.png');
-                      },
-                      child: Image.asset(homeButtonPath)
-                  )
+                  const Menu()
                 ],
               ),
             ),
