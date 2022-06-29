@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:wip_flutter/arguments/story_started_arguments.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
+import 'package:wip_flutter/view/wip_dialog.dart';
+
+import '../arguments/wip_dialog_arguments.dart';
 
 class StoryStarted extends StatefulWidget {
   const StoryStarted({Key? key, required this.title}) : super(key: key);
@@ -22,13 +25,26 @@ class _StoryStartedState extends State<StoryStarted> {
   String minutesText = '00';
   String secondsText = '00';
 
-  String imagesPath = 'assets/images/';
+  String imagesPath = 'assets/images/story-started/';
 
-  String stopButtonPath = 'assets/images/stop_button.png';
+  String stopButtonPath = 'assets/images/story-started/stop_button.png';
 
   late Image stopButtonPressed;
 
   StoryStartedArguments? args;
+  int? studyTime;
+  int? breakTime;
+  int? pauseTime;
+  int? maxTime;
+  int? step;
+  int cyclesFinished = 0;
+
+  String avatarPath = '';
+  String backgroundPath = '';
+
+  int backgroundEvolution = 0;
+
+  String phrase = 'Dai tutto te stesso';
 
   @override
   void initState() {
@@ -56,7 +72,7 @@ class _StoryStartedState extends State<StoryStarted> {
   String twoDigits(int n) => n.toString().padLeft(2, '0');
 
   void addTime() {
-    const addSeconds = 1;
+    const addSeconds = 400;
 
     if(mounted) {
       setState(() {
@@ -70,6 +86,24 @@ class _StoryStartedState extends State<StoryStarted> {
     }
   }
 
+  void setInitialBackground(String backgroundName) {
+    String backgroundPath = fromShopElementBackgroundToPath(backgroundName);
+    this.backgroundPath = backgroundPath;
+  }
+
+  void setEvolutedBackground(String backgroundName) {
+    String backgroundPath = fromShopElementEvolutedBackgroundToPath(backgroundName, backgroundEvolution);
+    this.backgroundPath = backgroundPath;
+  }
+
+  bool isBetween(int value, int start, int end) {
+    return start <= value && value < end;
+  }
+
+  int getCurrentCycleSeconds() {
+    return duration.inSeconds - (maxTime! * cyclesFinished);
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -78,11 +112,42 @@ class _StoryStartedState extends State<StoryStarted> {
           .settings
           .arguments as StoryStartedArguments;
 
+    studyTime ??= args!.studyTime * 60;
+    breakTime ??= args!.breakTime * 60;
+    pauseTime ??= studyTime;
+    maxTime ??= studyTime! + breakTime!;
+    step ??= studyTime!~/4;
+
+    print(args?.hardcoreMode);
+
+    if(backgroundEvolution == 0 && isBetween(getCurrentCycleSeconds(), 0, step!)) {
+      args?.backgroundNames.shuffle();
+      backgroundEvolution++;
+      avatarPath = fromShopElementAvatarToPath(args!.selectedAvatar);
+      setInitialBackground(args!.backgroundNames.first);
+      phrase = 'Dai tutto te stesso';
+    } else if(backgroundEvolution == 1 && isBetween(getCurrentCycleSeconds(), step!, step!*2)) {
+      backgroundEvolution++;
+      setEvolutedBackground(args!.backgroundNames.first);
+    } else if(backgroundEvolution == 2 && isBetween(getCurrentCycleSeconds(), step!*2, step!*3)) {
+      backgroundEvolution++;
+      setEvolutedBackground(args!.backgroundNames.first);
+    } else if(backgroundEvolution == 3 && isBetween(getCurrentCycleSeconds(), step!*3, pauseTime!)) {
+      backgroundEvolution++;
+      setEvolutedBackground(args!.backgroundNames.first);
+    } else if(backgroundEvolution == 4 && isBetween(getCurrentCycleSeconds(), pauseTime!, maxTime!)) {
+      avatarPath = 'assets/images/story-started/bonfire.png';
+      phrase = 'Prenditi una pausa';
+    } else if(getCurrentCycleSeconds() >= maxTime!) {
+      backgroundEvolution = 0;
+      cyclesFinished++;
+    }
+
     return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
+                    image: AssetImage('assets/images/shared/background.png'),
                     fit: BoxFit.fill
                 )
             ),
@@ -95,19 +160,19 @@ class _StoryStartedState extends State<StoryStarted> {
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/background_control_panel_story_started_up.png'),
+                                image: AssetImage('assets/images/story-started/background_control_panel_story_started_up.png'),
                                 fit: BoxFit.fill
                             ),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Image.asset(fromShopElementToPath(args!.selectedAvatar)),
-                          const Flexible(
+                          Image.asset(avatarPath),
+                          Flexible(
                               child: Text(
-                                'Dai tutto te stesso',
+                                phrase,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 2, 119, 189),
                                     fontFamily: 'PressStart2P',
                                     fontSize: 22
@@ -122,17 +187,17 @@ class _StoryStartedState extends State<StoryStarted> {
                       padding: const EdgeInsets.only(left: 8, bottom: 32),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/images/story_stand.png')
+                          image: AssetImage('assets/images/story-started/story_stand.png')
                         )
                       ),
-                      child: Image.asset('assets/images/dali_1.png'),
+                      child: Image.asset(backgroundPath),
                     ),
                     Container(
                       height: 110,
                       margin: const EdgeInsets.only(top: 40),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/background_control_panel_story_started_down.png'),
+                            image: AssetImage('assets/images/story-started/background_control_panel_story_started_down.png'),
                           fit: BoxFit.fill
                         )
                       ),
@@ -153,7 +218,26 @@ class _StoryStartedState extends State<StoryStarted> {
                                 setStopButtonPath('stop_button.png');
                               },
                               onTap: () {
-                                Navigator.popUntil(context, ModalRoute.withName('/'));
+                                timer!.cancel();
+                                showDialog(barrierDismissible: false, context: context, builder: (context) {
+
+                                  List<String> otherText = <String>[];
+
+                                  otherText.add('Ottimo lavoro!');
+
+                                  otherText.add('Il tuo sforzo\nverrà ripagato');
+
+                                  List<Widget> children = makeChildrenSection('Giorno di\npaga', '"Cha Ching"', otherText, true);
+
+                                  var args = WIPDialogArguments(
+                                      children: children,
+                                      dialogHeight: 300,
+                                      popUntilRoot: true
+                                  );
+
+                                  return WIPDialog(args: args);
+
+                                });
                                 setStopButtonPath('stop_button.png');
                               },
                               child: Image.asset(stopButtonPath)

@@ -21,7 +21,7 @@ class WIPDb {
 
     String path = join(databasesPath, 'wip.db');
 
-    return openDatabase(path, version: 1, onCreate: _onCreate);
+    return openDatabase(path, version: 2, onCreate: _onCreate);
 
   }
 
@@ -83,9 +83,25 @@ class WIPDb {
 
     UserDao.insert(db, User(id: 1));
 
-    StoryDao.insert(db,
-        Story(id: 1, storyName: 'Matematica', createdOn: '2022-06-26 12:00:12', user: 1)
-    );
+    List<Story> stories = <Story>[];
+
+    stories.add(Story(id: 1, storyName: 'Aritmetica', createdOn: '2022-06-26 12:00:12', user: 1));
+    stories.add(Story(id: 2, storyName: 'Analisi', createdOn: '2022-06-26 13:00:12', user: 1));
+    stories.add(Story(id: 3, storyName: 'Algebra', createdOn: '2022-06-26 14:00:12', user: 1));
+    stories.add(Story(id: 4, storyName: 'Informatica', createdOn: '2022-06-26 15:00:12', user: 1));
+    stories.add(Story(id: 5, storyName: 'Scienze', createdOn: '2022-06-26 16:00:12', user: 1));
+    stories.add(Story(id: 6, storyName: 'Storia', createdOn: '2022-06-26 17:00:12', user: 1));
+    stories.add(Story(id: 7, storyName: 'Geografia', createdOn: '2022-06-26 18:00:12', user: 1));
+    stories.add(Story(id: 8, storyName: 'Astronomia', createdOn: '2022-06-26 19:00:12', user: 1));
+    stories.add(Story(id: 9, storyName: 'Fisica', createdOn: '2022-06-26 20:00:12', user: 1));
+    stories.add(Story(id: 10, storyName: 'Geometria', createdOn: '2022-06-26 21:00:12', user: 1));
+    stories.add(Story(id: 11, storyName: 'Antropologia', createdOn: '2022-06-26 22:00:12', user: 1));
+    stories.add(Story(id: 12, storyName: 'Scienze sociali', createdOn: '2022-06-26 23:00:12', user: 1));
+    stories.add(Story(id: 13, storyName: 'Psicologia', createdOn: '2022-06-27 00:00:12', user: 1));
+    stories.add(Story(id: 14, storyName: 'Filosofia', createdOn: '2022-06-27 01:00:12', user: 1));
+    stories.add(Story(id: 15, storyName: 'Arte', createdOn: '2022-06-27 02:00:12', user: 1));
+
+    StoryDao.insertAll(db, stories);
 
     ChapterDao.insert(db,
         Chapter(id: 1, chapterName: 'Logaritmi', time: 3600, createdOn: '2022-06-26 12:00:12', avatar: 'venere', story: 1)
@@ -100,6 +116,13 @@ class WIPDb {
     shopElements.add(ShopElement(elementName: 'self_portrait', type: 'avatar', description: '', price: 0));
     shopElements.add(ShopElement(elementName: 'david', type: 'avatar', description: '', price: 0));
 
+    shopElements.add(ShopElement(elementName: 'the_scream_background', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'the_persistence_of_memory', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'hopper_nighthawks', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'creation_of_adam', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'lovers', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'weathfield_with_crows', type: 'background', description: '', price: 0));
+
     ShopElementDao.insertAll(db, shopElements);
 
     List<Shopped> shoppedList = <Shopped>[];
@@ -110,6 +133,12 @@ class WIPDb {
     shoppedList.add(Shopped(user: 1, shopElement: 'the_scream', boughtOn: '2022-06-26 12:00:12'));
     shoppedList.add(Shopped(user: 1, shopElement: 'self_portrait', boughtOn: '2022-06-26 12:00:12'));
     shoppedList.add(Shopped(user: 1, shopElement: 'david', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_scream_background', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_persistence_of_memory', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'hopper_nighthawks', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'creation_of_adam', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'lovers', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'weathfield_with_crows', boughtOn: '2022-06-26 12:00:12'));
 
     ShoppedDao.insertAll(db, shoppedList);
 

@@ -16,8 +16,32 @@ class StoryDao {
     });
   }
 
+  static Future<List<Story>> getAllByUser(Database db, int userId) async {
+    final List<Map<String, dynamic>> maps = await db.query(
+        'story',
+        columns: ['*'],
+        where: 'user = ?',
+        whereArgs: [userId],
+        orderBy: 'created_on DESC'
+    );
+    return List.generate(maps.length, (i) {
+      return Story(
+          id: maps[i]['id'],
+          storyName: maps[i]['story_name'],
+          createdOn: maps[i]['created_on'],
+          user: maps[i]['user']
+      );
+    });
+  }
+
   static Future<void> insert(Database db, Story story) async {
     await db.insert('story', story.toMap());
+  }
+
+  static Future<void> insertAll(Database db, List<Story> stories) async {
+    for(Story story in stories) {
+      await db.insert('story', story.toMap());
+    }
   }
 
   static Future<void> update(Database db, Story story) async {

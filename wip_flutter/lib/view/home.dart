@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:wip_flutter/database/dao/chapter_dao.dart';
-import 'package:wip_flutter/database/dao/shop_element_dao.dart';
-import 'package:wip_flutter/database/dao/shopped_dao.dart';
-import 'package:wip_flutter/database/dao/story_dao.dart';
-import 'package:wip_flutter/database/dao/user_dao.dart';
-import 'package:wip_flutter/database/model/shop_element.dart';
-import 'package:wip_flutter/database/model/shopped.dart';
-import 'package:wip_flutter/database/wip_db.dart';
 
-import '../database/model/chapter.dart';
-import '../database/model/story.dart';
-import '../database/model/user.dart';
-
+import 'wip_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -26,39 +14,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  late Database wipDb;
+  String imagesPath = 'assets/images/home/';
 
-  String imagesPath = 'assets/images/';
-
-  String playButtonPath = 'assets/images/play_button.png';
-  String homeButtonPath = 'assets/images/paint_button.png';
+  String playButtonPath = 'assets/images/home/play_button.png';
 
   late Image playButtonPressed;
-  late Image homeButtonPressed;
 
   @override
   void initState() {
     super.initState();
     playButtonPressed = Image.asset('${imagesPath}play_button_pressed.png');
-    homeButtonPressed = Image.asset('${imagesPath}paint_button_pressed.png');
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     precacheImage(playButtonPressed.image, context);
-    precacheImage(homeButtonPressed.image, context);
   }
 
   void setPlayButtonPath(String playButtonPath) {
     setState(() {
       this.playButtonPath = imagesPath + playButtonPath;
-    });
-  }
-
-  void setHomeButtonPath(String homeButtonPath) {
-    setState(() {
-      this.homeButtonPath = imagesPath + homeButtonPath;
     });
   }
 
@@ -68,7 +44,7 @@ class _HomeState extends State<Home> {
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
+                    image: AssetImage('assets/images/shared/background.png'),
                     fit: BoxFit.fill
                 )
             ),
@@ -81,18 +57,18 @@ class _HomeState extends State<Home> {
                     children: [
                       Transform(
                           transform: Matrix4.rotationZ(-0.25),
-                          child: Image.asset('assets/images/app_name.png')
+                          child: Image.asset('assets/images/home/app_name.png')
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 10, left: 35, right: 35),
-                        child: Image.asset('assets/images/under_app_name.png'),
+                        child: Image.asset('assets/images/home/under_app_name.png'),
                       )
                     ],
                   ),
                   Container(
                       decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage('assets/images/frame.png'),
+                              image: AssetImage('assets/images/shared/frame.png'),
                               fit: BoxFit.fill
                           )
                       ),
@@ -111,30 +87,13 @@ class _HomeState extends State<Home> {
                             setPlayButtonPath('play_button.png');
                           },
                           onTap: () {
-                            Navigator.pushNamed(context, '/start-story');
                             setPlayButtonPath('play_button.png');
+                            Navigator.pushNamed(context, '/start-story');
                           },
                           child: Image.asset(playButtonPath),
                       )
                   ),
-                  GestureDetector(
-                      onTapDown: (_){
-                        setHomeButtonPath('paint_button_pressed.png');
-                      },
-                      onPanDown: (_){
-                        setHomeButtonPath('paint_button_pressed.png');
-                      },
-                      onTapCancel: (){
-                        setHomeButtonPath('paint_button.png');
-                      },
-                      onPanEnd: (_){
-                        setHomeButtonPath('paint_button.png');
-                      },
-                      onTap: (){
-                        setHomeButtonPath('paint_button.png');
-                      },
-                      child: Image.asset(homeButtonPath)
-                  )
+                  WIPMenu(parentWidget: widget.toString())
                 ],
               ),
             ),
