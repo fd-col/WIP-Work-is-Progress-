@@ -44,9 +44,9 @@ class StoryStartedActivity : AppCompatActivity(){
         //              EXTRAS
         val extras = intent.extras
         val newStoryName = extras?.get("newStoryName") as String
-        val avatar: String = extras?.get("selectedAvatar") as String
-        val floatStudyTime = extras?.get("studyTime") as Float
-        val floatBreakTime = extras?.get("breakTime") as Float
+        val avatar: String = extras.get("selectedAvatar") as String
+        val floatStudyTime = extras.get("studyTime") as Float
+        val floatBreakTime = extras.get("breakTime") as Float
         val selectedMode = extras.get("mode") as Int
 
 

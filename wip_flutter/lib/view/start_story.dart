@@ -5,11 +5,13 @@ import 'package:sound_mode/permission_handler.dart';
 import 'package:sound_mode/sound_mode.dart';
 import 'package:sound_mode/utils/ringer_mode_statuses.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:wip_flutter/database/dao/shop_element_dao.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_dialog.dart';
 
 import '../arguments/story_started_arguments.dart';
 import '../database/dao/shopped_dao.dart';
+import '../database/model/shop_element.dart';
 import '../database/model/shopped.dart';
 import '../database/wip_db.dart';
 
@@ -27,18 +29,18 @@ class StartStory extends StatefulWidget {
 class _StartStoryState extends State<StartStory> {
   String storyTitle = '';
   double _studyTime = 20;
-  double _pause = 100;
-  final double _maxSlider = 120;
+  double _pause = 60;
+  final double _maxSlider = 80;
   bool _silenceMode = false;
   bool _hardcoreMode = false;
 
-  String imagesPath = 'assets/images/';
+  String imagesPath = 'assets/images/start-story/';
 
-  String backButtonPath = 'assets/images/back_button.png';
-  String infoButtonPath = 'assets/images/info_button.png';
-  String sxButtonPath = 'assets/images/avatar_sx_arrow.png';
-  String dxButtonPath = 'assets/images/avatar_dx_arrow.png';
-  String startStoryButtonPath = 'assets/images/start_story_button.png';
+  String backButtonPath = 'assets/images/start-story/back_button.png';
+  String infoButtonPath = 'assets/images/start-story/info_button.png';
+  String sxButtonPath = 'assets/images/start-story/avatar_sx_arrow.png';
+  String dxButtonPath = 'assets/images/start-story/avatar_dx_arrow.png';
+  String startStoryButtonPath = 'assets/images/start-story/start_story_button.png';
 
   late Image backButtonPressed;
   late Image infoButtonPressed;
@@ -46,8 +48,9 @@ class _StartStoryState extends State<StartStory> {
   late Image dxButtonPressed;
   late Image startStoryButtonPressed;
 
-  List<String> shoppedElementNames = <String>[];
-  String avatarImage = 'assets/images/frame.png';
+  List<String> shoppedAvatarNames = <String>[];
+  List<String> shoppedBackgroundNames = <String>[];
+  String avatarImage = 'assets/images/shared/frame.png';
   int avatarTag = 0;
 
   @override
@@ -133,13 +136,26 @@ class _StartStoryState extends State<StartStory> {
     Database wipDb = await WIPDb.getDb();
 
     List<Shopped> shoppedList = await ShoppedDao.getAllByUser(wipDb, 1);
-
+    List<ShopElement> shopElements = await ShopElementDao.getAll(wipDb);
+    
+    Map<String, String> shopElementsType = <String, String>{};
+    
+    for(ShopElement shopElement in shopElements) {
+      shopElementsType.putIfAbsent(shopElement.elementName, () => shopElement.type);
+    }
+    
     for(Shopped shopped in shoppedList) {
-      shoppedElementNames.add(shopped.shopElement);
+      
+      if(shopElementsType[shopped.shopElement] == 'avatar') {
+        shoppedAvatarNames.add(shopped.shopElement);
+      } else {
+        shoppedBackgroundNames.add(shopped.shopElement);
+      }
+
     }
 
     setState(() {
-      avatarImage = fromShopElementToPath(shoppedElementNames.first);
+      avatarImage = fromShopElementAvatarToPath(shoppedAvatarNames.first);
     });
 
   }
@@ -147,22 +163,22 @@ class _StartStoryState extends State<StartStory> {
   void sxButtonAction() {
     avatarTag--;
     if(avatarTag < 0) {
-      avatarTag = shoppedElementNames.length - 1;
+      avatarTag = shoppedAvatarNames.length - 1;
     }
 
     setState(() {
-      avatarImage = fromShopElementToPath(shoppedElementNames[avatarTag]);
+      avatarImage = fromShopElementAvatarToPath(shoppedAvatarNames[avatarTag]);
     });
   }
 
   void dxButtonAction() {
     avatarTag++;
-    if(avatarTag + 1 > shoppedElementNames.length) {
+    if(avatarTag + 1 > shoppedAvatarNames.length) {
       avatarTag = 0;
     }
 
     setState(() {
-      avatarImage = fromShopElementToPath(shoppedElementNames[avatarTag]);
+      avatarImage = fromShopElementAvatarToPath(shoppedAvatarNames[avatarTag]);
     });
   }
 
@@ -172,7 +188,7 @@ class _StartStoryState extends State<StartStory> {
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/images/background.png'),
+                    image: AssetImage('assets/images/shared/background.png'),
                     fit: BoxFit.fill
                 )
             ),
@@ -217,7 +233,7 @@ class _StartStoryState extends State<StartStory> {
                     height: 70,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/rectangular_background.png'),
+                        image: AssetImage('assets/images/start-story/rectangular_background.png'),
                         fit: BoxFit.fill
                       )
                     ),
@@ -259,7 +275,7 @@ class _StartStoryState extends State<StartStory> {
                     height: 70,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/rectangular_background.png'),
+                            image: AssetImage('assets/images/start-story/rectangular_background.png'),
                             fit: BoxFit.fill
                         )
                     ),
@@ -293,7 +309,7 @@ class _StartStoryState extends State<StartStory> {
                     height: 110,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/rectangular_background.png'),
+                            image: AssetImage('assets/images/start-story/rectangular_background.png'),
                             fit: BoxFit.fill
                         )
                     ),
@@ -389,7 +405,7 @@ class _StartStoryState extends State<StartStory> {
 
                                   children.addAll(makeChildrenSection('Mod.\nhardcore', '"Grrrrr"', otherText, false));
 
-                                  return makeDialog(children, context);
+                                  return makeDialog(children, context, 600, false);
                                 });
 
                               }
@@ -490,9 +506,10 @@ class _StartStoryState extends State<StartStory> {
                             '/story-started',
                             arguments: StoryStartedArguments(
                                 storyTitle: storyTitle,
-                                studyTime: _studyTime,
-                                breakTime: _pause,
-                                selectedAvatar: shoppedElementNames[avatarTag]
+                                studyTime: _studyTime.toInt(),
+                                breakTime: _pause.toInt(),
+                                selectedAvatar: shoppedAvatarNames[avatarTag],
+                                backgroundNames: shoppedBackgroundNames
                             )
                         );
                       } else {

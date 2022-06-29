@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
   sqflite:
   path:
-  sound_mode: ^2.0.1
+  sound_mode:
   fluttertoast:
 
 
@@ -63,7 +63,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/images/avatar/
+    - assets/images/background/
+    - assets/images/dialog/
+    - assets/images/home/
+    - assets/images/shared/
+    - assets/images/start-story/
+    - assets/images/story-started/
 
   fonts:
     - family: PressStart2P

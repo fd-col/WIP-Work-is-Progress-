@@ -21,7 +21,7 @@ class WIPDb {
 
     String path = join(databasesPath, 'wip.db');
 
-    return openDatabase(path, version: 1, onCreate: _onCreate);
+    return openDatabase(path, version: 2, onCreate: _onCreate);
 
   }
 
@@ -100,6 +100,13 @@ class WIPDb {
     shopElements.add(ShopElement(elementName: 'self_portrait', type: 'avatar', description: '', price: 0));
     shopElements.add(ShopElement(elementName: 'david', type: 'avatar', description: '', price: 0));
 
+    shopElements.add(ShopElement(elementName: 'the_scream_background', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'the_persistence_of_memory', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'hopper_nighthawks', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'creation_of_adam', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'lovers', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'weathfield_with_crows', type: 'background', description: '', price: 0));
+
     ShopElementDao.insertAll(db, shopElements);
 
     List<Shopped> shoppedList = <Shopped>[];
@@ -110,6 +117,12 @@ class WIPDb {
     shoppedList.add(Shopped(user: 1, shopElement: 'the_scream', boughtOn: '2022-06-26 12:00:12'));
     shoppedList.add(Shopped(user: 1, shopElement: 'self_portrait', boughtOn: '2022-06-26 12:00:12'));
     shoppedList.add(Shopped(user: 1, shopElement: 'david', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_scream_background', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_persistence_of_memory', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'hopper_nighthawks', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'creation_of_adam', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'lovers', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'weathfield_with_crows', boughtOn: '2022-06-26 12:00:12'));
 
     ShoppedDao.insertAll(db, shoppedList);
 

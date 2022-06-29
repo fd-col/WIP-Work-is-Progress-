@@ -52,25 +52,29 @@ List<Widget> makeChildrenSection(String title, String subtitle, List<String> oth
 
 }
 
-AlertDialog makeDialog(List<Widget> children, BuildContext context) {
+AlertDialog makeDialog(List<Widget> children, BuildContext context, double dialogHeight, bool popUntilRoot) {
 
   children.add(
       GestureDetector(
           onTap: () {
-            Navigator.pop(context);
+            if(popUntilRoot) {
+              Navigator.popUntil(context, ModalRoute.withName('/'));
+            } else {
+              Navigator.pop(context);
+            }
           },
-          child: Image.asset('assets/images/okay_button.png')
+          child: Image.asset('assets/images/dialog/okay_button.png')
       )
   );
 
   return AlertDialog(
       contentPadding: EdgeInsets.zero,
       content: Container(
-        height: 600,
+        height: dialogHeight,
         width: 300,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/info_dialog.png'),
+            image: AssetImage('assets/images/dialog/info_dialog.png'),
             fit: BoxFit.fill
           )
         ),
