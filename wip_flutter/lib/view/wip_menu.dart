@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class WIPMenu extends StatefulWidget {
-  const WIPMenu({Key? key}) : super(key: key);
+  const WIPMenu({Key? key, required this.parentWidget}) : super(key: key);
+
+  final String parentWidget;
 
   @override
   State<WIPMenu> createState() => _WIPMenuState();
@@ -55,6 +57,7 @@ class _WIPMenuState extends State<WIPMenu> {
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
         height: 110,
         child: Wrap(
@@ -79,6 +82,9 @@ class _WIPMenuState extends State<WIPMenu> {
                         },
                         onTap: (){
                           setKingdomButtonPath('kingdom_button.png');
+                          if(widget.parentWidget != 'Kingdom') {
+                            Navigator.pushNamed(context, '/kingdom');
+                          }
                         },
                         child: Image.asset(kingdomButtonPath)
                     )
@@ -102,6 +108,9 @@ class _WIPMenuState extends State<WIPMenu> {
                         },
                         onTap: (){
                           setHomeButtonPath('home_button.png');
+                          if(widget.parentWidget != 'Home') {
+                            Navigator.pushNamed(context, '/');
+                          }
                         },
                         child: Image.asset(homeButtonPath)
                     )
@@ -124,8 +133,10 @@ class _WIPMenuState extends State<WIPMenu> {
                           setSettingsButtonPath('settings_button.png');
                         },
                         onTap: (){
-                          Navigator.pushNamed(context, '/settings');
                           setSettingsButtonPath('settings_button.png');
+                          if(widget.parentWidget != 'Settings') {
+                            Navigator.pushNamed(context, '/settings');
+                          }
                         },
                         child: Image.asset(settingsButtonPath)
                     )

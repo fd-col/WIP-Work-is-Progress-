@@ -118,7 +118,7 @@ class _StoryStartedState extends State<StoryStarted> {
     maxTime ??= studyTime! + breakTime!;
     step ??= studyTime!~/4;
 
-    //args = StoryStartedArguments(storyTitle: 'sas', studyTime: 12, breakTime: 23, selectedAvatar: 'venere', background: 'munch_background');
+    print(args?.hardcoreMode);
 
     if(backgroundEvolution == 0 && isBetween(getCurrentCycleSeconds(), 0, step!)) {
       args?.backgroundNames.shuffle();

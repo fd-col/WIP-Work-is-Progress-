@@ -83,8 +83,8 @@ class _SettingsState extends State<Settings> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 height: 340,
                 child: Text(
                     'Questa sezione\nnon è stata\nimplementata\nin Flutter',
@@ -96,7 +96,7 @@ class _SettingsState extends State<Settings> {
                     )
                 )
               ),
-              WIPMenu()
+              WIPMenu(parentWidget: widget.toString())
             ]
           ),
         ),

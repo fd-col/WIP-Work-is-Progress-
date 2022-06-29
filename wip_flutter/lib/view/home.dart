@@ -87,13 +87,13 @@ class _HomeState extends State<Home> {
                             setPlayButtonPath('play_button.png');
                           },
                           onTap: () {
-                            Navigator.pushNamed(context, '/start-story');
                             setPlayButtonPath('play_button.png');
+                            Navigator.pushNamed(context, '/start-story');
                           },
                           child: Image.asset(playButtonPath),
                       )
                   ),
-                  const WIPMenu()
+                  WIPMenu(parentWidget: widget.toString())
                 ],
               ),
             ),

@@ -513,11 +513,12 @@ class _StartStoryState extends State<StartStory> {
                             context,
                             '/story-started',
                             arguments: StoryStartedArguments(
-                                storyTitle: storyTitle,
-                                studyTime: _studyTime.toInt(),
-                                breakTime: _pause.toInt(),
-                                selectedAvatar: shoppedAvatarNames[avatarTag],
-                                backgroundNames: shoppedBackgroundNames
+                              storyTitle: storyTitle,
+                              studyTime: _studyTime.toInt(),
+                              breakTime: _pause.toInt(),
+                              selectedAvatar: shoppedAvatarNames[avatarTag],
+                              backgroundNames: shoppedBackgroundNames,
+                              hardcoreMode: _hardcoreMode
                             )
                         );
                       } else {
