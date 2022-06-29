@@ -1,6 +1,7 @@
 package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -33,6 +34,13 @@ class OrderDetailFragment(val shopElement: ShopElement, private val unlocked: Bo
         val backButton = binding.orderDetailBackButton
         val shopInfoButton = binding.shopInfoButton
         val artwork = binding.avatarDetail
+
+        //LeftHand mode activation
+        val lefthandPreference =
+            activity?.applicationContext?.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference?.getInt("lefthand", Context.MODE_PRIVATE)
+        //change drawables' orietation for Lefthand Mode
+        if(lefthand==1) backButton.rotationY = 180F
 
         artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
 

@@ -1,6 +1,7 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -26,6 +27,12 @@ class StoryDetailActivity: AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //LeftHand mode activation
+        val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
+        if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
+
         super.onCreate(savedInstanceState)
 
         val binding: ActivityStoryDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_story_detail)
@@ -35,12 +42,16 @@ class StoryDetailActivity: AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val storyDetailTitle = findViewById<TextView>(R.id.story_detail_title)
-        val rv = findViewById<RecyclerView>(R.id.recycler_vertical_details)
-        val backButton = findViewById<ImageButton>(R.id.back_button_story_detail)
+        //create local variables by taking a reference to the Views with binding
+        val storyDetailTitle = binding.storyDetailTitle
+        val rv = binding.recyclerVerticalDetails
+        val backButton = binding.backButtonStoryDetail
+
+        //change drawables' orietation for Lefthand Mode
+        if(lefthand==1) backButton.rotationY = 180F
 
 
-        //get the story name related with the story clicked
+        //get the story name related with the story clicked from the Intent's Extra in KingdomActivity
         val storyTitle = intent.getStringExtra("storyName")
         //set the story detail name related with the story clicked
         storyDetailTitle.text = storyTitle
@@ -134,6 +145,7 @@ class StoryDetailActivity: AppCompatActivity() {
             }
             v?.onTouchEvent(event) ?: true
         }
+
     }
 
 }

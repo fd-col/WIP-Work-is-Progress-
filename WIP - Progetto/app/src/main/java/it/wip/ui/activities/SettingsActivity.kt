@@ -2,12 +2,15 @@ package it.wip.ui.activities
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
@@ -19,6 +22,7 @@ import it.wip.ui.dialogs.DialogSettings
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
 import it.wip.viewModel.SettingsViewModel
+import kotlinx.android.synthetic.main.activity_settings.*
 import kotlin.math.roundToInt
 
 class SettingsActivity : AppCompatActivity() {
@@ -27,12 +31,26 @@ class SettingsActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
+        viewModel = ViewModelProvider(this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[SettingsViewModel::class.java]
+
+        //LeftHand mode activation
+        val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
+        if(lefthand==1) {
+            setTheme(R.style.RightToLefTheme)
+            viewModel.setLefthandMode(true)
+
+        } else {
+            setTheme(R.style.LeftToRighTheme)
+            viewModel.setLefthandMode(false)
+        }
+
         super.onCreate(savedInstanceState)
 
         val binding: ActivitySettingsBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings)
 
-        viewModel = ViewModelProvider(this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application))[SettingsViewModel::class.java]
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -148,15 +166,25 @@ class SettingsActivity : AppCompatActivity() {
 
         // ------------------------ SWITCH LISTENER & FONT-SETTER ------------------------
         lefthandMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        lefthandMode.isChecked = viewModel.lefthandMode.value.toString().toBoolean()
 
         lefthandMode.setOnCheckedChangeListener { _, checked ->
-            viewModel.setLefthandMode(checked)
-            if(checked)
-                this.window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
-                //super.setTheme(R.style.RightToLefTheme)
-            else
-                window.decorView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
+            val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+            val editor = lefthandPreference.edit()
+            if(checked) { //on checking the swticher, lefthand mode will be activated
+                editor.putInt("lefthand", 1)
+                editor.apply()
+                //window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
+            }
+            else {
+                editor.putInt("lefthand", 0)
+                editor.apply()
+            }
+            Toast.makeText(this, "Is checked? "+lefthandMode.isChecked, Toast.LENGTH_SHORT).show()
+            //restart this Activity with lefthand mode activated/disactivated
+            startActivity(Intent(this, SettingsActivity::class.java))
         }
+
 
 
         // ------------------------ BUTTON LISTENERS ------------------------
@@ -185,5 +213,6 @@ class SettingsActivity : AppCompatActivity() {
         transaction.add(R.id.header_layout, HeaderFragment())
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
+
     }
 }

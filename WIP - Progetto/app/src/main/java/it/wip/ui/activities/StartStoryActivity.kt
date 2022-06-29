@@ -1,6 +1,7 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -24,6 +25,12 @@ class StartStoryActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //LeftHand mode activation
+        val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
+        if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
+
         super.onCreate(savedInstanceState)
 
         val binding: ActivityStartStoryBinding = DataBindingUtil.setContentView(this, R.layout.activity_start_story)
@@ -42,6 +49,13 @@ class StartStoryActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,viewModel.storyNamesList.toList())
         binding.storyTitleSetByTheUser.threshold = 1
         binding.storyTitleSetByTheUser.setAdapter(adapter)
+
+        //change drawables' orietation for Lefthand Mode
+        if(lefthand==1) {
+            binding.backButton.rotationY = 180F
+            binding.avatarDxButton.rotationY = 180F
+            binding.avatarSxButton.rotationY = 180F
+        }
 
 
         binding.storyTitleSetByTheUser.doOnTextChanged { text, _, _, _ ->

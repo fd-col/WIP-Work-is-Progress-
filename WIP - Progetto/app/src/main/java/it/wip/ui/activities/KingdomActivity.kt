@@ -1,5 +1,6 @@
 package it.wip.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +22,12 @@ class KingdomActivity : AppCompatActivity() {
     private lateinit var viewModel: KingdomViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //LeftHand mode activation
+        val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
+        if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
+
         super.onCreate(savedInstanceState)
 
         val binding: ActivityKingdomBinding = DataBindingUtil.setContentView(this, R.layout.activity_kingdom)
@@ -112,6 +119,7 @@ class KingdomActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
+
     }
 
 }

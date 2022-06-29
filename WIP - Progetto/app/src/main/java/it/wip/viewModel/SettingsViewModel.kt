@@ -35,7 +35,7 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     val maxStudyTimeGraphic : LiveData<Float>
         get() = _maxStudyTimeGraphic
 
-    private val _lefthandMode = MutableLiveData(false)
+    private var _lefthandMode = MutableLiveData(false)
     val lefthandMode: LiveData<Boolean>
         get() = _lefthandMode
 
@@ -55,6 +55,7 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
             breakTime = user.maxStudyTime - 10
 
+            /*
             val preferences = wipDb.preferenceDao().getAllByUser(userId)
 
             for (preference in preferences) {
@@ -63,7 +64,7 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
             if(settingsUser.contains("lefthand_mode"))
                 _lefthandMode.value = true
-
+            */
         }
     }
 
@@ -93,21 +94,21 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     }
 
     fun setLefthandMode(checked: Boolean) {
-        _lefthandMode.value = checked
+            _lefthandMode.value = checked
 
-        viewModelScope.launch {
-            val preferenceDao = wipDb.preferenceDao()
 
-            if(checked) {
-                if(!settingsUser.contains("lefthand_mode")) {
-                    preferenceDao.insert(Preference(userId, "lefthand_mode"))
-                    settingsUser.add("lefthand_mode")
-                }
-            } else {
-                preferenceDao.delete(userId, "lefthand_mode")
-                settingsUser.remove("lefthand_mode")
-            }
-        }
+            /*          val preferenceDao = wipDb.preferenceDao()
+
+                      if(checked) {
+                          if(!settingsUser.contains("lefthand_mode")) {
+                              preferenceDao.insert(Preference(userId, "lefthand_mode"))
+                              settingsUser.add("lefthand_mode")
+                          }
+                      } else {
+                          preferenceDao.delete(userId, "lefthand_mode")
+                          settingsUser.remove("lefthand_mode")
+                      }
+           */
 
     }
 

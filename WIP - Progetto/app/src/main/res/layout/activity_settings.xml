@@ -168,7 +168,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="4dp"
-                        android:checked="false"
                         android:fontFamily="@font/press_start_2p"
                         android:minHeight="48dp"
                         android:paddingTop="10dp"

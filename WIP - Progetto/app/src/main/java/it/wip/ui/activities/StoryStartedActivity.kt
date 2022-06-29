@@ -1,6 +1,7 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -29,6 +30,12 @@ class StoryStartedActivity : AppCompatActivity(){
 
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //LeftHand mode activation
+        val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
+        if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
+
         super.onCreate(savedInstanceState)
 
         val binding: ActivityStoryStartedBinding = DataBindingUtil.setContentView(this, R.layout.activity_story_started)
@@ -209,6 +216,7 @@ class StoryStartedActivity : AppCompatActivity(){
                 ) }
             }
         }
+
     }
 
     override fun onRestart() {
@@ -334,4 +342,5 @@ class StoryStartedActivity : AppCompatActivity(){
             }
         }
     }
+
 }

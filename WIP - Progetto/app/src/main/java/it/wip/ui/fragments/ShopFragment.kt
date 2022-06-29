@@ -1,6 +1,7 @@
 package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -43,6 +44,18 @@ class ShopFragment: Fragment(){
         val dxAvatar = binding.newAvatarDxButton
         val sxBackground = binding.newBackgroundSxButton
         val dxBackground = binding.newBackgroundDxButton
+
+        //LeftHand mode activation
+        val lefthandPreference =
+            activity?.applicationContext?.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference?.getInt("lefthand", Context.MODE_PRIVATE)
+        //change drawables' orietation for Lefthand Mode
+        if(lefthand==1) {
+            sxAvatar.rotationY = 180F
+            dxAvatar.rotationY = 180F
+            sxBackground.rotationY = 180F
+            dxBackground.rotationY = 180F
+        }
 
         val avatars = binding.avatars
         val avatarPrice = binding.avatarPrice

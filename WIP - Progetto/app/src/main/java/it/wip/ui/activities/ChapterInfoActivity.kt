@@ -1,6 +1,7 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -25,6 +26,12 @@ class ChapterInfoActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //LeftHand mode activation
+        val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
+        val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
+        if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
+
         super.onCreate(savedInstanceState)
 
         val binding: ActivityChapterInfoBinding = DataBindingUtil.setContentView(this, R.layout.activity_chapter_info)
@@ -42,6 +49,9 @@ class ChapterInfoActivity : AppCompatActivity() {
         val switchHardcoreMode = binding.switchHardcoreModeChapterInfo
         val avatarChoosed = binding.avatarChapterInfo
         val backButton = binding.backButtonStoryDetail
+
+        //change drawables' orietation for Lefthand Mode
+        if(lefthand==1) backButton.rotationY = 180F
 
         //get the chapter ID related with the chapter clicked in the StoryDetail
         val chapterID = intent.getIntExtra("chapterID", 0)
@@ -91,5 +101,6 @@ class ChapterInfoActivity : AppCompatActivity() {
             }
             v?.onTouchEvent(event) ?: true
         }
+
     }
 }
