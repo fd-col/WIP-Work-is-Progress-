@@ -50,8 +50,6 @@ class ChapterInfoActivity : AppCompatActivity() {
         val avatarChoosed = binding.avatarChapterInfo
         val backButton = binding.backButtonStoryDetail
 
-        //change drawables' orietation for Lefthand Mode
-        if(lefthand==1) backButton.rotationY = 180F
 
         //get the chapter ID related with the chapter clicked in the StoryDetail
         val chapterID = intent.getIntExtra("chapterID", 0)

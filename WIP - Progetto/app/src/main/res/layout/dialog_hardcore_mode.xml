@@ -75,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/press_start_2p"
                     android:lineSpacingExtra="3sp"
+                    android:padding="8dp"
                     android:text="@string/hardcore_dialog_description_1"
                     android:textAlignment="center"
                     android:textColor="#0277BD"

@@ -47,9 +47,6 @@ class StoryDetailActivity: AppCompatActivity() {
         val rv = binding.recyclerVerticalDetails
         val backButton = binding.backButtonStoryDetail
 
-        //change drawables' orietation for Lefthand Mode
-        if(lefthand==1) backButton.rotationY = 180F
-
 
         //get the story name related with the story clicked from the Intent's Extra in KingdomActivity
         val storyTitle = intent.getStringExtra("storyName")

@@ -35,13 +35,6 @@ class OrderDetailFragment(val shopElement: ShopElement, private val unlocked: Bo
         val shopInfoButton = binding.shopInfoButton
         val artwork = binding.avatarDetail
 
-        //LeftHand mode activation
-        val lefthandPreference =
-            activity?.applicationContext?.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
-        val lefthand = lefthandPreference?.getInt("lefthand", Context.MODE_PRIVATE)
-        //change drawables' orietation for Lefthand Mode
-        if(lefthand==1) backButton.rotationY = 180F
-
         artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
 
         binding.avatarName.text = getString(fromShopElementNameToLocalizedName(shopElement.elementName))

@@ -180,7 +180,6 @@ class SettingsActivity : AppCompatActivity() {
                 editor.putInt("lefthand", 0)
                 editor.apply()
             }
-            Toast.makeText(this, "Is checked? "+lefthandMode.isChecked, Toast.LENGTH_SHORT).show()
             //restart this Activity with lefthand mode activated/disactivated
             startActivity(Intent(this, SettingsActivity::class.java))
         }

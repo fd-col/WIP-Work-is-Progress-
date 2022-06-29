@@ -52,7 +52,6 @@ class StartStoryActivity : AppCompatActivity() {
 
         //change drawables' orietation for Lefthand Mode
         if(lefthand==1) {
-            binding.backButton.rotationY = 180F
             binding.avatarDxButton.rotationY = 180F
             binding.avatarSxButton.rotationY = 180F
         }

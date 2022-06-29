@@ -21,6 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="#00FFFFFF"
+            style="@style/LeftToRighTheme"
             android:contentDescription="@string/back_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +31,24 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/back_arrow" />
 
+        <TextView
+            android:id="@+id/story_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="@string/new_story_title"
+            android:textColor="#E8EAF6"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <ScrollView
+            android:id="@+id/scrollView3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,28 +58,19 @@
             app:layout_constraintTop_toBottomOf="@+id/back_button"
             app:layout_constraintVertical_bias="1.0">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/story_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/press_start_2p"
-                    android:text="@string/new_story_title"
-                    android:textColor="#E8EAF6"
-                    android:textSize="24sp" />
 
                 <AutoCompleteTextView
                     android:id="@+id/story_title_set_by_the_user"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="18dp"
                     android:layout_marginEnd="20dp"
                     android:autofillHints="story title set by the user"
                     android:background="@drawable/rectangular_background"
@@ -93,8 +102,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rectangular_background">
 
                     <com.google.android.material.slider.Slider
@@ -134,8 +143,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="20dp"
                         android:background="@drawable/rectangular_background"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -154,8 +163,8 @@
                         android:background="#00FFFFFF"
                         android:contentDescription="@string/info_button"
                         app:layout_constraintBottom_toBottomOf="@+id/switch_image_background"
-                        app:layout_constraintStart_toEndOf="@id/switch_silent_mode"
                         app:layout_constraintEnd_toEndOf="@id/switch_image_background"
+                        app:layout_constraintStart_toEndOf="@id/switch_silent_mode"
                         app:layout_constraintTop_toTopOf="@+id/switch_image_background"
                         app:layout_constraintVertical_bias="1.0"
                         app:srcCompat="@drawable/info_button"

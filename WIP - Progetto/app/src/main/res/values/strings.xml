@@ -172,7 +172,7 @@
     <string name="sh_divider" translatable="false">------</string>
     <string name="grrr" translatable="false">\"Grrrr\"</string>
     <string name="hardcore_mode_description">Enables Silent mode and if you exit the app your story automatically ends.\n\nIn other words, you can only lock and unlock the phone but make sure to wait some seconds between locking and unlocking.\n\"EVIL LAUGH\"</string>
-    <string name="okay_button">Button that closes the popup</string>
+    <string name="okay_button">Okay responde that closes the popup</string>
 
     <string name="order_detail">Order detail</string>
     <string name="order_detail_quote" translatable="false">\"Happy noises\"</string>
