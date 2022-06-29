@@ -144,9 +144,9 @@ class _StartStoryState extends State<StartStory> {
     for(ShopElement shopElement in shopElements) {
       shopElementsType.putIfAbsent(shopElement.elementName, () => shopElement.type);
     }
-    
+
     for(Shopped shopped in shoppedList) {
-      
+
       if(shopElementsType[shopped.shopElement] == 'avatar') {
         shoppedAvatarNames.add(shopped.shopElement);
       } else {
@@ -234,7 +234,7 @@ class _StartStoryState extends State<StartStory> {
                     height: 70,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/start-story/rectangular_background.png'),
+                        image: AssetImage('assets/images/shared/rectangular_background.png'),
                         fit: BoxFit.fill
                       )
                     ),
@@ -276,7 +276,7 @@ class _StartStoryState extends State<StartStory> {
                     height: 70,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/start-story/rectangular_background.png'),
+                            image: AssetImage('assets/images/shared/rectangular_background.png'),
                             fit: BoxFit.fill
                         )
                     ),
@@ -310,7 +310,7 @@ class _StartStoryState extends State<StartStory> {
                     height: 110,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/start-story/rectangular_background.png'),
+                            image: AssetImage('assets/images/shared/rectangular_background.png'),
                             fit: BoxFit.fill
                         )
                     ),
