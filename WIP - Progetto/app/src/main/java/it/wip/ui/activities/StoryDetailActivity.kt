@@ -105,10 +105,10 @@ class StoryDetailActivity: AppCompatActivity() {
 
 
 
-        // method for activate the new activity StoryDetailActivity when clicked the single story
+        // method for activate the new activity ChapterInfoActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
             val intent = Intent(this, ChapterInfoActivity()::class.java)
-
+            intent.putExtra("storyName", storyTitle)
             intent.putExtra("storyID", storyID)
             intent.putExtra("chapterID", storyDetailList[position].itemID)
             startActivity(intent)

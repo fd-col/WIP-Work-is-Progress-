@@ -84,7 +84,6 @@ class KingdomActivity : AppCompatActivity() {
         // method to activate the new activity StoryDetailActivity when clicked the single story
         val itemOnClick: (Int) -> Unit = { position ->
             val intent = Intent(this, StoryDetailActivity()::class.java)
-
             intent.putExtra("storyID", storyList[position].itemID)
             intent.putExtra("storyName", storyList[position].title)
             startActivity(intent)

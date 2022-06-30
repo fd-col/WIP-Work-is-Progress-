@@ -43,8 +43,8 @@ class ChapterInfoActivity : AppCompatActivity() {
 
         val datetimeStoryDate= binding.datetimeStoryDate
         val datetimeStoryTime = binding.datetimeStoryTime
-
-        val seekBar = binding.seekBarChapterInfo
+        val studyTime = binding.studyTime
+        val breakTime = binding.breakTime
         val switchSilentMode = binding.switchSilentModeChapterInfo
         val switchHardcoreMode = binding.switchHardcoreModeChapterInfo
         val avatarChoosed = binding.avatarChapterInfo
@@ -64,28 +64,43 @@ class ChapterInfoActivity : AppCompatActivity() {
         //set "time" on the Chapter Info created for chapterID
         datetimeStoryTime.text = chapter.time
 
+        //set "studyTime" on the Chapter Info created for chapterID
+        studyTime.text = chapter.studyTime.toString()+" min"
+        breakTime.text = chapter.breakTime.toString()+" min"
 
-        //set "seekBar" value on the Chapter Info related to chapterID
-        seekBar.setLabelFormatter {
-            "${chapter.studyTime} min " +
-                    getString(R.string.work) + "/${chapter.breakTime} min " + getString(
-                R.string.pause)
-        }
-
-        //set "mode" on the Chapter Info related to chapterID
+        //set "mode" on the Chapter Info related to chapterID's variable
         switchSilentMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
-        switchSilentMode.isChecked = chapter.mode==1
         switchHardcoreMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
-        switchHardcoreMode.isChecked = chapter.mode==0
+        //check study mode (Silence or Hardcore) in the single Chapter Info related to chapterID's variable
+        when (chapter.mode) {
+            1 -> { //silent mode
+                switchSilentMode.isChecked = true
+                switchHardcoreMode.isChecked = false
+            }
+            2 -> { //harcore mode
+                switchSilentMode.isChecked = true
+                switchHardcoreMode.isChecked = true
+            }
+            else -> { //no mode selected
+                switchSilentMode.isChecked = false
+                switchHardcoreMode.isChecked = false
+            }
+        }
+        switchHardcoreMode.isEnabled = false
+        switchSilentMode.isEnabled = false
+
 
         //set "avatar" on the Chapter Info created for chapterID
         avatarChoosed.setBackgroundResource(fromShopElementNameToResource(chapter.avatar))
 
 
 
-        //button to go back in the previous view
+        //button to go back in the previous StoryDetailActivity
         backButton.setOnClickListener {
             val bundle = Bundle()
+
+            val storyTitle = intent.getStringExtra("storyName")
+            bundle.putString("storyName", storyTitle)
 
             val storyID = intent.getIntExtra("storyID", 0)
             bundle.putInt("storyID", storyID)
