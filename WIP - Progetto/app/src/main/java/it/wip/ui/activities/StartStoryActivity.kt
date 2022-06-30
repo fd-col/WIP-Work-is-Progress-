@@ -105,7 +105,7 @@ class StartStoryActivity : AppCompatActivity() {
         val avatarSource = avatar.sourceLayoutResId
         avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarShoppedElements[0]))
         var avatarTag = avatar.tag.toString().toInt()
-        var selectedAvatar = "girl_with_pearl_earring"
+        var selectedAvatar = viewModel.avatarShoppedElements[0]
 
 
         //AVATARS CHOOSE BEFORE STARTING A STORY

@@ -13,6 +13,7 @@ import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_dialog.dart';
 
 import '../arguments/wip_dialog_arguments.dart';
+import '../utils/time.dart';
 
 class StoryStarted extends StatefulWidget {
   const StoryStarted({Key? key, required this.title}) : super(key: key);
@@ -127,8 +128,6 @@ class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver
     timer = Timer.periodic(const Duration(seconds: 1), (_) => addTime());
   }
 
-  String twoDigits(int n) => n.toString().padLeft(2, '0');
-
   void addTime() {
     const addSeconds = 400;
 
@@ -166,7 +165,8 @@ class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver
 
     DateTime dateTime = DateTime.now();
 
-    createdOn = '${dateTime.year}-${dateTime.month}-${dateTime.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+    createdOn = '${dateTime.year}-${twoDigits(dateTime.month)}-${twoDigits(dateTime.day)} '
+        '${twoDigits(dateTime.hour)}:${twoDigits(dateTime.minute)}:${twoDigits(dateTime.second)}';
 
   }
 

@@ -11,6 +11,7 @@ import 'package:wip_flutter/database/model/shop_element.dart';
 import 'package:wip_flutter/database/model/shopped.dart';
 import 'package:wip_flutter/database/model/story.dart';
 
+import '../utils/time.dart';
 import 'model/user.dart';
 
 class WIPDb {
@@ -88,7 +89,8 @@ class WIPDb {
 
     DateTime dateTime = DateTime.now();
 
-    String nowDateTime = '${dateTime.year}-${dateTime.month}-${dateTime.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+    String nowDateTime = '${dateTime.year}-${twoDigits(dateTime.month)}-${twoDigits(dateTime.day)} '
+        '${twoDigits(dateTime.hour)}:${twoDigits(dateTime.minute)}:${twoDigits(dateTime.second)}';
 
     UserDao.insert(db, User(id: 1, studyTime: 40, maxStudyTime: 60));
 
