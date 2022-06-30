@@ -15,6 +15,24 @@ class UserDao {
     });
   }
 
+  static Future<List<User>> getAllById(Database db, int id) async {
+
+    final List<Map<String, dynamic>> maps = await db.query(
+      'user',
+      columns: ['*'],
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return List.generate(maps.length, (i) {
+      return User(
+          id: maps[i]['id'],
+          studyTime: maps[i]['study_time'],
+          maxStudyTime: maps[i]['max_study_time']
+      );
+    });
+  }
+
   static Future<void> insert(Database db, User user) async {
     await db.insert('user', user.toMap());
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/arguments/story_started_arguments.dart';
 import 'package:wip_flutter/database/dao/chapter_dao.dart';
@@ -23,7 +24,9 @@ class StoryStarted extends StatefulWidget {
 
 }
 
-class _StoryStartedState extends State<StoryStarted> {
+class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver{
+
+  int? userId;
 
   Duration duration = const Duration();
   Timer? timer;
@@ -57,18 +60,61 @@ class _StoryStartedState extends State<StoryStarted> {
   String createdOn = '';
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if(state == AppLifecycleState.inactive && args!.mode == 'hardcore') {
+      timer!.cancel();
+      showDialog(barrierDismissible: false, context: context, builder: (context) {
+
+        List<String> otherText = <String>[];
+
+        otherText.add('La chiave per\nessere concentrati\nè divertirti\nintensamente,\nqualunque cosa\ntu stia facendo.');
+
+        otherText.add('    -David Allio');
+
+        List<Widget> children = makeChildrenSection('Game Over', '"Mamma mia"', otherText, true);
+
+        var args = WIPDialogArguments(
+            children: children,
+            dialogHeight: 350,
+            popUntilRoot: true
+        );
+
+        return WIPDialog(args: args);
+
+      });
+
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
     stopButtonPressed = Image.asset('${imagesPath}stop_button_pressed.png');
+    getUserSharedPreferences();
     startTimer();
     setStoryMap();
     setCreatedOn();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     precacheImage(stopButtonPressed.image, context);
+  }
+
+  void getUserSharedPreferences() async {
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    userId = sharedPreferences.getInt('userId');
+
   }
 
   void setStopButtonPath(String stopButtonPath) {
@@ -128,7 +174,7 @@ class _StoryStartedState extends State<StoryStarted> {
 
     Database wipDb = await WIPDb.getDb();
 
-    List<Story> stories = await StoryDao.getAllByUser(wipDb, 1);
+    List<Story> stories = await StoryDao.getAllByUser(wipDb, userId!);
 
     for(Story story in stories) {
 
@@ -177,7 +223,7 @@ class _StoryStartedState extends State<StoryStarted> {
             id: newStoryId,
             storyName: args!.storyTitle,
             createdOn: createdOn,
-            user: 1
+            user: userId!
         )
     );
 

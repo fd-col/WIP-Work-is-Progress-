@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/arguments/story_detail_arguments.dart';
 import 'package:wip_flutter/database/dao/chapter_dao.dart';
@@ -21,6 +22,8 @@ class Kingdom extends StatefulWidget {
 
 class _KingdomState extends State<Kingdom> {
 
+  int? userId;
+
   List<String> storyNames = <String>[];
 
   Map<int, String> storyIdName = <int, String>{};
@@ -30,14 +33,23 @@ class _KingdomState extends State<Kingdom> {
   @override
   void initState() {
     super.initState();
+    getUserSharedPreferences();
     getStoriesAndChapters();
+  }
+
+  void getUserSharedPreferences() async {
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    userId = sharedPreferences.getInt('userId');
+
   }
 
   void getStoriesAndChapters() async {
 
     Database wipDb = await WIPDb.getDb();
 
-    List<Story> stories = await StoryDao.getAllByUser(wipDb, 1);
+    List<Story> stories = await StoryDao.getAllByUser(wipDb, userId!);
 
     List<Chapter> chapters = <Chapter>[];
 
