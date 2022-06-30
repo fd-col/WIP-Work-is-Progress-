@@ -13,10 +13,13 @@ class ChapterInfoViewModel(application: Application) : AndroidViewModel(applicat
 
     var chapterDao: ChapterDao = WIPDatabase.getInstance(application.applicationContext).chapterDao()
 
+    init {
+
+    }
+
+    //function to return a single chapter in the DB, by chapterId
     fun getChapter(chapterId: Int): Chapter {
-
         return chapterDao.getAllById(chapterId)[0]
-
     }
 
 }

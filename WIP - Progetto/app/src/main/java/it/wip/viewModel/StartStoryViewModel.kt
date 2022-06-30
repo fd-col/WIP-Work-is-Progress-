@@ -74,17 +74,15 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
                     //avatarsName.add(avatar.shopElement)
                     allShoppedElements.add(i.shopElement)
                 }
+                // add to the list "shopElements" shop elements avaiable in DB
                 for (i in allElements){
-                    if(i.type == "avatar"){
-                        shopElements.add(i.elementName)
-                    }
+                    if(i.type == "avatar") shopElements.add(i.elementName)
                 }
 
+                // add to the list "avatarShoppedElements" elements already shopped by the user
                 for(i in allShoppedElements){
                     for(j in shopElements){
-                        if(i==j){
-                            avatarShoppedElements.add(i)
-                        }
+                        if(i==j) avatarShoppedElements.add(i)
                     }
                 }
 
@@ -148,8 +146,8 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-    //              RETURN SELECTED MODE -0 for hardcore mode, -1 for silence mode
+    //              RETURN SELECTED MODE -2 for hardcore mode, -1 for silence mode
     fun selectedMode(): Int {
-        return if (_hardcoreMode.value!!) { 0 } else { 1 }
+        return if (_hardcoreMode.value!!) { 2 } else { 1 }
     }
 }
