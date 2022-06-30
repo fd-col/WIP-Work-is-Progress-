@@ -8,23 +8,23 @@ import java.util.*
 fun seed(wipDb: WIPDatabase) {
 
     wipDb.userDao().insertWithoutCoroutines(
-        User(1, "Venere", 30, 120, 500)
+        User(1, 30, 120, 500)
     )
 
     wipDb.shopElementDao().insertWithoutCoroutines(
-        ShopElement("magritte_apple", "avatar", "", 0),
-        ShopElement("girl_with_pearl_earring", "avatar", "", 0),
-        ShopElement("venus", "avatar", "", 0),
-        ShopElement("the_scream", "avatar", "", 130),
-        ShopElement("self_portrait", "avatar", "", 130),
-        ShopElement("david", "avatar", "", 130),
+        ShopElement("magritte_apple", "avatar",0),
+        ShopElement("girl_with_pearl_earring", "avatar",0),
+        ShopElement("venus", "avatar",0),
+        ShopElement("the_scream", "avatar",130),
+        ShopElement("self_portrait", "avatar",130),
+        ShopElement("david", "avatar",130),
 
-        ShopElement("the_scream_background", "background", "", 0),
-        ShopElement("the_persistence_of_memory", "background", "", 0),
-        ShopElement("hopper_nighthawks", "background", "", 0),
-        ShopElement("creation_of_adam", "background", "", 200),
-        ShopElement("lovers", "background", "", 200),
-        ShopElement("weathfield_with_crows", "background", "", 200)
+        ShopElement("the_scream_background", "background",0),
+        ShopElement("the_persistence_of_memory", "background",0),
+        ShopElement("hopper_nighthawks", "background",0),
+        ShopElement("creation_of_adam", "background",200),
+        ShopElement("lovers", "background",200),
+        ShopElement("weathfield_with_crows", "background",200)
     )
 
     val dateFormat = SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.ITALY)
@@ -68,16 +68,6 @@ fun seed(wipDb: WIPDatabase) {
             "00.30", "21/06/22 22.20.20", 50,10,0,"venere",4),
         Chapter(9,"Capitol1",
             "00:30", "21/06/22 12.20.20", 50,10,2,"venere",6)
-    )
-
-    wipDb.settingDao().insertWithoutCoroutines(
-        Setting("lefthand_mode"),
-        Setting("silent_mode"),
-        Setting("hardcore_mode")
-    )
-
-    wipDb.preferenceDao().insertWithoutCoroutines(
-        Preference(1, "lefthand_mode")
     )
 
 }
