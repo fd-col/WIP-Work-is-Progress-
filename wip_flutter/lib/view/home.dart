@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../database/wip_db.dart';
 import 'wip_menu.dart';
 
 class Home extends StatefulWidget {
@@ -9,7 +11,6 @@ class Home extends StatefulWidget {
 
   @override
   State<Home> createState() => _HomeState();
-
 }
 
 class _HomeState extends State<Home> {
@@ -24,6 +25,8 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     playButtonPressed = Image.asset('${imagesPath}play_button_pressed.png');
+    getDatabase();
+    setUserSharedPreferences();
   }
 
   @override
@@ -36,6 +39,19 @@ class _HomeState extends State<Home> {
     setState(() {
       this.playButtonPath = imagesPath + playButtonPath;
     });
+  }
+
+  //Per popolare il database al primo avvio dell'app
+  void getDatabase() async {
+    await WIPDb.getDb();
+  }
+
+  void setUserSharedPreferences() async {
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    sharedPreferences.setInt('userId', 1);
+
   }
 
   @override

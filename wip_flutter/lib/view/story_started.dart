@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/arguments/story_started_arguments.dart';
 import 'package:wip_flutter/database/dao/chapter_dao.dart';
@@ -24,6 +25,8 @@ class StoryStarted extends StatefulWidget {
 }
 
 class _StoryStartedState extends State<StoryStarted> {
+
+  int? userId;
 
   Duration duration = const Duration();
   Timer? timer;
@@ -60,6 +63,7 @@ class _StoryStartedState extends State<StoryStarted> {
   void initState() {
     super.initState();
     stopButtonPressed = Image.asset('${imagesPath}stop_button_pressed.png');
+    getUserSharedPreferences();
     startTimer();
     setStoryMap();
     setCreatedOn();
@@ -69,6 +73,14 @@ class _StoryStartedState extends State<StoryStarted> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     precacheImage(stopButtonPressed.image, context);
+  }
+
+  void getUserSharedPreferences() async {
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    userId = sharedPreferences.getInt('userId');
+
   }
 
   void setStopButtonPath(String stopButtonPath) {
@@ -128,7 +140,7 @@ class _StoryStartedState extends State<StoryStarted> {
 
     Database wipDb = await WIPDb.getDb();
 
-    List<Story> stories = await StoryDao.getAllByUser(wipDb, 1);
+    List<Story> stories = await StoryDao.getAllByUser(wipDb, userId!);
 
     for(Story story in stories) {
 
@@ -177,7 +189,7 @@ class _StoryStartedState extends State<StoryStarted> {
             id: newStoryId,
             storyName: args!.storyTitle,
             createdOn: createdOn,
-            user: 1
+            user: userId!
         )
     );
 

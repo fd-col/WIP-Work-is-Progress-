@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sound_mode/permission_handler.dart';
 import 'package:sound_mode/sound_mode.dart';
 import 'package:sound_mode/utils/ringer_mode_statuses.dart';
@@ -12,8 +13,10 @@ import 'package:wip_flutter/view/wip_dialog.dart';
 
 import '../arguments/story_started_arguments.dart';
 import '../database/dao/shopped_dao.dart';
+import '../database/dao/user_dao.dart';
 import '../database/model/shop_element.dart';
 import '../database/model/shopped.dart';
+import '../database/model/user.dart';
 import '../database/wip_db.dart';
 
 
@@ -28,10 +31,13 @@ class StartStory extends StatefulWidget {
 }
 
 class _StartStoryState extends State<StartStory> {
+
+  int? userId;
+
   String storyTitle = '';
-  double _studyTime = 40;
-  double _breakTime = 20;
-  final double _maxSlider = 60;
+  double? _studyTime = 50;
+  double? _breakTime = 10;
+  double? _maxSlider = 60;
   bool _silentMode = false;
   bool _hardcoreMode = false;
 
@@ -62,6 +68,7 @@ class _StartStoryState extends State<StartStory> {
     sxButtonPressed = Image.asset('${imagesPath}avatar_sx_arrow_pressed.png');
     dxButtonPressed = Image.asset('${imagesPath}avatar_dx_arrow_pressed.png');
     startStoryButtonPressed = Image.asset('${imagesPath}start_story_button_pressed.png');
+    getUserSharedPreferences();
     getShoppedElements();
   }
 
@@ -73,6 +80,7 @@ class _StartStoryState extends State<StartStory> {
     precacheImage(sxButtonPressed.image, context);
     precacheImage(dxButtonPressed.image, context);
     precacheImage(startStoryButtonPressed.image, context);
+    getSliderValuesFromUser();
   }
 
   void setBackButtonPath(String backButtonPath) {
@@ -105,12 +113,35 @@ class _StartStoryState extends State<StartStory> {
     });
   }
 
+  void getUserSharedPreferences() async {
+
+    final sharedPreferences = await SharedPreferences.getInstance();
+
+    userId = sharedPreferences.getInt('userId');
+
+  }
+
+  void getSliderValuesFromUser() async {
+
+    Database wipDb = await WIPDb.getDb();
+
+    User user = (await UserDao.getAllById(wipDb, userId!))[0];
+
+    setState(() {
+      _studyTime = user.studyTime.toDouble();
+
+      _maxSlider = user.maxStudyTime.toDouble();
+
+      _breakTime = _maxSlider! - _studyTime!;
+    });
+
+  }
+
   void setSilentMode(bool flag) async{
 
     bool? isGranted = await PermissionHandler.permissionsGranted;
 
     if (!isGranted!) {
-      // Opens the Do Not Disturb Access settings to grant the access
       await PermissionHandler.openDoNotDisturbSetting();
     } else {
 
@@ -136,7 +167,7 @@ class _StartStoryState extends State<StartStory> {
 
     Database wipDb = await WIPDb.getDb();
 
-    List<Shopped> shoppedList = await ShoppedDao.getAllByUser(wipDb, 1);
+    List<Shopped> shoppedList = await ShoppedDao.getAllByUser(wipDb, userId!);
     List<ShopElement> shopElements = await ShopElementDao.getAll(wipDb);
     
     Map<String, String> shopElementsType = <String, String>{};
@@ -285,14 +316,14 @@ class _StartStoryState extends State<StartStory> {
                         child: Slider(
                           thumbColor: const Color.fromARGB(255, 2, 119, 189),
                           min: 10.0,
-                          max: _maxSlider - 10,
-                          divisions: _maxSlider~/10 - 2, //Numero di divisioni - 1 sinistra e -1 destra
-                          label: '${_studyTime.round()} min lavoro/${_breakTime.round()} min pausa',
-                          value: _studyTime,
+                          max: _maxSlider! - 10,
+                          divisions: _maxSlider!~/10 - 2, //Numero di divisioni - 1 sinistra e -1 destra
+                          label: '${_studyTime!.round()} min lavoro/${_breakTime!.round()} min pausa',
+                          value: _studyTime!,
                           onChanged: (newStudyTime) {
                             setState(() {
                               _studyTime = newStudyTime;
-                              _breakTime = _maxSlider - _studyTime;
+                              _breakTime = _maxSlider! - _studyTime!;
                             });
                           },
                         )
@@ -526,8 +557,8 @@ class _StartStoryState extends State<StartStory> {
                             '/story-started',
                             arguments: StoryStartedArguments(
                               storyTitle: storyTitle,
-                              studyTime: _studyTime.toInt(),
-                              breakTime: _breakTime.toInt(),
+                              studyTime: _studyTime!.toInt(),
+                              breakTime: _breakTime!.toInt(),
                               selectedAvatar: shoppedAvatarNames[avatarTag],
                               backgroundNames: shoppedBackgroundNames,
                               mode: mode
