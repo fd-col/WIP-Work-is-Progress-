@@ -10,6 +10,5 @@ data class ShopElement(
     @ColumnInfo(name = "element_name")
     val elementName: String,
     val type: String,
-    val description: String,
     val price: Int
 )

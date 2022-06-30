@@ -13,18 +13,14 @@ import java.util.concurrent.Executors
 
 @Database(entities = [
     Chapter::class,
-    Preference::class,
-    Setting::class,
     ShopElement::class,
     Shopped::class,
     Story::class,
     User::class],
-    version = 7)
+    version = 8)
 abstract class WIPDatabase : RoomDatabase() {
 
     abstract fun chapterDao(): ChapterDao
-    abstract fun preferenceDao(): PreferenceDao
-    abstract fun settingDao(): SettingDao
     abstract fun shopElementDao(): ShopElementDao
     abstract fun shoppedDao(): ShoppedDao
     abstract fun storyDao(): StoryDao

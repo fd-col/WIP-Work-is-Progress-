@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
-import it.wip.database.model.Preference
 import it.wip.database.model.User
 import kotlinx.coroutines.launch
 
@@ -55,16 +54,6 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
             breakTime = user.maxStudyTime - 10
 
-            /*
-            val preferences = wipDb.preferenceDao().getAllByUser(userId)
-
-            for (preference in preferences) {
-                settingsUser.add(preference.setting)
-            }
-
-            if(settingsUser.contains("lefthand_mode"))
-                _lefthandMode.value = true
-            */
         }
     }
 
@@ -95,21 +84,6 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
     fun setLefthandMode(checked: Boolean) {
             _lefthandMode.value = checked
-
-
-            /*          val preferenceDao = wipDb.preferenceDao()
-
-                      if(checked) {
-                          if(!settingsUser.contains("lefthand_mode")) {
-                              preferenceDao.insert(Preference(userId, "lefthand_mode"))
-                              settingsUser.add("lefthand_mode")
-                          }
-                      } else {
-                          preferenceDao.delete(userId, "lefthand_mode")
-                          settingsUser.remove("lefthand_mode")
-                      }
-           */
-
     }
 
 }
