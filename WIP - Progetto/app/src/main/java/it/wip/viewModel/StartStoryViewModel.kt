@@ -35,9 +35,9 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
-    private val _silenceMode = MutableLiveData(true)
+    private val _silenceMode = MutableLiveData(false)
 
-    private val _hardcoreMode = MutableLiveData(true)
+    private val _hardcoreMode = MutableLiveData(false)
 
     //val avatarsName = mutableListOf<String>()
     private val allShoppedElements = mutableListOf<String>()
@@ -111,12 +111,12 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     //              SWITCH SILENT MODE - NORMAL MODE
     fun silenceNormal(){
         val audioManager = app.applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        if(_silenceMode.value!!){
+        if(!_silenceMode.value!!){
             audioManager.ringerMode = AudioManager.RINGER_MODE_VIBRATE
-            _silenceMode.value = false
+            _silenceMode.value = true
         }else{
             audioManager.ringerMode = AudioManager.RINGER_MODE_NORMAL
-            _silenceMode.value = true
+            _silenceMode.value = false
         }
     }
 
@@ -126,28 +126,28 @@ class StartStoryViewModel(application: Application) : AndroidViewModel(applicati
     //              SWITCH SILENT MODE - HARDCORE MODE
     fun hardcoreMode(@SuppressLint("UseSwitchCompatOrMaterialCode") switchSilentMode: Switch){
 
-        if (_silenceMode.value!! && _hardcoreMode.value!!) {
+        if (!_silenceMode.value!! && !_hardcoreMode.value!!) {
             switchSilentMode.isChecked = true
-            silenceNormal()
-            _silenceMode.value = false
-            _hardcoreMode.value = false
-            switchSilentMode.isClickable = false
-        } else if (!_silenceMode.value!! && !_hardcoreMode.value!!) {
-            switchSilentMode.isChecked = false
             silenceNormal()
             _silenceMode.value = true
             _hardcoreMode.value = true
-            switchSilentMode.isClickable = true
-        } else if (!_silenceMode.value!! && _hardcoreMode.value!!) {
+            switchSilentMode.isClickable = false // block silent mode switch
+        } else if (_silenceMode.value!! && _hardcoreMode.value!!) {
+            switchSilentMode.isChecked = false
+            silenceNormal()
             _silenceMode.value = false
             _hardcoreMode.value = false
-            switchSilentMode.isClickable = false
+            switchSilentMode.isClickable = true
+        } else if (_silenceMode.value!! && !_hardcoreMode.value!!) {
+            _silenceMode.value = true
+            _hardcoreMode.value = true
+            switchSilentMode.isClickable = false // block silent mode switch
         }
     }
 
 
     //              RETURN SELECTED MODE -2 for hardcore mode, -1 for silence mode
     fun selectedMode(): Int {
-        return if (_hardcoreMode.value!!) { 2 } else { 1 }
+        return if (_hardcoreMode.value!!) { 2 } else if(_silenceMode.value!!) { 1 } else {0}
     }
 }
