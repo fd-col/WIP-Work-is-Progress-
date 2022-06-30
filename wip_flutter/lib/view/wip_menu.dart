@@ -109,7 +109,7 @@ class _WIPMenuState extends State<WIPMenu> {
                         onTap: (){
                           setHomeButtonPath('home_button.png');
                           if(widget.parentWidget != 'Home') {
-                            Navigator.pushNamed(context, '/');
+                            Navigator.pushNamed(context, '/home');
                           }
                         },
                         child: Image.asset(homeButtonPath)

@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/wip_splash_page_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="194dp"
+            android:layout_height="173dp"
             android:contentDescription="@string/splash_page_icon_describer"
             android:src="@drawable/stand_splashpage"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/splash_page_quote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="293dp"
+            android:layout_height="42dp"
             android:contentDescription="@string/quote_describer"
             android:src="@drawable/quote_1"
             app:layout_constraintBottom_toBottomOf="parent"

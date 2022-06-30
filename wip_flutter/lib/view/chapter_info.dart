@@ -123,7 +123,7 @@ class _ChapterInfoState extends State<ChapterInfo> {
                 ],
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.65,
+                height: MediaQuery.of(context).size.height * 0.60,
                 padding: const EdgeInsets.only(left: 25, right: 25),
                 child: ListView(
                   padding: EdgeInsets.zero,

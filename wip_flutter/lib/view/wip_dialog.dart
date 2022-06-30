@@ -130,7 +130,7 @@ class _WIPDialogState extends State<WIPDialog> {
                     },
                     onTap: () {
                       if(widget.args.popUntilRoot) {
-                        Navigator.popUntil(context, ModalRoute.withName('/'));
+                        Navigator.popUntil(context, ModalRoute.withName('/home'));
                       } else {
                         Navigator.pop(context);
                       }

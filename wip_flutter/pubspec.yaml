@@ -70,6 +70,7 @@ flutter:
     - assets/images/home/
     - assets/images/menu/
     - assets/images/shared/
+    - assets/images/splash-page/
     - assets/images/start-story/
     - assets/images/story-started/
 

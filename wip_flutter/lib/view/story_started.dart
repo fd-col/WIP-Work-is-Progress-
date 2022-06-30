@@ -327,7 +327,7 @@ class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver
                       padding: const EdgeInsets.only(left: 8, bottom: 32),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/images/story-started/story_stand.png')
+                          image: AssetImage('assets/images/shared/story_stand.png')
                         )
                       ),
                       child: Image.asset(backgroundPath),

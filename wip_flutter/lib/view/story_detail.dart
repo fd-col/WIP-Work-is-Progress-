@@ -221,7 +221,7 @@ class _StoryDetailState extends State<StoryDetail> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.60,
+                height: MediaQuery.of(context).size.height * 0.57,
                 child: ListView.builder(
                     padding: const EdgeInsets.only(left: 23, right: 23),
                     itemCount: chapters.length,
