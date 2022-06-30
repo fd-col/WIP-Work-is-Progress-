@@ -79,14 +79,14 @@ class _SettingsState extends State<Settings> {
                 fit: BoxFit.fill
             )
         ),
-        padding: const EdgeInsets.only(top: 340, bottom: 30),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.4, bottom: 30),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 340,
-                child: Text(
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: const Text(
                     'Questa sezione\nnon è stata\nimplementata\nin Flutter',
                     textAlign: TextAlign.center,
                     style: TextStyle(

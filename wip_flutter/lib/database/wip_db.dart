@@ -81,31 +81,56 @@ class WIPDb {
 
   static void _populate(Database db) {
 
+    DateTime dateTime = DateTime.now();
+
+    String nowDateTime = '${dateTime.year}-${dateTime.month}-${dateTime.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+
     UserDao.insert(db, User(id: 1));
 
     List<Story> stories = <Story>[];
 
-    stories.add(Story(id: 1, storyName: 'Aritmetica', createdOn: '2022-06-26 12:00:12', user: 1));
-    stories.add(Story(id: 2, storyName: 'Analisi', createdOn: '2022-06-26 13:00:12', user: 1));
-    stories.add(Story(id: 3, storyName: 'Algebra', createdOn: '2022-06-26 14:00:12', user: 1));
-    stories.add(Story(id: 4, storyName: 'Informatica', createdOn: '2022-06-26 15:00:12', user: 1));
-    stories.add(Story(id: 5, storyName: 'Scienze', createdOn: '2022-06-26 16:00:12', user: 1));
-    stories.add(Story(id: 6, storyName: 'Storia', createdOn: '2022-06-26 17:00:12', user: 1));
-    stories.add(Story(id: 7, storyName: 'Geografia', createdOn: '2022-06-26 18:00:12', user: 1));
-    stories.add(Story(id: 8, storyName: 'Astronomia', createdOn: '2022-06-26 19:00:12', user: 1));
-    stories.add(Story(id: 9, storyName: 'Fisica', createdOn: '2022-06-26 20:00:12', user: 1));
-    stories.add(Story(id: 10, storyName: 'Geometria', createdOn: '2022-06-26 21:00:12', user: 1));
-    stories.add(Story(id: 11, storyName: 'Antropologia', createdOn: '2022-06-26 22:00:12', user: 1));
-    stories.add(Story(id: 12, storyName: 'Scienze sociali', createdOn: '2022-06-26 23:00:12', user: 1));
-    stories.add(Story(id: 13, storyName: 'Psicologia', createdOn: '2022-06-27 00:00:12', user: 1));
-    stories.add(Story(id: 14, storyName: 'Filosofia', createdOn: '2022-06-27 01:00:12', user: 1));
-    stories.add(Story(id: 15, storyName: 'Arte', createdOn: '2022-06-27 02:00:12', user: 1));
+    stories.add(Story(id: 1, storyName: 'Aritmetica', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 2, storyName: 'Analisi', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 3, storyName: 'Algebra', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 4, storyName: 'Informatica', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 5, storyName: 'Scienze', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 6, storyName: 'Storia', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 7, storyName: 'Geografia', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 8, storyName: 'Astronomia', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 9, storyName: 'Fisica', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 10, storyName: 'Geometria', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 11, storyName: 'Antropologia', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 12, storyName: 'Scienze sociali', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 13, storyName: 'Psicologia', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 14, storyName: 'Filosofia', createdOn: nowDateTime, user: 1));
+    stories.add(Story(id: 15, storyName: 'Arte', createdOn: nowDateTime, user: 1));
 
     StoryDao.insertAll(db, stories);
 
-    ChapterDao.insert(db,
-        Chapter(id: 1, chapterName: 'Logaritmi', time: 3600, createdOn: '2022-06-26 12:00:12', avatar: 'venere', story: 1)
-    );
+    List<Chapter> chapters = <Chapter>[];
+
+    chapters.add(Chapter(id: 1, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 1));
+    chapters.add(Chapter(id: 2, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 2));
+    chapters.add(Chapter(id: 3, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 3));
+    chapters.add(Chapter(id: 4, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 4));
+    chapters.add(Chapter(id: 5, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 5));
+    chapters.add(Chapter(id: 6, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 6));
+    chapters.add(Chapter(id: 7, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 7));
+    chapters.add(Chapter(id: 8, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 8));
+    chapters.add(Chapter(id: 9, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 9));
+    chapters.add(Chapter(id: 10, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 10));
+    chapters.add(Chapter(id: 11, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 11));
+    chapters.add(Chapter(id: 12, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 12));
+    chapters.add(Chapter(id: 13, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 13));
+    chapters.add(Chapter(id: 14, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 13));
+    chapters.add(Chapter(id: 15, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 14));
+    chapters.add(Chapter(id: 16, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 14));
+    chapters.add(Chapter(id: 17, chapterName: 'Capitolo 3', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 14));
+    chapters.add(Chapter(id: 18, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 15));
+    chapters.add(Chapter(id: 19, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 15));
+    chapters.add(Chapter(id: 20, chapterName: 'Capitolo 3', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 15));
+
+    ChapterDao.insertAll(db, chapters);
 
     List<ShopElement> shopElements = <ShopElement>[];
 
@@ -127,18 +152,18 @@ class WIPDb {
 
     List<Shopped> shoppedList = <Shopped>[];
 
-    shoppedList.add(Shopped(user: 1, shopElement: 'venere', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'magritte_apple', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'girl_with_pearl_earring', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'the_scream', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'self_portrait', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'david', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'the_scream_background', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'the_persistence_of_memory', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'hopper_nighthawks', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'creation_of_adam', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'lovers', boughtOn: '2022-06-26 12:00:12'));
-    shoppedList.add(Shopped(user: 1, shopElement: 'weathfield_with_crows', boughtOn: '2022-06-26 12:00:12'));
+    shoppedList.add(Shopped(user: 1, shopElement: 'venere', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'magritte_apple', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'girl_with_pearl_earring', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_scream', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'self_portrait', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'david', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_scream_background', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'the_persistence_of_memory', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'hopper_nighthawks', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'creation_of_adam', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'lovers', boughtOn: nowDateTime));
+    shoppedList.add(Shopped(user: 1, shopElement: 'weathfield_with_crows', boughtOn: nowDateTime));
 
     ShoppedDao.insertAll(db, shoppedList);
 

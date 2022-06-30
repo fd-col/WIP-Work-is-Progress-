@@ -1,7 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/arguments/story_started_arguments.dart';
+import 'package:wip_flutter/database/dao/chapter_dao.dart';
+import 'package:wip_flutter/database/dao/story_dao.dart';
+import 'package:wip_flutter/database/model/chapter.dart';
+import 'package:wip_flutter/database/model/story.dart';
+import 'package:wip_flutter/database/wip_db.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_dialog.dart';
 
@@ -46,11 +52,17 @@ class _StoryStartedState extends State<StoryStarted> {
 
   String phrase = 'Dai tutto te stesso';
 
+  Map<String, int> storiesMap = <String, int>{};
+
+  String createdOn = '';
+
   @override
   void initState() {
     super.initState();
     stopButtonPressed = Image.asset('${imagesPath}stop_button_pressed.png');
     startTimer();
+    setStoryMap();
+    setCreatedOn();
   }
 
   @override
@@ -104,6 +116,84 @@ class _StoryStartedState extends State<StoryStarted> {
     return duration.inSeconds - (maxTime! * cyclesFinished);
   }
 
+  void setCreatedOn() {
+
+    DateTime dateTime = DateTime.now();
+
+    createdOn = '${dateTime.year}-${dateTime.month}-${dateTime.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+
+  }
+
+  void setStoryMap() async {
+
+    Database wipDb = await WIPDb.getDb();
+
+    List<Story> stories = await StoryDao.getAllByUser(wipDb, 1);
+
+    for(Story story in stories) {
+
+      storiesMap.putIfAbsent(story.storyName, () => story.id);
+
+    }
+
+  }
+
+  void insertChapter() async {
+
+    Database wipDb = await WIPDb.getDb();
+
+    List<Chapter> chapters = await ChapterDao.getAll(wipDb);
+
+    List<Chapter> userStoryChapters = await ChapterDao.getAllByStory(wipDb, storiesMap[args?.storyTitle]!);
+
+    int chapterNum = userStoryChapters.length + 1;
+
+    ChapterDao.insert(
+        wipDb,
+        Chapter(
+            id: chapters.last.id + 1,
+            chapterName: 'Capitolo $chapterNum',
+            time: duration.inSeconds,
+            createdOn: createdOn,
+            avatar: args!.selectedAvatar,
+            story: storiesMap[args?.storyTitle]!));
+
+  }
+
+  void insertStory() async {
+
+    Database wipDb = await WIPDb.getDb();
+
+    List<Story> stories = await StoryDao.getAll(wipDb);
+
+    int newStoryId = stories.last.id + 1;
+
+    StoryDao.insert(
+        wipDb,
+        Story(
+            id: newStoryId,
+            storyName: args!.storyTitle,
+            createdOn: createdOn,
+            user: 1
+        )
+    );
+
+    List<Chapter> chapters = await ChapterDao.getAll(wipDb);
+
+    ChapterDao.insert(
+        wipDb,
+        Chapter(
+            id: chapters.last.id + 1,
+            chapterName: 'Capitolo 1',
+            time: duration.inSeconds,
+            createdOn: createdOn,
+            avatar: args!.selectedAvatar,
+            story: newStoryId
+        )
+    );
+
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -117,8 +207,6 @@ class _StoryStartedState extends State<StoryStarted> {
     pauseTime ??= studyTime;
     maxTime ??= studyTime! + breakTime!;
     step ??= studyTime!~/4;
-
-    print(args?.hardcoreMode);
 
     if(backgroundEvolution == 0 && isBetween(getCurrentCycleSeconds(), 0, step!)) {
       args?.backgroundNames.shuffle();
@@ -238,6 +326,17 @@ class _StoryStartedState extends State<StoryStarted> {
                                   return WIPDialog(args: args);
 
                                 });
+
+                                if(duration.inSeconds > 10) {
+
+                                  if(storiesMap.keys.contains(args?.storyTitle)) {
+                                    insertChapter();
+                                  } else {
+                                    insertStory();
+                                  }
+
+                                }
+
                                 setStopButtonPath('stop_button.png');
                               },
                               child: Image.asset(stopButtonPath)

@@ -37,7 +37,7 @@ class _StartStoryState extends State<StartStory> {
 
   String imagesPath = 'assets/images/start-story/';
 
-  String backButtonPath = 'assets/images/start-story/back_button.png';
+  String backButtonPath = 'assets/images/shared/back_button.png';
   String infoButtonPath = 'assets/images/start-story/info_button.png';
   String sxButtonPath = 'assets/images/start-story/avatar_sx_arrow.png';
   String dxButtonPath = 'assets/images/start-story/avatar_dx_arrow.png';
@@ -57,7 +57,7 @@ class _StartStoryState extends State<StartStory> {
   @override
   void initState() {
     super.initState();
-    backButtonPressed = Image.asset('${imagesPath}back_button_pressed.png');
+    backButtonPressed = Image.asset('assets/images/shared/back_button_pressed.png');
     infoButtonPressed = Image.asset('${imagesPath}info_button_pressed.png');
     sxButtonPressed = Image.asset('${imagesPath}avatar_sx_arrow_pressed.png');
     dxButtonPressed = Image.asset('${imagesPath}avatar_dx_arrow_pressed.png');
@@ -77,7 +77,7 @@ class _StartStoryState extends State<StartStory> {
 
   void setBackButtonPath(String backButtonPath) {
     setState(() {
-      this.backButtonPath = imagesPath + backButtonPath;
+      this.backButtonPath = 'assets/images/shared/$backButtonPath';
     });
   }
 
@@ -185,6 +185,7 @@ class _StartStoryState extends State<StartStory> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
           body: Container(
             decoration: const BoxDecoration(
@@ -322,12 +323,13 @@ class _StartStoryState extends State<StartStory> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              children: [const Text(
-                                'Mod. silenzio',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 2, 119, 189),
+                              children: [
+                                Text(
+                                  'Mod. silenzio',
+                                  style: TextStyle(
+                                    color: const Color.fromARGB(255, 2, 119, 189),
                                     fontFamily: 'PressStart2P',
-                                    fontSize: 16,
+                                    fontSize: MediaQuery.of(context).size.width * 0.041,
                                 ),
                               ),
                                 Switch(
@@ -346,12 +348,12 @@ class _StartStoryState extends State<StartStory> {
                             ),
                             Row(
                               children: [
-                                const Text(
+                                Text(
                                   'Mod. hardcore',
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 2, 119, 189),
+                                      color: const Color.fromARGB(255, 2, 119, 189),
                                       fontFamily: 'PressStart2P',
-                                      fontSize: 16,
+                                      fontSize: MediaQuery.of(context).size.width * 0.041,
                                   ),
                                 ),
                                 Switch(
