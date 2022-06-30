@@ -5,7 +5,7 @@ class StoryStartedArguments {
   int breakTime;
   String selectedAvatar;
   List<String> backgroundNames;
-  bool hardcoreMode;
+  String mode;
 
   StoryStartedArguments({
     required this.storyTitle,
@@ -13,7 +13,7 @@ class StoryStartedArguments {
     required this.breakTime,
     required this.selectedAvatar,
     required this.backgroundNames,
-    required this.hardcoreMode
+    required this.mode
   });
 
 }

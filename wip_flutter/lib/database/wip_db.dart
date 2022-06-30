@@ -21,7 +21,7 @@ class WIPDb {
 
     String path = join(databasesPath, 'wip.db');
 
-    return openDatabase(path, version: 2, onCreate: _onCreate);
+    return openDatabase(path, version: 3, onCreate: _onCreate);
 
   }
 
@@ -29,7 +29,9 @@ class WIPDb {
 
     await db.execute('''
       CREATE TABLE user(
-        id INT PRIMARY KEY
+        id INT PRIMARY KEY,
+        study_time INT NOT NULL,
+        max_study_time INT NOT NULL
       )
       ''');
 
@@ -49,6 +51,9 @@ class WIPDb {
         chapter_name VARCHAR(255) NOT NULL,
         time INT NOT NULL,
         created_on CHAR(19) NOT NULL,
+        study_time INT NOT NULL,
+        break_time INT NOT NULL,
+        mode VARCHAR(8),
         avatar VARCHAR(255) NOT NULL,
         story INT,
         FOREIGN KEY(story) REFERENCES story(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -85,7 +90,7 @@ class WIPDb {
 
     String nowDateTime = '${dateTime.year}-${dateTime.month}-${dateTime.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
 
-    UserDao.insert(db, User(id: 1));
+    UserDao.insert(db, User(id: 1, studyTime: 40, maxStudyTime: 60));
 
     List<Story> stories = <Story>[];
 
@@ -109,26 +114,26 @@ class WIPDb {
 
     List<Chapter> chapters = <Chapter>[];
 
-    chapters.add(Chapter(id: 1, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 1));
-    chapters.add(Chapter(id: 2, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 2));
-    chapters.add(Chapter(id: 3, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 3));
-    chapters.add(Chapter(id: 4, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 4));
-    chapters.add(Chapter(id: 5, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 5));
-    chapters.add(Chapter(id: 6, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 6));
-    chapters.add(Chapter(id: 7, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 7));
-    chapters.add(Chapter(id: 8, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 8));
-    chapters.add(Chapter(id: 9, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 9));
-    chapters.add(Chapter(id: 10, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 10));
-    chapters.add(Chapter(id: 11, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 11));
-    chapters.add(Chapter(id: 12, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 12));
-    chapters.add(Chapter(id: 13, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 13));
-    chapters.add(Chapter(id: 14, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 13));
-    chapters.add(Chapter(id: 15, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 14));
-    chapters.add(Chapter(id: 16, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 14));
-    chapters.add(Chapter(id: 17, chapterName: 'Capitolo 3', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 14));
-    chapters.add(Chapter(id: 18, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 15));
-    chapters.add(Chapter(id: 19, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 15));
-    chapters.add(Chapter(id: 20, chapterName: 'Capitolo 3', time: 3600, createdOn: nowDateTime, avatar: 'venere', story: 15));
+    chapters.add(Chapter(id: 1, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 40, breakTime: 20, mode: 'silent', avatar: 'venere', story: 1));
+    chapters.add(Chapter(id: 2, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 30, breakTime: 30, mode: 'hardcore', avatar: 'magritte_apple', story: 2));
+    chapters.add(Chapter(id: 3, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'none', avatar: 'girl_with_pearl_earring', story: 3));
+    chapters.add(Chapter(id: 4, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 20, breakTime: 40, mode: 'silent', avatar: 'the_scream', story: 4));
+    chapters.add(Chapter(id: 5, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 30, breakTime: 30, mode: 'hardcore', avatar: 'self_portrait', story: 5));
+    chapters.add(Chapter(id: 6, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 40, breakTime: 20, mode: 'none', avatar: 'david', story: 6));
+    chapters.add(Chapter(id: 7, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'silent', avatar: 'venere', story: 7));
+    chapters.add(Chapter(id: 8, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'hardcore', avatar: 'magritte_apple', story: 8));
+    chapters.add(Chapter(id: 9, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 40, breakTime: 20, mode: 'silent', avatar: 'girl_with_pearl_earring', story: 9));
+    chapters.add(Chapter(id: 10, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 30, breakTime: 30, mode: 'none', avatar: 'the_scream', story: 10));
+    chapters.add(Chapter(id: 11, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 30, breakTime: 30, mode: 'silent', avatar: 'self_portrait', story: 11));
+    chapters.add(Chapter(id: 12, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 20, breakTime: 40, mode: 'hardcore', avatar: 'david', story: 12));
+    chapters.add(Chapter(id: 13, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 20, breakTime: 40, mode: 'silent', avatar: 'venere', story: 13));
+    chapters.add(Chapter(id: 14, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, studyTime: 30, breakTime: 30, mode: 'none', avatar: 'magritte_apple', story: 13));
+    chapters.add(Chapter(id: 15, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 40, breakTime: 20, mode: 'hardcore', avatar: 'girl_with_pearl_earring', story: 14));
+    chapters.add(Chapter(id: 16, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'silent', avatar: 'the_scream', story: 14));
+    chapters.add(Chapter(id: 17, chapterName: 'Capitolo 3', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'none', avatar: 'self_portrait', story: 14));
+    chapters.add(Chapter(id: 18, chapterName: 'Capitolo 1', time: 3600, createdOn: nowDateTime, studyTime: 40, breakTime: 20, mode: 'hardcore', avatar: 'david', story: 15));
+    chapters.add(Chapter(id: 19, chapterName: 'Capitolo 2', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'silent', avatar: 'venere', story: 15));
+    chapters.add(Chapter(id: 20, chapterName: 'Capitolo 3', time: 3600, createdOn: nowDateTime, studyTime: 50, breakTime: 10, mode: 'hardcore', avatar: 'venere', story: 15));
 
     ChapterDao.insertAll(db, chapters);
 

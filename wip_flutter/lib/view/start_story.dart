@@ -29,10 +29,10 @@ class StartStory extends StatefulWidget {
 
 class _StartStoryState extends State<StartStory> {
   String storyTitle = '';
-  double _studyTime = 20;
-  double _pause = 60;
-  final double _maxSlider = 80;
-  bool _silenceMode = false;
+  double _studyTime = 40;
+  double _breakTime = 20;
+  final double _maxSlider = 60;
+  bool _silentMode = false;
   bool _hardcoreMode = false;
 
   String imagesPath = 'assets/images/start-story/';
@@ -287,12 +287,12 @@ class _StartStoryState extends State<StartStory> {
                           min: 10.0,
                           max: _maxSlider - 10,
                           divisions: _maxSlider~/10 - 2, //Numero di divisioni - 1 sinistra e -1 destra
-                          label: '${_studyTime.round()} min lavoro/${_pause.round()} min pausa',
+                          label: '${_studyTime.round()} min lavoro/${_breakTime.round()} min pausa',
                           value: _studyTime,
                           onChanged: (newStudyTime) {
                             setState(() {
                               _studyTime = newStudyTime;
-                              _pause = _maxSlider - _studyTime;
+                              _breakTime = _maxSlider - _studyTime;
                             });
                           },
                         )
@@ -333,11 +333,11 @@ class _StartStoryState extends State<StartStory> {
                                 ),
                               ),
                                 Switch(
-                                    value: _silenceMode,
+                                    value: _silentMode,
                                     onChanged: (value) {
                                       setState((){
                                             if(!_hardcoreMode) {
-                                              _silenceMode = value;
+                                              _silentMode = value;
                                               setSilentMode(value);
                                             }
                                           }
@@ -360,7 +360,7 @@ class _StartStoryState extends State<StartStory> {
                                     value: _hardcoreMode,
                                     onChanged: (value) {
                                       setState((){
-                                        _silenceMode = value;
+                                        _silentMode = value;
                                         _hardcoreMode = value;
                                       }
                                       );
@@ -510,6 +510,16 @@ class _StartStoryState extends State<StartStory> {
 
                       setStartStoryButtonPath('start_story_button.png');
 
+                      String mode = '';
+
+                      if(_hardcoreMode) {
+                        mode = 'hardcore';
+                      } else if(_silentMode) {
+                        mode = 'silent';
+                      } else {
+                        mode = 'none';
+                      }
+
                       if(storyTitle != '') {
                         Navigator.pushNamed(
                             context,
@@ -517,10 +527,10 @@ class _StartStoryState extends State<StartStory> {
                             arguments: StoryStartedArguments(
                               storyTitle: storyTitle,
                               studyTime: _studyTime.toInt(),
-                              breakTime: _pause.toInt(),
+                              breakTime: _breakTime.toInt(),
                               selectedAvatar: shoppedAvatarNames[avatarTag],
                               backgroundNames: shoppedBackgroundNames,
-                              hardcoreMode: _hardcoreMode
+                              mode: mode
                             )
                         );
                       } else {

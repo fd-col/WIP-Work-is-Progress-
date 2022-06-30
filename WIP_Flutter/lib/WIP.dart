@@ -17,7 +17,7 @@ class WIP extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/chapter-info',
+      initialRoute: '/',
       routes: {
         '/': (context) => const Home(title: 'Home'),
         '/start-story': (context) => const StartStory(title: 'Inizia una storia'),

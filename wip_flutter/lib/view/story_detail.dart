@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:wip_flutter/arguments/chapter_info_arguments.dart';
 import 'package:wip_flutter/database/dao/chapter_dao.dart';
 import 'package:wip_flutter/view/wip_menu.dart';
 
@@ -83,7 +84,13 @@ class _StoryDetailState extends State<StoryDetail> {
               Navigator.pushNamed(
                   context,
                   '/chapter-info',
-                  //arguments: StoryDetailArguments(storyId: storyId, storyName: storyName)
+                  arguments: ChapterInfoArguments(
+                      createdOn: chapters[index].createdOn,
+                      time: getTimeFromSeconds(chapters[index].time),
+                      studyTime: chapters[index].studyTime,
+                      breakTime: chapters[index].breakTime,
+                      mode: chapters[index].mode,
+                      avatar: chapters[index].avatar)
               );
             },
             child: Container(

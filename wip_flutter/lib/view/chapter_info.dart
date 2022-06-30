@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wip_flutter/arguments/chapter_info_arguments.dart';
+import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_menu.dart';
 
 class ChapterInfo extends StatefulWidget {
@@ -12,14 +14,14 @@ class ChapterInfo extends StatefulWidget {
 }
 
 class _ChapterInfoState extends State<ChapterInfo> {
+  
+  ChapterInfoArguments? args;
+  
+  final double _maxSlider = 60;
 
-  String storyTitle = '';
-  double _studyTime = 20;
-  double _pause = 60;
-  final double _maxSlider = 80;
-  final bool _silenceMode = false;
-  final bool _hardcoreMode = false;
-
+  bool silentMode = false;
+  bool hardcoreMode = false;
+  
   String imagesPath = 'assets/images/shared/';
 
   String backButtonPath = 'assets/images/shared/back_button.png';
@@ -46,6 +48,21 @@ class _ChapterInfoState extends State<ChapterInfo> {
 
   @override
   Widget build(BuildContext context) {
+
+    args ??= ModalRoute
+        .of(context)!
+        .settings
+        .arguments as ChapterInfoArguments;
+    
+    switch(args!.mode) {
+      case 'silent':
+        silentMode = true;
+        break;
+      case 'hardcore':
+        silentMode = true;
+        hardcoreMode = true;
+    }
+    
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -132,11 +149,11 @@ class _ChapterInfoState extends State<ChapterInfo> {
                               )
                           ),
                           padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: const Center(
+                          child: Center(
                               child: Text(
-                                  '2022-06-30 12:00:12',
+                                  args!.createdOn,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color.fromARGB(255, 2, 119, 189),
                                     fontFamily: 'PressStart2P',
                                     fontSize: 16,
@@ -161,11 +178,11 @@ class _ChapterInfoState extends State<ChapterInfo> {
                               )
                           ),
                           padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: const Center(
+                          child: Center(
                               child: Text(
-                                  '110:37',
+                                  args!.time,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color.fromARGB(255, 2, 119, 189),
                                     fontFamily: 'PressStart2P',
                                     fontSize: 16,
@@ -196,12 +213,10 @@ class _ChapterInfoState extends State<ChapterInfo> {
                                 min: 10.0,
                                 max: _maxSlider - 10,
                                 divisions: _maxSlider~/10 - 2, //Numero di divisioni - 1 sinistra e -1 destra
-                                label: '${_studyTime.round()} min lavoro/${_pause.round()} min pausa',
-                                value: _studyTime,
+                                label: '${args!.studyTime.round()} min lavoro/${args!.breakTime.round()} min pausa',
+                                value: args!.studyTime.toDouble(),
                                 onChanged: (newStudyTime) {
                                   setState(() {
-                                    _studyTime = newStudyTime;
-                                    _pause = _maxSlider - _studyTime;
                                   });
                                 },
                               )
@@ -231,7 +246,7 @@ class _ChapterInfoState extends State<ChapterInfo> {
                                       ),
                                     ),
                                     Switch(
-                                        value: _silenceMode,
+                                        value: silentMode,
                                         onChanged: (value) {
                                         }
                                     )
@@ -249,7 +264,7 @@ class _ChapterInfoState extends State<ChapterInfo> {
                                     ),
                                   ),
                                   Switch(
-                                      value: _hardcoreMode,
+                                      value: hardcoreMode,
                                       onChanged: (value) {
                                       }
                                   )
@@ -277,7 +292,7 @@ class _ChapterInfoState extends State<ChapterInfo> {
                                 width: 60,
                                 child: FittedBox(
                                   fit: BoxFit.cover,
-                                  child: Image.asset('assets/images/avatar/venere.png'),
+                                  child: Image.asset(fromShopElementAvatarToPath(args!.avatar)),
                                 )
                             )
                           ],

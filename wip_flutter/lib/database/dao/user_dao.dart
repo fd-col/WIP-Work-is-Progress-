@@ -7,7 +7,11 @@ class UserDao {
   static Future<List<User>> getAll(Database db) async {
     final List<Map<String, dynamic>> maps = await db.query('user');
     return List.generate(maps.length, (i) {
-      return User(id: maps[i]['id']);
+      return User(
+          id: maps[i]['id'],
+          studyTime: maps[i]['study_time'],
+          maxStudyTime: maps[i]['max_study_time']
+      );
     });
   }
 

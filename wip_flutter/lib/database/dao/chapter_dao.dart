@@ -12,6 +12,9 @@ class ChapterDao {
           chapterName: maps[i]['chapter_name'],
           time: maps[i]['time'],
           createdOn: maps[i]['created_on'],
+          studyTime: maps[i]['study_time'],
+          breakTime: maps[i]['break_time'],
+          mode: maps[i]['mode'],
           avatar: maps[i]['avatar'],
           story: maps[i]['story']
       );
@@ -33,6 +36,9 @@ class ChapterDao {
           chapterName: maps[i]['chapter_name'],
           time: maps[i]['time'],
           createdOn: maps[i]['created_on'],
+          studyTime: maps[i]['study_time'],
+          breakTime: maps[i]['break_time'],
+          mode: maps[i]['mode'],
           avatar: maps[i]['avatar'],
           story: maps[i]['story']
       );

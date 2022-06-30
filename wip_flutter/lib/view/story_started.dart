@@ -155,6 +155,9 @@ class _StoryStartedState extends State<StoryStarted> {
             chapterName: 'Capitolo $chapterNum',
             time: duration.inSeconds,
             createdOn: createdOn,
+            studyTime: args!.studyTime,
+            breakTime: args!.breakTime,
+            mode: args!.mode,
             avatar: args!.selectedAvatar,
             story: storiesMap[args?.storyTitle]!));
 
@@ -187,6 +190,9 @@ class _StoryStartedState extends State<StoryStarted> {
             chapterName: 'Capitolo 1',
             time: duration.inSeconds,
             createdOn: createdOn,
+            studyTime: args!.studyTime,
+            breakTime: args!.breakTime,
+            mode: args!.mode,
             avatar: args!.selectedAvatar,
             story: newStoryId
         )
