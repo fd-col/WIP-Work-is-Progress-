@@ -24,7 +24,7 @@ class StoryStarted extends StatefulWidget {
 
 }
 
-class _StoryStartedState extends State<StoryStarted> {
+class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver{
 
   int? userId;
 
@@ -60,6 +60,33 @@ class _StoryStartedState extends State<StoryStarted> {
   String createdOn = '';
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if(state == AppLifecycleState.inactive && args!.mode == 'hardcore') {
+      timer!.cancel();
+      showDialog(barrierDismissible: false, context: context, builder: (context) {
+
+        List<String> otherText = <String>[];
+
+        otherText.add('La chiave per\nessere concentrati\nè divertirti\nintensamente,\nqualunque cosa\ntu stia facendo.');
+
+        otherText.add('    -David Allio');
+
+        List<Widget> children = makeChildrenSection('Game Over', '"Mamma mia"', otherText, true);
+
+        var args = WIPDialogArguments(
+            children: children,
+            dialogHeight: 350,
+            popUntilRoot: true
+        );
+
+        return WIPDialog(args: args);
+
+      });
+
+    }
+  }
+
+  @override
   void initState() {
     super.initState();
     stopButtonPressed = Image.asset('${imagesPath}stop_button_pressed.png');
@@ -67,6 +94,13 @@ class _StoryStartedState extends State<StoryStarted> {
     startTimer();
     setStoryMap();
     setCreatedOn();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override

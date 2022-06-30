@@ -156,7 +156,7 @@ class _ChapterInfoState extends State<ChapterInfo> {
                                   style: const TextStyle(
                                     color: Color.fromARGB(255, 2, 119, 189),
                                     fontFamily: 'PressStart2P',
-                                    fontSize: 16,
+                                    fontSize: 14,
                                   )
                               )
                           ),
