@@ -1,6 +1,5 @@
 package it.wip.utils
 
-import it.wip.R
 import it.wip.database.WIPDatabase
 import it.wip.database.model.*
 import java.text.SimpleDateFormat
@@ -42,12 +41,12 @@ fun seed(wipDb: WIPDatabase) {
 
     wipDb.storyDao().insertWithoutCoroutines(
         Story(1, "Allenamento", dateFormat.format(Date()).toString(), 1),
-        Story(2, "Cazzeggio", "16-06-22 19:00:12",1),
-        Story(3, "Studio","17-06-22 10:00:12",1),
+        Story(2, "Tesi", "16-06-22 19:00:12",1),
+        Story(3, "Appunti","17-06-22 10:00:12",1),
         Story(4,"Esame di Analisi 2", dateFormat.format(Date()).toString(), 1),
         Story(5,"Testo Lunghissimoooooooooooo", dateFormat.format(Date()).toString(), 1),
         Story(6,"Sistemi Operativi", dateFormat.format(Date()).toString(), 1),
-        Story(7,"Progr@mmazin& M0bil&", "01-06-22 11:00:12", 1),
+        Story(7,"Programmazione Mobile", "01-06-22 11:00:12", 1),
     )
 
     wipDb.chapterDao().insertWithoutCoroutines(
