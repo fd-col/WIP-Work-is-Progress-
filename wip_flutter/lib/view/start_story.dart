@@ -8,6 +8,7 @@ import 'package:sound_mode/utils/ringer_mode_statuses.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/arguments/wip_dialog_arguments.dart';
 import 'package:wip_flutter/database/dao/shop_element_dao.dart';
+import 'package:wip_flutter/database/dao/story_dao.dart';
 import 'package:wip_flutter/utils/resource_helper.dart';
 import 'package:wip_flutter/view/wip_dialog.dart';
 
@@ -16,6 +17,7 @@ import '../database/dao/shopped_dao.dart';
 import '../database/dao/user_dao.dart';
 import '../database/model/shop_element.dart';
 import '../database/model/shopped.dart';
+import '../database/model/story.dart';
 import '../database/model/user.dart';
 import '../database/wip_db.dart';
 
@@ -55,6 +57,8 @@ class _StartStoryState extends State<StartStory> {
   late Image dxButtonPressed;
   late Image startStoryButtonPressed;
 
+  List<String> storyNames = <String>[];
+
   List<String> shoppedAvatarNames = <String>[];
   List<String> shoppedBackgroundNames = <String>[];
   String avatarImage = 'assets/images/shared/frame.png';
@@ -69,6 +73,7 @@ class _StartStoryState extends State<StartStory> {
     dxButtonPressed = Image.asset('${imagesPath}avatar_dx_arrow_pressed.png');
     startStoryButtonPressed = Image.asset('${imagesPath}start_story_button_pressed.png');
     getUserSharedPreferences();
+    getStoryNames();
     getShoppedElements();
   }
 
@@ -118,6 +123,20 @@ class _StartStoryState extends State<StartStory> {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     userId = sharedPreferences.getInt('userId');
+
+  }
+
+  void getStoryNames() async {
+
+    Database wipDb = await WIPDb.getDb();
+
+    List<Story> stories = await StoryDao.getAllByUser(wipDb, userId!);
+
+    setState(() {
+      for(Story story in stories) {
+        storyNames.add(story.storyName);
+      }
+    });
 
   }
 
@@ -272,27 +291,89 @@ class _StartStoryState extends State<StartStory> {
                     ),
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Center(
-                        child: TextField(
-                          decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Nuova storia',
-                              hintStyle: TextStyle(
-                                  color: Color.fromARGB(255, 2, 119, 189),
-                                  fontFamily: 'PressStart2P',
-                                  fontSize: 16
-                              ),
-                          ),
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 2, 119, 189),
-                              fontFamily: 'PressStart2P',
-                              fontSize: 16
-                          ),
-                          onChanged: (value){
+                        child: Autocomplete<String>(
+                          optionsBuilder: (TextEditingValue textEditingValue) {
+                            return storyNames
+                                .where((String storyName) => storyName.toLowerCase()
+                                .startsWith(textEditingValue.text.toLowerCase())
+                            ).toList();
+                          },
+                          onSelected: (String selection) {
                             setState(() {
-                              storyTitle = value;
+                              storyTitle = selection;
+                              FocusManager.instance.primaryFocus?.unfocus();
                             });
-                          }
-                        )
+                          },
+                          fieldViewBuilder: (
+                              BuildContext context,
+                              TextEditingController fieldTextEditingController,
+                              FocusNode fieldFocusNode,
+                              VoidCallback onFieldSubmitted) {
+                            return TextField(
+                                controller: fieldTextEditingController,
+                                focusNode: fieldFocusNode,
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Nuova storia',
+                                  hintStyle: TextStyle(
+                                      color: Color.fromARGB(255, 2, 119, 189),
+                                      fontFamily: 'PressStart2P',
+                                      fontSize: 16
+                                  ),
+                                ),
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 2, 119, 189),
+                                    fontFamily: 'PressStart2P',
+                                    fontSize: 16
+                                ),
+                                onChanged: (value){
+                                  setState(() {
+                                    storyTitle = value;
+                                  });
+                                }
+                              );
+                            },
+                          optionsViewBuilder: (
+                              BuildContext context,
+                              AutocompleteOnSelected<String> onSelected,
+                              Iterable<String> options
+                          ) {
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.height * 0.35,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    itemCount: options.length,
+                                    itemBuilder: (_, index) {
+
+                                      String option = options.elementAt(index);
+
+                                      return GestureDetector(
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: Material(
+                                          child: ListTile(
+                                            tileColor: const Color.fromARGB(255, 2, 119, 189),
+                                            title: Text(
+                                                option,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontFamily: 'PressStart2P',
+                                                    fontSize: 16
+                                                )
+                                            ),
+                                          )
+                                        )
+                                      );
+                                    }
+                                )
+                              ),
+                            );
+                          },
+                        ),
                     ),
                   ),
                   const Text(
