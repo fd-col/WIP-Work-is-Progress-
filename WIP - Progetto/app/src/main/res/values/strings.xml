@@ -106,6 +106,13 @@
         exposed at the Galleria degli Uffizi in Florence, The Birth of Venus is an artwork made
         of Tempera and alabaster powder on canvas depicting the myth of the birth of the goddess
         Venus from the sea foam.\n</string>
+    <string name="magritte_apple_description">The Son of Man is a 1964 painting by the Belgian
+        surrealist painter René Magritte. It is perhaps his best-known artwork. Magritte painted
+        it as a self-portrait.</string>
+    <string name="girl_with_a_pearl_earring_description">Girl with a Pearl Earring is an oil
+        painting by Dutch Golden Age painter Johannes Vermeer, dated circa 1665. It depicts a
+        European girl wearing an exotic dress, an oriental turban, and what appears to be a very
+        large pearl as an earring.</string>
     <string name="david_description">Sculpted by Michelangelo Buonarroti between 1501–1504,
         and exposed at the Galleria dell\'Accademia in Florence, David is a marble sculpture
         portraying the biblical hero preparing to face Goliath the giant.\n</string>
@@ -130,6 +137,9 @@
         Museum of Modern Art in New York, The Lovers is an artwork made of oil on canvas.\n
         The Lovers represents the conflict between true identity and the image of a person in
         the mind of his lover.\n</string>
+    <string name="the_persistence_of_memory_desciption">The Persistence of Memory is a 1931 painting
+        by artist Salvador Dalí and one of the most recognizable works of Surrealism. It epitomizes
+        Dalí\'s theory of \"softness\" and "hardness\", which was central to his thinking at the time</string>
 
     <!-- Kingdom -->
     <string name="story_title">Story Title</string>
