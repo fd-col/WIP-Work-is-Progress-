@@ -36,6 +36,7 @@
     <!-- Story started -->
     <string name="stop_button_string">Bottone per terminare la sessione di produttività</string>
     <string name="companion_icon">Avatar selezionato</string>
+    <string name="bonfire">Falò: simbolo di pausa</string>
     <string name="stand">Cavalletto</string>
     <string name="artwork">Tela</string>
 
@@ -133,8 +134,8 @@
     <string name="yes_button_description">Bottone per confermare l\'acquisto</string>
     <string name="no_button_description">Bottone per annullare l\'acquisto</string>
 
-    <string name="not_enought_coins_title">Monete\ninsufficienti</string>
-    <string name="not_enought_coins">Ci dispiace\! Non hai abbastanza\nmonete. A noi non servono monete,\nvogliamo solo \nche tu sia\nproduttivo.\nTorna di nuovo\nquando guadagnerai\nabbastanza monete\nper meritarti\nquesta opera d\'arte.\n</string>
+    <string name="not_enough_coins_title">Monete\ninsufficienti</string>
+    <string name="not_enough_coins">Ci dispiace\! Non hai abbastanza\nmonete. A noi non servono monete,\nvogliamo solo \nche tu sia\nproduttivo.\nTorna di nuovo\nquando guadagnerai\nabbastanza monete\nper meritarti\nquesta opera d\'arte.\n</string>
 
     <string name="purchase_completed">Acquisto\ncompletato</string>
     <string name="purchase_completed_description">Te lo sei\nmeritato.\nOttimo lavoro!\n</string>

@@ -36,6 +36,7 @@ class OrderDetailFragment(val shopElement: ShopElement, private val unlocked: Bo
         val artwork = binding.avatarDetail
 
         artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
+        artwork.contentDescription = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
 
         binding.avatarName.text = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
 

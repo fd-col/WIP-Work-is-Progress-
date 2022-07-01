@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import it.wip.databinding.FragmentShopBinding
 import it.wip.R
 import it.wip.database.model.ShopElement
+import it.wip.utils.fromShopElementNameToLocalizedName
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.ShopViewModel
 
@@ -73,6 +74,7 @@ class ShopFragment: Fragment(){
 
             //Set avatar image, tag and price
             avatars.setBackgroundResource(fromShopElementNameToResource(this.arguments?.get("selectedAvatar").toString()))
+            avatars.contentDescription = getString(fromShopElementNameToLocalizedName(this.arguments?.get("selectedAvatar").toString()))
             avatarsTag = this.requireArguments().getInt("avatarsTag")
 
             if(this.arguments?.get("avatarPrice") == 0)
@@ -82,6 +84,7 @@ class ShopFragment: Fragment(){
 
             //Set background image, tag and price
             backgrounds.setBackgroundResource(fromShopElementNameToResource(this.arguments?.get("selectedBackground").toString()))
+            backgrounds.contentDescription = getString(fromShopElementNameToLocalizedName(this.arguments?.get("selectedBackground").toString()))
             backgroundsTag = this.requireArguments().getInt("backgroundsTag")
 
             if(this.arguments?.get("backgroundPrice") == 0)
@@ -91,10 +94,12 @@ class ShopFragment: Fragment(){
 
         } else { //Set default values
 
+            avatars.contentDescription = getString(R.string.the_son_of_man)
             avatarPrice.text = null
             avatarPrice.setBackgroundResource(R.drawable.check)
             avatarCoin.visibility = View.INVISIBLE
 
+            backgrounds.contentDescription = getString(R.string.the_scream)
             backgroundPrice.text = null
             backgroundPrice.setBackgroundResource(R.drawable.check)
             backgroundCoin.visibility = View.INVISIBLE
@@ -145,6 +150,7 @@ class ShopFragment: Fragment(){
             val tempAvatar = viewModel.avatars[avatarsTag]
 
             avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+            avatars.contentDescription = getString(fromShopElementNameToLocalizedName(tempAvatar.elementName))
 
             if(viewModel.shoppedElementNames.contains(tempAvatar.elementName))
                 setPriceVisibility(false, tempAvatar.price.toString(), avatarPrice, avatarCoin)
@@ -163,6 +169,7 @@ class ShopFragment: Fragment(){
             val tempAvatar = viewModel.avatars[avatarsTag]
 
             avatars.setBackgroundResource(fromShopElementNameToResource(tempAvatar.elementName))
+            avatars.contentDescription = getString(fromShopElementNameToLocalizedName(tempAvatar.elementName))
 
             if(viewModel.shoppedElementNames.contains(tempAvatar.elementName))
                 setPriceVisibility(false, tempAvatar.price.toString(), avatarPrice, avatarCoin)
@@ -181,6 +188,7 @@ class ShopFragment: Fragment(){
             val tempBackground = viewModel.backgrounds[backgroundsTag]
 
             backgrounds.setBackgroundResource(fromShopElementNameToResource(tempBackground.elementName))
+            backgrounds.contentDescription = getString(fromShopElementNameToLocalizedName(tempBackground.elementName))
 
             if(viewModel.shoppedElementNames.contains(tempBackground.elementName))
                 setPriceVisibility(false, tempBackground.price.toString(), backgroundPrice, backgroundCoin)
@@ -197,6 +205,7 @@ class ShopFragment: Fragment(){
             val tempBackground = viewModel.backgrounds[backgroundsTag]
 
             backgrounds.setBackgroundResource(fromShopElementNameToResource(tempBackground.elementName))
+            backgrounds.contentDescription = getString(fromShopElementNameToLocalizedName(tempBackground.elementName))
 
             if(viewModel.shoppedElementNames.contains(tempBackground.elementName))
                 setPriceVisibility(false, tempBackground.price.toString(), backgroundPrice, backgroundCoin)

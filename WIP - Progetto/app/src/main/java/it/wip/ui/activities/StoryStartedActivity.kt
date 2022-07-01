@@ -116,6 +116,7 @@ class StoryStartedActivity : AppCompatActivity(){
 
         //              BINDING RESOURCES METHODS AND RELATED CLASS METHODS
         selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
+        selectedAvatar.contentDescription = getString(fromShopElementNameToLocalizedName(avatar))
         cronometro.start()
         cronometro.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
 
@@ -137,6 +138,7 @@ class StoryStartedActivity : AppCompatActivity(){
             * */
             if(myTime>=maxTime){
                 selectedAvatar.setBackgroundResource(fromShopElementNameToResource(avatar))
+                selectedAvatar.contentDescription = getString(fromShopElementNameToLocalizedName(avatar))
                 viewModel.firstAlreadyExecuted = true
                 viewModel.secondAlreadyExecuted = true
                 viewModel.thirdAlreadyExecuted = true
@@ -165,6 +167,7 @@ class StoryStartedActivity : AppCompatActivity(){
                     backgroundEvolution(artwork, selectedArtwork, 4)
                     viewModel.fourthAlreadyExecuted = false
                     selectedAvatar.setBackgroundResource(R.drawable.bonfire)
+                    selectedAvatar.contentDescription = getString(R.string.bonfire)
 
                     // setto il receiver in modo che mostri quotes relative alla pausa
                     unregisterReceiver(mReceiver)
@@ -265,26 +268,32 @@ class StoryStartedActivity : AppCompatActivity(){
         when (backgrounds.random()) {
             "the_persistence_of_memory" -> {
                 artwork.setBackgroundResource(R.drawable.dali_1)
+                artwork.contentDescription = getString(R.string.the_persistence_of_memory)
                 selectedArtwork = 1
             }
             "hopper_nighthawks" -> {
                 artwork.setBackgroundResource(R.drawable.hopper_1)
+                artwork.contentDescription = getString(R.string.hopper_nighthawks)
                 selectedArtwork = 2
             }
             "the_scream" -> {
                 artwork.setBackgroundResource(R.drawable.munch_bg_1)
+                artwork.contentDescription = getString(R.string.the_scream)
                 selectedArtwork = 3
             }
             "creation_of_adam" -> {
                 artwork.setBackgroundResource(R.drawable.adam_1)
+                artwork.contentDescription = getString(R.string.the_creation_of_adam)
                 selectedArtwork = 4
             }
             "lovers" -> {
                 artwork.setBackgroundResource(R.drawable.magritte_kiss_1)
+                artwork.contentDescription = getString(R.string.magritte_kiss)
                 selectedArtwork = 5
             }
             "weathfield_with_crows" -> {
                 artwork.setBackgroundResource(R.drawable.field_with_crows_1)
+                artwork.contentDescription = getString(R.string.weathfield_with_crows)
                 selectedArtwork = 6
             }
         }

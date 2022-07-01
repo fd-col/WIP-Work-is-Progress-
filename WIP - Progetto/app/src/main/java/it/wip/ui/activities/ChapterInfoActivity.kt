@@ -5,26 +5,22 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.MotionEvent
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.R
 import it.wip.databinding.ActivityChapterInfoBinding
-import it.wip.databinding.ActivityStoryDetailBinding
+import it.wip.utils.fromShopElementNameToLocalizedName
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.ChapterInfoViewModel
-import it.wip.viewModel.StoryDetailViewModel
-import kotlin.math.absoluteValue
 
 class ChapterInfoActivity : AppCompatActivity() {
 
     lateinit var viewModel: ChapterInfoViewModel
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //LeftHand mode activation
@@ -92,7 +88,7 @@ class ChapterInfoActivity : AppCompatActivity() {
 
         //set "avatar" on the Chapter Info created for chapterID
         avatarChoosed.setBackgroundResource(fromShopElementNameToResource(chapter.avatar))
-
+        avatarChoosed.contentDescription = getString(fromShopElementNameToLocalizedName(chapter.avatar))
 
 
         //button to go back in the previous StoryDetailActivity

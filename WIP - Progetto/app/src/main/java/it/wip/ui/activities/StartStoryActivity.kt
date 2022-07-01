@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import it.wip.ui.dialogs.DialogActivityStoryStarted
 import it.wip.databinding.ActivityStartStoryBinding
+import it.wip.utils.fromShopElementNameToLocalizedName
 import it.wip.utils.fromShopElementNameToResource
 import it.wip.viewModel.StartStoryViewModel
 
@@ -121,6 +122,7 @@ class StartStoryActivity : AppCompatActivity() {
         //              SWITCH AVATAR
         val avatar = binding.avatar
         avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarShoppedElements[0]))
+        avatar.contentDescription = getString(fromShopElementNameToLocalizedName(viewModel.avatarShoppedElements[0]))
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = viewModel.avatarShoppedElements[0]
 
@@ -141,6 +143,7 @@ class StartStoryActivity : AppCompatActivity() {
             val tempAvatar = viewModel.avatarShoppedElements[avatarTag]
 
             avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
+            avatar.contentDescription = getString(fromShopElementNameToLocalizedName(tempAvatar))
             selectedAvatar = tempAvatar
         }
 
@@ -159,6 +162,7 @@ class StartStoryActivity : AppCompatActivity() {
             val tempAvatar = viewModel.avatarShoppedElements[avatarTag]
 
             avatar.setBackgroundResource(fromShopElementNameToResource(tempAvatar))
+            avatar.contentDescription = getString(fromShopElementNameToLocalizedName(tempAvatar))
             selectedAvatar = tempAvatar
         }
 
