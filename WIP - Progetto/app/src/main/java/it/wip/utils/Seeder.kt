@@ -40,34 +40,34 @@ fun seed(wipDb: WIPDatabase) {
     )
 
     wipDb.storyDao().insertWithoutCoroutines(
-        Story(1, "Allenamento", dateFormat.format(Date()).toString(), 1),
-        Story(2, "Tesi", "16-06-22 19:00:12",1),
-        Story(3, "Appunti","17-06-22 10:00:12",1),
-        Story(4,"Esame di Analisi 2", dateFormat.format(Date()).toString(), 1),
-        Story(5,"Testo Lunghissimoooooooooooo", dateFormat.format(Date()).toString(), 1),
-        Story(6,"Sistemi Operativi", dateFormat.format(Date()).toString(), 1),
-        Story(7,"Programmazione Mobile", "01-06-22 11:00:12", 1),
+        Story(1, "Allenamento", "22-06-15 13:02:12", 1),
+        Story(2, "Tesi", "22-06-16 19:00:12",1),
+        Story(3, "Appunti","22-06-17 10:00:12",1),
+        Story(4,"Esame di Analisi 2", "22-06-18 10:00:12", 1),
+        Story(5,"Testo Lunghissimoooooooooooo", "22-06-23 07:00:12", 1),
+        Story(6,"Sistemi Operativi", "22-06-27 16:00:12", 1),
+        Story(7,"Programmazione Mobile", "22-06-30 18:00:12", 1),
     )
 
     wipDb.chapterDao().insertWithoutCoroutines(
         Chapter(1, "Capitol1",
-            "00:30", "21/06/22 10.20.20", 50,10,1,"venere",1),
+            "00:30", "22-06-15 13:02:12", 50,10,1,"venere",1),
         Chapter(2, "Capitol1",
-            "00:30", "20/06/22 15.20.20", 50,10,2,"venere",2),
+            "00:30", "22-06-16 19:00:12", 50,10,2,"venere",2),
         Chapter(3, "Capitol2",
-            "00:30", "19/06/22 16.20.20",50,10,1,"venere",2),
+            "00:30", "22-06-18 19:00:12",50,10,1,"venere",2),
         Chapter(4, "Capitol3",
-            "00:30", "18/06/22 16.20.20", 50,10,2,"venere",2),
+            "00:30", "22-06-29 19:00:12", 50,10,2,"venere",2),
         Chapter(5, "Capitol1",
-            "00:30", "17/06/22 17.20.20", 50,10,1,"venere",5),
+            "00:30", "22-06-23 07:00:12", 50,10,1,"venere",5),
         Chapter(6, "Capitol1",
-            "00:30", "16/06/22 18.20.20", 50,10,2,"venere",3),
+            "00:30", "22-06-17 10:00:12", 50,10,2,"venere",3),
         Chapter(7, "Capitol1",
-            "00:30", "15/06/22 19.20.20", 50,10,2,"venere",7),
+            "00:30", "22-06-30 18:00:12", 50,10,2,"venere",7),
         Chapter(8,"Capitol1",
-            "00.30", "21/06/22 22.20.20", 50,10,0,"venere",4),
+            "00.30", "22-06-18 10:00:12", 50,10,0,"venere",4),
         Chapter(9,"Capitol1",
-            "00:30", "21/06/22 12.20.20", 50,10,2,"venere",6)
+            "00:30", "22-06-27 16:00:12", 50,10,2,"venere",6)
     )
 
 }

@@ -49,8 +49,8 @@ fun fromShopElementNameToDescription(shopElementName: String): Int {
 
     return when(shopElementName) {
         "venus" -> R.string.venere_description
-        //"magritte_apple" ->
-        "girl_with_pearl_earring" -> R.string.girl_with_a_pearl_earring //Da modificare
+        "magritte_apple" -> R.string.magritte_apple_description
+        "girl_with_pearl_earring" -> R.string.girl_with_a_pearl_earring_description //Da modificare
         "the_scream" -> R.string.urlo_di_munch_description
         "self_portrait" -> R.string.van_gogh_autoritratto_description
         "david" -> R.string.david_description
@@ -58,6 +58,7 @@ fun fromShopElementNameToDescription(shopElementName: String): Int {
         "lovers" -> R.string.magritte_kiss_description
         "weathfield_with_crows" -> R.string.van_gogh_field_with_crows_description
         "the_scream_background" -> R.string.urlo_di_munch_description
+        "the_persistence_of_memory" -> R.string.the_persistence_of_memory_desciption
 
         else -> { R.string.app_name }
     }

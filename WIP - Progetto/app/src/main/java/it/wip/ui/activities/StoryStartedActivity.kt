@@ -194,6 +194,8 @@ class StoryStartedActivity : AppCompatActivity(){
             }
         }
 
+
+
         stopButton.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> stopButton.setImageResource(R.drawable.stop_button_pressed)
@@ -201,7 +203,6 @@ class StoryStartedActivity : AppCompatActivity(){
             }
             v?.onTouchEvent(event) ?: true
         }
-
         //actions executed when stop button is clicked
         stopButton.setOnClickListener {
             cronometro.stop()
@@ -212,11 +213,11 @@ class StoryStartedActivity : AppCompatActivity(){
             dialogCoin.show(supportFragmentManager, "coinInfo")
             //after checking a minum time of 30 seconds, the story will be add to the Kingdom
             if(myTime>=10000) {
-                //CALL METHOD TO INSERT A NEW STORY
-                lifecycleScope.launch { viewModel.addNewStory(newStoryName,
-                    cronometro.text.toString(), floatStudyTime.toInt(), floatBreakTime.toInt(),
-                    selectedMode, avatar
-                ) }
+                lifecycleScope.launch {
+                    //CALL METHOD TO INSERT A NEW STORY
+                    viewModel.addNewStory(newStoryName, cronometro.text.toString(),
+                        floatStudyTime.toInt(), floatBreakTime.toInt(), selectedMode, avatar)
+                }
             }
         }
 
@@ -228,11 +229,11 @@ class StoryStartedActivity : AppCompatActivity(){
         val extras = intent.extras
         val selectedMode = extras?.get("mode").toString().toInt()
 
-        if(selectedMode==1){
-            if(viewModel.flag1){
-                viewModel.flag1 = false
+        if(selectedMode==2){
+            if(viewModel.screenBlock){
+                viewModel.screenBlock = false
             }else{
-                viewModel.flag2 = true
+                viewModel.storyEnder = true
             }
         }
     }
@@ -246,9 +247,9 @@ class StoryStartedActivity : AppCompatActivity(){
 
         val stopChronometer = findViewById<Chronometer>(R.id.simpleChronometer)
 
-        if(selectedMode==1){
-            if(viewModel.flag2){
-                viewModel.flag2 = false
+        if(selectedMode==2){
+            if(viewModel.storyEnder){
+                viewModel.storyEnder = false
                 stopChronometer.stop()
                 unregisterReceiver(viewModel.screenOffDetector)
                 val dialogHardcoreMode = DialogHardcoreMode()
@@ -276,7 +277,7 @@ class StoryStartedActivity : AppCompatActivity(){
                 artwork.contentDescription = getString(R.string.hopper_nighthawks)
                 selectedArtwork = 2
             }
-            "the_scream" -> {
+            "the_scream_background" -> {
                 artwork.setBackgroundResource(R.drawable.munch_bg_1)
                 artwork.contentDescription = getString(R.string.the_scream)
                 selectedArtwork = 3

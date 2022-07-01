@@ -20,7 +20,7 @@ class ScreenOffDetector(private val viewModel: StoryStartedViewModel) : Broadcas
             val correctTask = "topActivity=ComponentInfo{it.wip/it.wip.ui.activities.StoryStartedActivity}"
 
             if(correctTask in task){
-                viewModel.flag1 = true
+                viewModel.screenBlock = true
             }
         }
     }
