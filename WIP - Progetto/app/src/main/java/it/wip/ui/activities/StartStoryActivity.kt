@@ -1,10 +1,13 @@
 package it.wip.ui.activities
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -41,8 +44,7 @@ class StartStoryActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        //binding.seekBarStoryTime.value = viewModel.studyTime.value!!
-
+        val storyTitleSetByTheUser = binding.storyTitleSetByTheUser
         val seekBarStoryTime = binding.seekBarStoryTime
 
         //new story title
@@ -57,8 +59,24 @@ class StartStoryActivity : AppCompatActivity() {
         }
 
 
-        binding.storyTitleSetByTheUser.doOnTextChanged { text, _, _, _ ->
+        storyTitleSetByTheUser.doOnTextChanged { text, _, _, _ ->
             viewModel.setStoryName(text.toString())
+        }
+
+        storyTitleSetByTheUser.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
+                inputMethodManager?.hideSoftInputFromWindow(binding.root.windowToken, 0)
+
+                true
+            } else
+                false
+        }
+
+        storyTitleSetByTheUser.setOnItemClickListener { _, _, _, _ ->
+            val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager
+            inputMethodManager?.hideSoftInputFromWindow(binding.root.windowToken, 0)
         }
 
         // new story work-break time
@@ -102,7 +120,6 @@ class StartStoryActivity : AppCompatActivity() {
 
         //              SWITCH AVATAR
         val avatar = binding.avatar
-        val avatarSource = avatar.sourceLayoutResId
         avatar.setBackgroundResource(fromShopElementNameToResource(viewModel.avatarShoppedElements[0]))
         var avatarTag = avatar.tag.toString().toInt()
         var selectedAvatar = viewModel.avatarShoppedElements[0]

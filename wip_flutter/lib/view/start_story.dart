@@ -161,6 +161,8 @@ class _StartStoryState extends State<StartStory> {
     bool? isGranted = await PermissionHandler.permissionsGranted;
 
     if (!isGranted!) {
+      _silentMode = false;
+      _hardcoreMode = false;
       await PermissionHandler.openDoNotDisturbSetting();
     } else {
 
@@ -168,13 +170,13 @@ class _StartStoryState extends State<StartStory> {
         try {
           await SoundMode.setSoundMode(RingerModeStatus.silent);
         } on PlatformException {
-          print('Please enable permissions required');
+          debugPrint('Please enable permissions required');
         }
       } else {
         try {
           await SoundMode.setSoundMode(RingerModeStatus.normal);
         } on PlatformException {
-          print('Please enable permissions required');
+          debugPrint('Please enable permissions required');
         }
       }
 
