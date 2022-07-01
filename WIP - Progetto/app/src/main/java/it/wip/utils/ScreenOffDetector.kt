@@ -22,9 +22,6 @@ class ScreenOffDetector(private val viewModel: StoryStartedViewModel) : Broadcas
             if(correctTask in task){
                 viewModel.flag1 = true
             }
-
-            //Log.e("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ", "$task")
-            //Log.e("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ", "${viewModel.flag1}")
         }
     }
 }
