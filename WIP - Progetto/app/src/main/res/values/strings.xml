@@ -45,6 +45,7 @@
     <!-- Story started -->
     <string name="stop_button_string">Button to end the productivity session</string>
     <string name="companion_icon">Selected avatar</string>
+    <string name="bonfire">Bonfire: pause symbol</string>
     <string name="stand">Easel</string>
     <string name="artwork">Canvas</string>
 
@@ -194,9 +195,9 @@
     <string name="yes_button_description">bottone per confermare l\'acquisto</string>
     <string name="no_button_description">bottone uscire dalla schermata di acquisto</string>
 
-    <string name="not_enought_coins_title">Not enought\ncoins</string>
+    <string name="not_enough_coins_title">Not enough\ncoins</string>
     <string name="negative_quote" translatable="false">\"Sad noises\"</string>
-    <string name="not_enought_coins">Sorry\! Not enough\ncoins. We don\'treally \nwant coins, we want you\nto be productive.\nCome back again\nwhen you will earn enough \ncoins to deserve\nthis artwork.\n</string>
+    <string name="not_enough_coins">Sorry\! Not enough\ncoins. We don\'treally \nwant coins, we want you\nto be productive.\nCome back again\nwhen you will earn enough \ncoins to deserve\nthis artwork.\n</string>
 
     <string name="purchase_completed">Purchase\ncompleted</string>
     <string name="positive_quote" translatable="false">\"Rock \'n Roll\"</string>

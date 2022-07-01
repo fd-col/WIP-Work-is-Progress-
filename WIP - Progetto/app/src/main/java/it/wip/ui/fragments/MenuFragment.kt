@@ -13,7 +13,6 @@ import it.wip.R
 import it.wip.databinding.FragmentMenuBinding
 import it.wip.ui.activities.KingdomActivity
 import it.wip.ui.activities.SettingsActivity
-import it.wip.ui.activities.SplashPageActivity
 
 class MenuFragment : Fragment(R.layout.fragment_menu) {
 

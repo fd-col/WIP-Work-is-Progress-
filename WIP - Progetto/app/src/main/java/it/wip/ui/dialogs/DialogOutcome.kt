@@ -33,9 +33,9 @@ class DialogOutcome(private val shopped: Boolean) : DialogFragment() {
             outcomeQuote.text = getString(R.string.positive_quote)
             outcomeDescription.text = getString(R.string.purchase_completed_description)
         }else {
-            outcomeTitle.text = getString(R.string.not_enought_coins_title)
+            outcomeTitle.text = getString(R.string.not_enough_coins_title)
             outcomeQuote.text = getString(R.string.negative_quote)
-            outcomeDescription.text = getString(R.string.not_enought_coins)
+            outcomeDescription.text = getString(R.string.not_enough_coins)
         }
 
         okayButton.setOnTouchListener { v, event ->

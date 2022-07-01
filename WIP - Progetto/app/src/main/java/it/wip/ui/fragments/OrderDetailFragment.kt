@@ -1,7 +1,6 @@
 package it.wip.ui.fragments
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -36,6 +35,7 @@ class OrderDetailFragment(val shopElement: ShopElement, private val unlocked: Bo
         val artwork = binding.avatarDetail
 
         artwork.setBackgroundResource(fromShopElementNameToResource(shopElement.elementName))
+        artwork.contentDescription = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
 
         binding.avatarName.text = getString(fromShopElementNameToLocalizedName(shopElement.elementName))
 

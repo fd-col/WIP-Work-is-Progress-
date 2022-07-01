@@ -3,15 +3,9 @@ package it.wip.viewModel
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.ChapterDao
 import it.wip.database.model.Chapter
-import it.wip.database.model.Story
-import kotlinx.coroutines.launch
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class StoryDetailViewModel(application: Application) : AndroidViewModel(application) {
 

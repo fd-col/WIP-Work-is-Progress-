@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.media.AudioManager
-import android.util.Log
 import android.widget.Switch
 import androidx.lifecycle.*
 import it.wip.database.WIPDatabase
