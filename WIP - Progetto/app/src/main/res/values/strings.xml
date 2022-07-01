@@ -137,9 +137,13 @@
         Museum of Modern Art in New York, The Lovers is an artwork made of oil on canvas.\n
         The Lovers represents the conflict between true identity and the image of a person in
         the mind of his lover.\n</string>
-    <string name="the_persistence_of_memory_desciption">The Persistence of Memory is a 1931 painting
-        by artist Salvador Dalí and one of the most recognizable works of Surrealism. It epitomizes
-        Dalí\'s theory of \"softness\" and "hardness\", which was central to his thinking at the time</string>
+    <string name="the_persistence_of_memory_desciption">Painted by artist Salvador in 1931, is
+        one of the most recognizable works of Surrealism. It epitomizes Dalí\'s theory of
+        \"softness\" and "hardness\", which was central to his thinking at the time</string>
+    <string name="hopper_nighthawks_description">Painted by Edward Hopper around 1942.
+        The paint is exhibited in Chicago\'s Art Institute. Outside the club the street is deserted
+        because the scene is set late at night. There is no interaction between the protagonists and
+        each of them is immersed in their own thoughts. </string>
 
     <!-- Kingdom -->
     <string name="story_title">Story Title</string>
