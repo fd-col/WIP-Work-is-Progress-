@@ -43,11 +43,10 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
     var thirdAlreadyExecuted = true
     var fourthAlreadyExecuted = true
 
-
-
-
-    var flag1: Boolean = false
-    var flag2: Boolean = false
+    // screenBlock works as a flag to detect if device's screen is block or not
+    var screenBlock: Boolean = false
+    // storyEnder works as a flag to detect if the user is go out his story in hardcore mode
+    var storyEnder: Boolean = false
 
     val pauseIntentFilter = IntentFilter(Intent.ACTION_SCREEN_OFF)
     val screenOffDetector = ScreenOffDetector(this)
