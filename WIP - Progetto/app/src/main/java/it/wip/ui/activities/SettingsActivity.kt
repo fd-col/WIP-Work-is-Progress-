@@ -10,7 +10,6 @@ import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doOnTextChanged
@@ -22,7 +21,6 @@ import it.wip.ui.dialogs.DialogSettings
 import it.wip.ui.fragments.HeaderFragment
 import it.wip.ui.fragments.MenuFragment
 import it.wip.viewModel.SettingsViewModel
-import kotlinx.android.synthetic.main.activity_settings.*
 import kotlin.math.roundToInt
 
 class SettingsActivity : AppCompatActivity() {

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import it.wip.R
 import it.wip.database.WIPDatabase
 import it.wip.database.dao.StoryDao
 import it.wip.database.model.Chapter
@@ -53,14 +52,14 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
     init {
 
-        val userIdPreference_ = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
-        val userId_ = userIdPreference_.getInt("userId", Context.MODE_PRIVATE)
-        val wipDb_ = WIPDatabase.getInstance(application.applicationContext)
-        db = wipDb_
-        userId = userId_
+        val userIdPreference = application.applicationContext.getSharedPreferences("userId", Context.MODE_PRIVATE)
+        val userId = userIdPreference.getInt("userId", Context.MODE_PRIVATE)
+        val wipDb = WIPDatabase.getInstance(application.applicationContext)
+        db = wipDb
+        this.userId = userId
 
-        storyDao = wipDb_.storyDao()
-        userStories = storyDao.getAllByUserWithoutCoroutines(userId_)
+        storyDao = wipDb.storyDao()
+        userStories = storyDao.getAllByUserWithoutCoroutines(userId)
 
         viewModelScope.launch {
 
@@ -68,8 +67,8 @@ class StoryStartedViewModel(application: Application) : AndroidViewModel(applica
 
                 chapter = db.chapterDao().getAll()
 
-                val currentShoppedElements = wipDb_.shoppedDao().getAllByUser(userId_)
-                val allElements = wipDb_.shopElementDao().getAll()
+                val currentShoppedElements = wipDb.shoppedDao().getAllByUser(userId)
+                val allElements = wipDb.shopElementDao().getAll()
 
                 for(i in currentShoppedElements){
                     shoppedImgs.add(i.shopElement)
