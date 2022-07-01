@@ -18,7 +18,7 @@
 
     <!-- Start story -->
     <string name="new_story_default">New story</string>
-    <string name="new_story_title">Title</string>
+    <string name="new_story_title">Story Title</string>
     <string name="story_title_empty_message">Please insert a name for your story</string>
     <string name="story_time_textview">Story time</string>
     <string name="optional_settings_textview">Opt. settings</string>

@@ -17,7 +17,7 @@
 
     <!-- Start story -->
     <string name="new_story_default">Nuova storia</string>
-    <string name="new_story_title">Titolo</string>
+    <string name="new_story_title">Titolo storia</string>
     <string name="story_title_empty_message">Si prega di inserire un nome per la storia</string>
     <string name="story_time_textview">Tempo della storia</string>
     <string name="optional_settings_textview">Impost. storia</string>
