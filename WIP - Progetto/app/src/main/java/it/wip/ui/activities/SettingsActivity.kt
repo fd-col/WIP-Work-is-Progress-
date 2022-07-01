@@ -40,7 +40,6 @@ class SettingsActivity : AppCompatActivity() {
         if(lefthand==1) {
             setTheme(R.style.RightToLefTheme)
             viewModel.setLefthandMode(true)
-
         } else {
             setTheme(R.style.LeftToRighTheme)
             viewModel.setLefthandMode(false)

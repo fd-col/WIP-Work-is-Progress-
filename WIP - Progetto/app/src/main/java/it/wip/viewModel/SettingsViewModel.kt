@@ -18,8 +18,6 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
     private lateinit var user: User
 
-    private val settingsUser = mutableListOf<String>()
-
     var breakTime = 10
 
     private val _studyTime = MutableLiveData(10F)

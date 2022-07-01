@@ -80,6 +80,7 @@
                     android:hint="@string/new_story_default"
                     android:inputType="text"
                     android:minHeight="66dp"
+                    android:imeOptions="actionDone"
                     android:padding="20dp"
                     android:popupBackground="@color/blue_primary"
                     android:text="@{viewModel.storyName.toString()}"

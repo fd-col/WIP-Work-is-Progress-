@@ -35,9 +35,9 @@
 
     <string name="avatar_dx_arrow">Arrow to scroll right through the available avatars</string>
     <string name="avatar_sx_arrow">Arrow to scroll left through the available avatars</string>
-    <string name="start_story_button">Button to start the productivity session</string>
-    <string name="back_button">Button to return to home</string>
-    <string name="info_button">Button to describe the optional settings</string>
+    <string name="start_story_button">Press to start the productivity session</string>
+    <string name="back_button">Press to return to home</string>
+    <string name="info_button">Press to describe the optional settings</string>
     <string name="slider">Seekbar that allows you to select the working time and the pause time</string>
     <string name="work">work</string>
     <string name="pause">pause</string>
