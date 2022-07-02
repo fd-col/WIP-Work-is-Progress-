@@ -34,12 +34,12 @@ class StartStoryActivityTest {
 
     @Test
     fun newStoryName() {
-        //Espresso.onView(Matchers.allOf(ViewMatchers.withText("Story Title") ,ViewMatchers.isDisplayed()))
         Espresso.onView(Matchers.allOf(ViewMatchers.withText("Story Title"))).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        //onView(Matchers.allOf(withText("Story Title"))).check(matches((isDisplayed())))
-        //onView(withId(R.id.story_title)).perform(clearText(),typeText("Amr"))
-        //onView(withId(R.id.story_title)).check(matches(withText("Amr")))
-
+        /* DECOMMMENTARE E CONTROLLARE SE RUNNANDOLO IL TEST PRODUCE UN RISULTATO
+        onView(Matchers.allOf(withText("Story Title"))).check(matches((isDisplayed())))
+        onView(withId(R.id.story_title)).perform(clearText(),typeText("Amr"))
+        onView(withId(R.id.story_title)).check(matches(withText("Amr")))
+        */
     }
 }
