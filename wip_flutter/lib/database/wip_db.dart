@@ -22,7 +22,7 @@ class WIPDb {
 
     String path = join(databasesPath, 'wip.db');
 
-    return openDatabase(path, version: 3, onCreate: _onCreate);
+    return openDatabase(path, version: 4, onCreate: _onCreate);
 
   }
 
@@ -64,9 +64,7 @@ class WIPDb {
     await db.execute('''
       CREATE TABLE shop_element(
         element_name VARCHAR(255) PRIMARY KEY,
-        type VARCHAR(10) NOT NULL,
-        description VARCHAR(2000) NOT NULL,
-        price INT NOT NULL
+        type VARCHAR(10) NOT NULL
       )
       ''');
 
@@ -141,19 +139,19 @@ class WIPDb {
 
     List<ShopElement> shopElements = <ShopElement>[];
 
-    shopElements.add(ShopElement(elementName: 'venere', type: 'avatar', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'magritte_apple', type: 'avatar', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'girl_with_pearl_earring', type: 'avatar', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'the_scream', type: 'avatar', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'self_portrait', type: 'avatar', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'david', type: 'avatar', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'venere', type: 'avatar'));
+    shopElements.add(ShopElement(elementName: 'magritte_apple', type: 'avatar'));
+    shopElements.add(ShopElement(elementName: 'girl_with_pearl_earring', type: 'avatar'));
+    shopElements.add(ShopElement(elementName: 'the_scream', type: 'avatar'));
+    shopElements.add(ShopElement(elementName: 'self_portrait', type: 'avatar'));
+    shopElements.add(ShopElement(elementName: 'david', type: 'avatar'));
 
-    shopElements.add(ShopElement(elementName: 'the_scream_background', type: 'background', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'the_persistence_of_memory', type: 'background', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'hopper_nighthawks', type: 'background', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'creation_of_adam', type: 'background', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'lovers', type: 'background', description: '', price: 0));
-    shopElements.add(ShopElement(elementName: 'weathfield_with_crows', type: 'background', description: '', price: 0));
+    shopElements.add(ShopElement(elementName: 'the_scream_background', type: 'background'));
+    shopElements.add(ShopElement(elementName: 'the_persistence_of_memory', type: 'background'));
+    shopElements.add(ShopElement(elementName: 'hopper_nighthawks', type: 'background'));
+    shopElements.add(ShopElement(elementName: 'creation_of_adam', type: 'background'));
+    shopElements.add(ShopElement(elementName: 'lovers', type: 'background'));
+    shopElements.add(ShopElement(elementName: 'weathfield_with_crows', type: 'background'));
 
     ShopElementDao.insertAll(db, shopElements);
 
