@@ -1,7 +1,6 @@
 package it.wip
 
 import android.content.Context
-import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import it.wip.database.WIPDatabase
@@ -11,7 +10,6 @@ import it.wip.database.model.Chapter
 import it.wip.database.model.Story
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -62,25 +60,27 @@ class DatabaseTest {
     @Throws(IOException::class)
     fun closeDb() = db.close()
 
-    @Test //test method "getAllByStory(storyId)" to receive back the right name of Chapter inside it
+    @Test //test the method "getAllByStory(storyId)" to receive back the right name of the Chapter inside the DB
     @Throws(Exception::class)
     fun getFirstChapter() {
         getChaptersByIds()
         assertEquals(chapter1.chapterName, "Capitol1") // CORRECT
     }
 
-    @Test //test method "getAllByStory(storyId)" to receive back the right name of Chapter inside it
+    @Test //test the method "getAllByStory(storyId)" to receive back the right name of the Chapter inside the DB
     @Throws(Exception::class)
     fun getSecondChapter() {
         getChaptersByIds()
         assertEquals(chapter2.chapterName, "Capitol1") //FAILURE
     }
 
-    @Test
+    @Test // test if methods "insertWithoutCoroutines(<Story>)" & "insertWithoutCoroutines(<Chapter>)"
+          // are correctly inserted in DB
     @Throws(Exception::class)
     fun insertAndRetrive() {
         insertStoryWithChapter()
         assertEquals(storyToInsert.storyName, storyInserted.storyName)  // CORRECT
         assertEquals(chapterToInsert.chapterName, chapterInserted.chapterName) // CORRECT
     }
+
 }
