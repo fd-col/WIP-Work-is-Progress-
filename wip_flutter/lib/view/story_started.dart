@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:is_lock_screen/is_lock_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wip_flutter/arguments/story_started_arguments.dart';
@@ -61,8 +62,9 @@ class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver
   String createdOn = '';
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if(state == AppLifecycleState.inactive && args!.mode == 'hardcore') {
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    final isLock = await isLockScreen();
+    if(!isLock! && state == AppLifecycleState.inactive && args!.mode == 'hardcore') {
       timer!.cancel();
       showDialog(barrierDismissible: false, context: context, builder: (context) {
 
@@ -129,7 +131,7 @@ class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver
   }
 
   void addTime() {
-    const addSeconds = 400;
+    const addSeconds = 1;
 
     if(mounted) {
       setState(() {

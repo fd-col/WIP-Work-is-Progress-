@@ -8,9 +8,7 @@ class ShopElementDao {
     return List.generate(maps.length, (i) {
       return ShopElement(
           elementName: maps[i]['element_name'],
-          type: maps[i]['type'],
-          description: maps[i]['description'],
-          price: maps[i]['price']
+          type: maps[i]['type']
       );
     });
   }
