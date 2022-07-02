@@ -22,7 +22,7 @@ class KingdomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //LeftHand mode activation
+        //                                  LEFTHAND MODE DETECTION
         val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
         val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
         if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
@@ -108,7 +108,8 @@ class KingdomActivity : AppCompatActivity() {
 
 
 
-        // add the menu fragment to the bottom of KingdomActivity
+        //                                  MENU-BAR MANAGER
+        // add menu fragment on KingdomActivity's bottom to ensure graphical consistency
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()

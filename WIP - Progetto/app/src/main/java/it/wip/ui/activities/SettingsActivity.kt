@@ -32,7 +32,7 @@ class SettingsActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[SettingsViewModel::class.java]
 
-        //LeftHand mode activation
+        //                                  LEFTHAND MODE DETECTION
         val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
         val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
         if(lefthand==1) {
@@ -54,7 +54,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
 
-        //              BINDING RESOURCES
+        //              BINDING DATASOURCES
         val seekBarSettings = binding.seekBarSettings
         val maxStoryTime = binding.maxStoryTime
         val lefthandMode = binding.lefhandMode
@@ -78,6 +78,9 @@ class SettingsActivity : AppCompatActivity() {
         seekBarSettings.addOnChangeListener { _, value, _ ->
             viewModel.setStudyBreakTime(value)
         }
+
+
+
 
         // ------------------------ EDIT-TEXT LISTENERS ------------------------
         var currentText = ""
@@ -161,17 +164,22 @@ class SettingsActivity : AppCompatActivity() {
                 false
         }
 
-        // ------------------------ SWITCH LISTENER & FONT-SETTER ------------------------
+
+
+
+        // ------------------------ LEFTHAND MODE MANAGMENT ------------------------
         lefthandMode.typeface = ResourcesCompat.getFont(this, R.font.press_start_2p)
+        // starting selection for lefthand mode in Setting activity
         lefthandMode.isChecked = viewModel.lefthandMode.value.toString().toBoolean()
 
         lefthandMode.setOnCheckedChangeListener { _, checked ->
+            // get and edit SharedPreferences with "lefthandPreference"
             val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
             val editor = lefthandPreference.edit()
-            if(checked) { //on checking the swticher, lefthand mode will be activated
+            // on checking the relative swticher, lefthand mode will be activated
+            if(checked) {
                 editor.putInt("lefthand", 1)
                 editor.apply()
-                //window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
             }
             else {
                 editor.putInt("lefthand", 0)
@@ -183,7 +191,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
 
-        // ------------------------ BUTTON LISTENERS ------------------------
+        // ------------------------ INFO BUTTON LISTENERS------------------------
         settingsInfoButton.setOnTouchListener { v, event ->
             when (event?.action) {
                 MotionEvent.ACTION_DOWN -> settingsInfoButton.setImageResource(R.drawable.shop_info_button_pressed)
@@ -201,10 +209,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
         //              MENU-BAR MANAGER
-        // aggiunge il fragment menu nel bottom del KingdomActivity per garantire coerenza grafica
-
-
-        // add the menu fragment to the bottom of KingdomActivity
+        // add header and menu fragment on SettingsActivity's bottom to ensure graphical consistency
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.header_layout, HeaderFragment())
         transaction.add(R.id.menu_layout, MenuFragment())

@@ -23,7 +23,7 @@ class ChapterInfoActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //LeftHand mode activation
+        // LEFTHAND MODE DETECTION
         val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
         val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
         if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
@@ -31,12 +31,17 @@ class ChapterInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityChapterInfoBinding = DataBindingUtil.setContentView(this, R.layout.activity_chapter_info)
+
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application))[ChapterInfoViewModel::class.java]
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
 
+
+
+        //                              BINDING DATASOURCE
         val datetimeStoryDate= binding.datetimeStoryDate
         val datetimeStoryTime = binding.datetimeStoryTime
         val studyTime = binding.studyTime
@@ -52,6 +57,9 @@ class ChapterInfoActivity : AppCompatActivity() {
 
         //return the Chapter with chapterID taken by the intent in StoryDetail
         val chapter = viewModel.getChapter(chapterID)
+
+
+        //                              SET ALL VIEW'S VALUES
 
         //set "date" on the Chapter Info related to chapterID
         datetimeStoryDate.text = chapter.createdOn
@@ -91,7 +99,10 @@ class ChapterInfoActivity : AppCompatActivity() {
         avatarChoosed.contentDescription = getString(fromShopElementNameToLocalizedName(chapter.avatar))
 
 
-        //button to go back in the previous StoryDetailActivity
+
+
+
+        //                      BACKAWARDS TO StoryDetailActivity
         backButton.setOnClickListener {
             val bundle = Bundle()
 

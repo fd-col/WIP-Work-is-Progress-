@@ -23,7 +23,7 @@ class StoryDetailActivity: AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //LeftHand mode activation
+        //                              LEFTHAND MODE DETECTION
         val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
         val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
         if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
@@ -116,13 +116,14 @@ class StoryDetailActivity: AppCompatActivity() {
 
 
 
-        // add the menu fragment to the bottom of StoryDetailActivity
+        //                          MENU-BAR MANAGER
+        // add menu fragment on StoryDetailActivity's bottom to ensure graphical consistency
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.menu_layout, MenuFragment())
         transaction.commit()
 
 
-        //button to go back in the previous view
+        //                          BACKAWARDS TO KingdomActivity
         backButton.setOnClickListener {
             val bundle = Bundle()
             bundle.putInt("storyID", storyID)

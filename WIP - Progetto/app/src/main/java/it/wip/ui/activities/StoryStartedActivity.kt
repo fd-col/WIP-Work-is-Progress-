@@ -31,7 +31,7 @@ class StoryStartedActivity : AppCompatActivity(){
     @SuppressLint("ClickableViewAccessibility", "UseSwitchCompatOrMaterialCode")
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        //LeftHand mode activation
+        //                              LEFTHAND MODE DETECTION
         val lefthandPreference = applicationContext.getSharedPreferences("lefthandPreference", Context.MODE_PRIVATE)
         val lefthand = lefthandPreference.getInt("lefthand", Context.MODE_PRIVATE)
         if(lefthand==1)  setTheme(R.style.RightToLefTheme) else setTheme(R.style.LeftToRighTheme)
