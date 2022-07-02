@@ -381,7 +381,7 @@ class _StoryStartedState extends State<StoryStarted> with WidgetsBindingObserver
 
                                 });
 
-                                if(duration.inSeconds > 10) {
+                                if(duration.inSeconds >= 10) {
 
                                   if(storiesMap.keys.contains(args?.storyTitle)) {
                                     insertChapter();

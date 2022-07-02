@@ -44,30 +44,30 @@ fun seed(wipDb: WIPDatabase) {
         Story(2, "Tesi", "22-06-16 19:00:12",1),
         Story(3, "Appunti","22-06-17 10:00:12",1),
         Story(4,"Esame di Analisi 2", "22-06-18 10:00:12", 1),
-        Story(5,"Testo Lunghissimoooooooooooo", "22-06-23 07:00:12", 1),
+        Story(5,"Arrampicata", "22-06-23 07:00:12", 1),
         Story(6,"Sistemi Operativi", "22-06-27 16:00:12", 1),
         Story(7,"Programmazione Mobile", "22-06-30 18:00:12", 1),
     )
 
     wipDb.chapterDao().insertWithoutCoroutines(
-        Chapter(1, "Capitol1",
+        Chapter(1, "Capitolo 1",
             "00:30", "22-06-15 13:02:12", 50,10,1,"venere",1),
-        Chapter(2, "Capitol1",
+        Chapter(2, "Capitolo 1",
             "00:30", "22-06-16 19:00:12", 50,10,2,"venere",2),
-        Chapter(3, "Capitol2",
+        Chapter(3, "Capitolo 2",
             "00:30", "22-06-18 19:00:12",50,10,1,"venere",2),
-        Chapter(4, "Capitol3",
+        Chapter(4, "Capitolo 3",
             "00:30", "22-06-29 19:00:12", 50,10,2,"venere",2),
-        Chapter(5, "Capitol1",
-            "00:30", "22-06-23 07:00:12", 50,10,1,"venere",5),
-        Chapter(6, "Capitol1",
+        Chapter(5, "Capitolo 1",
             "00:30", "22-06-17 10:00:12", 50,10,2,"venere",3),
-        Chapter(7, "Capitol1",
-            "00:30", "22-06-30 18:00:12", 50,10,2,"venere",7),
-        Chapter(8,"Capitol1",
+        Chapter(6,"Capitolo 1",
             "00.30", "22-06-18 10:00:12", 50,10,0,"venere",4),
-        Chapter(9,"Capitol1",
-            "00:30", "22-06-27 16:00:12", 50,10,2,"venere",6)
+        Chapter(7, "Capitolo 1",
+            "00:30", "22-06-23 07:00:12", 50,10,1,"venere",5),
+        Chapter(8,"Capitolo 1",
+            "00:30", "22-06-27 16:00:12", 50,10,2,"venere",6),
+        Chapter(9, "Capitolo 1",
+            "00:30", "22-06-30 18:00:12", 50,10,2,"venere",7)
     )
 
 }
