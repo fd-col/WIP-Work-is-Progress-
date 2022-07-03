@@ -64,14 +64,14 @@ class DatabaseTest {
     @Throws(Exception::class)
     fun getFirstChapter() {
         getChaptersByIds()
-        assertEquals(chapter1.chapterName, "Capitol1") // CORRECT
+        assertEquals(chapter1.chapterName, "Capitolo 1")
     }
 
     @Test //test the method "getAllByStory(storyId)" to receive back the right name of the Chapter inside the DB
     @Throws(Exception::class)
     fun getSecondChapter() {
         getChaptersByIds()
-        assertEquals(chapter2.chapterName, "Capitol1") //FAILURE
+        assertEquals(chapter2.chapterName, "Capitolo 2")
     }
 
     @Test // test if methods "insertWithoutCoroutines(<Story>)" & "insertWithoutCoroutines(<Chapter>)"
@@ -79,8 +79,8 @@ class DatabaseTest {
     @Throws(Exception::class)
     fun insertAndRetrive() {
         insertStoryWithChapter()
-        assertEquals(storyToInsert.storyName, storyInserted.storyName)  // CORRECT
-        assertEquals(chapterToInsert.chapterName, chapterInserted.chapterName) // CORRECT
+        assertEquals(storyToInsert.storyName, storyInserted.storyName)
+        assertEquals(chapterToInsert.chapterName, chapterInserted.chapterName)
     }
 
 }
